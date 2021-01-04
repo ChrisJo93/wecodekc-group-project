@@ -27,9 +27,40 @@ function* postEvents(action) {
   }
 }
 
+function* updateEvent(action) {
+  try {
+    yield axios.put(
+      `/api/events/update/${action.payload.eventId}`,
+      action.payload
+    );
+    yield put({
+      type: 'GET_EVENTS',
+    });
+  } catch (err) {
+    console.log('ERROR UPDATING EVENT', err);
+    yield put({ type: 'PUT_FAILED' });
+  }
+}
+
+function* deleteEvent(action) {
+  try {
+    yield axios.delete(
+      `/api/events/delete/${action.payload.eventId}`,
+      action.payload
+    );
+    yield put({
+      type: 'GET_EVENTS',
+    });
+  } catch (err) {
+    console.log('ERROR DELETING EVENT', err);
+    yield put({ type: 'DELETE_FAILED' });
+  }
+}
+
 function* eventSaga() {
   yield takeLatest('GET_EVENTS', getEvents);
   yield takeLatest('POST_EVENTS', postEvents);
+  yield takeLatest('UPDATE_EVENT', updateEvent);
 }
 
 export default eventSaga;
