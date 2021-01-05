@@ -15,11 +15,39 @@ router.post(
   '/register',
   (req: Request, res: Response, next: express.NextFunction): void => {
     const username: string | null = <string>req.body.username;
-    const password: string | null = encryptPassword(req.body.password);
+    const password: string | null = encryptPassword(req.body.user_password);
+    const firstName: string | null = <string>req.body.first_name;
+    const middleName: string | null = <string>req.body.middle_name;
+    const lastName: string | null = <string>req.body.last_name;
+    const company: string | null = <string>req.body.company;
+    const jobTitle: string | null = <string>req.body.job_title;
+    const motivationBio: string | null = <string>req.body.motivation_bio;
+    const experienceBio: string | null = <string>req.body.experience_bio;
+    const skills: string | null = <string>req.body.custom_entry_skills;
+    const backgroundCheck: boolean | null =
+      req.body.background_check_permission;
+    const sex: number | null = parseInt(req.body.sex);
+    const zipCode: number | null = parseInt(req.body.zip_code);
 
-    const queryText: string = `INSERT INTO "user" (username, password) VALUES ($1, $2) RETURNING id`;
+    const queryText: string = `INSERT INTO "user" (username, user_password, first_name, middle_name,
+      last_name, company, job_title, motivation_bio, experience_bio, custom_entry_skills, 
+      background_check_permission, sex, zip_code, access_level) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $13, ${0}) RETURNING id`;
     pool
-      .query(queryText, [username, password])
+      .query(queryText, [
+        username,
+        password,
+        firstName,
+        middleName,
+        lastName,
+        company,
+        jobTitle,
+        motivationBio,
+        experienceBio,
+        skills,
+        backgroundCheck,
+        sex,
+        zipCode,
+      ])
       .then(() => res.sendStatus(201))
       .catch((err) => {
         console.log(`Error saving user to database: ${err}`);

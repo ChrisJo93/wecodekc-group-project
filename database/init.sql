@@ -22,7 +22,7 @@ CREATE TABLE "user" (
   first_name VARCHAR(50),
   middle_name VARCHAR(50),
   last_name VARCHAR(50),
-  posting_date DATE NOT NULL,
+  posting_date DATE NOT NULL DEFAULT CURRENT_DATE,
   sex INT REFERENCES "sex"(id),
   zip_code INT,
   company VARCHAR,
