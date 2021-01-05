@@ -23,7 +23,7 @@ router.post(
     const jobTitle: string | null = <string>req.body.job_title;
     const motivationBio: string | null = <string>req.body.motivation_bio;
     const experienceBio: string | null = <string>req.body.experience_bio;
-    const skills: string | null = <string>req.body.custom_entry_skills;
+    const customSkills: string | null = <string>req.body.custom_entry_skills;
     const backgroundCheck: boolean | null =
       req.body.background_check_permission;
     const sex: number | null = parseInt(req.body.sex);
@@ -43,7 +43,7 @@ router.post(
         jobTitle,
         motivationBio,
         experienceBio,
-        skills,
+        customSkills,
         backgroundCheck,
         sex,
         zipCode,
