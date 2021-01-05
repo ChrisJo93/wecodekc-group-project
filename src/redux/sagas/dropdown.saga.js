@@ -40,10 +40,24 @@ function* getSex(actions) {
   }
 }
 
+function* getSkill(actions) {
+  try {
+    const response = yield axios.get('/api/dropdown/skill');
+    yield put({
+      type: 'SET_SKILL',
+      payload: response.data,
+    });
+  } catch (err) {
+    console.log('ERROR GETTING SKILL', err);
+    yield put({ type: 'GET_FAILED' });
+  }
+}
+
 function* dropdownSaga() {
   yield takeLatest('GET_EDUCATION', getEducation);
   yield takeLatest('GET_RACE', getRace);
   yield takeLatest('GET_SEX', getSex);
+  yield takeLatest('GET_SKILL', getSkill);
 }
 
 export default dropdownSaga;
