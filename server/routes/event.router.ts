@@ -116,4 +116,5 @@ router.delete(
       });
   }
 );
-module.exports = router;
+
+export default router;
