@@ -3,7 +3,7 @@ import axios from 'axios';
 
 function* getEducation(actions) {
   try {
-    const response = yield axios.get('/api/dummy/thicc');
+    const response = yield axios.get('/api/dropdown/education');
     yield put({
       type: 'SET_EDUCATION',
       payload: response.data,
@@ -16,7 +16,7 @@ function* getEducation(actions) {
 
 function* getRace(actions) {
   try {
-    const response = yield axios.get('/api/dummy/thicc');
+    const response = yield axios.get('/api/dropdown/race');
     yield put({
       type: 'SET_RACE',
       payload: response.data,
@@ -29,7 +29,7 @@ function* getRace(actions) {
 
 function* getSex(actions) {
   try {
-    const response = yield axios.get('/api/dummy/thicc');
+    const response = yield axios.get('/api/dropdown/sex');
     yield put({
       type: 'SET_SEX',
       payload: response.data,
