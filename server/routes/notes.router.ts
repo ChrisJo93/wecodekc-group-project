@@ -24,28 +24,6 @@ router.get(
 );
 
 // router.post(
-<<<<<<< HEAD
-//   '/',
-//   (req: Request, res: Response, next: express.NextFunction): void => {
-//     // POST route code to add a new note
-//     const creator: number = req.user.id;
-//     // const subject: number = req.params.id;
-//     const note: string = req.body.note;
-//     const queryText: string = `INSERT INTO "admin_note" (user_id_creator, user_id_subject, note_on_subject) VALUES ($1, $2, $3);`;
-//     const queryArray: [number, string] = [creator, note];
-
-//     pool
-//       .query(queryText, queryArray)
-//       .then((dbResponse) => {
-//         res.sendStatus(201);
-//       })
-//       .catch((err) => {
-//         console.log(`error posting notes: ${err}`);
-//       });
-//   }
-// );
-
-=======
 //   '/:id',
 //   (req: Request, res: Response, next: express.NextFunction): void => {
 //     // POST route code to add a new note
@@ -81,5 +59,4 @@ router.delete(
       });
   }
 );
->>>>>>> develop
 export default router;
