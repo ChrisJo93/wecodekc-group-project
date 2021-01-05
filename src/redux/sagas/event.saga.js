@@ -14,6 +14,21 @@ function* getEvents(action) {
   }
 }
 
+function* getEventDetails(action) {
+  try {
+    const response = yield axios.get(
+      `/api/events/details/${action.payload.eventId}`
+    );
+    yield put({
+      type: 'SET_EVENT_DETAILS',
+      payload: response.data,
+    });
+  } catch (err) {
+    console.log('error getting event details', err);
+    yield put({ type: 'GET_DETAIL_FAILED' });
+  }
+}
+
 function* postEvents(action) {
   try {
     const response = yield axios.get('/api/events', action.payload);
@@ -59,6 +74,7 @@ function* deleteEvent(action) {
 
 function* eventSaga() {
   yield takeLatest('GET_EVENTS', getEvents);
+  yield takeLatest('GET_EVENT_DETAILS', getEventDetails);
   yield takeLatest('POST_EVENTS', postEvents);
   yield takeLatest('UPDATE_EVENT', updateEvent);
   yield takeLatest('DELETE_EVENT', deleteEvent);
