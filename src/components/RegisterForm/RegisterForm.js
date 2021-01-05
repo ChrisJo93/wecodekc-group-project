@@ -11,6 +11,7 @@ import {
   Input,
   Select,
   MenuItem,
+  Button,
   Chip,
 } from '@material-ui/core';
 
@@ -51,6 +52,20 @@ class RegisterForm extends Component {
   };
 
   render() {
+    // const level = this.props.store.educationReducer.map((item, index) => {
+    //   return (
+    //     <MenuItem value={item.id} key={index}>
+    //       {item.day}
+    //     </MenuItem>
+    //   );
+    // });
+    // const race = this.props.store.raceReducer.map((item, index) => {
+    //   return (
+    //     <MenuItem value={item.id} key={index}>
+    //       {item.day}
+    //     </MenuItem>
+    //   );
+    // });
     return (
       <div>
         <form className="formPanel" onSubmit={this.registerUser}>
@@ -119,13 +134,13 @@ class RegisterForm extends Component {
             </Select>
           </FormControl>
           {/* <FormControl>
-            <InputLabel id="demo-mutiple-chip-label">Chip</InputLabel>
+            <InputLabel id="education_level">Chip</InputLabel>
             <Select
-              labelId="demo-mutiple-chip-label"
-              id="demo-mutiple-chip"
+              labelId="education_level"
+              id="education_level"
               multiple
-              value={personName}
-              onChange={this.handleInputChangeFor('race')}
+              value={this.state.education_level}
+              onChange={this.handleInputChangeFor('education_level')}
               input={<Input id="select-multiple-chip" />}
               renderValue={(selected) => (
                 <div>
@@ -134,13 +149,9 @@ class RegisterForm extends Component {
                   ))}
                 </div>
               )}
-              MenuProps={MenuProps}
+              // MenuProps={MenuProps}
             >
-              {names.map((name) => (
-                <MenuItem key={name} value={name}>
-                  {name}
-                </MenuItem>
-              ))}
+              {level}
             </Select>
           </FormControl> */}
           <TextField
@@ -190,40 +201,38 @@ class RegisterForm extends Component {
           />
 
           <div>
-            <label htmlFor="username">
-              Username:
-              <TextField
-                type="text"
-                name="username"
-                variant="outlined"
-                size="small"
-                value={this.state.username}
-                required
-                onChange={this.handleInputChangeFor('username')}
-              />
-            </label>
-          </div>
-          <div>
-            <label htmlFor="password">
-              Password:
-              <TextField
-                type="password"
-                name="password"
-                variant="outlined"
-                size="small"
-                value={this.state.password}
-                required
-                onChange={this.handleInputChangeFor('password')}
-              />
-            </label>
-          </div>
-          <div>
-            <input
-              className="btn"
-              type="submit"
-              name="submit"
-              value="Register"
+            <TextField
+              placeholder="create username"
+              type="text"
+              name="username"
+              variant="outlined"
+              size="small"
+              value={this.state.username}
+              required
+              onChange={this.handleInputChangeFor('username')}
             />
+          </div>
+          <div>
+            <TextField
+              placeholder="create password"
+              type="password"
+              name="password"
+              variant="outlined"
+              size="small"
+              value={this.state.password}
+              required
+              onChange={this.handleInputChangeFor('password')}
+            />
+          </div>
+          <div>
+            <Button
+              variant="outlined"
+              type="submit"
+              // name="submit"
+              // value="Register"
+            >
+              Next
+            </Button>
           </div>
         </form>
       </div>
