@@ -30,7 +30,7 @@
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-saga": "^1.0.2",
-    "typescript": "^3.7.5"
+    "typescript": "^3.9.7"
   },
   "scripts": {
     "start": "npm run tsc && node dist/server.js",
