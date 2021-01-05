@@ -57,7 +57,7 @@ router.post(
         let array: Array<number> | null = skills;
         for (let index = 0; index < array.length; index++) {
           const element: number | null = array[index];
-          const queryTwo: string = `INSERT INTO "user_skills" (user_id, skills_id) VALUES ($1, $2)`;
+          const queryTwo: string = `INSERT INTO "user_skills" (user_id, element) VALUES ($1, $2)`;
           pool.query(queryTwo, [userId, element]);
         }
       })
@@ -65,7 +65,7 @@ router.post(
         let array: Array<number> | null = timeSlot;
         for (let index = 0; index < array.length; index++) {
           const element: number | null = array[index];
-          const queryTwo: string = `INSERT INTO "user_skills" (user_id, skills_id) VALUES ($1, $2)`;
+          const queryTwo: string = `INSERT INTO "user_skills" (user_id, element) VALUES ($1, $2)`;
           pool.query(queryTwo, [userId, element]);
         }
       })
@@ -73,7 +73,7 @@ router.post(
         let array: Array<number> | null = educationLevel;
         for (let index = 0; index < array.length; index++) {
           const element: number | null = array[index];
-          const queryTwo: string = `INSERT INTO "user_skills" (user_id, skills_id) VALUES ($1, $2)`;
+          const queryTwo: string = `INSERT INTO "user_skills" (user_id, element) VALUES ($1, $2)`;
           pool.query(queryTwo, [userId, element]);
         }
       })
@@ -81,7 +81,7 @@ router.post(
         let array: Array<number> | null = race;
         for (let index = 0; index < array.length; index++) {
           const element: number | null = array[index];
-          const queryTwo: string = `INSERT INTO "user_skills" (user_id, skills_id) VALUES ($1, $2)`;
+          const queryTwo: string = `INSERT INTO "user_skills" (user_id, element) VALUES ($1, $2)`;
           pool.query(queryTwo, [userId, element]);
         }
       })
