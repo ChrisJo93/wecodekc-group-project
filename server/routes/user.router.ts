@@ -24,6 +24,10 @@ router.post(
     const motivationBio: string | null = <string>req.body.motivation_bio;
     const experienceBio: string | null = <string>req.body.experience_bio;
     const customSkills: string | null = <string>req.body.custom_entry_skills;
+    const skills: Array<number> | null = req.body.skills;
+    const timeSlot: Array<number> | null = req.body.time_slot;
+    const educationLevel: Array<number> | null = req.body.education_level;
+    const race: Array<number> | null = req.body.race;
     const backgroundCheck: boolean | null =
       req.body.background_check_permission;
     const sex: number | null = parseInt(req.body.sex);
