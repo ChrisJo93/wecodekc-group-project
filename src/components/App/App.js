@@ -83,6 +83,7 @@ class App extends Component {
               component={RegisterPage}
               authRedirect="/user"
             />
+
             <ProtectedRoute
               // with authRedirect:
               // - if logged in, redirects to "/user"
