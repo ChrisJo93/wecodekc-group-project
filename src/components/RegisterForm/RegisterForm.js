@@ -118,7 +118,7 @@ class RegisterForm extends Component {
               <MenuItem value={'Other'}>Other</MenuItem>
             </Select>
           </FormControl>
-          <FormControl>
+          {/* <FormControl>
             <InputLabel id="demo-mutiple-chip-label">Chip</InputLabel>
             <Select
               labelId="demo-mutiple-chip-label"
@@ -142,7 +142,7 @@ class RegisterForm extends Component {
                 </MenuItem>
               ))}
             </Select>
-          </FormControl>
+          </FormControl> */}
           <TextField
             size="small"
             placeholder="email"
