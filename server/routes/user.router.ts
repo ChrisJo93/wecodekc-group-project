@@ -14,6 +14,7 @@ router.get('/', rejectUnauthenticated, (req: Request, res: Response): void => {
 router.post(
   '/register',
   (req: Request, res: Response, next: express.NextFunction): void => {
+    const userId: number | null = parseInt(req.body.id);
     const username: string | null = <string>req.body.username;
     const password: string | null = encryptPassword(req.body.user_password);
     const firstName: string | null = <string>req.body.first_name;
@@ -33,11 +34,11 @@ router.post(
     const sex: number | null = parseInt(req.body.sex);
     const zipCode: number | null = parseInt(req.body.zip_code);
 
-    const queryText: string = `INSERT INTO "user" (username, user_password, first_name, middle_name,
+    const queryOne: string = `INSERT INTO "user" (username, user_password, first_name, middle_name,
       last_name, company, job_title, motivation_bio, experience_bio, custom_entry_skills, 
       background_check_permission, sex, zip_code, access_level) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $13, ${0}) RETURNING id`;
     pool
-      .query(queryText, [
+      .query(queryOne, [
         username,
         password,
         firstName,
@@ -52,9 +53,43 @@ router.post(
         sex,
         zipCode,
       ])
-      .then(() => res.sendStatus(201))
-      .catch((err) => {
-        console.log(`Error saving user to database: ${err}`);
+      .then(() => {
+        let array: Array<number> | null = skills;
+        for (let index = 0; index < array.length; index++) {
+          const element: number | null = array[index];
+          const queryTwo: string = `INSERT INTO "user_skills" (user_id, skills_id) VALUES ($1, $2)`;
+          pool.query(queryTwo, [userId, element]);
+        }
+      })
+      .then(() => {
+        let array: Array<number> | null = timeSlot;
+        for (let index = 0; index < array.length; index++) {
+          const element: number | null = array[index];
+          const queryTwo: string = `INSERT INTO "user_skills" (user_id, skills_id) VALUES ($1, $2)`;
+          pool.query(queryTwo, [userId, element]);
+        }
+      })
+      .then(() => {
+        let array: Array<number> | null = educationLevel;
+        for (let index = 0; index < array.length; index++) {
+          const element: number | null = array[index];
+          const queryTwo: string = `INSERT INTO "user_skills" (user_id, skills_id) VALUES ($1, $2)`;
+          pool.query(queryTwo, [userId, element]);
+        }
+      })
+      .then(() => {
+        let array: Array<number> | null = race;
+        for (let index = 0; index < array.length; index++) {
+          const element: number | null = array[index];
+          const queryTwo: string = `INSERT INTO "user_skills" (user_id, skills_id) VALUES ($1, $2)`;
+          pool.query(queryTwo, [userId, element]);
+        }
+      })
+      .then((result) => {
+        res.sendStatus(200);
+      })
+      .catch((error) => {
+        console.log(error);
         res.sendStatus(500);
       });
   }
