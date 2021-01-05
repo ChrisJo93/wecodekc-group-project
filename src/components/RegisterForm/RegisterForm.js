@@ -8,6 +8,7 @@ import {
   TextField,
   FormControl,
   InputLabel,
+  Input,
   Select,
   MenuItem,
   Chip,
@@ -20,13 +21,13 @@ class RegisterForm extends Component {
     last_name: '',
     birth_date: '',
     sex: '',
-    race: '',
+    race: [],
     email: '',
     phone_number: '',
     zip_code: '',
     company: '',
     job_title: '',
-    education_level: '',
+    education_level: [],
     username: '',
     password: '',
   };
@@ -53,7 +54,9 @@ class RegisterForm extends Component {
     return (
       <div>
         <form className="formPanel" onSubmit={this.registerUser}>
-          <Typography gutterBottom>Register User</Typography>
+          <Typography variant="h3" component="h2" gutterBottom>
+            Register User
+          </Typography>
           {this.props.store.errors.registrationMessage && (
             <h3 className="alert" role="alert">
               {this.props.store.errors.registrationMessage}
@@ -89,13 +92,21 @@ class RegisterForm extends Component {
             variant="outlined"
             onChange={this.handleInputChangeFor('last_name')}
           />
+          <TextField
+            id="birth_date"
+            label="birth_date"
+            type="date"
+            defaultValue="2000-01-01"
+            size="small"
+            variant="outlined"
+          />
           <FormControl variant="outlined" size="small" fullWidth>
             <InputLabel id="sex">Sex</InputLabel>
             <Select
               labelId="sex"
               id="sex"
               value={this.state.sex}
-              onChange={this.handleInputChangeFor('gesexnder')}
+              onChange={this.handleInputChangeFor('sex')}
               label="sex"
             >
               <MenuItem value="">
@@ -105,6 +116,31 @@ class RegisterForm extends Component {
               <MenuItem value={'Male'}>Male</MenuItem>
 
               <MenuItem value={'Other'}>Other</MenuItem>
+            </Select>
+          </FormControl>
+          <FormControl>
+            <InputLabel id="demo-mutiple-chip-label">Chip</InputLabel>
+            <Select
+              labelId="demo-mutiple-chip-label"
+              id="demo-mutiple-chip"
+              multiple
+              value={personName}
+              onChange={this.handleInputChangeFor('race')}
+              input={<Input id="select-multiple-chip" />}
+              renderValue={(selected) => (
+                <div>
+                  {selected.map((value) => (
+                    <Chip key={value} label={value} />
+                  ))}
+                </div>
+              )}
+              MenuProps={MenuProps}
+            >
+              {names.map((name) => (
+                <MenuItem key={name} value={name}>
+                  {name}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
           <TextField
@@ -156,9 +192,11 @@ class RegisterForm extends Component {
           <div>
             <label htmlFor="username">
               Username:
-              <input
+              <TextField
                 type="text"
                 name="username"
+                variant="outlined"
+                size="small"
                 value={this.state.username}
                 required
                 onChange={this.handleInputChangeFor('username')}
@@ -168,9 +206,11 @@ class RegisterForm extends Component {
           <div>
             <label htmlFor="password">
               Password:
-              <input
+              <TextField
                 type="password"
                 name="password"
+                variant="outlined"
+                size="small"
                 value={this.state.password}
                 required
                 onChange={this.handleInputChangeFor('password')}
