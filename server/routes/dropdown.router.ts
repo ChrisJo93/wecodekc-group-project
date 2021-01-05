@@ -55,4 +55,20 @@ router.get(
   }
 );
 
+router.get(
+  '/skill',
+  (req: Request, res: Response, next: express.NextFunction): void => {
+    const getSkill: string = `SELECT * FROM "skill";`;
+    pool
+      .query(getSkill)
+      .then((result) => {
+        res.send(result.rows);
+      })
+      .catch((error) => {
+        console.log('error getting skill', error);
+        res.sendStatus(500);
+      });
+  }
+);
+
 export default router;
