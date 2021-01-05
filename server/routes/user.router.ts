@@ -56,33 +56,33 @@ router.post(
       .then(() => {
         let array: Array<number> | null = skills;
         for (let index = 0; index < array.length; index++) {
-          const element: number | null = array[index];
-          const queryTwo: string = `INSERT INTO "user_skills" (user_id, element) VALUES ($1, $2)`;
-          pool.query(queryTwo, [userId, element]);
+          let element: number | null = array[index];
+          let query: string = `INSERT INTO "user_skills" (user_id, element) VALUES ($1, $2)`;
+          pool.query(query, [userId, element]);
         }
       })
       .then(() => {
         let array: Array<number> | null = timeSlot;
         for (let index = 0; index < array.length; index++) {
-          const element: number | null = array[index];
-          const queryTwo: string = `INSERT INTO "user_skills" (user_id, element) VALUES ($1, $2)`;
-          pool.query(queryTwo, [userId, element]);
+          let element: number | null = array[index];
+          let query: string = `INSERT INTO "user_time_slot" (user_id, element) VALUES ($1, $2)`;
+          pool.query(query, [userId, element]);
         }
       })
       .then(() => {
         let array: Array<number> | null = educationLevel;
         for (let index = 0; index < array.length; index++) {
-          const element: number | null = array[index];
-          const queryTwo: string = `INSERT INTO "user_skills" (user_id, element) VALUES ($1, $2)`;
-          pool.query(queryTwo, [userId, element]);
+          let element: number | null = array[index];
+          let query: string = `INSERT INTO "user_education_level" (user_id, element) VALUES ($1, $2)`;
+          pool.query(query, [userId, element]);
         }
       })
       .then(() => {
         let array: Array<number> | null = race;
         for (let index = 0; index < array.length; index++) {
-          const element: number | null = array[index];
-          const queryTwo: string = `INSERT INTO "user_skills" (user_id, element) VALUES ($1, $2)`;
-          pool.query(queryTwo, [userId, element]);
+          let element: number | null = array[index];
+          let query: string = `INSERT INTO "user_race" (user_id, element) VALUES ($1, $2)`;
+          pool.query(query, [userId, element]);
         }
       })
       .then((result) => {
