@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { put, take, takeLatest } from 'redux-saga/effects';
+import { put, takeLatest } from 'redux-saga/effects';
 
 function* getNotes(action) {
   try {
