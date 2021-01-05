@@ -61,6 +61,7 @@ function* eventSaga() {
   yield takeLatest('GET_EVENTS', getEvents);
   yield takeLatest('POST_EVENTS', postEvents);
   yield takeLatest('UPDATE_EVENT', updateEvent);
+  yield takeLatest('DELETE_EVENT', deleteEvent);
 }
 
 export default eventSaga;
