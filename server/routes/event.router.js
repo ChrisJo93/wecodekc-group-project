@@ -73,6 +73,9 @@ router.put('/update/:id', (req, res) => {
     SET name=$1, time=$2, description=$3
     WHERE id=$4;`;
   pool
+
+    // STUBBED VALUES NEED REPLACING
+
     .query(editEvent, [
       event.name,
       event.time,
