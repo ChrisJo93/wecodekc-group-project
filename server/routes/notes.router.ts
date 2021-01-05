@@ -44,4 +44,19 @@ router.post(
   }
 );
 
+router.delete(
+  '/:id',
+  (req: Request, res: Response, next: express.NextFunction): void => {
+    const deleteNote: string = `DELETE FROM "notes" WHERE "id" =$1;`;
+    pool
+      .query(deleteNote, [req.params.id])
+      .then((result) => {
+        res.sendStatus(200);
+      })
+      .catch((error) => {
+        console.log(error);
+        res.sendStatus(500);
+      });
+  }
+);
 export default router;
