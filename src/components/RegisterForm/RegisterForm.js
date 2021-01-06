@@ -35,11 +35,6 @@ class RegisterForm extends Component {
     user_password: '',
   };
 
-  componentDidMount() {
-    //dispatch to get all education levels for dropdown
-    this.props.dispatch({ type: 'GET_EDUCATION' });
-  }
-
   registerUser = (event) => {
     event.preventDefault();
 
@@ -64,20 +59,22 @@ class RegisterForm extends Component {
   };
 
   render() {
-    // const level = this.props.store.educationReducer.map((item, index) => {
-    //   return (
-    //     <MenuItem value={item.id} key={index}>
-    //       {item.day}
-    //     </MenuItem>
-    //   );
-    // });
-    // const race = this.props.store.raceReducer.map((item, index) => {
-    //   return (
-    //     <MenuItem value={item.id} key={index}>
-    //       {item.day}
-    //     </MenuItem>
-    //   );
-    // });
+    const level = this.props.store.dropdown.educationReducer.map(
+      (item, index) => {
+        return (
+          <MenuItem value={item.id} key={index}>
+            {item.education_label}
+          </MenuItem>
+        );
+      }
+    );
+    const race = this.props.store.dropdown.raceReducer.map((item, index) => {
+      return (
+        <MenuItem value={item.id} key={index}>
+          {item.race_label}
+        </MenuItem>
+      );
+    });
     return (
       <div>
         <form className="formPanel" onSubmit={this.handleNextClick}>
@@ -162,10 +159,7 @@ class RegisterForm extends Component {
                   <MenuItem value="">
                     <em>None</em>
                   </MenuItem>
-                  <MenuItem value={'Female'}>Female</MenuItem>
-                  <MenuItem value={'Male'}>Male</MenuItem>
-
-                  <MenuItem value={'Other'}>Other</MenuItem>
+                  {race}
                 </Select>
               </FormControl>
               <TextField
@@ -237,27 +231,28 @@ class RegisterForm extends Component {
                 onChange={this.handleInputChangeFor('user_password')}
               />
 
-              {/* <FormControl>
-            <InputLabel id="education_level">Chip</InputLabel>
-            <Select
-              labelId="education_level"
-              id="education_level"
-              multiple
-              value={this.state.education_level}
-              onChange={this.handleInputChangeFor('education_level')}
-              input={<Input id="select-multiple-chip" />}
-              renderValue={(selected) => (
-                <div>
-                  {selected.map((value) => (
-                    <Chip key={value} label={value} />
-                  ))}
-                </div>
-              )}
-              // MenuProps={MenuProps}
-            >
-              {level}
-            </Select>
-          </FormControl> */}
+              <FormControl variant="outlined">
+                <InputLabel id="education_level">
+                  Highest Level of Education
+                </InputLabel>
+                <Select
+                  labelId="education_level"
+                  id="education_level"
+                  multiple
+                  value={this.state.education_level}
+                  onChange={this.handleInputChangeFor('education_level')}
+                  input={<Input id="select-multiple-chip" />}
+                  renderValue={(selected) => (
+                    <div>
+                      {selected.map((value) => (
+                        <Chip key={value} label={value} />
+                      ))}
+                    </div>
+                  )}
+                >
+                  {level}
+                </Select>
+              </FormControl>
             </Grid>
           </Grid>
           <div>

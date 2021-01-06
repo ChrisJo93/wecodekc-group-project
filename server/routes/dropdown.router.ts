@@ -10,7 +10,7 @@ const router: express.Router = express.Router();
 router.get(
   '/education',
   (req: Request, res: Response, next: express.NextFunction): void => {
-    const getEducation: string = `SELECT * FROM "education";`;
+    const getEducation: string = `SELECT * FROM "education_level";`;
     pool
       .query(getEducation)
       .then((result) => {

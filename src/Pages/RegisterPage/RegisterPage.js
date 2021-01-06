@@ -8,6 +8,12 @@ import RegisterForm from '../../components/RegisterForm/RegisterForm';
 class RegisterPage extends Component {
   state = {};
 
+  componentDidMount() {
+    //dispatch to get all education levels for dropdown
+    this.props.dispatch({ type: 'GET_EDUCATION' });
+    this.props.dispatch({ type: 'GET_RACE' });
+  }
+
   render() {
     return (
       <div>
