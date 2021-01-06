@@ -7,10 +7,11 @@ import './LandingPage.css';
 // CUSTOM COMPONENTS
 import RegisterForm from '../../components/RegisterForm/RegisterForm';
 
+//Material-UI imports
+import { Grid, Card } from '@material-ui/core';
+
 class LandingPage extends Component {
-  state = {
-    heading: 'Class Component',
-  };
+  state = {};
 
   onLogin = (event) => {
     this.props.history.push('/login');
@@ -19,8 +20,6 @@ class LandingPage extends Component {
   render() {
     return (
       <div className="container">
-        <h2>{this.state.heading}</h2>
-
         <div className="grid">
           <div className="grid-col grid-col_8">
             <p>
