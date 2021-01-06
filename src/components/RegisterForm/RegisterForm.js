@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
 //Material-UI imports
@@ -32,8 +33,12 @@ class RegisterForm extends Component {
     education_level: [],
     username: '',
     user_password: '',
-    nextClicked: false,
   };
+
+  componentDidMount() {
+    //dispatch to get all education levels for dropdown
+    this.props.dispatch({ type: 'GET_EDUCATION' });
+  }
 
   registerUser = (event) => {
     event.preventDefault();
@@ -49,14 +54,7 @@ class RegisterForm extends Component {
 
   //go to next page of registration
   handleNextClick = (e) => {
-    this.setState(
-      {
-        nextClicked: true,
-      },
-      () => {
-        console.log(this.state.nextClicked);
-      }
-    );
+    this.props.history.push('/registration/page/2');
   };
 
   handleInputChangeFor = (propertyName) => (event) => {
@@ -102,7 +100,7 @@ class RegisterForm extends Component {
                 type="text"
                 name="first_name"
                 value={this.state.first_name}
-                required
+                // required
                 variant="outlined"
                 onChange={this.handleInputChangeFor('first_name')}
               />
@@ -112,7 +110,7 @@ class RegisterForm extends Component {
                 type="text"
                 name="middle_name"
                 value={this.state.first_name}
-                required
+                // required
                 variant="outlined"
                 onChange={this.handleInputChangeFor('middle_name')}
               />
@@ -122,7 +120,7 @@ class RegisterForm extends Component {
                 type="text"
                 name="last_name"
                 value={this.state.first_name}
-                required
+                // required
                 variant="outlined"
                 onChange={this.handleInputChangeFor('last_name')}
               />
@@ -177,7 +175,7 @@ class RegisterForm extends Component {
                 variant="outlined"
                 size="small"
                 value={this.state.username}
-                required
+                // required
                 onChange={this.handleInputChangeFor('username')}
               />
             </Grid>
@@ -235,7 +233,7 @@ class RegisterForm extends Component {
                 variant="outlined"
                 size="small"
                 value={this.state.user_password}
-                required
+                // required
                 onChange={this.handleInputChangeFor('user_password')}
               />
 
@@ -278,4 +276,4 @@ class RegisterForm extends Component {
   }
 }
 
-export default connect(mapStoreToProps)(RegisterForm);
+export default withRouter(connect(mapStoreToProps)(RegisterForm));

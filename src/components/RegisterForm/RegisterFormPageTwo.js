@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
 //Material-UI imports
@@ -42,14 +43,7 @@ class RegisterFormPageTwo extends Component {
 
   //go back to first page of registration
   handleBackClick = (e) => {
-    this.setState(
-      {
-        backClicked: true,
-      },
-      () => {
-        console.log(this.state.backClicked);
-      }
-    );
+    this.props.history.push('/registration/page/1');
   };
 
   handleInputChangeFor = (propertyName) => (event) => {
@@ -166,4 +160,4 @@ class RegisterFormPageTwo extends Component {
   }
 }
 
-export default connect(mapStoreToProps)(RegisterFormPageTwo);
+export default withRouter(connect(mapStoreToProps)(RegisterFormPageTwo));
