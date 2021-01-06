@@ -23,11 +23,7 @@ router.post(
     const jobTitle: string = <string>req.body.job_title;
     const motivationBio: string = <string>req.body.motivation_bio;
     const experienceBio: string = <string>req.body.experience_bio;
-<<<<<<< HEAD
-    // const customSkills: string = <string>req.body.custom_entry_skills;
-=======
     const customSkills: string = <string>req.body.custom_entry_skills;
->>>>>>> 749bee5e82b884b53c2809a1d8e0cd2eac6815d1
     // const skills: Array<number> = req.body.skills;
     // const timeSlot: Array<number> = req.body.time_slot;
     // const educationLevel: Array<number> = req.body.education_level;
@@ -50,7 +46,7 @@ router.post(
         jobTitle,
         motivationBio,
         experienceBio,
-        // customSkills,
+        customSkills,
         backgroundCheck,
         sex,
         zipCode,
