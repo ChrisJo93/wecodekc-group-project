@@ -4,18 +4,17 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 
 // CUSTOM COMPONENTS
 import RegisterForm from '../../components/RegisterForm/RegisterForm';
+import RegisterFormPage2 from '../../components/RegisterForm/RegisterFormPageTwo';
 
 class RegisterPage extends Component {
-  state = {
-    username: '',
-    password: '',
-  };
+  state = {};
 
   render() {
     return (
       <div>
+        {/* {this.state.backClicked ? <RegisterForm /> : <RegisterFormPage2 />} */}
         <RegisterForm />
-
+        <RegisterFormPage2 />
         <center>
           <button
             type="button"

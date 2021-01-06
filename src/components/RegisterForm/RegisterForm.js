@@ -31,7 +31,8 @@ class RegisterForm extends Component {
     job_title: '',
     education_level: [],
     username: '',
-    password: '',
+    user_password: '',
+    nextClicked: false,
   };
 
   registerUser = (event) => {
@@ -41,10 +42,22 @@ class RegisterForm extends Component {
       type: 'REGISTER',
       payload: {
         username: this.state.username,
-        password: this.state.password,
+        user_password: this.state.user_password,
       },
     });
   }; // end registerUser
+
+  //go to next page of registration
+  handleNextClick = (e) => {
+    this.setState(
+      {
+        nextClicked: true,
+      },
+      () => {
+        console.log(this.state.nextClicked);
+      }
+    );
+  };
 
   handleInputChangeFor = (propertyName) => (event) => {
     this.setState({
@@ -69,7 +82,7 @@ class RegisterForm extends Component {
     // });
     return (
       <div>
-        <form className="formPanel" onSubmit={this.registerUser}>
+        <form className="formPanel" onSubmit={this.handleNextClick}>
           <Typography variant="h3" component="h2" gutterBottom>
             Mentor Registration
           </Typography>
@@ -129,6 +142,24 @@ class RegisterForm extends Component {
                   value={this.state.sex}
                   onChange={this.handleInputChangeFor('sex')}
                   label="sex"
+                >
+                  <MenuItem value="">
+                    <em>None</em>
+                  </MenuItem>
+                  <MenuItem value={'Female'}>Female</MenuItem>
+                  <MenuItem value={'Male'}>Male</MenuItem>
+
+                  <MenuItem value={'Other'}>Other</MenuItem>
+                </Select>
+              </FormControl>
+              <FormControl variant="outlined" size="small" fullWidth>
+                <InputLabel id="Race">Race</InputLabel>
+                <Select
+                  labelId="race"
+                  id="race"
+                  value={this.state.sex}
+                  onChange={this.handleInputChangeFor('race')}
+                  label="race"
                 >
                   <MenuItem value="">
                     <em>None</em>
@@ -203,9 +234,9 @@ class RegisterForm extends Component {
                 name="password"
                 variant="outlined"
                 size="small"
-                value={this.state.password}
+                value={this.state.user_password}
                 required
-                onChange={this.handleInputChangeFor('password')}
+                onChange={this.handleInputChangeFor('user_password')}
               />
 
               {/* <FormControl>
