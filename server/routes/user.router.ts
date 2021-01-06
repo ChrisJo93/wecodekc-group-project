@@ -17,21 +17,22 @@ router.post(
     const userId: number = parseInt(req.body.id);
     const username: string = <string>req.body.username;
     const password: string = encryptPassword(req.body.user_password);
-    const firstName: string = <string>req.body.first_name;
-    const middleName: string = <string>req.body.middle_name;
-    const lastName: string = <string>req.body.last_name;
-    const company: string = <string>req.body.company;
-    const jobTitle: string = <string>req.body.job_title;
-    const motivationBio: string = <string>req.body.motivation_bio;
-    const experienceBio: string = <string>req.body.experience_bio;
-    const customSkills: string = <string>req.body.custom_entry_skills;
-    const skills: Array<number> = req.body.skills;
-    const timeSlot: Array<number> = req.body.time_slot;
-    const educationLevel: Array<number> = req.body.education_level;
-    const race: Array<number> = req.body.race;
-    const backgroundCheck: boolean = req.body.background_check_permission;
-    const sex: number = parseInt(req.body.sex);
-    const zipCode: number = parseInt(req.body.zip_code);
+    const firstName: string | null = <string>req.body.first_name;
+    const middleName: string | null = <string>req.body.middle_name;
+    const lastName: string | null = <string>req.body.last_name;
+    const company: string | null = <string>req.body.company;
+    const jobTitle: string | null = <string>req.body.job_title;
+    const motivationBio: string | null = <string>req.body.motivation_bio;
+    const experienceBio: string | null = <string>req.body.experience_bio;
+    const customSkills: string | null = <string>req.body.custom_entry_skills;
+    const skills: Array<number> | null = req.body.skills;
+    const timeSlot: Array<number> | null = req.body.time_slot;
+    const educationLevel: Array<number> | null = req.body.education_level;
+    const race: Array<number> | null = req.body.race;
+    const backgroundCheck: boolean | null =
+      req.body.background_check_permission;
+    const sex: number | null = parseInt(req.body.sex);
+    const zipCode: number | null = parseInt(req.body.zip_code);
 
     const queryOne: string = `INSERT INTO "user" (username, user_password, first_name, middle_name,
       last_name, company, job_title, motivation_bio, experience_bio, custom_entry_skills,
