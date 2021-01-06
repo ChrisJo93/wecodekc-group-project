@@ -24,10 +24,10 @@ router.post(
     const jobTitle: string = <string>req.body.job_title;
     const motivationBio: string = <string>req.body.motivation_bio;
     const experienceBio: string = <string>req.body.experience_bio;
-    const customSkills: string = <string>req.body.custom_entry_skills;
-    const skills: Array<number> = req.body.skills;
-    const timeSlot: Array<number> = req.body.time_slot;
-    const educationLevel: Array<number> = req.body.education_level;
+    // const customSkills: string = <string>req.body.custom_entry_skills;
+    // const skills: Array<number> = req.body.skills;
+    // const timeSlot: Array<number> = req.body.time_slot;
+    // const educationLevel: Array<number> = req.body.education_level;
     const race: number = req.body.race;
     const backgroundCheck: boolean = req.body.background_check_permission;
     const sex: number = parseInt(req.body.sex);
@@ -47,36 +47,36 @@ router.post(
         jobTitle,
         motivationBio,
         experienceBio,
-        customSkills,
+        // customSkills,
         backgroundCheck,
         sex,
         zipCode,
         race,
       ])
-      .then(() => {
-        let array: Array<number> = skills;
-        for (let index = 0; index < array.length; index++) {
-          let element: number = array[index];
-          let query: string = `INSERT INTO "user_skills" (user_id, element) VALUES ($1, $2)`;
-          pool.query(query, [userId, element]);
-        }
-      })
-      .then(() => {
-        let array: Array<number> = timeSlot;
-        for (let index = 0; index < array.length; index++) {
-          let element: number = array[index];
-          let query: string = `INSERT INTO "user_time_slot" (user_id, element) VALUES ($1, $2)`;
-          pool.query(query, [userId, element]);
-        }
-      })
-      .then(() => {
-        let array: Array<number> = educationLevel;
-        for (let index = 0; index < array.length; index++) {
-          let element: number = array[index];
-          let query: string = `INSERT INTO "user_education_level" (user_id, element) VALUES ($1, $2)`;
-          pool.query(query, [userId, element]);
-        }
-      })
+      // .then(() => {
+      //   let array: Array<number> = skills;
+      //   for (let index = 0; index < array.length; index++) {
+      //     let element: number = array[index];
+      //     let query: string = `INSERT INTO "user_skills" (user_id, element) VALUES ($1, $2)`;
+      //     pool.query(query, [userId, element]);
+      //   }
+      // })
+      // .then(() => {
+      //   let array: Array<number> = timeSlot;
+      //   for (let index = 0; index < array.length; index++) {
+      //     let element: number = array[index];
+      //     let query: string = `INSERT INTO "user_time_slot" (user_id, element) VALUES ($1, $2)`;
+      //     pool.query(query, [userId, element]);
+      //   }
+      // })
+      // .then(() => {
+      //   let array: Array<number> = educationLevel;
+      //   for (let index = 0; index < array.length; index++) {
+      //     let element: number = array[index];
+      //     let query: string = `INSERT INTO "user_education_level" (user_id, element) VALUES ($1, $2)`;
+      //     pool.query(query, [userId, element]);
+      //   }
+      // })
       .then((result) => {
         res.sendStatus(200);
       })
