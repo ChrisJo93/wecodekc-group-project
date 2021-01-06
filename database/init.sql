@@ -24,6 +24,7 @@ CREATE TABLE "user" (
   last_name VARCHAR(50),
   posting_date DATE NOT NULL DEFAULT CURRENT_DATE,
   sex INT REFERENCES "sex"(id),
+  race INT REFERENCES "race"(id),
   zip_code INT,
   company VARCHAR,
   job_title VARCHAR,
@@ -79,12 +80,6 @@ CREATE TABLE user_education_level (
 CREATE TABLE race (
   id SERIAL PRIMARY KEY,
   race_label varchar(100)
-);
-
-CREATE TABLE user_race (
-  id SERIAL PRIMARY KEY,
-  user_id INT REFERENCES "user"(id),
-  race_id INT REFERENCES "race"(id)
 );
 
 CREATE TABLE event_type (
