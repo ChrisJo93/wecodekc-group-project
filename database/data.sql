@@ -1,5 +1,5 @@
 INSERT INTO "race" (race_label) VALUES 
-  ('WHITE'),
+  ('White not Hispanic'),
   ('Hispanic or Latino'),
   ('Black or African American'),
   ('Native American or American Indian'),
