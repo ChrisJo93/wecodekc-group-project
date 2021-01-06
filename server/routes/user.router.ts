@@ -14,7 +14,6 @@ router.get('/', rejectUnauthenticated, (req: Request, res: Response): void => {
 router.post(
   '/register',
   (req: Request, res: Response, next: express.NextFunction): void => {
-    const userId: number = parseInt(req.body.id);
     const username: string = <string>req.body.username;
     const password: string = encryptPassword(req.body.user_password);
     const firstName: string = <string>req.body.first_name;
@@ -25,9 +24,9 @@ router.post(
     const motivationBio: string = <string>req.body.motivation_bio;
     const experienceBio: string = <string>req.body.experience_bio;
     const customSkills: string = <string>req.body.custom_entry_skills;
-    const skills: Array<number> = req.body.skills;
-    const timeSlot: Array<number> = req.body.time_slot;
-    const educationLevel: Array<number> = req.body.education_level;
+    // const skills: Array<number> = req.body.skills;
+    // const timeSlot: Array<number> = req.body.time_slot;
+    // const educationLevel: Array<number> = req.body.education_level;
     const race: number = req.body.race;
     const backgroundCheck: boolean = req.body.background_check_permission;
     const sex: number = parseInt(req.body.sex);
@@ -35,7 +34,7 @@ router.post(
 
     const queryOne: string = `INSERT INTO "user" (username, user_password, first_name, middle_name,
       last_name, company, job_title, motivation_bio, experience_bio, custom_entry_skills,
-      background_check_permission, sex, zip_code, access_level) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $13, ${0}, #14) RETURNING id`;
+      background_check_permission, sex, zip_code, race) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING id;`;
     pool
       .query(queryOne, [
         username,
@@ -53,31 +52,33 @@ router.post(
         zipCode,
         race,
       ])
-      .then(() => {
-        let array: Array<number> = skills;
-        for (let index = 0; index < array.length; index++) {
-          let element: number = array[index];
-          let query: string = `INSERT INTO "user_skills" (user_id, element) VALUES ($1, $2)`;
-          pool.query(query, [userId, element]);
-        }
-      })
-      .then(() => {
-        let array: Array<number> = timeSlot;
-        for (let index = 0; index < array.length; index++) {
-          let element: number = array[index];
-          let query: string = `INSERT INTO "user_time_slot" (user_id, element) VALUES ($1, $2)`;
-          pool.query(query, [userId, element]);
-        }
-      })
-      .then(() => {
-        let array: Array<number> = educationLevel;
-        for (let index = 0; index < array.length; index++) {
-          let element: number = array[index];
-          let query: string = `INSERT INTO "user_education_level" (user_id, element) VALUES ($1, $2)`;
-          pool.query(query, [userId, element]);
-        }
-      })
+      // .then(() => {
+      //   let array: Array<number> = skills;
+      //   for (let index = 0; index < array.length; index++) {
+      //     let element: number = array[index];
+      //     let query: string = `INSERT INTO "user_skills" (user_id, element) VALUES ($1, $2)`;
+      //     pool.query(query, [userId, element]);
+      //   }
+      // })
+      // .then(() => {
+      //   let array: Array<number> = timeSlot;
+      //   for (let index = 0; index < array.length; index++) {
+      //     let element: number = array[index];
+      //     let query: string = `INSERT INTO "user_time_slot" (user_id, element) VALUES ($1, $2)`;
+      //     pool.query(query, [userId, element]);
+      //   }
+      // })
+      // .then(() => {
+      //   let array: Array<number> = educationLevel;
+      //   for (let index = 0; index < array.length; index++) {
+      //     let element: number = array[index];
+      //     let query: string = `INSERT INTO "user_education_level" (user_id, element) VALUES ($1, $2)`;
+      //     pool.query(query, [userId, element]);
+      //   }
+      // })
       .then((result) => {
+        console.log(result);
+
         res.sendStatus(200);
       })
       .catch((error) => {
