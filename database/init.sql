@@ -13,6 +13,11 @@ CREATE TABLE sex (
   sex_label VARCHAR(20)
 );
 
+CREATE TABLE race (
+  id SERIAL PRIMARY KEY,
+  race_label varchar(100)
+);
+
 CREATE TABLE "user" (
   id SERIAL PRIMARY KEY,
   is_active  BOOLEAN,
@@ -22,9 +27,9 @@ CREATE TABLE "user" (
   first_name VARCHAR(50),
   middle_name VARCHAR(50),
   last_name VARCHAR(50),
-  posting_date DATE NOT NULL DEFAULT CURRENT_DATE,
+  posting_date DATE DEFAULT CURRENT_DATE,
   sex INT REFERENCES "sex"(id),
-  race INT REFERENCES "race"(id),
+  race INT DEFAULT 0 REFERENCES "race"(id),
   zip_code INT,
   company VARCHAR,
   job_title VARCHAR,
@@ -75,11 +80,6 @@ CREATE TABLE user_education_level (
   id SERIAL PRIMARY KEY,
   user_id INT REFERENCES "user"(id),
   education_level INT REFERENCES "education_level"
-);
-
-CREATE TABLE race (
-  id SERIAL PRIMARY KEY,
-  race_label varchar(100)
 );
 
 CREATE TABLE event_type (

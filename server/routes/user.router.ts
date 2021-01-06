@@ -14,7 +14,6 @@ router.get('/', rejectUnauthenticated, (req: Request, res: Response): void => {
 router.post(
   '/register',
   (req: Request, res: Response, next: express.NextFunction): void => {
-    const userId: number = parseInt(req.body.id);
     const username: string = <string>req.body.username;
     const password: string = encryptPassword(req.body.user_password);
     const firstName: string = <string>req.body.first_name;
@@ -24,7 +23,11 @@ router.post(
     const jobTitle: string = <string>req.body.job_title;
     const motivationBio: string = <string>req.body.motivation_bio;
     const experienceBio: string = <string>req.body.experience_bio;
+<<<<<<< HEAD
     // const customSkills: string = <string>req.body.custom_entry_skills;
+=======
+    const customSkills: string = <string>req.body.custom_entry_skills;
+>>>>>>> 749bee5e82b884b53c2809a1d8e0cd2eac6815d1
     // const skills: Array<number> = req.body.skills;
     // const timeSlot: Array<number> = req.body.time_slot;
     // const educationLevel: Array<number> = req.body.education_level;
@@ -35,7 +38,7 @@ router.post(
 
     const queryOne: string = `INSERT INTO "user" (username, user_password, first_name, middle_name,
       last_name, company, job_title, motivation_bio, experience_bio, custom_entry_skills,
-      background_check_permission, sex, zip_code, access_level) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $13, ${0}, #14) RETURNING id`;
+      background_check_permission, sex, zip_code, race) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING id;`;
     pool
       .query(queryOne, [
         username,
@@ -78,6 +81,8 @@ router.post(
       //   }
       // })
       .then((result) => {
+        console.log(result);
+
         res.sendStatus(200);
       })
       .catch((error) => {
