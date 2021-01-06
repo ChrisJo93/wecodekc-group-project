@@ -18,6 +18,7 @@ import {
   Radio,
   FormControlLabel,
   FormLabel,
+  Chip,
 } from '@material-ui/core';
 
 class RegisterFormPageTwo extends Component {
@@ -25,8 +26,7 @@ class RegisterFormPageTwo extends Component {
     motivation_bio: '',
     experience_bio: '',
     background_check_permission: false,
-    custom_entry_skills: '',
-    backClicked: false,
+    custom_entry_skills: [],
   };
 
   registerUser = (event) => {
@@ -53,13 +53,13 @@ class RegisterFormPageTwo extends Component {
   };
 
   render() {
-    // const skills = this.props.store.skillReducer.map((item, index) => {
-    //   return (
-    //     <MenuItem value={item.id} key={index}>
-    //       {item.day}
-    //     </MenuItem>
-    //   );
-    // });
+    const skills = this.props.store.dropdown.skillReducer.map((item, index) => {
+      return (
+        <MenuItem value={item.id} key={index}>
+          {item.skills_label}
+        </MenuItem>
+      );
+    });
 
     return (
       <div>
@@ -77,6 +77,7 @@ class RegisterFormPageTwo extends Component {
           </Typography>
           <Grid container spacing={3}>
             <TextField
+              fullWidth
               multiline
               rows={4}
               placeholder="What motivated you to mentor with us?"
@@ -88,6 +89,7 @@ class RegisterFormPageTwo extends Component {
               onChange={this.handleInputChangeFor('motivation_bio')}
             />
             <TextField
+              fullWidth
               multiline
               rows={4}
               placeholder="Do you have any previous volunteer experience with other youth serving organizations? Please give a brief description of your role and responsibilities."
@@ -103,6 +105,7 @@ class RegisterFormPageTwo extends Component {
               requested?
             </FormLabel>
             <RadioGroup
+              row
               color="secondary"
               required
               onChange={this.handleInputChangeFor(
@@ -113,27 +116,29 @@ class RegisterFormPageTwo extends Component {
               <FormControlLabel value="false" control={<Radio />} label="no" />
             </RadioGroup>
 
-            {/* <FormControl>
-            <InputLabel id="">Chip</InputLabel>
-            <Select
-              labelId="education_level"
-              id="education_level"
-              multiple
-              value={this.state.education_level}
-              onChange={this.handleInputChangeFor('education_level')}
-              input={<Input id="select-multiple-chip" />}
-              renderValue={(selected) => (
-                <div>
-                  {selected.map((value) => (
-                    <Chip key={value} label={value} />
-                  ))}
-                </div>
-              )}
-              // MenuProps={MenuProps}
-            >
-              {level}
-            </Select>
-          </FormControl> */}
+            <FormControl variant="outlined" fullWidth>
+              <InputLabel id="skills">
+                Please select any technical skills you have and would like to
+                use below
+              </InputLabel>
+              <Select
+                labelId="skills"
+                id="skills"
+                multiple
+                value={this.state.custom_entry_skills}
+                onChange={this.handleInputChangeFor('custom_entry_skills')}
+                input={<Input id="select-multiple-chip" />}
+                renderValue={(selected) => (
+                  <div>
+                    {selected.map((value) => (
+                      <Chip key={value} label={value} />
+                    ))}
+                  </div>
+                )}
+              >
+                {skills}
+              </Select>
+            </FormControl>
           </Grid>
           <div>
             <Button

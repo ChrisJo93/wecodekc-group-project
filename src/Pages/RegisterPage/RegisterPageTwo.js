@@ -8,6 +8,11 @@ import RegisterFormPage2 from '../../components/RegisterForm/RegisterFormPageTwo
 class RegisterPage extends Component {
   state = {};
 
+  componentDidMount() {
+    //dispatch to get all education levels for dropdown
+    this.props.dispatch({ type: 'GET_SKILL' });
+  }
+
   render() {
     return (
       <div>

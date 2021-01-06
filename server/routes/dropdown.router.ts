@@ -58,7 +58,7 @@ router.get(
 router.get(
   '/skill',
   (req: Request, res: Response, next: express.NextFunction): void => {
-    const getSkill: string = `SELECT * FROM "skill";`;
+    const getSkill: string = `SELECT * FROM "skills";`;
     pool
       .query(getSkill)
       .then((result) => {

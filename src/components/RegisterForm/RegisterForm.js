@@ -220,18 +220,6 @@ class RegisterForm extends Component {
                 variant="outlined"
                 onChange={this.handleInputChangeFor('job_title')}
               />
-
-              <TextField
-                placeholder="create password"
-                type="password"
-                name="password"
-                variant="outlined"
-                size="small"
-                value={this.state.user_password}
-                // required
-                onChange={this.handleInputChangeFor('user_password')}
-              />
-
               <FormControl variant="outlined">
                 <InputLabel id="education_level">
                   Highest Level of Education
@@ -254,6 +242,17 @@ class RegisterForm extends Component {
                   {level}
                 </Select>
               </FormControl>
+
+              <TextField
+                placeholder="create password"
+                type="password"
+                name="password"
+                variant="outlined"
+                size="small"
+                value={this.state.user_password}
+                // required
+                onChange={this.handleInputChangeFor('user_password')}
+              />
             </Grid>
           </Grid>
           <div>
