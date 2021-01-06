@@ -49,6 +49,7 @@ class RegisterForm extends Component {
 
   //go to next page of registration
   handleNextClick = (e) => {
+    //go to the next page of registration
     this.props.history.push('/registration/page/2');
   };
 
