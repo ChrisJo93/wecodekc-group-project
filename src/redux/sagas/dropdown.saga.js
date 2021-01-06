@@ -53,11 +53,25 @@ function* getSkill(actions) {
   }
 }
 
+function* getTime(actions) {
+  try {
+    const response = yield axios.get('/api/dropdown/time');
+    yield put({
+      type: 'SET_TIME',
+      payload: response.data,
+    });
+  } catch (err) {
+    console.log('error getting time', err);
+    yield put({ type: 'GET_FAILED' });
+  }
+}
+
 function* dropdownSaga() {
   yield takeLatest('GET_EDUCATION', getEducation);
   yield takeLatest('GET_RACE', getRace);
   yield takeLatest('GET_SEX', getSex);
   yield takeLatest('GET_SKILL', getSkill);
+  yield takeLatest('GET_TIME', getTime);
 }
 
 export default dropdownSaga;

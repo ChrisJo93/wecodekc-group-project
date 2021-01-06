@@ -71,4 +71,20 @@ router.get(
   }
 );
 
+router.get(
+  '/time',
+  (req: Request, res: Response, next: express.NextFunction): void => {
+    const getTimeSlot: string = `SELECT * FROM "time_slot;`;
+    pool
+      .query(getTimeSlot)
+      .then((result) => {
+        res.send(result.rows);
+      })
+      .catch((error) => {
+        console.log('error getting time', error);
+        res.sendStatus(500);
+      });
+  }
+);
+
 export default router;

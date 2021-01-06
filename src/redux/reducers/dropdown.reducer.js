@@ -44,9 +44,21 @@ const skillReducer = (state = [], action) => {
   }
 };
 
+const timeReducer = (state = [], action) => {
+  switch (action.type) {
+    case 'SET_TIME':
+      return action.payload;
+    case 'UNSET_TIME':
+      return [];
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   educationReducer,
   sexReducer,
   raceReducer,
   skillReducer,
+  timeReducer,
 });
