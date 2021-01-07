@@ -25,6 +25,14 @@ class LandingPage extends Component {
     this.props.history.push('/login');
   };
 
+  handleRegisterMentor = (e) => {
+    this.props.history.push('/registration/mentor/page/1');
+  };
+
+  handleRegisterVolunteer = (e) => {
+    this.props.history.push('/registration/volunteer/page/1');
+  };
+
   render() {
     return (
       <div className="grid">
@@ -32,7 +40,7 @@ class LandingPage extends Component {
           <Grid item xs={12} md={6}>
             <Card>
               <Typography>Make an Impact!</Typography>
-              <p>
+              <Typography>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Curabitur id felis metus. Vestibulum et pulvinar tortor. Morbi
                 pharetra lacus ut ex molestie blandit. Etiam et turpis sit amet
@@ -43,7 +51,7 @@ class LandingPage extends Component {
                 nulla ac dignissim efficitur. Quisque eget eros metus.
                 Vestibulum bibendum fringilla nibh a luctus. Duis a sapien
                 metus.
-              </p>
+              </Typography>
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>
@@ -80,7 +88,7 @@ class LandingPage extends Component {
                 </p>
               </CardContent>
               <CardActions>
-                <Button>register</Button>
+                <Button onClick={this.handleRegisterVolunteer}>register</Button>
               </CardActions>
             </Card>
           </Grid>
@@ -112,7 +120,7 @@ class LandingPage extends Component {
                 </p>
               </CardContent>
               <CardActions>
-                <Button>register</Button>
+                <Button onClick={this.handleRegisterMentor}>register</Button>
               </CardActions>
             </Card>
           </Grid>

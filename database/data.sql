@@ -1,9 +1,11 @@
 INSERT INTO "race" (race_label) VALUES 
-  ('White not Hispanic'),
+  ('White not Hispanic alone'),
   ('Hispanic or Latino'),
-  ('Black or African American'),
-  ('Native American or American Indian'),
-  ('Asian or Pacific Islander');
+  ('Black or African American Alone'),
+  ('Native American or Alaskan Native'),
+  ('Asian or Pacific Islander'),
+  ('Asian alone'),
+  ('Two or More Races');
 INSERT INTO "sex" (sex_label) VALUES 
   ('Male'),
   ('Female'),
@@ -16,8 +18,8 @@ INSERT INTO "education_level" (education_label) VALUES
   ('Some college credit, no degree'),
   ('Trade/technical/vocational training'),
   ('Associate degree'),
-  ('Bachelors degree'),
-  ('Masters degree'),
+  ('Bachelor''s degree'),
+  ('Master''s degree'),
   ('Professional degree'),
   ('Doctorate degree');
 INSERT INTO "skills" (skills_label) VALUES 
