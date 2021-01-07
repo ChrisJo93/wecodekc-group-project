@@ -62,6 +62,7 @@ router.get(
     pool
       .query(getSkill)
       .then((result) => {
+        console.log('here it is');
         res.send(result.rows);
       })
       .catch((error) => {

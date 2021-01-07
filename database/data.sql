@@ -1,9 +1,11 @@
 INSERT INTO "race" (race_label) VALUES 
-  ('White not Hispanic'),
+  ('White not Hispanic alone'),
   ('Hispanic or Latino'),
-  ('Black or African American'),
-  ('Native American or American Indian'),
-  ('Asian or Pacific Islander');
+  ('Black or African American Alone'),
+  ('Native American or Alaskan Native'),
+  ('Asian or Pacific Islander'),
+  ('Asian alone'),
+  ('Two or More Races');
 INSERT INTO "sex" (sex_label) VALUES 
   ('Male'),
   ('Female'),
@@ -40,3 +42,10 @@ INSERT INTO "skills" (skills_label) VALUES
   (3, 'admin'),
   (4, 'Super'),
   (9, 'rejected');
+
+  INSERT INTO "time_slot" (day_of_week, date_time_start, date_time_end) VALUES 
+  (1 , '2017-08-09 07:00:00 -7:00','2017-08-09 07:30:00 -7:00' ),
+  (2 , '2017-08-09 07:00:00 -7:00','2017-08-09 07:30:00 -7:00'),
+  (3 , '2017-08-09 07:00:00 -7:00','2017-08-09 07:30:00 -7:00'),
+  (4 , '2017-08-09 07:00:00 -7:00','2017-08-09 07:30:00 -7:00'),
+  (5 , '2017-08-09 07:00:00 -7:00','2017-08-09 07:30:00 -7:00'); 
