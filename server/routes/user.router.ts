@@ -62,11 +62,11 @@ router.post(
           let query: string = `INSERT INTO "user_skills" (user_id, skills_id) VALUES ($1, $2)`;
           userPromises.push(pool.query(query, [newUserId, element]));
         }
-        // for (let index = 0; index < timeSlot.length; index++) {
-        //   let element: number = timeSlot[index];
-        //   let query: string = `INSERT INTO "user_time_slot" (user_id, time_slot_id) VALUES ($1, $2)`;
-        //   userPromises.push(pool.query(query, [newUserId, element]));
-        // }
+        for (let index = 0; index < timeSlot.length; index++) {
+          let element: number = timeSlot[index];
+          let query: string = `INSERT INTO "user_time_slot" (user_id, time_slot_id) VALUES ($1, $2)`;
+          userPromises.push(pool.query(query, [newUserId, element]));
+        }
         for (let index = 0; index < educationLevel.length; index++) {
           let element: number = educationLevel[index];
           let query: string = `INSERT INTO "user_education_level" (user_id, education_level) VALUES ($1, $2)`;
