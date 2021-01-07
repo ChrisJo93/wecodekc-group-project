@@ -16,8 +16,8 @@ INSERT INTO "education_level" (education_label) VALUES
   ('Some college credit, no degree'),
   ('Trade/technical/vocational training'),
   ('Associate degree'),
-  ('Bachelor's degree'),
-  ('Master's degree'),
+  ('Bachelors degree'),
+  ('Masters degree'),
   ('Professional degree'),
   ('Doctorate degree');
 INSERT INTO "skills" (skills_label) VALUES 
@@ -40,3 +40,9 @@ INSERT INTO "skills" (skills_label) VALUES
   (3, 'admin'),
   (4, 'Super'),
   (9, 'rejected');
+  INSERT INTO "time_slot" (day_of_week, date_time_start, date_time_end)
+  (1 , '2017-08-09 07:00:00 -7:00','2017-08-09 07:30:00 -7:00' )
+  (2 , '2017-08-09 07:00:00 -7:00','2017-08-09 07:30:00 -7:00')
+  (3 , '2017-08-09 07:00:00 -7:00','2017-08-09 07:30:00 -7:00')
+  (4 , '2017-08-09 07:00:00 -7:00','2017-08-09 07:30:00 -7:00')
+  (5 , '2017-08-09 07:00:00 -7:00','2017-08-09 07:30:00 -7:00')

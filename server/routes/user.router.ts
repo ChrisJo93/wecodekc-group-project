@@ -4,6 +4,7 @@ import rejectUnauthenticated from '../modules/authentication-middleware';
 import pool from '../modules/pool';
 import userStrategy from '../strategies/user.strategy';
 import { encryptPassword } from '../modules/encryption';
+import { promises } from 'dns';
 
 const router: express.Router = express.Router();
 
@@ -24,9 +25,9 @@ router.post(
     const motivationBio: string = <string>req.body.motivation_bio;
     const experienceBio: string = <string>req.body.experience_bio;
     const customSkills: string = <string>req.body.custom_entry_skills;
-    // const skills: Array<number> = req.body.skills;
-    // const timeSlot: Array<number> = req.body.time_slot;
-    // const educationLevel: Array<number> = req.body.education_level;
+    const skills: Array<number> = req.body.skills;
+    const timeSlot: Array<number> = req.body.time_slot;
+    const educationLevel: Array<number> = req.body.education_level;
     const race: number = req.body.race;
     const backgroundCheck: boolean = req.body.background_check_permission;
     const sex: number = parseInt(req.body.sex);
@@ -53,34 +54,31 @@ router.post(
         sex,
         zipCode,
       ])
-      // .then((result) => {
-      //   newUserId = parseInt(result.rows[0].id);
-      //   let array: Array<number> = skills;
-      //   for (let index = 0; index < array.length; index++) {
-      //     let element: number = array[index];
-      //     let query: string = `INSERT INTO "user_skills" (user_id, element) VALUES ($1, $2)`;
-      //     pool.query(query, [newUserId, element]);
-      //   }
-      // })
-      // .then(() => {
-      //   let array: Array<number> = timeSlot;
-      //   for (let index = 0; index < array.length; index++) {
-      //     let element: number = array[index];
-      //     let query: string = `INSERT INTO "user_time_slot" (user_id, element) VALUES ($1, $2)`;
-      //     pool.query(query, [newUserId, element]);
-      //   }
-      // })
-      // .then(() => {
-      //   let array: Array<number> = educationLevel;
-      //   for (let index = 0; index < array.length; index++) {
-      //     let element: number = array[index];
-      //     let query: string = `INSERT INTO "user_education_level" (user_id, element) VALUES ($1, $2)`;
-      //     pool.query(query, [newUserId, element]);
-      //   }
-      // })
       .then((result) => {
-        console.log(result);
-        res.sendStatus(200);
+        newUserId = parseInt(result.rows[0].id);
+        let userPromises: Array<Promise<any>> = [];
+        for (let index = 0; index < skills.length; index++) {
+          let element: number = skills[index];
+          let query: string = `INSERT INTO "user_skills" (user_id, skills_id) VALUES ($1, $2)`;
+          userPromises.push(pool.query(query, [newUserId, element]));
+        }
+        // for (let index = 0; index < timeSlot.length; index++) {
+        //   let element: number = timeSlot[index];
+        //   let query: string = `INSERT INTO "user_time_slot" (user_id, time_slot_id) VALUES ($1, $2)`;
+        //   userPromises.push(pool.query(query, [newUserId, element]));
+        // }
+        for (let index = 0; index < educationLevel.length; index++) {
+          let element: number = educationLevel[index];
+          let query: string = `INSERT INTO "user_education_level" (user_id, education_level) VALUES ($1, $2)`;
+          userPromises.push(pool.query(query, [newUserId, element]));
+        }
+        Promise.all(userPromises)
+          .then(() => {
+            res.sendStatus(200);
+          })
+          .catch(() => {
+            res.sendStatus(500);
+          });
       })
       .catch((error) => {
         console.log(error);

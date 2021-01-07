@@ -62,6 +62,7 @@ router.get(
     pool
       .query(getSkill)
       .then((result) => {
+        console.log('here it is');
         res.send(result.rows);
       })
       .catch((error) => {
@@ -74,7 +75,7 @@ router.get(
 router.get(
   '/time',
   (req: Request, res: Response, next: express.NextFunction): void => {
-    const getTimeSlot: string = `SELECT * FROM "time_slot;`;
+    const getTimeSlot: string = `SELECT * FROM time_slot;`;
     pool
       .query(getTimeSlot)
       .then((result) => {
