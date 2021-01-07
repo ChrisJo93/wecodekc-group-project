@@ -15,6 +15,8 @@ import {
 } from '@material-ui/core';
 
 import computer from './computer.jpg';
+import child1 from './Child1.jpg';
+import child2 from './Child2.jpg';
 
 class EventsPage extends Component {
   componentDidMount() {
@@ -36,8 +38,31 @@ class EventsPage extends Component {
     return (
       <div className="grid">
         <div style={{ padding: 20 }}>
-          <Grid item xs={3} md={3}>
-            <img className="comp-img" src={computer} alt="coding" />
+          <Grid
+            container
+            spacing={3}
+            direction="row"
+            justify="center"
+            alignItems="center"
+          >
+            <Grid
+              item
+              xs={6}
+              md={3}
+              direction="row"
+              justify="center"
+              alignItems="center"
+            >
+              <Grid>
+                <img src={child1} alt="coding" />
+              </Grid>
+              <Grid>
+                <img src={computer} alt="coding" />
+              </Grid>
+              <Grid>
+                <img src={child2} alt="coding" />
+              </Grid>
+            </Grid>
           </Grid>
           <Grid
             container
