@@ -5,10 +5,18 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import './LandingPage.css';
 
 // CUSTOM COMPONENTS
-import RegisterForm from '../../components/RegisterForm/RegisterForm';
+import computer from './computer.jpg';
 
 //Material-UI imports
-import { Grid, Card } from '@material-ui/core';
+import {
+  Grid,
+  Card,
+  Typography,
+  CardContent,
+  CardActions,
+  Button,
+  CardMedia,
+} from '@material-ui/core';
 
 class LandingPage extends Component {
   state = {};
@@ -19,52 +27,103 @@ class LandingPage extends Component {
 
   render() {
     return (
-      <div className="container">
-        <div className="grid">
-          <div className="grid-col grid-col_8">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-              id felis metus. Vestibulum et pulvinar tortor. Morbi pharetra
-              lacus ut ex molestie blandit. Etiam et turpis sit amet risus
-              mollis interdum. Suspendisse et justo vitae metus bibendum
-              fringilla sed sed justo. Aliquam sollicitudin dapibus lectus,
-              vitae consequat odio elementum eget. Praesent efficitur eros vitae
-              nunc interdum, eu interdum justo facilisis. Sed pulvinar nulla ac
-              dignissim efficitur. Quisque eget eros metus. Vestibulum bibendum
-              fringilla nibh a luctus. Duis a sapien metus.
-            </p>
+      <div className="grid">
+        <Grid container>
+          <Grid item xs={12} md={6}>
+            <Card>
+              <Typography>Make an Impact!</Typography>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Curabitur id felis metus. Vestibulum et pulvinar tortor. Morbi
+                pharetra lacus ut ex molestie blandit. Etiam et turpis sit amet
+                risus mollis interdum. Suspendisse et justo vitae metus bibendum
+                fringilla sed sed justo. Aliquam sollicitudin dapibus lectus,
+                vitae consequat odio elementum eget. Praesent efficitur eros
+                vitae nunc interdum, eu interdum justo facilisis. Sed pulvinar
+                nulla ac dignissim efficitur. Quisque eget eros metus.
+                Vestibulum bibendum fringilla nibh a luctus. Duis a sapien
+                metus.
+              </p>
+            </Card>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Card>
+              <img src={computer} alt="coding" />
+              <CardMedia image="computer" title="coding" />
+            </Card>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Card>
+              <img src={computer} alt="coding" />
+            </Card>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Card>
+              <Typography>Upcoming Events</Typography>
+            </Card>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Card>
+              <CardContent>
+                <Typography>Volunteer</Typography>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Curabitur id felis metus. Vestibulum et pulvinar tortor. Morbi
+                  pharetra lacus ut ex molestie blandit. Etiam et turpis sit
+                  amet risus mollis interdum. Suspendisse et justo vitae metus
+                  bibendum fringilla sed sed justo. Aliquam sollicitudin dapibus
+                  lectus, vitae consequat odio elementum eget. Praesent
+                  efficitur eros vitae nunc interdum, eu interdum justo
+                  facilisis. Sed pulvinar nulla ac dignissim efficitur. Quisque
+                  eget eros metus. Vestibulum bibendum fringilla nibh a luctus.
+                  Duis a sapien metus.
+                </p>
+              </CardContent>
+              <CardActions>
+                <Button>register</Button>
+              </CardActions>
+            </Card>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Card>
+              <img src={computer} alt="coding" />
+            </Card>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Card>
+              <img src={computer} alt="coding" />
+            </Card>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Card>
+              <CardContent>
+                <Typography>Mentor</Typography>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Curabitur id felis metus. Vestibulum et pulvinar tortor. Morbi
+                  pharetra lacus ut ex molestie blandit. Etiam et turpis sit
+                  amet risus mollis interdum. Suspendisse et justo vitae metus
+                  bibendum fringilla sed sed justo. Aliquam sollicitudin dapibus
+                  lectus, vitae consequat odio elementum eget. Praesent
+                  efficitur eros vitae nunc interdum, eu interdum justo
+                  facilisis. Sed pulvinar nulla ac dignissim efficitur. Quisque
+                  eget eros metus. Vestibulum bibendum fringilla nibh a luctus.
+                  Duis a sapien metus.
+                </p>
+              </CardContent>
+              <CardActions>
+                <Button>register</Button>
+              </CardActions>
+            </Card>
+          </Grid>
+        </Grid>
 
-            <p>
-              Praesent consectetur orci dui, id elementum eros facilisis id. Sed
-              id dolor in augue porttitor faucibus eget sit amet ante. Nunc
-              consectetur placerat pharetra. Aenean gravida ex ut erat commodo,
-              ut finibus metus facilisis. Nullam eget lectus non urna rhoncus
-              accumsan quis id massa. Curabitur sit amet dolor nisl. Proin
-              euismod, augue at condimentum rhoncus, massa lorem semper lacus,
-              sed lobortis augue mi vel felis. Duis ultrices sapien at est
-              convallis congue.
-            </p>
-
-            <p>
-              Fusce porta diam ac tortor elementum, ut imperdiet metus volutpat.
-              Suspendisse posuere dapibus maximus. Aliquam vitae felis libero.
-              In vehicula sapien at semper ultrices. Vivamus sed feugiat libero.
-              Sed sagittis neque id diam euismod, ut egestas felis ultricies.
-              Nullam non fermentum mauris. Sed in enim ac turpis faucibus
-              pretium in sit amet nisi.
-            </p>
-          </div>
-          <div className="grid-col grid-col_4">
-            <RegisterForm />
-
-            <center>
-              <h4>Already a Member?</h4>
-              <button className="btn btn_sizeSm" onClick={this.onLogin}>
-                Login
-              </button>
-            </center>
-          </div>
-        </div>
+        <center>
+          <h4>Already a Member?</h4>
+          <button className="btn btn_sizeSm" onClick={this.onLogin}>
+            Login
+          </button>
+        </center>
       </div>
     );
   }
