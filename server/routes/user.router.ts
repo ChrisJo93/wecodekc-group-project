@@ -90,11 +90,7 @@ router.post(
 router.put(
   '/register/:id',
   (req: Request, res: Response, next: express.NextFunction): void => {
-    const username: string = <string>req.body.username;
     const password: string = encryptPassword(req.body.user_password);
-    const firstName: string = <string>req.body.first_name;
-    const middleName: string = <string>req.body.middle_name;
-    const lastName: string = <string>req.body.last_name;
     const company: string = <string>req.body.company;
     const jobTitle: string = <string>req.body.job_title;
     const motivationBio: string = <string>req.body.motivation_bio;
@@ -103,9 +99,7 @@ router.put(
     const skills: Array<number> = req.body.skills;
     const timeSlot: Array<number> = req.body.time_slot;
     const educationLevel: Array<number> = req.body.education_level;
-    const race: number = req.body.race;
     const backgroundCheck: boolean = req.body.background_check_permission;
-    const sex: number = parseInt(req.body.sex);
     const zipCode: number = parseInt(req.body.zip_code);
     const userId: number = parseInt(req.params.id);
 

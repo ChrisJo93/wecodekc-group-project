@@ -77,8 +77,8 @@ CREATE TABLE event_type (
 CREATE TABLE "event" (
   id SERIAL PRIMARY KEY,
   event_type INT REFERENCES "event_type",
-  reccuring BOOLEAN,
-  reccuring_time_slot INT REFERENCES "time_slot",
+  recurring BOOLEAN,
+  recurring_time_slot INT REFERENCES "time_slot",
   creator INT REFERENCES "user",
   event_address VARCHAR(500),
   event_start TIMESTAMP WITH TIME ZONE,
