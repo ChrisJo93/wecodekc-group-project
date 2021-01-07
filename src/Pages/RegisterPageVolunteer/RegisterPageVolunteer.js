@@ -5,13 +5,14 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 // CUSTOM COMPONENTS
 import RegisterForm from '../../components/RegisterForm/RegisterForm';
 
-class RegisterPage extends Component {
+class RegisterPageVolunteer extends Component {
   state = {};
 
   componentDidMount() {
     //dispatch to get all education levels for dropdown
     this.props.dispatch({ type: 'GET_EDUCATION' });
     this.props.dispatch({ type: 'GET_RACE' });
+    this.props.dispatch({ type: 'GET_SEX' });
   }
 
   render() {
@@ -35,4 +36,4 @@ class RegisterPage extends Component {
   }
 }
 
-export default connect(mapStoreToProps)(RegisterPage);
+export default connect(mapStoreToProps)(RegisterPageVolunteer);

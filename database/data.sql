@@ -16,8 +16,8 @@ INSERT INTO "education_level" (education_label) VALUES
   ('Some college credit, no degree'),
   ('Trade/technical/vocational training'),
   ('Associate degree'),
-  ('Bachelor's degree'),
-  ('Master's degree'),
+  ('Bachelor''s degree'),
+  ('Master''s degree'),
   ('Professional degree'),
   ('Doctorate degree');
 INSERT INTO "skills" (skills_label) VALUES 

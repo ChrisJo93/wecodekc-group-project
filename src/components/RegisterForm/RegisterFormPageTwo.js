@@ -34,16 +34,13 @@ class RegisterFormPageTwo extends Component {
 
     this.props.dispatch({
       type: 'REGISTER',
-      payload: {
-        username: this.state.username,
-        password: this.state.password,
-      },
+      payload: this.state,
     });
   }; // end registerUser
 
   //go back to first page of registration
   handleBackClick = (e) => {
-    this.props.history.push('/registration/page/1');
+    this.props.history.push('/registration/mentor/page/1');
   };
 
   handleInputChangeFor = (propertyName) => (event) => {

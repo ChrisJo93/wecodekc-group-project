@@ -40,17 +40,14 @@ class RegisterForm extends Component {
 
     this.props.dispatch({
       type: 'REGISTER',
-      payload: {
-        username: this.state.username,
-        user_password: this.state.user_password,
-      },
+      payload: this.state,
     });
   }; // end registerUser
 
   //go to next page of registration
   handleNextClick = (e) => {
     //go to the next page of registration
-    this.props.history.push('/registration/page/2');
+    this.props.history.push('/registration/mentor/page/2');
   };
 
   handleInputChangeFor = (propertyName) => (event) => {
@@ -73,6 +70,13 @@ class RegisterForm extends Component {
       return (
         <MenuItem value={item.id} key={index}>
           {item.race_label}
+        </MenuItem>
+      );
+    });
+    const sex = this.props.store.dropdown.sexReducer.map((item, index) => {
+      return (
+        <MenuItem value={item.id} key={index}>
+          {item.sex_label}
         </MenuItem>
       );
     });
@@ -142,10 +146,7 @@ class RegisterForm extends Component {
                   <MenuItem value="">
                     <em>None</em>
                   </MenuItem>
-                  <MenuItem value={'Female'}>Female</MenuItem>
-                  <MenuItem value={'Male'}>Male</MenuItem>
-
-                  <MenuItem value={'Other'}>Other</MenuItem>
+                  {sex}
                 </Select>
               </FormControl>
               <FormControl variant="outlined" size="small" fullWidth>
