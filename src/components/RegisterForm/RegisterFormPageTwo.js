@@ -31,11 +31,14 @@ class RegisterFormPageTwo extends Component {
 
   registerUser = (event) => {
     event.preventDefault();
-
     this.props.dispatch({
-      type: 'REGISTER',
+      type: 'UPDATE_USER',
       payload: this.state,
     });
+    // this.props.dispatch({
+    //   type: 'REGISTER',
+    //   payload: this.state,
+    // });
   }; // end registerUser
 
   //go back to first page of registration

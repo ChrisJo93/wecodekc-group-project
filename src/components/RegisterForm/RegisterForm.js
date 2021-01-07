@@ -24,7 +24,7 @@ class RegisterForm extends Component {
     last_name: '',
     birth_date: '',
     sex: '',
-    race: [],
+    race: '',
     email: '',
     phone_number: '',
     zip_code: '',
@@ -35,17 +35,13 @@ class RegisterForm extends Component {
     user_password: '',
   };
 
-  registerUser = (event) => {
-    event.preventDefault();
-
-    this.props.dispatch({
-      type: 'REGISTER',
-      payload: this.state,
-    });
-  }; // end registerUser
-
   //go to next page of registration
   handleNextClick = (e) => {
+    //saves part 1 of registration to a reducer
+    this.props.dispatch({
+      type: 'UPDATE_USER',
+      payload: this.state,
+    });
     //go to the next page of registration
     this.props.history.push('/registration/mentor/page/2');
   };
@@ -111,7 +107,7 @@ class RegisterForm extends Component {
                 placeholder="middle name/initial"
                 type="text"
                 name="middle_name"
-                value={this.state.first_name}
+                value={this.state.middle_name}
                 // required
                 variant="outlined"
                 onChange={this.handleInputChangeFor('middle_name')}
@@ -121,7 +117,7 @@ class RegisterForm extends Component {
                 placeholder="last name"
                 type="text"
                 name="last_name"
-                value={this.state.first_name}
+                value={this.state.last_name}
                 // required
                 variant="outlined"
                 onChange={this.handleInputChangeFor('last_name')}
@@ -154,7 +150,7 @@ class RegisterForm extends Component {
                 <Select
                   labelId="race"
                   id="race"
-                  value={this.state.sex}
+                  value={this.state.race}
                   onChange={this.handleInputChangeFor('race')}
                   label="race"
                 >
