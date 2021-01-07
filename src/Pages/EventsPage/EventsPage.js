@@ -1,7 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import { Grid } from '@material-ui/core';
+
+import './EventsPage.css';
+
+import {
+  Grid,
+  Card,
+  Typography,
+  CardContent,
+  CardActions,
+  Button,
+  CardMedia,
+} from '@material-ui/core';
+
+import computer from './computer.jpg';
 
 class EventsPage extends Component {
   componentDidMount() {
@@ -21,8 +34,11 @@ class EventsPage extends Component {
     // });
 
     return (
-      <div>
+      <div className="grid">
         <div style={{ padding: 20 }}>
+          <Grid item xs={3} md={3}>
+            <img className="comp-img" src={computer} alt="coding" />
+          </Grid>
           <Grid
             container
             spacing={3}
