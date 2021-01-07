@@ -8,20 +8,18 @@ import {
 
 import { connect } from 'react-redux';
 
+//CUSTOM FILE IMPORTS
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
-
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-
 import AboutPage from '../../Pages/AboutPage/AboutPage';
 import UserPage from '../../Pages/UserPage/UserPage';
 import InfoPage from '../../Pages/InfoPage/InfoPage';
 import LandingPage from '../../Pages/LandingPage/LandingPage';
 import LoginPage from '../../Pages/LoginPage/LoginPage';
-import RegisterPage from '../../Pages/RegisterPage/RegisterPage';
-
+import RegisterPageMentor from '../../Pages/RegisterPageMentor/RegisterPageMentor';
+import RegisterPageTwoMentor from '../../Pages/RegisterPageMentor/RegisterPageTwoMentor';
 import './App.css';
-import RegisterPageTwo from '../../Pages/RegisterPage/RegisterPageTwo';
 
 class App extends Component {
   componentDidMount() {
@@ -80,8 +78,8 @@ class App extends Component {
               // - if logged in, redirects to "/user"
               // - else shows RegisterPage at "/registration"
               exact
-              path="/registration/page/1"
-              component={RegisterPage}
+              path="/registration/mentor/page/1"
+              component={RegisterPageMentor}
               authRedirect="/user"
             />
             <ProtectedRoute
@@ -89,8 +87,28 @@ class App extends Component {
               // - if logged in, redirects to "/user"
               // - else shows RegisterPage at "/registration"
               exact
-              path="/registration/page/2"
-              component={RegisterPageTwo}
+              path="/registration/mentor/page/2"
+              component={RegisterPageTwoMentor}
+              authRedirect="/user"
+            />
+
+            <ProtectedRoute
+              // with authRedirect:
+              // - if logged in, redirects to "/user"
+              // - else shows RegisterPage at "/registration"
+              exact
+              path="/registration/volunteer/page/1"
+              component={RegisterPageMentor}
+              authRedirect="/user"
+            />
+
+            <ProtectedRoute
+              // with authRedirect:
+              // - if logged in, redirects to "/user"
+              // - else shows RegisterPage at "/registration"
+              exact
+              path="/registration/volunteer/page/2"
+              component={RegisterPageTwoMentor}
               authRedirect="/user"
             />
 

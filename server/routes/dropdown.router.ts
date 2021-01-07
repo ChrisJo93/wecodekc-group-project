@@ -75,7 +75,7 @@ router.get(
 router.get(
   '/time',
   (req: Request, res: Response, next: express.NextFunction): void => {
-    const getTimeSlot: string = `SELECT * FROM time_slot;`;
+    const getTimeSlot: string = `SELECT * FROM "time_slot";`;
     pool
       .query(getTimeSlot)
       .then((result) => {

@@ -3,20 +3,23 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
 // CUSTOM COMPONENTS
-import RegisterFormPage2 from '../../components/RegisterForm/RegisterFormPageTwo';
+import RegisterForm from '../../components/RegisterForm/RegisterForm';
 
-class RegisterPage extends Component {
+class RegisterPageVolunteer extends Component {
   state = {};
 
   componentDidMount() {
     //dispatch to get all education levels for dropdown
-    this.props.dispatch({ type: 'GET_SKILL' });
+    this.props.dispatch({ type: 'GET_EDUCATION' });
+    this.props.dispatch({ type: 'GET_RACE' });
+    this.props.dispatch({ type: 'GET_SEX' });
   }
 
   render() {
     return (
       <div>
-        <RegisterFormPage2 />
+        <RegisterForm />
+
         <center>
           <button
             type="button"
@@ -33,4 +36,4 @@ class RegisterPage extends Component {
   }
 }
 
-export default connect(mapStoreToProps)(RegisterPage);
+export default connect(mapStoreToProps)(RegisterPageVolunteer);
