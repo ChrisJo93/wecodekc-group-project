@@ -20,14 +20,6 @@ CREATE TABLE "user" (
   is_active  BOOLEAN,
   username VARCHAR(50),
   user_password VARCHAR(100),
-<<<<<<< HEAD
-  access_level INT DEFAULT 0 REFERENCES "access_level",
-  first_name VARCHAR(50),
-  middle_name VARCHAR(50),
-  last_name VARCHAR(50),
-  sex INT REFERENCES "sex",
-  race INT REFERENCES "race",
-=======
   access_level INT DEFAULT 1 REFERENCES "access_level"(id),
   first_name VARCHAR(50),
   middle_name VARCHAR(50),
@@ -35,7 +27,6 @@ CREATE TABLE "user" (
   posting_date DATE DEFAULT CURRENT_DATE, 
   sex INT REFERENCES "sex"(id),
   race INT REFERENCES "race"(id),
->>>>>>> cf1b031ca681477ce4817f86a8e7a808426720c6
   zip_code INT,
   company VARCHAR,
   job_title VARCHAR,
