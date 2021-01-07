@@ -31,10 +31,11 @@ router.post(
     const backgroundCheck: boolean = req.body.background_check_permission;
     const sex: number = parseInt(req.body.sex);
     const zipCode: number = parseInt(req.body.zip_code);
+    let newUserId: number;
 
-    const queryOne: string = `INSERT INTO "user" (username, user_password, first_name, middle_name,
-      last_name, company, job_title, motivation_bio, experience_bio, custom_entry_skills,
-      background_check_permission, sex, zip_code, race) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING id;`;
+    const queryOne: string = `INSERT INTO "user"(username, user_password,  first_name, middle_name,
+      last_name, race, company, job_title, motivation_bio, experience_bio, custom_entry_skills,
+      background_check_permission, sex, zip_code) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING id;`;
     pool
       .query(queryOne, [
         username,
@@ -42,6 +43,7 @@ router.post(
         firstName,
         middleName,
         lastName,
+        race,
         company,
         jobTitle,
         motivationBio,
@@ -50,14 +52,14 @@ router.post(
         backgroundCheck,
         sex,
         zipCode,
-        race,
       ])
-      // .then(() => {
+      // .then((result) => {
+      //   newUserId = parseInt(result.rows[0].id);
       //   let array: Array<number> = skills;
       //   for (let index = 0; index < array.length; index++) {
       //     let element: number = array[index];
       //     let query: string = `INSERT INTO "user_skills" (user_id, element) VALUES ($1, $2)`;
-      //     pool.query(query, [userId, element]);
+      //     pool.query(query, [newUserId, element]);
       //   }
       // })
       // .then(() => {
@@ -65,7 +67,7 @@ router.post(
       //   for (let index = 0; index < array.length; index++) {
       //     let element: number = array[index];
       //     let query: string = `INSERT INTO "user_time_slot" (user_id, element) VALUES ($1, $2)`;
-      //     pool.query(query, [userId, element]);
+      //     pool.query(query, [newUserId, element]);
       //   }
       // })
       // .then(() => {
@@ -73,12 +75,11 @@ router.post(
       //   for (let index = 0; index < array.length; index++) {
       //     let element: number = array[index];
       //     let query: string = `INSERT INTO "user_education_level" (user_id, element) VALUES ($1, $2)`;
-      //     pool.query(query, [userId, element]);
+      //     pool.query(query, [newUserId, element]);
       //   }
       // })
       .then((result) => {
         console.log(result);
-
         res.sendStatus(200);
       })
       .catch((error) => {
