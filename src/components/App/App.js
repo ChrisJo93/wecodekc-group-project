@@ -22,6 +22,7 @@ import RegisterPage from '../../Pages/RegisterPage/RegisterPage';
 import EventsPage from '../../Pages/EventsPage/EventsPage';
 
 import './App.css';
+import RegisterPageTwo from '../../Pages/RegisterPage/RegisterPageTwo';
 
 class App extends Component {
   componentDidMount() {
@@ -87,8 +88,17 @@ class App extends Component {
               // - if logged in, redirects to "/user"
               // - else shows RegisterPage at "/registration"
               exact
-              path="/registration"
+              path="/registration/page/1"
               component={RegisterPage}
+              authRedirect="/user"
+            />
+            <ProtectedRoute
+              // with authRedirect:
+              // - if logged in, redirects to "/user"
+              // - else shows RegisterPage at "/registration"
+              exact
+              path="/registration/page/2"
+              component={RegisterPageTwo}
               authRedirect="/user"
             />
 

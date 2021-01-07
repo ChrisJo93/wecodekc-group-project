@@ -4,6 +4,7 @@ import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import eventSaga from './event.saga';
 import notesSaga from './notes.saga';
+import dropdownSaga from './dropdown.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -16,6 +17,7 @@ export default function* rootSaga() {
   yield all([
     loginSaga(), // login saga is now registered
     registrationSaga(),
+    dropdownSaga(),
     userSaga(),
     eventSaga(),
     notesSaga(),

@@ -1,15 +1,13 @@
 INSERT INTO "race" (race_label) VALUES 
-  ('WHITE'),
+  ('White not Hispanic'),
   ('Hispanic or Latino'),
   ('Black or African American'),
   ('Native American or American Indian'),
   ('Asian or Pacific Islander');
-  
 INSERT INTO "sex" (sex_label) VALUES 
   ('Male'),
   ('Female'),
   ('Other');
-  
 INSERT INTO "education_level" (education_label) VALUES 
   ('No schooling completed'),
   ('Nursery school to 8th grade'),
@@ -18,11 +16,10 @@ INSERT INTO "education_level" (education_label) VALUES
   ('Some college credit, no degree'),
   ('Trade/technical/vocational training'),
   ('Associate degree'),
-  ('Bachelor’s degree'),
-  ('Master’s degree'),
+  ('Bachelor's degree'),
+  ('Master's degree'),
   ('Professional degree'),
   ('Doctorate degree');
-  
 INSERT INTO "skills" (skills_label) VALUES 
   ('JavaScript'),
   ('Css'),
@@ -36,8 +33,7 @@ INSERT INTO "skills" (skills_label) VALUES
   ('Java'),
   ('Postgresql'),
   ('MongoDB');
-
-  INSERT INTO "access_level" (level, access_label) VALUES 
+  INSERT INTO "access_level" (access_level, access_label) VALUES 
   (0 , 'unverified'),
   (1, 'volunteer'),
   (2, 'Mentor'),
