@@ -26,7 +26,7 @@ class RegisterFormPageTwo extends Component {
     motivation_bio: '',
     experience_bio: '',
     background_check_permission: false,
-    custom_entry_skills: [],
+    skills: [],
     time_slot: [],
   };
 
@@ -41,7 +41,7 @@ class RegisterFormPageTwo extends Component {
         motivation_bio: this.state.motivation_bio,
         experience_bio: this.state.experience_bio,
         background_check_permission: this.state.background_check_permission,
-        custom_entry_skills: this.state.custom_entry_skills,
+        skills: this.state.skills,
         time_slot: this.state.time_slot,
       },
     });
@@ -131,8 +131,8 @@ class RegisterFormPageTwo extends Component {
                 labelId="skills"
                 id="skills"
                 multiple
-                value={this.state.custom_entry_skills}
-                onChange={this.handleInputChangeFor('custom_entry_skills')}
+                value={this.state.skills}
+                onChange={this.handleInputChangeFor('skills')}
                 input={<Input id="select-multiple-chip" />}
                 renderValue={(selected) => (
                   <div>
