@@ -42,10 +42,19 @@ INSERT INTO "skills" (skills_label) VALUES
   INSERT INTO "access_level" (access_level, access_label) VALUES 
   (0 , 'unverified'),
   (1, 'volunteer'),
-  (2, 'Mentor'),
+  (2, 'mentor'),
   (3, 'admin'),
-  (4, 'Super'),
+  (4, 'super'),
   (9, 'rejected');
+
+    INSERT INTO "volunteer_role" (role_label) VALUES 
+  ('Tech Instructor'),
+  ('Tech Assistant'),
+  ('Classroom Assistant'),
+  ('Non Tech Volunteer'),
+  ('Social Media Volunteer'),
+  ('General Office_Admin Help'),
+  ('General IT_Technical Support');
 
   INSERT INTO "time_slot_day" (day_number, day_name) VALUES 
   (1 , 'Monday'),

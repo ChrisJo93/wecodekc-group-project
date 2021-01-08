@@ -16,12 +16,18 @@ CREATE TABLE race (
   race_label varchar(100)
 );
 
+CREATE TABLE volunteer_role (
+  id SERIAL PRIMARY KEY,
+  role_label VARCHAR(150)
+);
+
 CREATE TABLE "user" (
   id SERIAL PRIMARY KEY,
   is_active  BOOLEAN,
   username VARCHAR(50),
   password VARCHAR(100),
   access_level INT DEFAULT 1 REFERENCES "access_level"(id),
+  volunteer_role INT REFERENCES "volunteer_role"(id), 
   first_name VARCHAR(50),
   middle_name VARCHAR(50),
   last_name VARCHAR(50),
