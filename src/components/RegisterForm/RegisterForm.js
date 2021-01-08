@@ -32,7 +32,7 @@ class RegisterForm extends Component {
     job_title: '',
     education_level: [],
     username: '',
-    user_password: '',
+    password: '',
   };
 
   //go to next page of registration
@@ -247,9 +247,9 @@ class RegisterForm extends Component {
                 name="password"
                 variant="outlined"
                 size="small"
-                value={this.state.user_password}
+                value={this.state.password}
                 // required
-                onChange={this.handleInputChangeFor('user_password')}
+                onChange={this.handleInputChangeFor('password')}
               />
             </Grid>
           </Grid>
