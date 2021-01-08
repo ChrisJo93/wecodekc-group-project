@@ -15,6 +15,7 @@ router.get('/', rejectUnauthenticated, (req: Request, res: Response): void => {
 router.post(
   '/register',
   (req: Request, res: Response, next: express.NextFunction): void => {
+    console.log(req.body);
     const username: string = <string>req.body.username;
     const password: string = encryptPassword(req.body.user_password);
     const firstName: string = <string>req.body.first_name;
