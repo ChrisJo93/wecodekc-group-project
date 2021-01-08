@@ -15,19 +15,28 @@ CREATE TABLE race (
   id SERIAL PRIMARY KEY,
   race_label varchar(100)
 );
+
+CREATE TABLE volunteer_role (
+  id SERIAL PRIMARY KEY,
+  role_label VARCHAR(150)
+);
+
 CREATE TABLE "user" (
   id SERIAL PRIMARY KEY,
   is_active  BOOLEAN,
   username VARCHAR(50),
-  user_password VARCHAR(100),
+  password VARCHAR(100),
   access_level INT DEFAULT 1 REFERENCES "access_level"(id),
+  volunteer_role INT REFERENCES "volunteer_role"(id), 
   first_name VARCHAR(50),
   middle_name VARCHAR(50),
   last_name VARCHAR(50),
+  birth_date VARCHAR,
   posting_date DATE DEFAULT CURRENT_DATE, 
   sex INT REFERENCES "sex"(id),
   race INT REFERENCES "race"(id),
   zip_code INT,
+  phone_number VARCHAR(50),
   company VARCHAR,
   job_title VARCHAR,
   motivation_bio TEXT,
@@ -35,11 +44,32 @@ CREATE TABLE "user" (
   background_check_permission BOOLEAN,
   custom_entry_skills TEXT
 );
+
+CREATE TABLE images (
+  id SERIAL PRIMARY KEY,
+  image_name VARCHAR(100),
+  link_url VARCHAR(500)
+);
+
+CREATE TABLE user_images (
+  id SERIAL PRIMARY KEY,
+  user_id INT REFERENCES "user",
+  image_id INT REFERENCES "images"(id)
+);
 CREATE TABLE admin_note (
   id SERIAL PRIMARY KEY,
-  user_id_creator int,
-  user_id_subject int,
+  user_id_creator int REFERENCES "user"(id),
+  user_id_subject int REFERENCES "user"(id),
   note_on_subject text
+);
+CREATE TABLE languages (
+  id SERIAL PRIMARY KEY,
+  languages_label VARCHAR(100)
+);
+CREATE TABLE user_languages (
+  id SERIAL PRIMARY KEY,
+  user_id INT REFERENCES "user",
+  languages_id INT REFERENCES "languages"
 );
 CREATE TABLE skills (
   id SERIAL PRIMARY KEY,
@@ -50,9 +80,15 @@ CREATE TABLE user_skills (
   user_id INT REFERENCES "user",
   skills_id INT REFERENCES "skills"
 );
+CREATE TABLE time_slot_day (
+  id SERIAL PRIMARY KEY,
+  day_number INT,
+  day_name VARCHAR(10)
+);
 CREATE TABLE time_slot (
   id SERIAL PRIMARY KEY,
-  day_of_week INT,
+  day_of_week INT REFERENCES "time_slot_day"(id),
+  time_slot_label VARCHAR(100),
   date_time_start TIMESTAMP WITH TIME ZONE,
   date_time_end TIMESTAMP WITH TIME ZONE
   );
@@ -72,18 +108,25 @@ CREATE TABLE user_education_level (
 );
 CREATE TABLE event_type (
   id SERIAL PRIMARY KEY,
-  type_label INT
+  type_label VARCHAR
 );
 CREATE TABLE "event" (
   id SERIAL PRIMARY KEY,
   event_type INT REFERENCES "event_type",
-  reccuring BOOLEAN,
-  reccuring_time_slot INT REFERENCES "time_slot",
+  event_title VARCHAR(200),
+  recurring BOOLEAN,
+  recurring_time_slot INT REFERENCES "time_slot",
   creator INT REFERENCES "user",
   event_address VARCHAR(500),
   event_start TIMESTAMP WITH TIME ZONE,
   event_end TIMESTAMP WITH TIME ZONE,
   event_description TEXT
+);
+
+CREATE TABLE event_images (
+  id SERIAL PRIMARY KEY,
+  event_id INT REFERENCES "event",
+  image_id INT REFERENCES "images"
 );
 CREATE TABLE user_event (
   id SERIAL PRIMARY KEY,

@@ -25,7 +25,7 @@ router.get(
 router.get(
   'details/:id',
   (req: Request, res: Response, next: express.NextFunction): void => {
-    const getEventID: string = `SELECT * FROM "event" WHERE id=$1;`;
+    const getEventID: string = `SELECT * FROM event JOIN event_type ON (event.event_type = event_type.id) WHERE event.id=$1;`;
     pool
       .query(getEventID, [req.params.id])
       .then((result) => {
@@ -56,24 +56,37 @@ router.get(
 );
 
 // POST EVENT
+
 router.post(
   '/',
   (req: Request, res: Response, next: express.NextFunction): void => {
-    const { name, time, description } = req.body;
-    const postEvent: string = `
-  INSERT INTO "events" 
-  ("name", "time", "description")
-  VALUES ($1, $2, $3)`;
+    const creator: number = parseInt(req.body.userId);
+    const recurring: boolean = req.body.recurring;
+    const recurring_time_slot: number = parseInt(req.body.recurring_time_slot);
+    const event_type: number = parseInt(req.body.event_type);
+    const event_address: string = req.body.event_address;
+    const event_start: string = req.body.event_start;
+    const event_end: string = req.body.event_end;
+    const event_description: string = req.body.event_description;
+
+    const queryOne: string = `INSERT INTO "event"(event_description, event_start, event_end, 
+      recurring, recurring_time_slot, event_address, event_type, creator) 
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`;
     pool
-
-      //STUBBED VALUES NEED REPLACING
-
-      .query(postEvent, [name, time, description])
-      .then((result) => {
-        res.send(result.rows);
+      .query(queryOne, [
+        event_description,
+        event_start,
+        event_end,
+        recurring,
+        recurring_time_slot,
+        event_address,
+        event_type,
+        creator,
+      ])
+      .then(() => {
+        res.sendStatus(200);
       })
-      .catch((error) => {
-        console.log('error posting events', error);
+      .catch(() => {
         res.sendStatus(500);
       });
   }

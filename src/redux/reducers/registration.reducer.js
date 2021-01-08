@@ -1,12 +1,24 @@
+import { combineReducers } from 'redux';
+
 const registrationReducer = (state = {}, action) => {
   switch (action.type) {
-    case 'SET_TEMP_USER':
-      return action.payload;
     case 'UPDATE_USER':
-      return { ...state, ...action.payload };
+      return action.payload;
     default:
       return state;
   }
 };
 
-export default registrationReducer;
+const loginReducer = (state = {}, action) => {
+  switch (action.type) {
+    case 'UPDATE_USER_LOGIN':
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+export default combineReducers({
+  registrationReducer,
+  loginReducer,
+});

@@ -26,15 +26,26 @@ class RegisterFormPageTwo extends Component {
     motivation_bio: '',
     experience_bio: '',
     background_check_permission: false,
-    custom_entry_skills: [],
+    skills: [],
+    time_slot: [],
   };
 
   registerUser = (event) => {
     event.preventDefault();
+
     //  TODO NEED TO FINISH REGISTRATION
     this.props.dispatch({
       type: 'REGISTER',
+      payload: {
+        ...this.props.store.registration.registrationReducer,
+        motivation_bio: this.state.motivation_bio,
+        experience_bio: this.state.experience_bio,
+        background_check_permission: this.state.background_check_permission,
+        skills: this.state.skills,
+        time_slot: this.state.time_slot,
+      },
     });
+    this.props.history.push('/login');
   }; // end registerUser
 
   //go back to first page of registration
@@ -53,6 +64,13 @@ class RegisterFormPageTwo extends Component {
       return (
         <MenuItem value={item.id} key={index}>
           {item.skills_label}
+        </MenuItem>
+      );
+    });
+    const time = this.props.store.dropdown.timeReducer.map((item, index) => {
+      return (
+        <MenuItem value={item.id} key={index}>
+          {item.time_slot}
         </MenuItem>
       );
     });
@@ -121,8 +139,8 @@ class RegisterFormPageTwo extends Component {
                 labelId="skills"
                 id="skills"
                 multiple
-                value={this.state.custom_entry_skills}
-                onChange={this.handleInputChangeFor('custom_entry_skills')}
+                value={this.state.skills}
+                onChange={this.handleInputChangeFor('skills')}
                 input={<Input id="select-multiple-chip" />}
                 renderValue={(selected) => (
                   <div>
@@ -135,26 +153,46 @@ class RegisterFormPageTwo extends Component {
                 {skills}
               </Select>
             </FormControl>
+            <FormControl variant="outlined" fullWidth>
+              <InputLabel id="time">Timeslot</InputLabel>
+              <Select
+                labelId="time"
+                id="time"
+                multiple
+                value={this.state.time_slot}
+                onChange={this.handleInputChangeFor('time_slot')}
+                input={<Input id="select-multiple-chip" />}
+                renderValue={(selected) => (
+                  <div>
+                    {selected.map((value) => (
+                      <Chip key={value} label={value} />
+                    ))}
+                  </div>
+                )}
+              >
+                {time}
+              </Select>
+            </FormControl>
+            <div>
+              <Button
+                variant="outlined"
+                type="submit"
+                onClick={this.handleBackClick}
+                // name="submit"
+                // value="Register"
+              >
+                Back
+              </Button>
+              <Button
+                variant="outlined"
+                type="submit"
+                // name="submit"
+                // value="Register"
+              >
+                Submit
+              </Button>
+            </div>
           </Grid>
-          <div>
-            <Button
-              variant="outlined"
-              type="submit"
-              onClick={this.handleBackClick}
-              // name="submit"
-              // value="Register"
-            >
-              Back
-            </Button>
-            <Button
-              variant="outlined"
-              type="submit"
-              // name="submit"
-              // value="Register"
-            >
-              Submit
-            </Button>
-          </div>
         </form>
       </div>
     );
