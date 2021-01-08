@@ -163,7 +163,7 @@ class RegisterFormPageTwo extends Component {
                   </div>
                 )}
               >
-                {skills}
+                {timeslot}
               </Select>
             </FormControl>
             <div>

@@ -76,6 +76,7 @@ CREATE TABLE user_skills (
 CREATE TABLE time_slot (
   id SERIAL PRIMARY KEY,
   day_of_week INT,
+  time_slot_label VARCHAR(100),
   date_time_start TIMESTAMP WITH TIME ZONE,
   date_time_end TIMESTAMP WITH TIME ZONE
   );
