@@ -38,6 +38,7 @@ class RegisterForm extends Component {
   //go to next page of registration
   handleNextClick = (e) => {
     //saves part 1 of registration to a reducer
+
     this.props.dispatch({
       type: 'UPDATE_USER',
       payload: this.state,
