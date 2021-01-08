@@ -25,7 +25,7 @@ router.get(
 router.get(
   'details/:id',
   (req: Request, res: Response, next: express.NextFunction): void => {
-    const getEventID: string = `SELECT * FROM "event" WHERE id=$1;`;
+    const getEventID: string = `SELECT * FROM event JOIN event_type ON (event.event_type = event_type.id) WHERE event.id=$1;`;
     pool
       .query(getEventID, [req.params.id])
       .then((result) => {
@@ -60,28 +60,28 @@ router.get(
 router.post(
   '/',
   (req: Request, res: Response, next: express.NextFunction): void => {
-    const creator: number = parseInt(req.params.userId);
+    const creator: number = parseInt(req.body.userId);
     const recurring: boolean = req.body.recurring;
     const recurring_time_slot: number = parseInt(req.body.recurring_time_slot);
     const event_type: number = parseInt(req.body.event_type);
-    const event_address: number = parseInt(req.params.event_address);
-    const event_start: number = parseInt(req.params.event_start);
-    const event_end: number = parseInt(req.params.event_end);
-    const event_description: number = parseInt(req.params.event_description);
+    const event_address: string = req.body.event_address;
+    const event_start: string = req.body.event_start;
+    const event_end: string = req.body.event_end;
+    const event_description: string = req.body.event_description;
 
-    const queryOne: string = `INSERT INTO "EVENT"(creator, recurring, recurring_time_slot, event_type,
-      event_address, event_start, event_end, event_description) 
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING id;`;
+    const queryOne: string = `INSERT INTO "event"(event_description, event_start, event_end, 
+      recurring, recurring_time_slot, event_address, event_type, creator) 
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`;
     pool
       .query(queryOne, [
-        creator,
-        recurring,
-        recurring_time_slot,
-        event_type,
-        event_address,
+        event_description,
         event_start,
         event_end,
-        event_description,
+        recurring,
+        recurring_time_slot,
+        event_address,
+        event_type,
+        creator,
       ])
       .then(() => {
         res.sendStatus(200);
