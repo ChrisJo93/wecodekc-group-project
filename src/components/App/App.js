@@ -19,6 +19,7 @@ import LandingPage from '../../Pages/LandingPage/LandingPage';
 import LoginPage from '../../Pages/LoginPage/LoginPage';
 import RegisterPageMentor from '../../Pages/RegisterPageMentor/RegisterPageMentor';
 import RegisterPageTwoMentor from '../../Pages/RegisterPageMentor/RegisterPageTwoMentor';
+import EventsPage from '../../Pages/EventsPage/EventsPage';
 import './App.css';
 
 class App extends Component {
@@ -41,6 +42,13 @@ class App extends Component {
               exact
               path="/about"
               component={AboutPage}
+            />
+
+            <Route
+              // shows EventsPage at all times (logged in or not)
+              exact
+              path="/events"
+              component={EventsPage}
             />
 
             {/* For protected routes, the view could show one of several things on the same route.
