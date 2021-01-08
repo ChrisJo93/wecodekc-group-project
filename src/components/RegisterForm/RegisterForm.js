@@ -24,7 +24,7 @@ class RegisterForm extends Component {
     last_name: '',
     birth_date: '',
     sex: '',
-    race: [],
+    race: null,
     email: '',
     phone_number: '',
     zip_code: '',
