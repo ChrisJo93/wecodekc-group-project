@@ -19,6 +19,7 @@ import {
   FormControlLabel,
   FormLabel,
   Chip,
+  Box,
 } from '@material-ui/core';
 
 class RegisterFormPageTwo extends Component {
@@ -82,18 +83,20 @@ class RegisterFormPageTwo extends Component {
             Personal Details
           </Typography>
           <Grid container spacing={3}>
-            <TextField
-              fullWidth
-              multiline
-              rows={4}
-              placeholder="What motivated you to mentor with us?"
-              type="text"
-              name="motivation"
-              value={this.state.motivation_bio}
-              required
-              variant="outlined"
-              onChange={this.handleInputChangeFor('motivation_bio')}
-            />
+            <Box mb={2}>
+              <TextField
+                fullWidth
+                multiline
+                rows={4}
+                placeholder="What motivated you to mentor with us?"
+                type="text"
+                name="motivation"
+                value={this.state.motivation_bio}
+                required
+                variant="outlined"
+                onChange={this.handleInputChangeFor('motivation_bio')}
+              />
+            </Box>
             <TextField
               fullWidth
               multiline

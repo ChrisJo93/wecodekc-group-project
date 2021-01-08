@@ -127,6 +127,7 @@ class RegisterForm extends Component {
                 id="birth_date"
                 label="birth_date"
                 type="date"
+                value={this.state.birth_date}
                 defaultValue="2000-01-01"
                 size="small"
                 variant="outlined"
