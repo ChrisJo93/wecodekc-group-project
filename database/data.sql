@@ -47,7 +47,7 @@ INSERT INTO "skills" (skills_label) VALUES
   (4, 'Super'),
   (9, 'rejected');
 
-  INSERT INTO "time_slot" (day_number, day_name) VALUES 
+  INSERT INTO "time_slot_day" (day_number, day_name) VALUES 
   (1 , "Monday"),
   (2 , "Tuesday"),
   (3 , "Wednesday"),
