@@ -67,3 +67,4 @@ INSERT INTO "skills" (skills_label) VALUES
   ('Chinese Cantonese'),
   ('Japanese'),
   ('Arabic');
+ 
