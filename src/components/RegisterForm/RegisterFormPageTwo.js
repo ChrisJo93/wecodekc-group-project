@@ -45,6 +45,7 @@ class RegisterFormPageTwo extends Component {
         time_slot: this.state.time_slot,
       },
     });
+    this.props.history.push('/login');
   }; // end registerUser
 
   //go back to first page of registration
