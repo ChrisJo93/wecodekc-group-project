@@ -42,7 +42,7 @@ CREATE TABLE "user" (
 CREATE TABLE images (
   id SERIAL PRIMARY KEY,
   image_name VARCHAR(100),
-  link_url VARCHAR(500);
+  link_url VARCHAR(500)
 );
 
 CREATE TABLE user_images (
