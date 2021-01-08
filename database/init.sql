@@ -52,7 +52,7 @@ CREATE TABLE user_images (
 CREATE TABLE admin_note (
   id SERIAL PRIMARY KEY,
   user_id_creator int REFERENCES "user"(id),
-  user_id_subject int,
+  user_id_subject int REFERENCES "user"(id),
   note_on_subject text
 );
 CREATE TABLE languages (
