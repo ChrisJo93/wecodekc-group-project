@@ -74,7 +74,7 @@ CREATE TABLE user_education_level (
 );
 CREATE TABLE event_type (
   id SERIAL PRIMARY KEY,
-  type_label INT
+  type_label VARCHAR
 );
 CREATE TABLE "event" (
   id SERIAL PRIMARY KEY,
