@@ -67,6 +67,13 @@ class RegisterFormPageTwo extends Component {
         </MenuItem>
       );
     });
+    const time = this.props.store.dropdown.timeReducer.map((item, index) => {
+      return (
+        <MenuItem value={item.id} key={index}>
+          {item.time_slot}
+        </MenuItem>
+      );
+    });
 
     return (
       <div>
@@ -163,7 +170,7 @@ class RegisterFormPageTwo extends Component {
                   </div>
                 )}
               >
-                {skills}
+                {time}
               </Select>
             </FormControl>
             <div>
