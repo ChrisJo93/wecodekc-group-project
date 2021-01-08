@@ -37,7 +37,7 @@ class RegisterFormPageTwo extends Component {
     this.props.dispatch({
       type: 'REGISTER',
       payload: {
-        ...this.props.store.registration,
+        ...this.props.store.registration.registrationReducer,
         motivation_bio: this.state.motivation_bio,
         experience_bio: this.state.experience_bio,
         background_check_permission: this.state.background_check_permission,
