@@ -15,6 +15,7 @@ router.get('/', rejectUnauthenticated, (req: Request, res: Response): void => {
 router.post(
   '/register',
   (req: Request, res: Response, next: express.NextFunction): void => {
+    console.log(req.body);
     const username: string = <string>req.body.username;
     const password: string = encryptPassword(req.body.user_password);
     const firstName: string = <string>req.body.first_name;
@@ -62,15 +63,76 @@ router.post(
           let query: string = `INSERT INTO "user_skills" (user_id, skills_id) VALUES ($1, $2)`;
           userPromises.push(pool.query(query, [newUserId, element]));
         }
-        // for (let index = 0; index < timeSlot.length; index++) {
-        //   let element: number = timeSlot[index];
-        //   let query: string = `INSERT INTO "user_time_slot" (user_id, time_slot_id) VALUES ($1, $2)`;
-        //   userPromises.push(pool.query(query, [newUserId, element]));
-        // }
+        for (let index = 0; index < timeSlot.length; index++) {
+          let element: number = timeSlot[index];
+          let query: string = `INSERT INTO "user_time_slot" (user_id, time_slot_id) VALUES ($1, $2)`;
+          userPromises.push(pool.query(query, [newUserId, element]));
+        }
         for (let index = 0; index < educationLevel.length; index++) {
           let element: number = educationLevel[index];
           let query: string = `INSERT INTO "user_education_level" (user_id, education_level) VALUES ($1, $2)`;
           userPromises.push(pool.query(query, [newUserId, element]));
+        }
+        Promise.all(userPromises)
+          .then(() => {
+            res.sendStatus(200);
+          })
+          .catch(() => {
+            res.sendStatus(500);
+          });
+      })
+      .catch((error) => {
+        console.log(error);
+        res.sendStatus(500);
+      });
+  }
+);
+
+router.put(
+  '/register/:id',
+  (req: Request, res: Response, next: express.NextFunction): void => {
+    const password: string = encryptPassword(req.body.user_password);
+    const company: string = <string>req.body.company;
+    const jobTitle: string = <string>req.body.job_title;
+    const motivationBio: string = <string>req.body.motivation_bio;
+    const experienceBio: string = <string>req.body.experience_bio;
+    const customSkills: string = <string>req.body.custom_entry_skills;
+    const skills: Array<number> = req.body.skills;
+    const timeSlot: Array<number> = req.body.time_slot;
+    const educationLevel: Array<number> = req.body.education_level;
+    const backgroundCheck: boolean = req.body.background_check_permission;
+    const zipCode: number = parseInt(req.body.zip_code);
+    const userId: number = parseInt(req.params.id);
+
+    const queryOne: string = `UPDATE "USER" SET (user_password = $1, company = $2, job_title = $3, motivation_bio = $4, 
+      experience_bio = $5, custom_entry_skills = $6, background_check_permission = $7, zip_code = $8);`;
+    pool
+      .query(queryOne, [
+        password,
+        company,
+        jobTitle,
+        motivationBio,
+        experienceBio,
+        customSkills,
+        backgroundCheck,
+        zipCode,
+      ])
+      .then((result) => {
+        let userPromises: Array<Promise<any>> = [];
+        for (let index = 0; index < skills.length; index++) {
+          let element: number = skills[index];
+          let query: string = `INSERT INTO "user_skills" (user_id, skills_id) VALUES ($1, $2)`;
+          userPromises.push(pool.query(query, [userId, element]));
+        }
+        for (let index = 0; index < timeSlot.length; index++) {
+          let element: number = timeSlot[index];
+          let query: string = `INSERT INTO "user_time_slot" (user_id, time_slot_id) VALUES ($1, $2)`;
+          userPromises.push(pool.query(query, [userId, element]));
+        }
+        for (let index = 0; index < educationLevel.length; index++) {
+          let element: number = educationLevel[index];
+          let query: string = `INSERT INTO "user_education_level" (user_id, education_level) VALUES ($1, $2)`;
+          userPromises.push(pool.query(query, [userId, element]));
         }
         Promise.all(userPromises)
           .then(() => {

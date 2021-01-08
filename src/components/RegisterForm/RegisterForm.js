@@ -24,7 +24,7 @@ class RegisterForm extends Component {
     last_name: '',
     birth_date: '',
     sex: '',
-    race: null,
+    race: '',
     email: '',
     phone_number: '',
     zip_code: '',
@@ -35,22 +35,15 @@ class RegisterForm extends Component {
     user_password: '',
   };
 
-  registerUser = (event) => {
-    event.preventDefault();
-
-    this.props.dispatch({
-      type: 'REGISTER',
-      payload: {
-        username: this.state.username,
-        user_password: this.state.user_password,
-      },
-    });
-  }; // end registerUser
-
   //go to next page of registration
   handleNextClick = (e) => {
+    //saves part 1 of registration to a reducer
+    this.props.dispatch({
+      type: 'UPDATE_USER',
+      payload: this.state,
+    });
     //go to the next page of registration
-    this.props.history.push('/registration/page/2');
+    this.props.history.push('/registration/mentor/page/2');
   };
 
   handleInputChangeFor = (propertyName) => (event) => {
@@ -73,6 +66,13 @@ class RegisterForm extends Component {
       return (
         <MenuItem value={item.id} key={index}>
           {item.race_label}
+        </MenuItem>
+      );
+    });
+    const sex = this.props.store.dropdown.sexReducer.map((item, index) => {
+      return (
+        <MenuItem value={item.id} key={index}>
+          {item.sex_label}
         </MenuItem>
       );
     });
@@ -107,7 +107,7 @@ class RegisterForm extends Component {
                 placeholder="middle name/initial"
                 type="text"
                 name="middle_name"
-                value={this.state.first_name}
+                value={this.state.middle_name}
                 // required
                 variant="outlined"
                 onChange={this.handleInputChangeFor('middle_name')}
@@ -117,7 +117,7 @@ class RegisterForm extends Component {
                 placeholder="last name"
                 type="text"
                 name="last_name"
-                value={this.state.first_name}
+                value={this.state.last_name}
                 // required
                 variant="outlined"
                 onChange={this.handleInputChangeFor('last_name')}
@@ -142,10 +142,7 @@ class RegisterForm extends Component {
                   <MenuItem value="">
                     <em>None</em>
                   </MenuItem>
-                  <MenuItem value={'Female'}>Female</MenuItem>
-                  <MenuItem value={'Male'}>Male</MenuItem>
-
-                  <MenuItem value={'Other'}>Other</MenuItem>
+                  {sex}
                 </Select>
               </FormControl>
               <FormControl variant="outlined" size="small" fullWidth>
@@ -153,7 +150,7 @@ class RegisterForm extends Component {
                 <Select
                   labelId="race"
                   id="race"
-                  value={this.state.sex}
+                  value={this.state.race}
                   onChange={this.handleInputChangeFor('race')}
                   label="race"
                 >

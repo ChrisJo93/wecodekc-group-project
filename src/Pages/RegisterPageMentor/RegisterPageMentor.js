@@ -4,6 +4,7 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 
 // CUSTOM COMPONENTS
 import RegisterForm from '../../components/RegisterForm/RegisterForm';
+import RegisterFormPageTwo from '../../components/RegisterForm/RegisterFormPageTwo';
 
 class RegisterPage extends Component {
   state = {};
@@ -12,13 +13,13 @@ class RegisterPage extends Component {
     //dispatch to get all education levels for dropdown
     this.props.dispatch({ type: 'GET_EDUCATION' });
     this.props.dispatch({ type: 'GET_RACE' });
+    this.props.dispatch({ type: 'GET_SEX' });
   }
 
   render() {
     return (
       <div>
         <RegisterForm />
-
         <center>
           <button
             type="button"
