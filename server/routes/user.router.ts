@@ -87,6 +87,7 @@ router.post(
       });
   }
 );
+//making minor change for merge issue
 
 router.put(
   '/register/:id',
