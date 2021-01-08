@@ -52,7 +52,7 @@ CREATE TABLE user_images (
 CREATE TABLE admin_note (
   id SERIAL PRIMARY KEY,
   user_id_creator int REFERENCES "user"(id),
-  user_id_subject int,
+  user_id_subject int REFERENCES "user"(id),
   note_on_subject text
 );
 CREATE TABLE languages (
@@ -76,6 +76,7 @@ CREATE TABLE user_skills (
 CREATE TABLE time_slot (
   id SERIAL PRIMARY KEY,
   day_of_week INT,
+  time_slot_label VARCHAR(100),
   date_time_start TIMESTAMP WITH TIME ZONE,
   date_time_end TIMESTAMP WITH TIME ZONE
   );

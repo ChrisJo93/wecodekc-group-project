@@ -3,7 +3,7 @@ import { combineReducers } from 'redux';
 const registrationReducer = (state = {}, action) => {
   switch (action.type) {
     case 'UPDATE_USER':
-      return { ...state, ...action.payload };
+      return action.payload;
     default:
       return state;
   }
@@ -12,7 +12,7 @@ const registrationReducer = (state = {}, action) => {
 const loginReducer = (state = {}, action) => {
   switch (action.type) {
     case 'UPDATE_USER_LOGIN':
-      return { ...state, ...action.payload };
+      return action.payload;
     default:
       return state;
   }
