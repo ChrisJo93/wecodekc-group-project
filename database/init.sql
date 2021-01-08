@@ -51,7 +51,7 @@ CREATE TABLE user_images (
 );
 CREATE TABLE admin_note (
   id SERIAL PRIMARY KEY,
-  user_id_creator int,
+  user_id_creator int REFERENCES "user"(id),
   user_id_subject int,
   note_on_subject text
 );
