@@ -17,7 +17,7 @@ router.post(
   (req: Request, res: Response, next: express.NextFunction): void => {
     console.log(req.body);
     const username: string = <string>req.body.username;
-    const password: string = encryptPassword(req.body.user_password);
+    const password: string = encryptPassword(req.body.password);
     const firstName: string = <string>req.body.first_name;
     const middleName: string = <string>req.body.middle_name;
     const lastName: string = <string>req.body.last_name;
