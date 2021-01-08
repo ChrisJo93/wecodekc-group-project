@@ -20,7 +20,7 @@ CREATE TABLE "user" (
   id SERIAL PRIMARY KEY,
   is_active  BOOLEAN,
   username VARCHAR(50),
-  user_password VARCHAR(100),
+  password VARCHAR(100),
   access_level INT DEFAULT 1 REFERENCES "access_level"(id),
   first_name VARCHAR(50),
   middle_name VARCHAR(50),
