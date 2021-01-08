@@ -1,3 +1,5 @@
+import { combineReducers } from 'redux';
+
 const registrationReducer = (state = {}, action) => {
   switch (action.type) {
     case 'UPDATE_USER':
@@ -7,4 +9,16 @@ const registrationReducer = (state = {}, action) => {
   }
 };
 
-export default registrationReducer;
+const loginReducer = (state = {}, action) => {
+  switch (action.type) {
+    case 'UPDATE_USER_LOGIN':
+      return { ...state, ...action.payload };
+    default:
+      return state;
+  }
+};
+
+export default combineReducers({
+  registrationReducer,
+  loginReducer,
+});
