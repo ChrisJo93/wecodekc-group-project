@@ -51,8 +51,13 @@ CREATE TABLE user_images (
 );
 CREATE TABLE admin_note (
   id SERIAL PRIMARY KEY,
+<<<<<<< HEAD
   user_id_creator INT REFERENCES "user",
   user_id_subject int,
+=======
+  user_id_creator int REFERENCES "user"(id),
+  user_id_subject int REFERENCES "user"(id),
+>>>>>>> 85345a8fde1f2de6085e0c43f28c28f30e84f67c
   note_on_subject text
 );
 CREATE TABLE languages (
