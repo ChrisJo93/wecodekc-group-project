@@ -254,7 +254,8 @@ class RegisterForm extends Component {
           </Grid>
           <div>
             <Button
-              variant="outlined"
+              color="primary"
+              variant="contained"
               type="submit"
               // name="submit"
               // value="Register"

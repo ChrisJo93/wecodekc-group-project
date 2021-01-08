@@ -167,7 +167,8 @@ class RegisterFormPageTwo extends Component {
             </FormControl>
             <div>
               <Button
-                variant="outlined"
+                color="primary"
+                variant="contained"
                 type="submit"
                 onClick={this.handleBackClick}
                 // name="submit"
@@ -176,7 +177,8 @@ class RegisterFormPageTwo extends Component {
                 Back
               </Button>
               <Button
-                variant="outlined"
+                color="primary"
+                variant="contained"
                 type="submit"
                 // name="submit"
                 // value="Register"

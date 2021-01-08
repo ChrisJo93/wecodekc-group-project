@@ -11,6 +11,8 @@ require('dotenv').config();
 
 const app: any = express();
 
+const UploaderS3Router = require('react-dropzone-s3-uploader/s3router');
+
 // Body parser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -27,6 +29,16 @@ app.use('/api/user', userRouter);
 app.use('/api/event', eventRouter);
 app.use('/api/notes', notesRouter);
 app.use('/api/dropdown', dropdownRouter);
+
+app.use(
+  '/s3',
+  UploaderS3Router({
+    bucket: 'wecodekc', // required
+    region: 'us-east-2', // optional
+    headers: { 'Access-Control-Allow-Origin': '*' }, // optional
+    ACL: 'public-read', // this is the default - set to `public-read` to let anyone view uploads
+  })
+);
 
 // Serve static files
 app.use(express.static('build'));

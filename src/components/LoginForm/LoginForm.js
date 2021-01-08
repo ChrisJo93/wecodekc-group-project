@@ -63,7 +63,7 @@ class LoginForm extends Component {
           ></TextField>
         </div>
         <div>
-          <Button color="primary" type="submit">
+          <Button color="primary" variant="contained" type="submit">
             Log In
           </Button>
         </div>
