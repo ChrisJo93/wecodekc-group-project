@@ -35,7 +35,7 @@ router.post(
     const zipCode: number = parseInt(req.body.zip_code);
     let newUserId: number;
 
-    const queryOne: string = `INSERT INTO "user"(username, user_password,  first_name, middle_name,
+    const queryOne: string = `INSERT INTO "user"(username, password,  first_name, middle_name,
       last_name, race, company, job_title, motivation_bio, experience_bio, custom_entry_skills,
       background_check_permission, sex, zip_code) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING id;`;
     pool
