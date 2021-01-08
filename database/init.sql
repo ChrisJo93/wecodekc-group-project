@@ -39,7 +39,7 @@ CREATE TABLE "user" (
 );
 CREATE TABLE admin_note (
   id SERIAL PRIMARY KEY,
-  user_id_creator int,
+  user_id_creator INT REFERENCES "user",
   user_id_subject int,
   note_on_subject text
 );

@@ -8,18 +8,18 @@ import { Button, TextField, Typography } from '@material-ui/core';
 class LoginForm extends Component {
   state = {
     username: '',
-    password: '',
+    user_password: '',
   };
 
   login = (event) => {
     event.preventDefault();
 
-    if (this.state.username && this.state.password) {
+    if (this.state.username && this.state.user_password) {
       this.props.dispatch({
         type: 'LOGIN',
         payload: {
           username: this.state.username,
-          password: this.state.password,
+          password: this.state.user_password,
         },
       });
     } else {
