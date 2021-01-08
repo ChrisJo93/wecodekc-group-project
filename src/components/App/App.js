@@ -17,14 +17,9 @@ import UserPage from '../../Pages/UserPage/UserPage';
 import InfoPage from '../../Pages/InfoPage/InfoPage';
 import LandingPage from '../../Pages/LandingPage/LandingPage';
 import LoginPage from '../../Pages/LoginPage/LoginPage';
-<<<<<<< HEAD
-import RegisterPage from '../../Pages/RegisterPage/RegisterPage';
-import EventsPage from '../../Pages/EventsPage/EventsPage';
-
-=======
 import RegisterPageMentor from '../../Pages/RegisterPageMentor/RegisterPageMentor';
 import RegisterPageTwoMentor from '../../Pages/RegisterPageMentor/RegisterPageTwoMentor';
->>>>>>> develop
+import EventsPage from '../../Pages/EventsPage/EventsPage';
 import './App.css';
 
 class App extends Component {

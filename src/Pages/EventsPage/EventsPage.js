@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
-import './EventsPage.css';
+// import './EventsPage.css';
 
 import {
   Grid,
@@ -53,15 +53,9 @@ class EventsPage extends Component {
               justify="center"
               alignItems="center"
             >
-              <Grid>
-                <img src={child1} alt="coding" />
-              </Grid>
-              <Grid>
-                <img src={computer} alt="coding" />
-              </Grid>
-              <Grid>
-                <img src={child2} alt="coding" />
-              </Grid>
+              <img src={child1} alt="coding" />
+              <img src={computer} alt="coding" />
+              <img src={child2} alt="coding" />
             </Grid>
           </Grid>
           <Grid
