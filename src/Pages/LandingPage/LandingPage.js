@@ -7,6 +7,8 @@ import './LandingPage.css';
 // CUSTOM COMPONENTS
 import computer from './computer.jpg';
 
+//NEEDS images and video and event carousel.
+
 //Material-UI imports
 import {
   Grid,
