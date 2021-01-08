@@ -45,14 +45,7 @@ class EventsPage extends Component {
             justify="center"
             alignItems="center"
           >
-            <Grid
-              item
-              xs={6}
-              md={3}
-              direction="row"
-              justify="center"
-              alignItems="center"
-            >
+            <Grid item xs={6} md={3}>
               <img src={child1} alt="coding" />
               <img src={computer} alt="coding" />
               <img src={child2} alt="coding" />
