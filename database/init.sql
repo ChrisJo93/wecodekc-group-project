@@ -41,7 +41,8 @@ CREATE TABLE "user" (
 
 CREATE TABLE images (
   id SERIAL PRIMARY KEY,
-  link_url VARCHAR(500)
+  image_name VARCHAR(100),
+  link_url VARCHAR(500);
 );
 
 CREATE TABLE user_images (
@@ -75,7 +76,12 @@ CREATE TABLE user_skills (
 );
 CREATE TABLE time_slot (
   id SERIAL PRIMARY KEY,
-  day_of_week INT,
+  day_number INT,
+  day_name VARCHAR(10)
+)
+CREATE TABLE time_slot (
+  id SERIAL PRIMARY KEY,
+  day_of_week INT REFERENCES,
   time_slot_label VARCHAR(100),
   date_time_start TIMESTAMP WITH TIME ZONE,
   date_time_end TIMESTAMP WITH TIME ZONE
