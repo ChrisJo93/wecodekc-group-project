@@ -30,7 +30,9 @@ class UserPage extends Component {
               <p>{this.state.phone}</p>
               <p>{this.state.email}</p>
               <p>{this.state.skills}</p>
-              <Button variant="primary">Edit Profile</Button>
+              <Button color="primary" variant="contained">
+                Edit Profile
+              </Button>
               <LogOutButton className="log-in" />
             </div>
           </Grid>

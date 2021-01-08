@@ -17,7 +17,7 @@ router.post(
   (req: Request, res: Response, next: express.NextFunction): void => {
     console.log(req.body);
     const username: string = <string>req.body.username;
-    const password: string = encryptPassword(req.body.user_password);
+    const password: string = encryptPassword(req.body.password);
     const firstName: string = <string>req.body.first_name;
     const middleName: string = <string>req.body.middle_name;
     const lastName: string = <string>req.body.last_name;
@@ -35,7 +35,7 @@ router.post(
     const zipCode: number = parseInt(req.body.zip_code);
     let newUserId: number;
 
-    const queryOne: string = `INSERT INTO "user"(username, user_password,  first_name, middle_name,
+    const queryOne: string = `INSERT INTO "user"(username, password,  first_name, middle_name,
       last_name, race, company, job_title, motivation_bio, experience_bio, custom_entry_skills,
       background_check_permission, sex, zip_code) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING id;`;
     pool
@@ -92,7 +92,7 @@ router.post(
 router.put(
   '/register/:id',
   (req: Request, res: Response, next: express.NextFunction): void => {
-    const password: string = encryptPassword(req.body.user_password);
+    const password: string = encryptPassword(req.body.password);
     const company: string = <string>req.body.company;
     const jobTitle: string = <string>req.body.job_title;
     const motivationBio: string = <string>req.body.motivation_bio;
@@ -105,7 +105,7 @@ router.put(
     const zipCode: number = parseInt(req.body.zip_code);
     const userId: number = parseInt(req.params.id);
 
-    const queryOne: string = `UPDATE "USER" SET (user_password = $1, company = $2, job_title = $3, motivation_bio = $4, 
+    const queryOne: string = `UPDATE "USER" SET (password = $1, company = $2, job_title = $3, motivation_bio = $4, 
       experience_bio = $5, custom_entry_skills = $6, background_check_permission = $7, zip_code = $8);`;
     pool
       .query(queryOne, [

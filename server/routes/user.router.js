@@ -63,7 +63,7 @@ router.put('/id:', (req, res) => {
   const editUser = `UPDATE "user" SET 
   is_active=$1,
   username=$2,
-  =$3,
+  user_password=$3,
   access_level=$4,
   first_name=$5,
   middle_name=$6,
@@ -82,7 +82,7 @@ router.put('/id:', (req, res) => {
     .query(editUser, [
       user.is_active,
       user.username,
-      user.,
+      user.user_password,
       user.access_level,
       user.first_name,
       user.middle_name,
