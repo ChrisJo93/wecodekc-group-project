@@ -48,15 +48,6 @@ INSERT INTO "skills" (skills_label) VALUES
   (9, 'rejected');
 
   INSERT INTO "time_slot_day" (day_number, day_name) VALUES 
-<<<<<<< HEAD
-  (1 , "Monday"),
-  (2 , "Tuesday"),
-  (3 , "Wednesday"),
-  (4 , "Thursday"),
-  (5 , "Friday"),
-  (6 , "Saturday"),
-  (7 , "Sunday"); 
-=======
   (1 , 'Monday'),
   (2 , 'Tuesday'),
   (3 , 'Wednesday'),
@@ -64,7 +55,6 @@ INSERT INTO "skills" (skills_label) VALUES
   (5 , 'Friday'),
   (6 , 'Saturday'),
   (7 , 'Sunday'); 
->>>>>>> a3d78c574ccb8e56e0ba2287768a0c7edffcccce
 
     INSERT INTO "event_type" (type_label) VALUES 
   ('Course'),
