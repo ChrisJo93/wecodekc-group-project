@@ -6,7 +6,6 @@ import EventControl from '../AdminSubComponents/EventControl';
 import Statistics from '../AdminSubComponents/Statistics';
 import Verification from '../AdminSubComponents/Verification';
 import Welcome from '../AdminSubComponents/Welcome';
-import AppNav from '../AdminMainPage/AdminNav';
 import SideBar from '../AdminSidebar/Sidebar';
 
 class AdminPage extends Component {
