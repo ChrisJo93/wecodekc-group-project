@@ -29,6 +29,7 @@ class RegisterFormPageTwo extends Component {
     background_check_permission: false,
     skills: [],
     time_slot: [],
+    languages: [],
   };
 
   registerUser = (event) => {
@@ -51,7 +52,7 @@ class RegisterFormPageTwo extends Component {
 
   //go back to first page of registration
   handleBackClick = (e) => {
-    this.props.history.push('/registration/mentor/page/1');
+    this.props.history.push('/registration/page/1');
   };
 
   handleInputChangeFor = (propertyName) => (event) => {
@@ -61,6 +62,17 @@ class RegisterFormPageTwo extends Component {
   };
 
   render() {
+    //loop through to get each language from database
+    const languages = this.props.store.dropdown.languageReducer.map(
+      (item, index) => {
+        return (
+          <MenuItem value={item.id} key={index}>
+            {item.languages_label}
+          </MenuItem>
+        );
+      }
+    );
+    //loop through to get each skill from database
     const skills = this.props.store.dropdown.skillReducer.map((item, index) => {
       return (
         <MenuItem value={item.id} key={index}>
@@ -68,6 +80,7 @@ class RegisterFormPageTwo extends Component {
         </MenuItem>
       );
     });
+    //loop through to get each time slot from database
     const time = this.props.store.dropdown.timeReducer.map((item, index) => {
       return (
         <MenuItem value={item.id} key={index}>
@@ -80,7 +93,7 @@ class RegisterFormPageTwo extends Component {
       <div>
         <form className="formPanel" onSubmit={this.registerUser}>
           <Typography variant="h3" component="h2" gutterBottom>
-            Mentor Registration
+            Registration
           </Typography>
           {this.props.store.errors.registrationMessage && (
             <h3 className="alert" role="alert">
@@ -132,6 +145,28 @@ class RegisterFormPageTwo extends Component {
               <FormControlLabel value="true" control={<Radio />} label="yes" />
               <FormControlLabel value="false" control={<Radio />} label="no" />
             </RadioGroup>
+            <FormControl variant="outlined" fullWidth>
+              <InputLabel id="languages">
+                What languages do you speak?
+              </InputLabel>
+              <Select
+                labelId="languages"
+                id="languages"
+                multiple
+                value={this.state.languages}
+                onChange={this.handleInputChangeFor('languages')}
+                input={<Input id="select-multiple-chip" />}
+                renderValue={(selected) => (
+                  <div>
+                    {selected.map((value) => (
+                      <Chip key={value} label={value} />
+                    ))}
+                  </div>
+                )}
+              >
+                {languages}
+              </Select>
+            </FormControl>
 
             <FormControl variant="outlined" fullWidth>
               <InputLabel id="skills">

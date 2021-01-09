@@ -44,7 +44,7 @@ class RegisterForm extends Component {
       payload: this.state,
     });
     //go to the next page of registration
-    this.props.history.push('/registration/mentor/page/2');
+    this.props.history.push('/registration/page/2');
   };
 
   handleInputChangeFor = (propertyName) => (event) => {
@@ -81,7 +81,7 @@ class RegisterForm extends Component {
       <div>
         <form className="formPanel" onSubmit={this.handleNextClick}>
           <Typography variant="h3" component="h2" gutterBottom>
-            Mentor Registration
+            Registration
           </Typography>
           {this.props.store.errors.registrationMessage && (
             <h3 className="alert" role="alert">

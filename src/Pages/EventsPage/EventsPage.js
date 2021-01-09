@@ -15,6 +15,7 @@ import {
 } from '@material-ui/core';
 
 import computer from './computer.jpg';
+import computer2 from './computer2.jpg';
 import child1 from './Child1.jpg';
 import child2 from './Child2.jpg';
 
@@ -38,28 +39,19 @@ class EventsPage extends Component {
     return (
       <div className="grid">
         <div style={{ padding: 20 }}>
-          <Grid
-            container
-            spacing={3}
-            direction="row"
-            justify="center"
-            alignItems="center"
-          >
-            <Grid item xs={6} md={3}>
-              <img src={child1} alt="coding" />
+          <Grid container justify="center" alignItems="center">
+            <Grid item sm={12} lg={4}>
+              <img src={computer2} alt="coding" />
+            </Grid>
+            <Grid item sm={12} lg={4}>
               <img src={computer} alt="coding" />
-              <img src={child2} alt="coding" />
+            </Grid>
+            <Grid item sm={12} lg={4}>
+              <img src={computer2} alt="coding" />
             </Grid>
           </Grid>
-          <Grid
-            container
-            spacing={3}
-            direction="row"
-            justify="space-evenly"
-            alignItems="stretch"
-          >
-            <h2>Click on an event to see its details!</h2>
-          </Grid>
+
+          <h2>Click on an event to see its details!</h2>
         </div>
         <div style={{ padding: 20 }}>
           <Grid

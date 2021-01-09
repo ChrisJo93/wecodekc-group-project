@@ -11,6 +11,7 @@ import computer from './computer.jpg';
 
 //Material-UI imports
 import {
+  Box,
   Grid,
   Card,
   Typography,
@@ -28,17 +29,17 @@ class LandingPage extends Component {
   };
 
   handleRegisterMentor = (e) => {
-    this.props.history.push('/registration/mentor/page/1');
+    this.props.history.push('/registration/page/1');
   };
 
   handleRegisterVolunteer = (e) => {
-    this.props.history.push('/registration/volunteer/page/1');
+    this.props.history.push('/registration/page/1');
   };
 
   render() {
     return (
       <div className="grid">
-        <Grid container>
+        <Grid container alignItems="stretch">
           <Grid item xs={12} md={6}>
             <Card>
               <Typography>Make an Impact!</Typography>

@@ -17,8 +17,8 @@ import UserPage from '../../Pages/UserPage/UserPage';
 import InfoPage from '../../Pages/InfoPage/InfoPage';
 import LandingPage from '../../Pages/LandingPage/LandingPage';
 import LoginPage from '../../Pages/LoginPage/LoginPage';
-import RegisterPageMentor from '../../Pages/RegisterPageMentor/RegisterPageMentor';
-import RegisterPageTwoMentor from '../../Pages/RegisterPageMentor/RegisterPageTwoMentor';
+import RegisterPage from '../../Pages/RegisterPage/RegisterPage';
+import RegisterPageTwo from '../../Pages/RegisterPage/RegisterPageTwo';
 import EventsPage from '../../Pages/EventsPage/EventsPage';
 import './App.css';
 
@@ -106,8 +106,8 @@ class App extends Component {
                 // - if logged in, redirects to "/user"
                 // - else shows RegisterPage at "/registration"
                 exact
-                path="/registration/mentor/page/1"
-                component={RegisterPageMentor}
+                path="/registration/page/1"
+                component={RegisterPage}
                 authRedirect="/user"
               />
               <ProtectedRoute
@@ -115,28 +115,8 @@ class App extends Component {
                 // - if logged in, redirects to "/user"
                 // - else shows RegisterPage at "/registration"
                 exact
-                path="/registration/mentor/page/2"
-                component={RegisterPageTwoMentor}
-                authRedirect="/user"
-              />
-
-              <ProtectedRoute
-                // with authRedirect:
-                // - if logged in, redirects to "/user"
-                // - else shows RegisterPage at "/registration"
-                exact
-                path="/registration/volunteer/page/1"
-                component={RegisterPageMentor}
-                authRedirect="/user"
-              />
-
-              <ProtectedRoute
-                // with authRedirect:
-                // - if logged in, redirects to "/user"
-                // - else shows RegisterPage at "/registration"
-                exact
-                path="/registration/volunteer/page/2"
-                component={RegisterPageTwoMentor}
+                path="/registration/page/2"
+                component={RegisterPageTwo}
                 authRedirect="/user"
               />
 

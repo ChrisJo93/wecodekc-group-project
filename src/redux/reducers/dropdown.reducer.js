@@ -55,10 +55,22 @@ const timeReducer = (state = [], action) => {
   }
 };
 
+const languageReducer = (state = [], action) => {
+  switch (action.type) {
+    case 'SET_LANGUAGE':
+      return action.payload;
+    case 'UNSET_LANGUAGE':
+      return [];
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   educationReducer,
   sexReducer,
   raceReducer,
   skillReducer,
   timeReducer,
+  languageReducer,
 });
