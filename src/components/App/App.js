@@ -11,13 +11,13 @@ import { connect } from 'react-redux';
 //CUSTOM FILE IMPORTS
 
 import AboutPage from '../../Pages/AboutPage/AboutPage';
-import EventsPage from '../../Pages/EventsPage/EventsPage';
 import Footer from '../Footer/Footer';
 import InfoPage from '../../Pages/InfoPage/InfoPage';
 import LandingPage from '../../Pages/LandingPage/LandingPage';
 import LoginPage from '../../Pages/LoginPage/LoginPage';
 import RegisterPage from '../../Pages/RegisterPage/RegisterPage';
 import RegisterPageTwo from '../../Pages/RegisterPage/RegisterPageTwo';
+import EventsPage from '../../Pages/EventsPage/EventsPage';
 import Nav from '../Nav/Nav';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import UserPage from '../../Pages/UserPage/UserPage';

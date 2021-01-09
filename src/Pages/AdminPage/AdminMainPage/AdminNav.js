@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Button } from '@material-ui/core';
 
-const AppNav = (props) => {
+const AdminNav = (props) => {
   const handle = function handleLogout() {
     props.dispatch({ type: 'LOGOUT' });
   };
@@ -21,4 +21,4 @@ const AppNav = (props) => {
   );
 };
 
-export default connect()(AppNav);
+export default connect()(AdminNav);

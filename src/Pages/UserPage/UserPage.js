@@ -36,31 +36,28 @@ class UserPage extends Component {
   // this component doesn't do much to start, just renders some user info to the DOM
   render() {
     return (
-      <div>
-        <Grid container spacing={10} alignItems="center" justify="flex-start">
-          <Grid item>
-            <img src={this.state.image} className="placeholder" />
+      <Grid container spacing={10} alignItems="center" justify="flex-start">
+        <Grid item>
+          <img src={this.state.image} className="placeholder" />
 
-            <Grid container spacing={10} alignItems="flex-end" justify="center">
-              <div>
-                <p>{this.state.name}</p>
-                <p>{this.state.role}</p>
-                <p>{this.state.zipcode}</p>
-                <p>{this.state.phone}</p>
-                <p>{this.state.email}</p>
-                <p>{this.state.skills}</p>
-                <Button color="primary" variant="contained">
-                  Edit Profile
-                </Button>
-                <LogOutButton className="log-in" />
-              </div>
-            </Grid>
+          <Grid container spacing={10} alignItems="flex-end" justify="center">
+            <div>
+              <p>{this.state.name}</p>
+              <p>{this.state.role}</p>
+              <p>{this.state.zipcode}</p>
+              <p>{this.state.phone}</p>
+              <p>{this.state.email}</p>
+              <p>{this.state.skills}</p>
+              <Button color="primary" variant="contained">
+                Edit Profile
+              </Button>
+              <LogOutButton className="log-in" />
+            </div>
           </Grid>
         </Grid>
-      </div>
+      </Grid>
     );
   }
 }
 
-// this allows us to use <App /> in index.js
 export default connect(mapStoreToProps)(UserPage);
