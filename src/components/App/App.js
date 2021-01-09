@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 //CUSTOM FILE IMPORTS
 
 import AboutPage from '../../Pages/AboutPage/AboutPage';
+import AdminPage from '../../Pages/AdminPage/AdminPage';
 import EventsPage from '../../Pages/EventsPage/EventsPage';
 import Footer from '../Footer/Footer';
 import InfoPage from '../../Pages/InfoPage/InfoPage';
@@ -22,7 +23,6 @@ import RegisterPageMentor from '../../Pages/RegisterPageMentor/RegisterPageMento
 import RegisterPageTwoMentor from '../../Pages/RegisterPageMentor/RegisterPageTwoMentor';
 import UserPage from '../../Pages/UserPage/UserPage';
 import './App.css';
-import AdminPage from '../../Pages/AdminPage/AdminPage';
 
 class App extends Component {
   componentDidMount() {
@@ -132,6 +132,8 @@ class App extends Component {
               component={LandingPage}
               authRedirect="/user"
             />
+
+            <ProtectedRoute exact path="/admin" component={AdminPage} />
 
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
