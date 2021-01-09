@@ -12,6 +12,7 @@ import { connect } from 'react-redux';
 
 import AdminPage from '../../Pages/AdminPage/AdminPage';
 import AboutPage from '../../Pages/AboutPage/AboutPage';
+import AdminPage from '../../Pages/AdminPage/AdminPage';
 import EventsPage from '../../Pages/EventsPage/EventsPage';
 import Footer from '../Footer/Footer';
 import InfoPage from '../../Pages/InfoPage/InfoPage';
@@ -132,6 +133,8 @@ class App extends Component {
               component={LandingPage}
               authRedirect="/user"
             />
+
+            <ProtectedRoute exact path="/admin" component={AdminPage} />
 
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
