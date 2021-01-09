@@ -1,16 +1,18 @@
 INSERT INTO "race" (race_label) VALUES 
-  ('White not Hispanic alone'),
+  ('White not Hispanic'),
   ('Hispanic or Latino'),
   ('Black or African American Alone'),
   ('Native American or Alaskan Native'),
-  ('Asian or Pacific Islander'),
-  ('Asian alone'),
-  ('Two or More Races');
+  ('Native Hawaiian or Pacific Islander'),
+  ('Asian'),
+  ('Two or More Races')
+  ('Prefer not to answer');
 
 INSERT INTO "sex" (sex_label) VALUES 
   ('Male'),
   ('Female'),
-  ('Other');
+  ('Other')
+  ('Prefer not to answer');;
 
 INSERT INTO "education_level" (education_label) VALUES 
   ('No schooling completed'),
@@ -27,8 +29,8 @@ INSERT INTO "education_level" (education_label) VALUES
 
 INSERT INTO "skills" (skills_label) VALUES 
   ('JavaScript'),
-  ('Css'),
-  ('Html'),
+  ('CSS'),
+  ('HTML'),
   ('React'),
   ('Angular'),
   ('Python'),
@@ -36,7 +38,7 @@ INSERT INTO "skills" (skills_label) VALUES
   ('C++'),
   ('C'),
   ('Java'),
-  ('Postgresql'),
+  ('PostgreSQL'),
   ('MongoDB');
 
   INSERT INTO "access_level" (access_level, access_label) VALUES 
@@ -70,7 +72,7 @@ INSERT INTO "skills" (skills_label) VALUES
   ('Event');
 
       INSERT INTO "languages" (languages_label) VALUES 
-  ('English only'),
+  ('English'),
   ('Spanish'),
   ('German'),
   ('French'),
