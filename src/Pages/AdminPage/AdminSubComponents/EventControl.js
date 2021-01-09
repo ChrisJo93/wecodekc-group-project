@@ -9,7 +9,7 @@ import mapStoreToProps from '../../../redux/mapStoreToProps';
 // component.
 class EventControl extends Component {
   state = {
-    heading: 'AdminPage',
+    heading: 'Event Control',
   };
 
   render() {

@@ -8,7 +8,7 @@ import mapStoreToProps from '../../../redux/mapStoreToProps';
 // component.
 class Verification extends Component {
   state = {
-    heading: 'Class Component',
+    heading: 'Verification',
   };
 
   render() {
