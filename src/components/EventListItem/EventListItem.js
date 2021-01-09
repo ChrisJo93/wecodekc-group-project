@@ -28,16 +28,16 @@ class EventListItem extends Component {
     return (
       <div>
         <Card>
-          <CardActionArea key={event.id} onClick={this.handleCLickDetails}>
+          <CardActionArea key={item.id} onClick={this.handleCLickDetails}>
             <CardContent>
               <Typography gutterBottom variant="h5" component="h2">
-                {/* {event.name} */}
+                {item.event_title}
               </Typography>
               <Typography variant="body2" color="textSecondary" component="ul">
-                {/* <li className="cardList">{event.}</li>
+                <li className="cardList">{event.}</li>
                 <li className="cardList">
-                  {event.}, {event.}
-                </li> */}
+                  {item.event_address}, {item.event_start}
+                </li>
               </Typography>
             </CardContent>
           </CardActionArea>
