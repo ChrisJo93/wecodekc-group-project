@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { useEffect } from 'react';
+import { connect, useDispatch } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
 //custom file imports
@@ -13,6 +13,15 @@ import RegisterTab from '../../components/RegisterTab/RegisterTab';
 import { Tabs, Tab, Grid } from '@material-ui/core';
 
 function LoginPage(props) {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    // dispatch to get all tips to render on page load
+    dispatch({
+      type: 'GET_EDUCATION',
+      type: 'GET_RACE',
+      type: 'GET_SEX',
+    });
+  }, [dispatch]);
   // //config for tabs
   const [selectedTab, setSelectedTab] = React.useState(0);
   const handleTabChange = (event, newValue) => {

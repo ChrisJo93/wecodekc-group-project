@@ -40,13 +40,13 @@ class EventsPage extends Component {
       <div className="grid">
         <div style={{ padding: 20 }}>
           <Grid container justify="center" alignItems="center">
-            <Grid item sm={12} lg={4}>
+            <Grid item sm={12} md={4} lg={4}>
               <img src={computer2} alt="coding" />
             </Grid>
-            <Grid item sm={12} lg={4}>
+            <Grid item sm={12} md={4} lg={4}>
               <img src={computer} alt="coding" />
             </Grid>
-            <Grid item sm={12} lg={4}>
+            <Grid item sm={12} md={4} lg={4}>
               <img src={computer2} alt="coding" />
             </Grid>
           </Grid>

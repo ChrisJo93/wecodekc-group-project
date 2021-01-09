@@ -8,7 +8,8 @@ import notesRouter from './routes/notes.router';
 import dropdownRouter from './routes/dropdown.router';
 import timeslotRouter from './routes/timeslot.router';
 
-require('dotenv').config();
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 const app: any = express();
 
@@ -41,6 +42,10 @@ app.use(
     ACL: 'public-read', // this is the default - set to `public-read` to let anyone view uploads
   })
 );
+
+app.get('/test', function (req: any, res: any) {
+  res.send(`${process.env.AWS_ACCESS_KEY_ID}`);
+});
 
 // Serve static files
 app.use(express.static('build'));

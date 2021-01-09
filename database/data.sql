@@ -5,14 +5,14 @@ INSERT INTO "race" (race_label) VALUES
   ('Native American or Alaskan Native'),
   ('Native Hawaiian or Pacific Islander'),
   ('Asian'),
-  ('Two or More Races')
+  ('Two or More Races'),
   ('Prefer not to answer');
 
 INSERT INTO "sex" (sex_label) VALUES 
   ('Male'),
   ('Female'),
-  ('Other')
-  ('Prefer not to answer');;
+  ('Other'),
+  ('Prefer not to answer');
 
 INSERT INTO "education_level" (education_label) VALUES 
   ('No schooling completed'),
