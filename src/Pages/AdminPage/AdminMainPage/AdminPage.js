@@ -6,7 +6,6 @@ import EventControl from '../AdminSubComponents/EventControl';
 import Statistics from '../AdminSubComponents/Statistics';
 import Verification from '../AdminSubComponents/Verification';
 import Welcome from '../AdminSubComponents/Welcome';
-import AppNav from '../AdminMainPage/AdminNav';
 import SideBar from '../AdminSidebar/Sidebar';
 
 class AdminPage extends Component {
@@ -60,7 +59,6 @@ class AdminPage extends Component {
     return (
       //displays the navigation, sidebar menu, and {display} <- which is switched above.
       <>
-        <AppNav props={this.props} />
         <div className="adminPage">
           <SideBar
             access={this.state.access_level}

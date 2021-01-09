@@ -13,7 +13,7 @@ class AccountControl extends Component {
 
   render() {
     return (
-      <div>
+      <div className="adminPageDisplay">
         <h2>{this.state.heading}</h2>
       </div>
     );

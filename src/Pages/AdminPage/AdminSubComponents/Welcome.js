@@ -8,12 +8,12 @@ import mapStoreToProps from '../../../redux/mapStoreToProps';
 // component.
 class Welcome extends Component {
   state = {
-    heading: 'Class Component',
+    heading: 'This is the welcome page',
   };
 
   render() {
     return (
-      <div>
+      <div className="adminPageDisplay">
         <h2>{this.state.heading}</h2>
       </div>
     );
