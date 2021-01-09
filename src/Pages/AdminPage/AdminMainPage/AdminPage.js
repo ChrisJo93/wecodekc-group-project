@@ -59,7 +59,6 @@ class AdminPage extends Component {
     return (
       //displays the navigation, sidebar menu, and {display} <- which is switched above.
       <>
-        <AppNav props={this.props} />
         <div className="adminPage">
           <SideBar
             access={this.state.access_level}
