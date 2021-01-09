@@ -4,7 +4,7 @@ import WorkOutlineIcon from '@material-ui/icons/WorkOutline';
 import CreateIcon from '@material-ui/icons/Create';
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
 
-export const SuperAdminSidebarData = [
+const SuperAdminSidebarData = [
   {
     Icon: <WorkOutlineIcon />,
     Title: 'Account Control',
@@ -26,3 +26,5 @@ export const SuperAdminSidebarData = [
     Selection: 4,
   },
 ];
+
+export default SuperAdminSidebarData;

@@ -1,5 +1,6 @@
 import React from 'react';
-import { AdminSidebarData } from '../AdminSidebar/AdminSidebarData';
+import AdminSidebarData from '../AdminSidebar/AdminSidebarData';
+import SuperAdminSidebarData from '../AdminSidebar/SuperAdminSidebarData';
 
 const SideBar = (props) => {
   //depending on your access level you are shown a selection on the sidebar
