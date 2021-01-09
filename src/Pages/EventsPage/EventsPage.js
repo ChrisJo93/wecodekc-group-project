@@ -5,15 +5,7 @@ import EventListItem from '../../components/EventListItem/EventListItem';
 
 // import './EventsPage.css';
 
-import {
-  Grid,
-  // Card,
-  // Typography,
-  // CardContent,
-  // CardActions,
-  // Button,
-  // CardMedia,
-} from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 
 import computer from './computer.jpg';
 
