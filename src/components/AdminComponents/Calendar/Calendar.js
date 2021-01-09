@@ -1,18 +1,19 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import mapStoreToProps from '../../../redux/mapStoreToProps';
+
+//calendar imports
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
+import interactionPlugin from '@fullcalendar/interaction';
 import '@fullcalendar/daygrid';
 import '@fullcalendar/interaction';
 import '@fullcalendar/common';
-// import '@fullcalendar/timegrid/main.css';
-import interactionPlugin from '@fullcalendar/interaction'; // needed for dayClick
+import '@fullcalendar/timegrid/main.css';
+import './calendarStyle.css';
 
-import './styles.css';
-
-// must manually import the stylesheets for each plugin
-
-export default class DemoApp extends React.Component {
+class Calendar extends Component {
   calendarComponentRef = React.createRef();
 
   state = {
@@ -25,13 +26,13 @@ export default class DemoApp extends React.Component {
 
   render() {
     return (
-      <div className="demo-app">
-        <div className="demo-app-top">
+      <div className="calendar">
+        <div className="calendar-top">
           <button onClick={this.toggleWeekends}>toggle weekends</button>&nbsp;
           <button onClick={this.gotoPast}>go to a date in the past</button>
           &nbsp; (also, click a date/time to add an event)
         </div>
-        <div className="demo-app-calendar">
+        <div className="calendar-proper">
           <FullCalendar
             defaultView="dayGridMonth"
             header={{
@@ -78,3 +79,5 @@ export default class DemoApp extends React.Component {
     }
   };
 }
+
+export default connect(mapStoreToProps)(Calendar);
