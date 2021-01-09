@@ -1,4 +1,5 @@
 import React from 'react';
+import ImageUpload from '../../components/ImageUpload/ImageUpload';
 
 // This is one of our simplest components
 // It doesn't have local state, so it can be a function component.
@@ -8,6 +9,7 @@ import React from 'react';
 const AboutPage = () => (
   <div className="container">
     <div>
+      <ImageUpload />
       <p>This about page is for anyone to read!</p>
     </div>
   </div>
