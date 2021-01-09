@@ -6,6 +6,7 @@ import { Button, Grid } from '@material-ui/core';
 import './user.css';
 import axios from 'axios';
 import BigCalendar from '../../components/AdminComponents/Calendar/Calendar';
+import DemoApp from '../../components/AdminComponents/Calendar/Calendar';
 
 class UserPage extends Component {
   state = {
@@ -56,7 +57,7 @@ class UserPage extends Component {
             </Grid>
           </Grid>
         </Grid>
-        <BigCalendar />
+        <DemoApp />
       </div>
     );
   }
