@@ -9,18 +9,20 @@ import {
 import { connect } from 'react-redux';
 
 //CUSTOM FILE IMPORTS
-import Nav from '../Nav/Nav';
-import Footer from '../Footer/Footer';
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+
 import AboutPage from '../../Pages/AboutPage/AboutPage';
-import UserPage from '../../Pages/UserPage/UserPage';
+import EventsPage from '../../Pages/EventsPage/EventsPage';
+import Footer from '../Footer/Footer';
 import InfoPage from '../../Pages/InfoPage/InfoPage';
 import LandingPage from '../../Pages/LandingPage/LandingPage';
 import LoginPage from '../../Pages/LoginPage/LoginPage';
+import Nav from '../Nav/Nav';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import RegisterPageMentor from '../../Pages/RegisterPageMentor/RegisterPageMentor';
 import RegisterPageTwoMentor from '../../Pages/RegisterPageMentor/RegisterPageTwoMentor';
-import EventsPage from '../../Pages/EventsPage/EventsPage';
+import UserPage from '../../Pages/UserPage/UserPage';
 import './App.css';
+import AdminPage from '../../Pages/AdminPage/AdminPage';
 
 class App extends Component {
   componentDidMount() {
@@ -61,6 +63,7 @@ class App extends Component {
               path="/user"
               component={UserPage}
             />
+            <Route exact path="/admin" component={AdminPage} />
 
             <ProtectedRoute
               // logged in shows InfoPage else shows LoginPage
