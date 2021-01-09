@@ -11,7 +11,6 @@ import { connect } from 'react-redux';
 //CUSTOM FILE IMPORTS
 
 import AboutPage from '../../Pages/AboutPage/AboutPage';
-import AdminPage from '../../Pages/AdminPage/AdminPage';
 import EventsPage from '../../Pages/EventsPage/EventsPage';
 import Footer from '../Footer/Footer';
 import InfoPage from '../../Pages/InfoPage/InfoPage';
@@ -23,6 +22,7 @@ import RegisterPageMentor from '../../Pages/RegisterPageMentor/RegisterPageMento
 import RegisterPageTwoMentor from '../../Pages/RegisterPageMentor/RegisterPageTwoMentor';
 import UserPage from '../../Pages/UserPage/UserPage';
 import './App.css';
+import AdminPage from '../../Pages/AdminPage/AdminMainPage/AdminPage';
 
 class App extends Component {
   componentDidMount() {
