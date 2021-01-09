@@ -9,18 +9,26 @@ import {
 import { connect } from 'react-redux';
 
 //CUSTOM FILE IMPORTS
-import Nav from '../Nav/Nav';
-import Footer from '../Footer/Footer';
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+
 import AboutPage from '../../Pages/AboutPage/AboutPage';
-import UserPage from '../../Pages/UserPage/UserPage';
+import EventsPage from '../../Pages/EventsPage/EventsPage';
+import Footer from '../Footer/Footer';
 import InfoPage from '../../Pages/InfoPage/InfoPage';
 import LandingPage from '../../Pages/LandingPage/LandingPage';
 import LoginPage from '../../Pages/LoginPage/LoginPage';
+<<<<<<< HEAD
 import RegisterPage from '../../Pages/RegisterPage/RegisterPage';
 import RegisterPageTwo from '../../Pages/RegisterPage/RegisterPageTwo';
 import EventsPage from '../../Pages/EventsPage/EventsPage';
+=======
+import Nav from '../Nav/Nav';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import RegisterPageMentor from '../../Pages/RegisterPageMentor/RegisterPageMentor';
+import RegisterPageTwoMentor from '../../Pages/RegisterPageMentor/RegisterPageTwoMentor';
+import UserPage from '../../Pages/UserPage/UserPage';
+>>>>>>> develop
 import './App.css';
+import AdminPage from '../../Pages/AdminPage/AdminMainPage/AdminPage';
 
 //MATERIAL-UI imports
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
@@ -75,12 +83,22 @@ class App extends Component {
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
             Even though it seems like they are different pages, the user is always on localhost:3000/user */}
+<<<<<<< HEAD
               <Route
                 // logged in shows UserPage else shows LoginPage
                 exact
                 path="/user"
                 component={UserPage}
               />
+=======
+            <Route
+              // logged in shows UserPage else shows LoginPage
+              exact
+              path="/user"
+              component={UserPage}
+            />
+            <Route exact path="/admin" component={AdminPage} />
+>>>>>>> develop
 
               <ProtectedRoute
                 // logged in shows InfoPage else shows LoginPage
@@ -130,6 +148,7 @@ class App extends Component {
                 authRedirect="/user"
               />
 
+<<<<<<< HEAD
               {/* If none of the other routes matched, we will show a 404. */}
               <Route render={() => <h1>404</h1>} />
             </Switch>
@@ -137,6 +156,16 @@ class App extends Component {
           </div>
         </Router>
       </ThemeProvider>
+=======
+            <ProtectedRoute exact path="/admin" component={AdminPage} />
+
+            {/* If none of the other routes matched, we will show a 404. */}
+            <Route render={() => <h1>404</h1>} />
+          </Switch>
+          <Footer />
+        </div>
+      </Router>
+>>>>>>> develop
     );
   }
 }
