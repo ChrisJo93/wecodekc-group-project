@@ -7,20 +7,22 @@ import ImageUpload from '../../components/ImageUpload/ImageUpload';
 // or even care what the redux state is, so it doesn't need 'connect()'
 
 //Material-UI imports
-import { Drawer, Divider, List, ListItemIcon } from '@material-ui/core';
+import {
+  Drawer,
+  Divider,
+  List,
+  ListItemIcon,
+  ListItemText,
+  ListItem,
+} from '@material-ui/core';
+import InboxIcon from '@material-ui/icons/MoveToInbox';
+import MailIcon from '@material-ui/icons/Mail';
 
 const AboutPage = () => (
   <div className="container">
     <div>
-      <Drawer
-        className={classes.drawer}
-        variant="permanent"
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-        anchor="left"
-      >
-        <div className={classes.toolbar} />
+      <Drawer variant="permanent" anchor="left">
+        <div />
         <Divider />
         <List>
           {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
