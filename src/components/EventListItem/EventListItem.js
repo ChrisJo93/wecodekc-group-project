@@ -18,20 +18,17 @@ class EventListItem extends Component {
   render() {
     const { events } = this.props;
 
-    // const eventsArray = this.props.store.eventReducer.map((item, index) => {
-    //   return (
-    //     <Grid item xs={3} key={index}>
-    //       <EventItem events={item} index={index} {...this.props} />
-    //     </Grid>
-    //   );
-    // });
+    const eventsArray = this.props.store.eventReducer.map((item, index) => {
+      return (
+        <Grid item xs={3} key={index}>
+          <EventItem events={item} index={index} {...this.props} />
+        </Grid>
+      );
+    });
     return (
       <div>
         <Card>
-          <CardActionArea
-            // key={event.id}
-            onClick={this.handleCLickDetails}
-          >
+          <CardActionArea key={event.id} onClick={this.handleCLickDetails}>
             <CardContent>
               <Typography gutterBottom variant="h5" component="h2">
                 {/* {event.name} */}
