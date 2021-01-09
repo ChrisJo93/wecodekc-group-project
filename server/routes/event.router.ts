@@ -70,13 +70,8 @@ router.post(
     const event_description: string = req.body.event_description;
     const event_title: string = req.body.event_title;
 
-<<<<<<< HEAD
     const queryOne: string = `INSERT INTO "event"(event_title, event_description, event_start, event_end, 
       recurring, recurring_time_slot, event_address, event_type, creator) 
-=======
-    const queryOne: string = `INSERT INTO "event"(event_description, event_start, event_end, 
-      recurring, recurring_time_slot, event_address, event_type, creator, event_title) 
->>>>>>> develop
       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`;
     pool
       .query(queryOne, [
