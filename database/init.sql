@@ -16,12 +16,18 @@ CREATE TABLE race (
   race_label varchar(100)
 );
 
+CREATE TABLE volunteer_role (
+  id SERIAL PRIMARY KEY,
+  role_label VARCHAR(150)
+);
+
 CREATE TABLE "user" (
   id SERIAL PRIMARY KEY,
   is_active  BOOLEAN,
   username VARCHAR(50),
   password VARCHAR(100),
   access_level INT DEFAULT 1 REFERENCES "access_level"(id),
+  volunteer_role INT REFERENCES "volunteer_role"(id), 
   first_name VARCHAR(50),
   middle_name VARCHAR(50),
   last_name VARCHAR(50),
@@ -41,6 +47,7 @@ CREATE TABLE "user" (
 
 CREATE TABLE images (
   id SERIAL PRIMARY KEY,
+  image_name VARCHAR(100),
   link_url VARCHAR(500)
 );
 
@@ -73,9 +80,14 @@ CREATE TABLE user_skills (
   user_id INT REFERENCES "user",
   skills_id INT REFERENCES "skills"
 );
+CREATE TABLE time_slot_day (
+  id SERIAL PRIMARY KEY,
+  day_number INT,
+  day_name VARCHAR(10)
+);
 CREATE TABLE time_slot (
   id SERIAL PRIMARY KEY,
-  day_of_week INT,
+  day_of_week INT REFERENCES "time_slot_day"(id),
   time_slot_label VARCHAR(100),
   date_time_start TIMESTAMP WITH TIME ZONE,
   date_time_end TIMESTAMP WITH TIME ZONE

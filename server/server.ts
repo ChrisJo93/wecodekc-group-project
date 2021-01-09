@@ -6,6 +6,7 @@ import userRouter from './routes/user.router';
 import eventRouter from './routes/event.router';
 import notesRouter from './routes/notes.router';
 import dropdownRouter from './routes/dropdown.router';
+import timeslotRouter from './routes/timeslot.router';
 
 require('dotenv').config();
 
@@ -27,6 +28,7 @@ app.use('/api/user', userRouter);
 app.use('/api/event', eventRouter);
 app.use('/api/notes', notesRouter);
 app.use('/api/dropdown', dropdownRouter);
+app.use('/api/timeslot', timeslotRouter);
 
 // Serve static files
 app.use(express.static('build'));
