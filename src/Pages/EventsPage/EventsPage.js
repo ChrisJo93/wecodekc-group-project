@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import EventListItem from '../../components/EventListItem/EventListItem';
 
 // import './EventsPage.css';
 
@@ -21,20 +22,20 @@ import child2 from './Child2.jpg';
 
 class EventsPage extends Component {
   componentDidMount() {
+    console.log(this.props.store.eventReducer);
     this.props.dispatch({
       type: 'GET_EVENTS',
-      payload: this.props.store.events,
     });
   }
 
   render() {
-    // const eventsArray = this.props.store.eventReducer.map((item, index) => {
-    //   return (
-    //     <Grid item xs={3} key={index}>
-    //       <EventItem events={item} index={index} {...this.props} />
-    //     </Grid>
-    //   );
-    // });
+    const eventsArray = this.props.store.eventReducer.map((item, index) => {
+      return (
+        <Grid item xs={3} key={index}>
+          <EventListItem event={item} index={index} {...this.props} />
+        </Grid>
+      );
+    });
 
     return (
       <div className="grid">
@@ -61,7 +62,7 @@ class EventsPage extends Component {
             justify="center"
             alignItems="stretch"
           >
-            {/* {eventsArray} */}
+            {eventsArray}
           </Grid>
         </div>
       </div>
