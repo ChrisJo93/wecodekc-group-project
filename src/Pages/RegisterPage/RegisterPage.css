@@ -1,0 +1,6 @@
+.opacity {
+  padding: 20px;
+  border-radius: 6px;
+  background-color: rgb(255, 255, 255, 0.8);
+  box-shadow: 0 1px 5px 2px rgb(0, 0, 0, 0.3);
+}

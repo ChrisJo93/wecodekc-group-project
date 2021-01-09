@@ -87,4 +87,20 @@ router.get(
   }
 );
 
+router.get(
+  '/language',
+  (req: Request, res: Response, next: express.NextFunction): void => {
+    const getLanguages: string = `SELECT * FROM "languages";`;
+    pool
+      .query(getLanguages)
+      .then((result) => {
+        res.send(result.rows);
+      })
+      .catch((error) => {
+        console.log('error getting language', error);
+        res.sendStatus(500);
+      });
+  }
+);
+
 export default router;

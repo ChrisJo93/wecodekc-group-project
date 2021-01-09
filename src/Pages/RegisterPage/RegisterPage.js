@@ -5,7 +5,7 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 // CUSTOM COMPONENTS
 import RegisterForm from '../../components/RegisterForm/RegisterForm';
 
-class RegisterPageVolunteer extends Component {
+class RegisterPage extends Component {
   state = {};
 
   componentDidMount() {
@@ -19,7 +19,6 @@ class RegisterPageVolunteer extends Component {
     return (
       <div>
         <RegisterForm />
-
         <center>
           <button
             type="button"
@@ -36,4 +35,4 @@ class RegisterPageVolunteer extends Component {
   }
 }
 
-export default connect(mapStoreToProps)(RegisterPageVolunteer);
+export default connect(mapStoreToProps)(RegisterPage);

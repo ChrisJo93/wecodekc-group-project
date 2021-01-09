@@ -8,9 +8,12 @@ import notesRouter from './routes/notes.router';
 import dropdownRouter from './routes/dropdown.router';
 import timeslotRouter from './routes/timeslot.router';
 
-require('dotenv').config();
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 const app: any = express();
+
+const UploaderS3Router = require('react-dropzone-s3-uploader/s3router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -29,6 +32,20 @@ app.use('/api/event', eventRouter);
 app.use('/api/notes', notesRouter);
 app.use('/api/dropdown', dropdownRouter);
 app.use('/api/timeslot', timeslotRouter);
+
+app.use(
+  '/s3',
+  UploaderS3Router({
+    bucket: 'wecodekc', // required
+    region: 'us-east-2', // optional
+    headers: { 'Access-Control-Allow-Origin': '*' }, // optional
+    ACL: 'public-read', // this is the default - set to `public-read` to let anyone view uploads
+  })
+);
+
+app.get('/test', function (req: any, res: any) {
+  res.send(`${process.env.AWS_ACCESS_KEY_ID}`);
+});
 
 // Serve static files
 app.use(express.static('build'));
