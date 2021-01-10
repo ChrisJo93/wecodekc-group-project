@@ -58,6 +58,7 @@ class LandingPage extends Component {
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>
+            {/* TO DO -- FIGURE OUT IMAGES */}
             <Card>
               <img
                 src={'https://wecodekc.s3.us-east-2.amazonaws.com/_W4A0840.jpg'}
