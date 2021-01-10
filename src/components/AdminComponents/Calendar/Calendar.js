@@ -74,9 +74,9 @@ class Calendar extends Component {
           <FullCalendar
             initialView="dayGridMonth"
             headerToolbar={{
-              left: 'prev,next,prevYear,nextYear today',
+              left: 'prevYear,nextYear,prev,next,today',
               center: 'title',
-              right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek',
+              right: 'dayGridMonth,timeGridWeek,timeGridDay',
             }}
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
             ref={this.calendarComponentRef}
