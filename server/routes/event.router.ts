@@ -84,7 +84,6 @@ router.post(
         event_address,
         event_type,
         creator,
-        event_title,
       ])
       .then(() => {
         res.sendStatus(200);

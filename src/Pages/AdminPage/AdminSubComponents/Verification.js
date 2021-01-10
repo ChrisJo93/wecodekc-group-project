@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import mapStoreToProps from '../../redux/mapStoreToProps';
+import mapStoreToProps from '../../../redux/mapStoreToProps';
 
 // Basic class component structure for React with default state
 // value setup. When making a new component be sure to replace
@@ -8,12 +8,12 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 // component.
 class Verification extends Component {
   state = {
-    heading: 'Class Component',
+    heading: 'Verification',
   };
 
   render() {
     return (
-      <div>
+      <div className="adminPageDisplay">
         <h2>{this.state.heading}</h2>
       </div>
     );
