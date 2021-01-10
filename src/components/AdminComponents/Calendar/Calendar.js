@@ -20,7 +20,13 @@ class Calendar extends Component {
 
   state = {
     calendarWeekends: true,
-    calendarEvents: [],
+    calendarEvents: [
+      {
+        title: '',
+        start: '',
+        end: '',
+      },
+    ],
   };
 
   //grabbing all events and adding to event array
@@ -28,9 +34,15 @@ class Calendar extends Component {
     axios
       .get('/api/event')
       .then((response) => {
-        console.log(response);
+        console.log(response.data[0].event_title, response.data);
         this.setState({
-          calendarEvents: response.data,
+          // add new event data
+          calendarEvents: this.state.calendarEvents.concat({
+            // creates a new array
+            title: response.data[0].event_title,
+            start: response.data[0].event_start,
+            end: response.data[0].event_end,
+          }),
         });
       })
       .catch((err) => {
@@ -99,9 +111,9 @@ class Calendar extends Component {
         // add new event data
         calendarEvents: this.state.calendarEvents.concat({
           // creates a new array
-          title: 'New Event',
-          start: argument.date,
-          allDay: argument.allDay,
+          title: this.state.calendarEvents.title,
+          start: this.state.calendarEvents.start,
+          end: this.state.calendarEvents.end,
         }),
       });
     }
