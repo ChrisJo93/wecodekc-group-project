@@ -20,7 +20,7 @@ class Calendar extends Component {
     calendarWeekends: true,
     calendarEvents: [
       // initial event data
-      { title: 'Event Now', start: new Date() },
+      { title: 'Event Now', start: new Date().toLocaleTimeString() },
     ],
   };
 
@@ -63,6 +63,10 @@ class Calendar extends Component {
     calendarApi.gotoDate('2000-01-01'); // call a method on the Calendar object
   };
 
+  test = () => {
+    console.log('hi');
+  };
+
   handleDateClick = (arg) => {
     if (
       window.confirm('Would you like to add an event to ' + arg.dateStr + ' ?')
@@ -76,6 +80,7 @@ class Calendar extends Component {
           allDay: arg.allDay,
         }),
       });
+      console.log(this.state.calendarEvents);
     }
   };
 }
