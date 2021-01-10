@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 //CUSTOM FILE IMPORTS
 
 import AboutPage from '../../Pages/AboutPage/AboutPage';
+import EventsPage from '../../Pages/EventsPage/EventsPage';
 import Footer from '../Footer/Footer';
 import InfoPage from '../../Pages/InfoPage/InfoPage';
 import LandingPage from '../../Pages/LandingPage/LandingPage';

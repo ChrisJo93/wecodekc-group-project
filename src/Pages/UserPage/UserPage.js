@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import LogOutButton from '../../components/LogOutButton/LogOutButton';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import { Button, Grid } from '@material-ui/core';
+import { Button, Grid, Typography } from '@material-ui/core';
 import './user.css';
 import axios from 'axios';
 
@@ -33,27 +33,29 @@ class UserPage extends Component {
   //     });
   // }
 
-  // this component doesn't do much to start, just renders some user info to the DOM
   render() {
     return (
-      <Grid container spacing={10} alignItems="center" justify="flex-start">
+      <Grid container alignItems="center" justify="flex-start">
         <Grid item>
-          <img src={this.state.image} className="placeholder" />
-
-          <Grid container spacing={10} alignItems="flex-end" justify="center">
-            <div>
-              <p>{this.state.name}</p>
-              <p>{this.state.role}</p>
-              <p>{this.state.zipcode}</p>
-              <p>{this.state.phone}</p>
-              <p>{this.state.email}</p>
-              <p>{this.state.skills}</p>
-              <Button color="primary" variant="contained">
-                Edit Profile
-              </Button>
-              <LogOutButton className="log-in" />
-            </div>
-          </Grid>
+          <div>
+            <img
+              src={this.state.image}
+              className="placeholder"
+              alt="placeholder figure"
+            />
+          </div>
+          <div>
+            <Typography>{this.state.name}</Typography>
+            <Typography>{this.state.role}</Typography>
+            <Typography>{this.state.zipcode}</Typography>
+            <Typography>{this.state.phone}</Typography>
+            <Typography>{this.state.email}</Typography>
+            <Typography>{this.state.skills}</Typography>
+            <Button color="primary" variant="contained">
+              Edit Profile
+            </Button>
+            <LogOutButton className="log-in" />
+          </div>
         </Grid>
       </Grid>
     );

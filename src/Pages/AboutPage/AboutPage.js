@@ -15,42 +15,63 @@ import {
   ListItemText,
   ListItem,
 } from '@material-ui/core';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import { makeStyles } from '@material-ui/core/styles';
+import ShowChartIcon from '@material-ui/icons/ShowChart';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
+import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
 
-const AboutPage = () => (
-  <div className="container">
-    <div>
-      <Drawer variant="permanent" anchor="left">
-        <div />
-        <Divider />
-        <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-      </Drawer>
-      <ImageUpload />
+const drawerWidth = 240;
 
-      <p>This about page is for anyone to read!</p>
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+  },
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+  },
+  drawerPaper: {
+    width: drawerWidth,
+  },
+  // necessary for content to be below app bar
+  toolbar: theme.mixins.toolbar,
+  content: {
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.default,
+    padding: theme.spacing(3),
+  },
+}));
+
+export default function AboutPage() {
+  const classes = useStyles();
+
+  return (
+    <div className="container">
+      <div>
+        <Drawer className={classes.drawer} variant="permanent" anchor="left">
+          <div />
+          <Divider />
+          <List>
+            {['All Users', 'Calendar', 'Permissions', 'Statistics'].map(
+              (text, index) => (
+                <ListItem button key={text}>
+                  <ListItemIcon>
+                    {index === 0 && <AccountCircleIcon />}
+                    {index === 1 && <CalendarTodayIcon />}
+                    {index === 2 && <VerifiedUserIcon />}
+                    {index === 3 && <ShowChartIcon />}
+                  </ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItem>
+              )
+            )}
+          </List>
+        </Drawer>
+        <ImageUpload />
+
+        <p>This about page is for anyone to read!</p>
+      </div>
     </div>
-  </div>
-);
-
-export default AboutPage;
+  );
+}
