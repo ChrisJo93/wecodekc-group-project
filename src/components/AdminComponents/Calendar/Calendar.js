@@ -16,7 +16,7 @@ import '@fullcalendar/timegrid/main.css';
 import './calendarStyle.css';
 
 class Calendar extends Component {
-  //   calendarComponentRef = React.createRef();
+  calendarComponentRef = React.createRef();
 
   state = {
     calendarWeekends: true,
@@ -72,9 +72,9 @@ class Calendar extends Component {
         </div>
         <div className="calendar-proper">
           <FullCalendar
-            defaultView="dayGridMonth"
-            header={{
-              left: 'prev,next today',
+            initialView="dayGridMonth"
+            headerToolbar={{
+              left: 'prev,next,prevYear,nextYear today',
               center: 'title',
               right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek',
             }}
