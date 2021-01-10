@@ -34,16 +34,18 @@ class Calendar extends Component {
     axios
       .get('/api/event')
       .then((response) => {
-        console.log(response.data[0].event_title, response.data);
-        this.setState({
-          // add new event data
-          calendarEvents: this.state.calendarEvents.concat({
-            // creates a new array
-            title: response.data[0].event_title,
-            start: response.data[0].event_start,
-            end: response.data[0].event_end,
-          }),
-        });
+        //cycling through entire array
+        for (let index = 0; index < response.data.length; index++) {
+          this.setState({
+            // adding new event to array
+            calendarEvents: this.state.calendarEvents.concat({
+              // creates a new event object
+              title: response.data[index].event_title,
+              start: response.data[index].event_start,
+              end: response.data[index].event_end,
+            }),
+          });
+        }
       })
       .catch((err) => {
         console.log('error in calendar get', err);
