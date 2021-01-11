@@ -4,4 +4,11 @@
   max-height: 200px;
   text-align: left;
   box-shadow: 5px 5px 5px rgb(0, 0, 0, 0.4);
+  border: solid grey 5px;
+}
+
+.profile-area {
+  background-color: #6cc5ea;
+  padding: 10px;
+  margin: 10px;
 }

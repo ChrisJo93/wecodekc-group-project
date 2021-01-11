@@ -83,6 +83,7 @@ class App extends Component {
                 path="/user"
                 component={UserPage}
               />
+              <Route exact path="/admin" component={AdminPage} />
 
               <ProtectedRoute
                 // logged in shows InfoPage else shows LoginPage
@@ -132,7 +133,7 @@ class App extends Component {
                 authRedirect="/user"
               />
 
-              <ProtectedRoute exact path="/admin" component={AdminPage} />
+              <Route exact path="/admin" component={AdminPage} />
 
               {/* If none of the other routes matched, we will show a 404. */}
               <Route render={() => <h1>404</h1>} />
