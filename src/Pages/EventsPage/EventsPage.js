@@ -5,16 +5,7 @@ import EventListItem from '../../components/EventListItem/EventListItem';
 
 // import './EventsPage.css';
 
-import {
-  Grid,
-  Box,
-  // Card,
-  // Typography,
-  // CardContent,
-  // CardActions,
-  // Button,
-  // CardMedia,
-} from '@material-ui/core';
+import { Card, Grid } from '@material-ui/core';
 
 import computer from './computer.jpg';
 import computer2 from './computer2.jpg';
@@ -32,9 +23,7 @@ class EventsPage extends Component {
   render() {
     const eventsArray = this.props.store.eventReducer.map((item, index) => {
       return (
-        <Grid item xs={3} key={index}>
-          <EventListItem event={item} index={index} {...this.props} />
-        </Grid>
+        <EventListItem key={index} event={item} index={index} {...this.props} />
       );
     });
 
@@ -42,30 +31,22 @@ class EventsPage extends Component {
       <div className="grid">
         <div style={{ padding: 20 }}>
           <Grid container justify="center" alignItems="center">
-            <Grid item sm={12} md={4} lg={4}>
+            <Grid item xs={4} sm={4} md={4} lg={4}>
               <img src={computer2} alt="coding" />
             </Grid>
-            <Grid item sm={12} md={4} lg={4}>
+            <Grid item xs={4} sm={4} md={4} lg={4}>
               <img src={computer} alt="coding" />
             </Grid>
-            <Grid item sm={12} md={4} lg={4}>
+            <Grid item xs={4} sm={4} md={4} lg={4}>
               <img src={computer2} alt="coding" />
             </Grid>
           </Grid>
 
           <h2>Click on an event to see its details!</h2>
         </div>
-        <div style={{ padding: 20 }}>
-          <Grid
-            container
-            spacing={3}
-            direction="row"
-            justify="center"
-            alignItems="stretch"
-          >
-            {eventsArray}
-          </Grid>
-        </div>
+        <Grid container spacing={3}>
+          {eventsArray}
+        </Grid>
       </div>
     );
   }

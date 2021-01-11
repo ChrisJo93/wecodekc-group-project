@@ -7,23 +7,13 @@ import ImageUpload from '../../components/ImageUpload/ImageUpload';
 // or even care what the redux state is, so it doesn't need 'connect()'
 
 //Material-UI imports
-import {
-  Drawer,
-  Divider,
-  List,
-  ListItemIcon,
-  ListItemText,
-  ListItem,
-  Box,
-  Tabs,
-  Tab,
-  Typography,
-} from '@material-ui/core';
+import { Tabs, Tab, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import ShowChartIcon from '@material-ui/icons/ShowChart';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
+import RegisterForm from '../../components/RegisterForm/RegisterForm';
 
 export default function AboutPage() {
   //config for tabs
@@ -45,7 +35,7 @@ export default function AboutPage() {
         <Tab icon={<ShowChartIcon />} label="Statistics" />
       </Tabs>
 
-      {selectedTab === 0 && <Typography>All Users</Typography>}
+      {selectedTab === 0 && <RegisterForm />}
       {selectedTab === 1 && <Typography>Calendar</Typography>}
       {selectedTab === 2 && <Typography>Permissions</Typography>}
       {selectedTab === 3 && <Typography>Statistics</Typography>}
