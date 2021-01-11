@@ -4,6 +4,11 @@ import user from './user.reducer';
 import dropdown from './dropdown.reducer';
 import eventReducer from './event.reducer';
 import registration from './registration.reducer';
+<<<<<<< HEAD
+import allUsers from './allUsers.reducer';
+=======
+import dateReducer from './dateModal.reducer';
+>>>>>>> e2152749d29183ed681b69ce5d1248ba53067598
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -12,11 +17,13 @@ import registration from './registration.reducer';
 // Lets make a bigger object for our store, with the objects from our reducers.
 // This is what we get when we use 'state' inside of 'mapStateToProps'
 const rootReducer = combineReducers({
-  errors, // contains registrationMessage and loginMessage
-  user, // will have an id and username if someone is logged in
+  dateReducer,
   dropdown,
+  errors, // contains registrationMessage and loginMessage
   eventReducer,
+  allUsers,
   registration, //gathers reg information together
+  user, // will have an id and username if someone is logged in
 });
 
 export default rootReducer;

@@ -37,7 +37,7 @@ router.post(
 
     const queryOne: string = `INSERT INTO "user"(username, password,  first_name, middle_name,
       last_name, race, company, job_title, motivation_bio, experience_bio, custom_entry_skills,
-      background_check_permission, sex, zip_code) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING id;`;
+      background_check_permission, sex, zip_code, access_level) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING id;`;
     pool
       .query(queryOne, [
         username,
@@ -54,6 +54,7 @@ router.post(
         backgroundCheck,
         sex,
         zipCode,
+        0,
       ])
       .then((result) => {
         newUserId = parseInt(result.rows[0].id);
