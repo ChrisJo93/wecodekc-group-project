@@ -72,14 +72,16 @@ class EventListItem extends Component {
         </CardContent>
 
         <CardActions>
-          <Button
-            variant="contained"
-            size="small"
-            color="secondary"
-            onClick={this.handleCLickDetails}
-          >
-            Details
-          </Button>
+          <center>
+            <Button
+              variant="contained"
+              size="small"
+              color="secondary"
+              onClick={this.handleCLickDetails}
+            >
+              Details
+            </Button>
+          </center>
         </CardActions>
       </Card>
     );

@@ -93,7 +93,9 @@ class LandingPage extends Component {
           </Grid>
           <Grid item xs={12} md={6}>
             <Card>
-              <Typography>Upcoming Events</Typography>
+              <center>
+                <Typography variant="h4">Upcoming Events</Typography>
+              </center>
               <Carousel>{eventsArray}</Carousel>
             </Card>
           </Grid>

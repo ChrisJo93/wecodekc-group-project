@@ -31,8 +31,8 @@ function* getEventDetails(action) {
 
 function* postEvents(action) {
   try {
-    const response = yield axios.get('/api/event', action.payload);
-    console.log(response.data);
+    yield axios.post('/api/event', action.payload);
+
     yield put({
       type: 'GET_EVENTS',
     });
