@@ -50,30 +50,6 @@ export default function AboutPage() {
       {selectedTab === 2 && <Typography>Permissions</Typography>}
       {selectedTab === 3 && <Typography>Statistics</Typography>}
       <div>
-        {/* <Drawer
-          className={classes.drawer}
-          variant="permanent"
-          anchor="left"
-          containerStyle={{ height: 'calc(100% - 64px)', top: 64 }}
-        >
-          <div />
-          <Divider />
-          <List>
-            {['All Users', 'Calendar', 'Permissions', 'Statistics'].map(
-              (text, index) => (
-                <ListItem button key={text}>
-                  <ListItemIcon>
-                    {index === 0 && <AccountCircleIcon />}
-                    {index === 1 && <CalendarTodayIcon />}
-                    {index === 2 && <VerifiedUserIcon />}
-                    {index === 3 && <ShowChartIcon />}
-                  </ListItemIcon>
-                  <ListItemText primary={text} />
-                </ListItem>
-              )
-            )}
-          </List>
-        </Drawer> */}
         <ImageUpload />
         <p>This about page is for anyone to read!</p>
       </div>
