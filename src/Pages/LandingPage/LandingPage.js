@@ -88,7 +88,12 @@ class LandingPage extends Component {
           </Grid>
           <Grid item xs={12} md={6}>
             <Card>
-              <img src={computer} alt="coding" />
+              <img
+                src={
+                  'https://wecodekc.s3.us-east-2.amazonaws.com/christina-wocintechchat-com-YVT21p6pO_g-unsplash.jpg'
+                }
+                alt="coding"
+              />
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>
