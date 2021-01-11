@@ -4,11 +4,8 @@ import user from './user.reducer';
 import dropdown from './dropdown.reducer';
 import eventReducer from './event.reducer';
 import registration from './registration.reducer';
-<<<<<<< HEAD
-import allUsers from './allUsers.reducer';
-=======
 import dateReducer from './dateModal.reducer';
->>>>>>> e2152749d29183ed681b69ce5d1248ba53067598
+import allUsers from './allUsers.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
