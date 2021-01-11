@@ -23,11 +23,29 @@ router.get(
 
 // GET EVENT BY ID
 router.get(
-  'details/:id',
+  '/details/:id',
   (req: Request, res: Response, next: express.NextFunction): void => {
     const getEventID: string = `SELECT * FROM event JOIN event_type ON (event.event_type = event_type.id) WHERE event.id=$1;`;
     pool
       .query(getEventID, [req.params.id])
+      .then((result) => {
+        res.send(result.rows);
+      })
+      .catch((error) => {
+        console.log('error getting specific event', error);
+        res.sendStatus(500);
+      });
+  }
+);
+// get all calendar events by date
+router.get(
+  '/calendar/:date',
+  (req: Request, res: Response, next: express.NextFunction): void => {
+    console.log(req.params.date);
+    const date = req.params.date.toString();
+    const getEventID: string = `SELECT * FROM event WHERE TO_CHAR(event_start::timestamp, 'DD Mon YYYY HH:MI:SSPM' ) LIKE '%-%'`;
+    pool
+      .query(getEventID, [req.params.date])
       .then((result) => {
         res.send(result.rows);
       })
