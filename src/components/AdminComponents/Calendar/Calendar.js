@@ -51,6 +51,7 @@ class Calendar extends Component {
       .catch((err) => {
         console.log('error in calendar get', err);
       });
+    console.log(this.props.store.dateReducer);
   }
 
   addEvent = (event) => {
@@ -62,6 +63,13 @@ class Calendar extends Component {
       .catch((error) => {
         console.log('error pposting', error);
       });
+  };
+
+  test = (date) => {
+    this.props.dispatch({
+      type: 'GET_DATES',
+      payload: date,
+    });
   };
 
   //this seems superfluous, might remove entirely
@@ -80,7 +88,8 @@ class Calendar extends Component {
 
   handleDateClick = (argument) => {
     //argument is a built in object
-    console.log(argument);
+    console.log(new Date(argument.dateStr));
+    this.test(new Date(argument.dateStr));
     if (
       window.confirm(
         'Would you like to add an event to ' + argument.dateStr + ' ?'

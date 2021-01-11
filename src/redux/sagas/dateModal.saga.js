@@ -3,9 +3,8 @@ import axios from 'axios';
 
 function* getDates(action) {
   try {
-    const response = yield axios.get(
-      `/api/event/details/${action.payload.date}`
-    );
+    const response = yield axios.get(`/api/event/calendar/${action.payload}`);
+    console.log('in the saga', action.payload);
     yield put({
       type: 'SET_DATES',
       payload: response.data,
