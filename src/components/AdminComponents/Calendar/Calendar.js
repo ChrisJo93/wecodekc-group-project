@@ -27,6 +27,7 @@ class Calendar extends Component {
         end: '',
       },
     ],
+    showForm: true,
   };
 
   //grabbing all events and adding to event array
@@ -35,14 +36,14 @@ class Calendar extends Component {
       .get('/api/event')
       .then((response) => {
         //cycling through entire array
-        for (let index = 0; index < response.data.length; index++) {
+        for (let i = 0; i < response.data.length; i++) {
           this.setState({
             // adding new event to array
             calendarEvents: this.state.calendarEvents.concat({
               // creates a new event object
-              title: response.data[index].event_title,
-              start: response.data[index].event_start,
-              end: response.data[index].event_end,
+              title: response.data[i].event_title,
+              start: response.data[i].event_start,
+              end: response.data[i].event_end,
             }),
           });
         }
@@ -63,6 +64,41 @@ class Calendar extends Component {
       });
   };
 
+  //this seems superfluous, might remove entirely
+  toggleWeekends = () => {
+    this.setState({
+      // update a property
+      calendarWeekends: !this.state.calendarWeekends,
+    });
+  };
+
+  //need to make this dynamic with an input field
+  gotoPast = () => {
+    let calendarApi = this.calendarComponentRef.current.getApi();
+    calendarApi.gotoDate('2000-01-01'); // call a method on the Calendar object
+  };
+
+  handleDateClick = (argument) => {
+    //argument is a built in object
+    console.log(argument);
+    if (
+      window.confirm(
+        'Would you like to add an event to ' + argument.dateStr + ' ?'
+      )
+    ) {
+      this.setState({
+        // add new event data
+        showForm: true,
+        calendarEvents: this.state.calendarEvents.concat({
+          // creates a new array
+          title: this.state.calendarEvents.title,
+          start: this.state.calendarEvents.start,
+          end: this.state.calendarEvents.end,
+        }),
+      });
+    }
+  };
+
   render() {
     return (
       <div className="calendar">
@@ -70,6 +106,7 @@ class Calendar extends Component {
           <button onClick={this.toggleWeekends}>toggle weekends</button>&nbsp;
           <button onClick={this.gotoPast}>go to a date in the past</button>
         </div>
+        {this.state.showForm === true ? <EventForm /> : ''}
         <div className="calendar-proper">
           <FullCalendar
             initialView="dayGridMonth"
@@ -85,41 +122,9 @@ class Calendar extends Component {
             dateClick={this.handleDateClick}
           />
         </div>
-        <EventForm />
       </div>
     );
   }
-
-  toggleWeekends = () => {
-    this.setState({
-      // update a property
-      calendarWeekends: !this.state.calendarWeekends,
-    });
-  };
-
-  gotoPast = () => {
-    let calendarApi = this.calendarComponentRef.current.getApi();
-    calendarApi.gotoDate('2000-01-01'); // call a method on the Calendar object
-  };
-
-  handleDateClick = (argument) => {
-    //argument is a built in object
-    if (
-      window.confirm(
-        'Would you like to add an event to ' + argument.dateStr + ' ?'
-      )
-    ) {
-      this.setState({
-        // add new event data
-        calendarEvents: this.state.calendarEvents.concat({
-          // creates a new array
-          title: this.state.calendarEvents.title,
-          start: this.state.calendarEvents.start,
-          end: this.state.calendarEvents.end,
-        }),
-      });
-    }
-  };
 }
 
 export default connect(mapStoreToProps)(Calendar);
