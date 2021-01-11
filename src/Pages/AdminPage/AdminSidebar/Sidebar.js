@@ -6,8 +6,7 @@ import Verification from '../AdminSubComponents/Verification';
 import Welcome from '../AdminSubComponents/Welcome';
 
 //Material-UI imports
-import { Grid, Box, Tabs, Tab, Typography, Container } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { Grid, Tabs, Tab, Typography } from '@material-ui/core';
 import ShowChartIcon from '@material-ui/icons/ShowChart';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import CalendarTodayIcon from '@material-ui/icons/CalendarToday';

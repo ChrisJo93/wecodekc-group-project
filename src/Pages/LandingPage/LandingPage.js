@@ -7,14 +7,10 @@ import Carousel from 'react-material-ui-carousel';
 import './LandingPage.css';
 import EventListItem from '../../components/EventListItem/EventListItem';
 
-// CUSTOM COMPONENTS
-import computer from './computer.jpg';
-
 //NEEDS images and video and event carousel.
 
 //Material-UI imports
 import {
-  Box,
   Grid,
   Card,
   Typography,
@@ -22,7 +18,6 @@ import {
   CardActions,
   Button,
   CardMedia,
-  Container,
 } from '@material-ui/core';
 
 class LandingPage extends Component {

@@ -16,8 +16,6 @@ import {
 
 import computer from './computer.jpg';
 import computer2 from './computer2.jpg';
-import child1 from './Child1.jpg';
-import child2 from './Child2.jpg';
 
 class EventsPage extends Component {
   state = {

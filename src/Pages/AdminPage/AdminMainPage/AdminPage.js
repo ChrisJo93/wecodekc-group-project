@@ -4,7 +4,6 @@ import mapStoreToProps from '../../../redux/mapStoreToProps';
 import SideBar from '../AdminSidebar/Sidebar';
 
 //CUSTOM MATERIAL UI IMPORTS
-import { Container } from '@material-ui/core';
 
 class AdminPage extends Component {
   state = {
