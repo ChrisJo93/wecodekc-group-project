@@ -91,7 +91,9 @@ class Calendar extends Component {
     this.test(new Date(argument.dateStr).toISOString());
     console.log(
       'in some formatting shit',
-      new Date(argument.dateStr).toISOString()
+      `${new Date(argument.dateStr).getFullYear()}-%${
+        new Date(argument.dateStr).getMonth() + 1
+      }-${new Date(argument.dateStr).getDate() + 1}`
     );
     if (
       window.confirm(
