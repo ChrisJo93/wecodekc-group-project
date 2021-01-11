@@ -20,7 +20,7 @@ class DetailsPage extends Component {
           justify="space-evenly"
           alignItems="stretch"
         >
-          <h2>Click on an event to see its details!</h2>
+          <h2>Details</h2>
         </Grid>
       </div>
     );
