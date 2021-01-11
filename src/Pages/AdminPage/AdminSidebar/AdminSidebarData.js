@@ -16,13 +16,13 @@ const AdminSidebarData = [
     Selection: 2,
   },
   {
-    Icon: <ListAltIcon />,
-    Title: 'Statistics',
+    Icon: <VerifiedUserIcon />,
+    Title: 'Verification',
     Selection: 3,
   },
   {
-    Icon: <VerifiedUserIcon />,
-    Title: 'Verification',
+    Icon: <ListAltIcon />,
+    Title: 'Statistics',
     Selection: 4,
   },
 ];
