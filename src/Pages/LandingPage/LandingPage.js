@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import Carousel from 'react-material-ui-carousel';
 
+//CUSTOM FILE IMPORTS
 import './LandingPage.css';
+import EventListItem from '../../components/EventListItem/EventListItem';
 
 // CUSTOM COMPONENTS
 import computer from './computer.jpg';
@@ -20,9 +23,16 @@ import {
   Button,
   CardMedia,
   Container,
+  Paper,
 } from '@material-ui/core';
 
 class LandingPage extends Component {
+  componentDidMount() {
+    this.props.dispatch({
+      type: 'GET_EVENTS',
+    });
+  }
+
   state = {};
 
   onLogin = (event) => {
@@ -38,6 +48,11 @@ class LandingPage extends Component {
   };
 
   render() {
+    const eventsArray = this.props.store.eventReducer.map((item, index) => {
+      return (
+        <EventListItem key={index} event={item} index={index} {...this.props} />
+      );
+    });
     return (
       <div className="grid">
         <Grid container alignItems="stretch">
@@ -73,12 +88,20 @@ class LandingPage extends Component {
           </Grid>
           <Grid item xs={12} md={6}>
             <Card>
-              <img src={computer} alt="coding" />
+              <img
+                src={
+                  'https://wecodekc.s3.us-east-2.amazonaws.com/christina-wocintechchat-com-YVT21p6pO_g-unsplash.jpg'
+                }
+                alt="coding"
+              />
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>
             <Card>
-              <Typography>Upcoming Events</Typography>
+              <center>
+                <Typography variant="h4">Upcoming Events</Typography>
+              </center>
+              <Carousel>{eventsArray}</Carousel>
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>
@@ -105,12 +128,20 @@ class LandingPage extends Component {
           </Grid>
           <Grid item xs={12} md={6}>
             <Card>
-              <img src={computer} alt="coding" />
+              <img
+                src={'https://wecodekc.s3.us-east-2.amazonaws.com/_MG_6534.JPG'}
+                alt="volunteers smiling"
+              />
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>
             <Card>
-              <img src={computer} alt="coding" />
+              <img
+                src={
+                  'https://wecodekc.s3.us-east-2.amazonaws.com/_MG_6571-1.jpg'
+                }
+                alt="mentoring"
+              />
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>

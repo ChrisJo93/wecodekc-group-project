@@ -42,12 +42,12 @@ INSERT INTO "skills" (skills_label) VALUES
   ('MongoDB');
 
   INSERT INTO "access_level" (access_level, access_label) VALUES 
-  (0 , 'unverified'),
-  (1, 'volunteer'),
-  (2, 'mentor'),
-  (3, 'admin'),
-  (4, 'super'),
-  (9, 'rejected');
+  (1 , 'unverified'),
+  (2, 'volunteer'),
+  (3, 'mentor'),
+  (4, 'admin'),
+  (5, 'super'),
+  (6, 'rejected');
 
     INSERT INTO "volunteer_role" (role_label) VALUES 
   ('Tech Instructor'),
