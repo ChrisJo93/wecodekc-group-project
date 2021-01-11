@@ -43,7 +43,7 @@ router.get(
   (req: Request, res: Response, next: express.NextFunction): void => {
     console.log(req.params.date);
     const date = req.params.date.toString();
-    const getEventID: string = `SELECT * FROM event WHERE TO_CHAR(event_start::timestamp, 'DD Mon YYYY HH:MI:SSPM' ) LIKE '%%'`;
+    const getEventID: string = `SELECT * FROM event WHERE TO_CHAR(event_start::timestamp, 'DD Mon YYYY HH:MI:SSPM' ) LIKE '%-%'`;
     pool
       .query(getEventID, [req.params.date])
       .then((result) => {
