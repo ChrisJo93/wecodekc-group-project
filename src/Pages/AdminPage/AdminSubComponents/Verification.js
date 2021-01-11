@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
+import Verify from '../../../components/AdminComponents/VerificationTable/Verify';
 
 // Basic class component structure for React with default state
 // value setup. When making a new component be sure to replace
@@ -12,11 +13,7 @@ class Verification extends Component {
   };
 
   render() {
-    return (
-      <div className="adminPageDisplay">
-        <h2>{this.state.heading}</h2>
-      </div>
-    );
+    return <Verify />;
   }
 }
 
