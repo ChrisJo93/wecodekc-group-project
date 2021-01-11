@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
+import AccountControl from '../AdminSubComponents/AccountControl';
+import EventControl from '../AdminSubComponents/EventControl';
+import Statistics from '../AdminSubComponents/Statistics';
+import Verification from '../AdminSubComponents/Verification';
+import Welcome from '../AdminSubComponents/Welcome';
+import SideBar from '../AdminSidebar/Sidebar';
 
 class AdminPage extends Component {
   state = {
@@ -53,7 +59,6 @@ class AdminPage extends Component {
     return (
       //displays the navigation, sidebar menu, and {display} <- which is switched above.
       <>
-        <AppNav props={this.props} />
         <div className="adminPage">
           <SideBar
             access={this.state.access_level}

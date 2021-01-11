@@ -6,18 +6,18 @@ import mapStoreToProps from '../../../redux/mapStoreToProps';
 // value setup. When making a new component be sure to replace
 // the component name TemplateClass with the name for the new
 // component.
-class Verification extends Component {
+class EventForm extends Component {
   state = {
-    heading: 'Verification',
+    heading: 'Hi, Im the event form',
   };
 
   render() {
     return (
-      <div className="adminPageDisplay">
+      <div>
         <h2>{this.state.heading}</h2>
       </div>
     );
   }
 }
 
-export default connect(mapStoreToProps)(Verification);
+export default connect(mapStoreToProps)(EventForm);

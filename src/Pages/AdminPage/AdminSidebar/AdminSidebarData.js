@@ -4,7 +4,7 @@ import WorkOutlineIcon from '@material-ui/icons/WorkOutline';
 import CreateIcon from '@material-ui/icons/Create';
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
 
-export const AdminSidebarData = [
+const AdminSidebarData = [
   {
     Icon: <WorkOutlineIcon />,
     Title: 'Account Control',
@@ -16,13 +16,15 @@ export const AdminSidebarData = [
     Selection: 2,
   },
   {
-    Icon: <ListAltIcon />,
-    Title: 'Statistics',
+    Icon: <VerifiedUserIcon />,
+    Title: 'Verification',
     Selection: 3,
   },
   {
-    Icon: <VerifiedUserIcon />,
-    Title: 'Verification',
+    Icon: <ListAltIcon />,
+    Title: 'Statistics',
     Selection: 4,
   },
 ];
+
+export default AdminSidebarData;

@@ -11,6 +11,7 @@ import computer from './computer.jpg';
 
 //Material-UI imports
 import {
+  Box,
   Grid,
   Card,
   Typography,
@@ -18,6 +19,7 @@ import {
   CardActions,
   Button,
   CardMedia,
+  Container,
 } from '@material-ui/core';
 
 class LandingPage extends Component {
@@ -28,17 +30,17 @@ class LandingPage extends Component {
   };
 
   handleRegisterMentor = (e) => {
-    this.props.history.push('/registration/mentor/page/1');
+    this.props.history.push('/registration/page/1');
   };
 
   handleRegisterVolunteer = (e) => {
-    this.props.history.push('/registration/volunteer/page/1');
+    this.props.history.push('/registration/page/1');
   };
 
   render() {
     return (
       <div className="grid">
-        <Grid container>
+        <Grid container alignItems="stretch">
           <Grid item xs={12} md={6}>
             <Card>
               <Typography>Make an Impact!</Typography>
@@ -57,9 +59,16 @@ class LandingPage extends Component {
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>
+            {/* TO DO -- FIGURE OUT IMAGES */}
             <Card>
-              <img src={computer} alt="coding" />
-              <CardMedia image="computer" title="coding" />
+              <img
+                src={'https://wecodekc.s3.us-east-2.amazonaws.com/_W4A0840.jpg'}
+                alt="coding"
+              />
+              <CardMedia
+                image="https://wecodekc.s3.us-east-2.amazonaws.com/_W4A0840.jpg"
+                title="coding"
+              />
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>

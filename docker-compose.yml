@@ -61,6 +61,9 @@ services:
       SERVER_SESSION_SECRET: ${SERVER_SESSION_SECRET}
       CHOKIDAR_USEPOLLING: 'true'
       NODE_ENV: ${NODE_ENV}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      AWS_DEFAULT_REGION: ${AWS_DEFAULT_REGION}
     volumes:
       - './server:/app-server/server'
       - './server/dist:/app-server/dist'
