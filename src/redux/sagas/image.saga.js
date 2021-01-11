@@ -14,7 +14,7 @@ function* getImageUrl(action) {
   }
 }
 
-function* postImageUrl() {
+function* postImageUrl(action) {
   try {
     const config = {
       headers: { 'Content-Type': 'application/json' },
