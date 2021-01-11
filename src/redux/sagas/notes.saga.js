@@ -16,7 +16,7 @@ function* getNotes(action) {
 
 function* postNotes(action) {
   try {
-    const response = yield axios.get(
+    const response = yield axios.post(
       `/api/user/notes/${action.payload}`,
       action.payload
     );
