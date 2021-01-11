@@ -5,9 +5,6 @@ import EventListItem from '../../components/EventListItem/EventListItem';
 
 // import './EventsPage.css';
 
-<<<<<<< HEAD
-import { Grid } from '@material-ui/core';
-=======
 import {
   Grid,
   Box,
@@ -18,7 +15,6 @@ import {
   // Button,
   // CardMedia,
 } from '@material-ui/core';
->>>>>>> develop
 
 import computer from './computer.jpg';
 import computer2 from './computer2.jpg';
