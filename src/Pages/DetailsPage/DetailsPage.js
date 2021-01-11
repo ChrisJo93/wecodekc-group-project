@@ -6,7 +6,7 @@ import { Grid } from '@material-ui/core';
 class DetailsPage extends Component {
   componentDidMount() {
     this.props.dispatch({
-      type: 'GET_EVENT_DETAILS',
+      type: 'GET_EVENTS',
       payload: this.props.match.params.id,
     });
   }

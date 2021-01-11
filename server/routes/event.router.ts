@@ -25,7 +25,7 @@ router.get(
 router.get(
   '/details/:id',
   (req: Request, res: Response, next: express.NextFunction): void => {
-    const getEventID: string = `SELECT * FROM event JOIN event_type ON (event.event_type = event_type.id) WHERE event.id=$1;`;
+    const getEventID: string = `SELECT * FROM "event" WHERE id=$1;`;
     pool
       .query(getEventID, [req.params.id])
       .then((result) => {
