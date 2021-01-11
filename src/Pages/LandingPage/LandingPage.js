@@ -19,6 +19,7 @@ import {
   CardActions,
   Button,
   CardMedia,
+  Container,
 } from '@material-ui/core';
 
 class LandingPage extends Component {
@@ -58,9 +59,16 @@ class LandingPage extends Component {
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>
+            {/* TO DO -- FIGURE OUT IMAGES */}
             <Card>
-              <img src={computer} alt="coding" />
-              <CardMedia image="computer" title="coding" />
+              <img
+                src={'https://wecodekc.s3.us-east-2.amazonaws.com/_W4A0840.jpg'}
+                alt="coding"
+              />
+              <CardMedia
+                image="https://wecodekc.s3.us-east-2.amazonaws.com/_W4A0840.jpg"
+                title="coding"
+              />
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>

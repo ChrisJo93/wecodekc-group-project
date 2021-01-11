@@ -7,6 +7,7 @@ import EventListItem from '../../components/EventListItem/EventListItem';
 
 import {
   Grid,
+  Box,
   // Card,
   // Typography,
   // CardContent,

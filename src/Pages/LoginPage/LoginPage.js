@@ -15,14 +15,19 @@ import { Tabs, Tab, Grid } from '@material-ui/core';
 function LoginPage(props) {
   const dispatch = useDispatch();
   useEffect(() => {
-    // dispatch to get all tips to render on page load
+    // dispatch to get all dropdown information to render on page load
     dispatch({
       type: 'GET_EDUCATION',
-      type: 'GET_RACE',
+    });
+    dispatch({
       type: 'GET_SEX',
     });
+    dispatch({
+      type: 'GET_RACE',
+    });
   }, [dispatch]);
-  // //config for tabs
+
+  //config for tabs
   const [selectedTab, setSelectedTab] = React.useState(0);
   const handleTabChange = (event, newValue) => {
     setSelectedTab(newValue);
