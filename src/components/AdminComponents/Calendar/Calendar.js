@@ -88,8 +88,11 @@ class Calendar extends Component {
 
   handleDateClick = (argument) => {
     //argument is a built in object
-    console.log(new Date(argument.dateStr));
-    this.test(new Date(argument.dateStr));
+    this.test(new Date(argument.dateStr).toISOString());
+    console.log(
+      'in some formatting shit',
+      new Date(argument.dateStr).toISOString()
+    );
     if (
       window.confirm(
         'Would you like to add an event to ' + argument.dateStr + ' ?'
