@@ -19,6 +19,7 @@ import {
   CardActions,
   Button,
   CardMedia,
+  Container,
 } from '@material-ui/core';
 
 class LandingPage extends Component {

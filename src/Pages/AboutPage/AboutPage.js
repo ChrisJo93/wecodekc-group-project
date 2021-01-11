@@ -14,6 +14,10 @@ import {
   ListItemIcon,
   ListItemText,
   ListItem,
+  Box,
+  Tabs,
+  Tab,
+  Typography,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import ShowChartIcon from '@material-ui/icons/ShowChart';
@@ -21,35 +25,37 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
 
-const drawerWidth = 240;
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-  },
-  drawerPaper: {
-    width: drawerWidth,
-  },
-  // necessary for content to be below app bar
-  toolbar: theme.mixins.toolbar,
-  content: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
-    padding: theme.spacing(3),
-  },
-}));
-
 export default function AboutPage() {
-  const classes = useStyles();
+  //config for tabs
+  const [selectedTab, setSelectedTab] = React.useState(0);
+  const handleTabChange = (event, newValue) => {
+    setSelectedTab(newValue);
+  };
 
   return (
     <div className="container">
+      <Tabs
+        orientation="vertical"
+        value={selectedTab}
+        onChange={handleTabChange}
+      >
+        <Tab icon={<AccountCircleIcon />} label="All Users" />
+        <Tab icon={<CalendarTodayIcon />} label="Calendar" />
+        <Tab icon={<VerifiedUserIcon />} label="Permissions" />
+        <Tab icon={<ShowChartIcon />} label="Statistics" />
+      </Tabs>
+
+      {selectedTab === 0 && <Typography>All Users</Typography>}
+      {selectedTab === 1 && <Typography>Calendar</Typography>}
+      {selectedTab === 2 && <Typography>Permissions</Typography>}
+      {selectedTab === 3 && <Typography>Statistics</Typography>}
       <div>
-        <Drawer className={classes.drawer} variant="permanent" anchor="left">
+        {/* <Drawer
+          className={classes.drawer}
+          variant="permanent"
+          anchor="left"
+          containerStyle={{ height: 'calc(100% - 64px)', top: 64 }}
+        >
           <div />
           <Divider />
           <List>
@@ -67,9 +73,8 @@ export default function AboutPage() {
               )
             )}
           </List>
-        </Drawer>
+        </Drawer> */}
         <ImageUpload />
-
         <p>This about page is for anyone to read!</p>
       </div>
     </div>

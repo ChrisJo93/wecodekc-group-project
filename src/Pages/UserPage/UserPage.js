@@ -45,7 +45,7 @@ class UserPage extends Component {
               <img
                 src={this.state.image}
                 className="placeholder"
-                alt="profile picture"
+                alt="profile"
               />
             </div>
             <div className="profile-area">
