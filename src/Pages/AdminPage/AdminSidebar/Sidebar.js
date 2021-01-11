@@ -6,18 +6,7 @@ import Verification from '../AdminSubComponents/Verification';
 import Welcome from '../AdminSubComponents/Welcome';
 
 //Material-UI imports
-import {
-  Drawer,
-  Divider,
-  List,
-  ListItemIcon,
-  ListItemText,
-  ListItem,
-  Box,
-  Tabs,
-  Tab,
-  Typography,
-} from '@material-ui/core';
+import { Grid, Box, Tabs, Tab, Typography, Container } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import ShowChartIcon from '@material-ui/icons/ShowChart';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
@@ -31,23 +20,26 @@ function SideBar() {
     setSelectedTab(newValue);
   };
   return (
-    <div className="container">
-      <Tabs
-        orientation="vertical"
-        value={selectedTab}
-        onChange={handleTabChange}
-      >
-        <Tab icon={<AccountCircleIcon />} label="Account Control" />
-        <Tab icon={<CalendarTodayIcon />} label="Event Calendar" />
-        <Tab icon={<ShowChartIcon />} label="Verification" />
-        <Tab icon={<VerifiedUserIcon />} label="Statistics" />
-      </Tabs>
-
-      {selectedTab === 0 && <AccountControl />}
-      {selectedTab === 1 && <EventControl />}
-      {selectedTab === 2 && <Verification />}
-      {selectedTab === 3 && <Statistics />}
-    </div>
+    <Grid container spacing={3}>
+      <Grid item lg={3}>
+        <Tabs
+          orientation="vertical"
+          value={selectedTab}
+          onChange={handleTabChange}
+        >
+          <Tab icon={<AccountCircleIcon />} label="Account Control" />
+          <Tab icon={<CalendarTodayIcon />} label="Event Calendar" />
+          <Tab icon={<ShowChartIcon />} label="Verification" />
+          <Tab icon={<VerifiedUserIcon />} label="Statistics" />
+        </Tabs>
+      </Grid>
+      <Grid item lg={9}>
+        {selectedTab === 0 && <AccountControl />}
+        {selectedTab === 1 && <EventControl />}
+        {selectedTab === 2 && <Verification />}
+        {selectedTab === 3 && <Statistics />}
+      </Grid>
+    </Grid>
   );
 }
 

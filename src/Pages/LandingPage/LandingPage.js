@@ -23,7 +23,6 @@ import {
   Button,
   CardMedia,
   Container,
-  Paper,
 } from '@material-ui/core';
 
 class LandingPage extends Component {
@@ -122,7 +121,13 @@ class LandingPage extends Component {
                 </p>
               </CardContent>
               <CardActions>
-                <Button onClick={this.handleRegisterVolunteer}>register</Button>
+                <Button
+                  color="primary"
+                  variant="contained"
+                  onClick={this.handleRegisterVolunteer}
+                >
+                  register
+                </Button>
               </CardActions>
             </Card>
           </Grid>
@@ -162,7 +167,13 @@ class LandingPage extends Component {
                 </p>
               </CardContent>
               <CardActions>
-                <Button onClick={this.handleRegisterMentor}>register</Button>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={this.handleRegisterMentor}
+                >
+                  register
+                </Button>
               </CardActions>
             </Card>
           </Grid>

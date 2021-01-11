@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
 import SideBar from '../AdminSidebar/Sidebar';
 
+//CUSTOM MATERIAL UI IMPORTS
+import { Container } from '@material-ui/core';
+
 class AdminPage extends Component {
   state = {
     //access_level gets passed down to determine which tabs/options are selectable/displayed
@@ -31,6 +34,7 @@ class AdminPage extends Component {
   render() {
     return (
       //displays the navigation, sidebar menu, and {display} <- which is switched above.
+
       <>
         <SideBar />
       </>

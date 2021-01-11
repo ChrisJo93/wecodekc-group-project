@@ -16,38 +16,12 @@ import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
 import RegisterForm from '../../components/RegisterForm/RegisterForm';
 
 export default function AboutPage() {
-  //config for tabs
-  const [selectedTab, setSelectedTab] = React.useState(0);
-  const handleTabChange = (event, newValue) => {
-    setSelectedTab(newValue);
-  };
-
   return (
     <div className="container">
-      <Grid container>
-        <Grid item lg={4}>
-          <Tabs
-            orientation="vertical"
-            value={selectedTab}
-            onChange={handleTabChange}
-          >
-            <Tab icon={<AccountCircleIcon />} label="All Users" />
-            <Tab icon={<CalendarTodayIcon />} label="Calendar" />
-            <Tab icon={<VerifiedUserIcon />} label="Permissions" />
-            <Tab icon={<ShowChartIcon />} label="Statistics" />
-          </Tabs>
-        </Grid>
-        <Grid item lg={8}>
-          {selectedTab === 0 && <RegisterForm />}
-          {selectedTab === 1 && <Typography>Calendar</Typography>}
-          {selectedTab === 2 && <Typography>Permissions</Typography>}
-          {selectedTab === 3 && <Typography>Statistics</Typography>}
-        </Grid>
-        <div>
-          <ImageUpload />
-          <p>This about page is for anyone to read!</p>
-        </div>
-      </Grid>
+      <div>
+        <ImageUpload />
+        <p>This about page is for anyone to read!</p>
+      </div>
     </div>
   );
 }
