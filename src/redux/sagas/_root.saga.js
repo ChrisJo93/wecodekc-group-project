@@ -1,10 +1,11 @@
 import { all } from 'redux-saga/effects';
+import dropdownSaga from './dropdown.saga';
+import dateSaga from './dateModal.saga';
+import eventSaga from './event.saga';
 import loginSaga from './login.saga';
 import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
-import eventSaga from './event.saga';
 import notesSaga from './notes.saga';
-import dropdownSaga from './dropdown.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -21,5 +22,6 @@ export default function* rootSaga() {
     userSaga(),
     eventSaga(),
     notesSaga(),
+    dateSaga(),
   ]);
 }

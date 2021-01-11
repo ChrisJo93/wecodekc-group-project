@@ -65,7 +65,7 @@ class Calendar extends Component {
       });
   };
 
-  test = (date) => {
+  sendDate = (date) => {
     this.props.dispatch({
       type: 'GET_DATES',
       payload: date,
@@ -88,7 +88,7 @@ class Calendar extends Component {
 
   handleDateClick = (argument) => {
     //argument is a built in object
-    this.test(new Date(argument.dateStr).toISOString());
+    this.sendDate(new Date(argument.dateStr));
     console.log(
       'in some formatting shit',
       `${new Date(argument.dateStr).getFullYear()}-%${
