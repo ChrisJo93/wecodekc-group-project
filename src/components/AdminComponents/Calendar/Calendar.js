@@ -124,12 +124,14 @@ class Calendar extends Component {
           <button onClick={this.toggleWeekends}>toggle weekends</button>&nbsp;
           <button onClick={this.gotoPast}>go to a date in the past</button>
         </div>
-        <img src={this.state.add} onClick={console.log('I do something')} />
+
+        {/* <img src={this.state.add} onClick={console.log('I do something')} /> */}
         {this.state.showForm === true ? (
           <EventForm showForm={this.showForm} />
         ) : (
           ''
         )}
+
         <button onClick={this.showForm}>does something</button>
         <div className="calendar-proper">
           <FullCalendar
