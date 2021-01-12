@@ -21,11 +21,11 @@ function* postImageUrl(action) {
       withCredentials: true,
     };
 
-    yield axios.post('/api/image', action.payload, config);
+    yield axios.post('/api/image/profile', action.payload, config);
     //do a get after successful post
-    yield put({
-      type: 'GET_IMAGE_URL',
-    });
+    // yield put({
+    //   type: 'GET_IMAGE_URL',
+    // });
   } catch (err) {
     console.log('error posting image', err);
     yield put({ type: 'GET_FAILED' });

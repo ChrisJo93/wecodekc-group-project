@@ -16,7 +16,7 @@ function* getNotes(action) {
 
 function* postNotes(action) {
   try {
-    yield axios.post(`/api/user/notes/${action.payload}`, action.payload);
+    yield axios.post(`/api/user/notes`, action.payload);
 
     yield put({
       type: 'GET_NOTES',
