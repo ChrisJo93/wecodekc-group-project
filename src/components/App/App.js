@@ -77,7 +77,7 @@ class App extends Component {
               <Route
                 // shows EventsPage at all times (logged in or not)
                 exact
-                path="/details/:id"
+                path="/event/details/:id"
                 component={DetailsPage}
               />
 
