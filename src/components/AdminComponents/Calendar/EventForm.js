@@ -9,12 +9,15 @@ import mapStoreToProps from '../../../redux/mapStoreToProps';
 class EventForm extends Component {
   state = {
     heading: 'Hi, Im the event form',
+    add: 'https://image.flaticon.com/icons/png/512/42/42953.png',
   };
 
   render() {
     return (
       <div>
         <h2>{this.state.heading}</h2>
+        <img src={this.state.add} onClick={console.log('I do something')} />
+        <button onClick={this.props.showForm}>lol</button>
       </div>
     );
   }

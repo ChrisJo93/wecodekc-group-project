@@ -16,7 +16,7 @@ import '@fullcalendar/timegrid/main.css';
 import './calendarStyle.css';
 
 class Calendar extends Component {
-  calendarComponentRef = React.createRef();
+  // calendarComponentRef = React.createRef(); not certain what this is doing but keeping it for now.
 
   state = {
     calendarWeekends: true,
@@ -27,7 +27,8 @@ class Calendar extends Component {
         end: '',
       },
     ],
-    showForm: true,
+    showForm: false,
+    add: 'https://image.flaticon.com/icons/png/512/42/42953.png',
   };
 
   //grabbing all events and adding to event array
@@ -63,12 +64,21 @@ class Calendar extends Component {
       .catch((error) => {
         console.log('error pposting', error);
       });
+    this.setState({
+      showForm: true,
+    });
   };
 
   sendDate = (date) => {
     this.props.dispatch({
       type: 'GET_DATES',
       payload: date,
+    });
+  };
+
+  showForm = (event) => {
+    this.setState({
+      showForm: !this.state.showForm,
     });
   };
 
@@ -87,14 +97,9 @@ class Calendar extends Component {
   };
 
   handleDateClick = (argument) => {
-    //argument is a built in object
+    console.log('checking', argument);
+    //argument is a built in object with date attached
     this.sendDate(new Date(argument.dateStr));
-    console.log(
-      'in some formatting shit',
-      `${new Date(argument.dateStr).getFullYear()}-%${
-        new Date(argument.dateStr).getMonth() + 1
-      }-${new Date(argument.dateStr).getDate() + 1}`
-    );
     if (
       window.confirm(
         'Would you like to add an event to ' + argument.dateStr + ' ?'
@@ -102,7 +107,6 @@ class Calendar extends Component {
     ) {
       this.setState({
         // add new event data
-        showForm: true,
         calendarEvents: this.state.calendarEvents.concat({
           // creates a new array
           title: this.state.calendarEvents.title,
@@ -120,7 +124,13 @@ class Calendar extends Component {
           <button onClick={this.toggleWeekends}>toggle weekends</button>&nbsp;
           <button onClick={this.gotoPast}>go to a date in the past</button>
         </div>
-        {this.state.showForm === true ? <EventForm /> : ''}
+        <img src={this.state.add} onClick={console.log('I do something')} />
+        {this.state.showForm === true ? (
+          <EventForm showForm={this.showForm} />
+        ) : (
+          ''
+        )}
+        <button onClick={this.showForm}>does something</button>
         <div className="calendar-proper">
           <FullCalendar
             initialView="dayGridMonth"
