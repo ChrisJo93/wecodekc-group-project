@@ -64,6 +64,7 @@ class EventsPage extends Component {
             <FormControl variant="outlined" fullWidth>
               <InputLabel id="filter">Filter By</InputLabel>
               <Select
+                style={{ minWidth: 140 }}
                 labelId="filter"
                 id="filter"
                 // value={filter}
