@@ -14,6 +14,8 @@ import Button from '@material-ui/core/Button';
 import FaceIcon from '@material-ui/icons/Face';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import swal from 'sweetalert';
+import VerificationDialog from './VerificationDialog';
+import { FormControl } from '@material-ui/core';
 
 const useRowStyles = makeStyles({
   root: {
@@ -23,11 +25,21 @@ const useRowStyles = makeStyles({
   },
 });
 
+const emails = ['username@gmail.com', 'user02@gmail.com'];
+
 function VerifyTable(props) {
-  console.log(props);
   let rows = props.userData;
   let permissionLevel;
   let role;
+
+  const handleClose = (value) => {
+    setOpen(false);
+    setSelectedValue(value);
+  };
+
+  const [open, setOpen] = React.useState(false);
+  const [selectedValue, setSelectedValue] = React.useState(emails[1]);
+
   const handleVerification = (selection) => (e) => {
     switch (selection) {
       case 'permissionLevel':
@@ -76,11 +88,14 @@ function VerifyTable(props) {
               icon: 'warning',
             });
         break;
+      case 'profile':
+        setOpen(true);
+        break;
       default:
         break;
     }
   };
-  console.log(rows);
+
   return (
     <Paper>
       <Table>
@@ -89,9 +104,7 @@ function VerifyTable(props) {
             <TableCell>View Profile</TableCell>
             <TableCell>First Name</TableCell>
             <TableCell>Last Name</TableCell>
-            <TableCell>Phone Number</TableCell>
             <TableCell>Email</TableCell>
-            <TableCell>Birth Date</TableCell>
             <TableCell>Background Check Permission</TableCell>
             <TableCell>Role </TableCell>
             <TableCell>Permissions</TableCell>
@@ -106,17 +119,22 @@ function VerifyTable(props) {
                   <Button
                     variant="contained"
                     color="primary"
-                    href="#contained-buttons"
+                    onClick={handleButton('profile', row.id)}
                   >
                     <FaceIcon />
                   </Button>
                 }
+                <VerificationDialog
+                  selectedValue={selectedValue}
+                  open={open}
+                  onClose={handleClose}
+                />
               </TableCell>
               <TableCell>{row.first_name}</TableCell>
               <TableCell>{row.last_name}</TableCell>
-              <TableCell>{row.phone_number}</TableCell>
+
               <TableCell>{row.email}</TableCell>
-              <TableCell>{row.birth_date}</TableCell>
+
               <TableCell>
                 {row.background_check_permission === true
                   ? 'Permission Granted'
@@ -124,41 +142,47 @@ function VerifyTable(props) {
               </TableCell>
               <TableCell>
                 {
-                  <Select
-                    labelId="roleSelection"
-                    id="roleSelection"
-                    value={role}
-                    onChange={handleVerification('role')}
-                  >
-                    <MenuItem value="">
-                      <em>None</em>
-                    </MenuItem>
-                    <MenuItem value={1}>Tech Instructor</MenuItem>
-                    <MenuItem value={2}>Tech Assistant</MenuItem>
-                    <MenuItem value={3}>Classroom Assistant</MenuItem>
-                    <MenuItem value={4}>Non Tech Volunteer</MenuItem>
-                    <MenuItem value={5}>Social Media Volunteer</MenuItem>
-                    <MenuItem value={6}>General Office / Admin Help</MenuItem>
-                    <MenuItem value={7}>General IT / Tech Support</MenuItem>
-                  </Select>
+                  <FormControl style={{ minWidth: 120 }}>
+                    <Select
+                      variant="outlined"
+                      labelId="roleSelection"
+                      id="roleSelection"
+                      value={role}
+                      onChange={handleVerification('role')}
+                    >
+                      <MenuItem value="">
+                        <em>None</em>
+                      </MenuItem>
+                      <MenuItem value={1}>Tech Instructor</MenuItem>
+                      <MenuItem value={2}>Tech Assistant</MenuItem>
+                      <MenuItem value={3}>Classroom Assistant</MenuItem>
+                      <MenuItem value={4}>Non Tech Volunteer</MenuItem>
+                      <MenuItem value={5}>Social Media Volunteer</MenuItem>
+                      <MenuItem value={6}>General Office / Admin Help</MenuItem>
+                      <MenuItem value={7}>General IT / Tech Support</MenuItem>
+                    </Select>
+                  </FormControl>
                 }
               </TableCell>
               <TableCell>
                 {
-                  <Select
-                    labelId="permissionLevel"
-                    id="permissionLevel"
-                    value={permissionLevel}
-                    onChange={handleVerification('permissionLevel')}
-                  >
-                    <MenuItem value="">
-                      <em>None</em>
-                    </MenuItem>
-                    <MenuItem value={6}>Reject</MenuItem>
-                    <MenuItem value={2}>Volunteer</MenuItem>
-                    <MenuItem value={3}>Mentor</MenuItem>
-                    <MenuItem value={4}>ADMIN</MenuItem>
-                  </Select>
+                  <FormControl style={{ minWidth: 120 }}>
+                    <Select
+                      variant="outlined"
+                      labelId="permissionLevel"
+                      id="permissionLevel"
+                      value={permissionLevel}
+                      onChange={handleVerification('permissionLevel')}
+                    >
+                      <MenuItem value="">
+                        <em>None</em>
+                      </MenuItem>
+                      <MenuItem value={6}>Reject</MenuItem>
+                      <MenuItem value={2}>Volunteer</MenuItem>
+                      <MenuItem value={3}>Mentor</MenuItem>
+                      <MenuItem value={4}>ADMIN</MenuItem>
+                    </Select>
+                  </FormControl>
                 }
               </TableCell>
               <TableCell>
