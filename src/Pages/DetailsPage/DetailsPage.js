@@ -16,7 +16,7 @@ class DetailsPage extends Component {
 
   render() {
     const details = this.props.store.eventDetailReducer;
-    console.log(details.event_description);
+    console.log(this.props.store.eventDetailReducer);
 
     return (
       <div style={{ padding: 20 }}>
@@ -35,6 +35,10 @@ class DetailsPage extends Component {
           <Grid item>
             <Typography variant="h3" component="h2" gutterBottom>
               Details!
+              {/* <p>
+                {this.props.store.eventDetailReducer &&
+                  this.props.store.eventDetailReducer.event_title}
+              </p> */}
               {details.event_description}
             </Typography>
           </Grid>

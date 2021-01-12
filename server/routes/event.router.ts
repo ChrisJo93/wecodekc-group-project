@@ -29,6 +29,7 @@ router.get(
     pool
       .query(getEventID, [req.params.id])
       .then((result) => {
+        console.log(result.rows);
         res.send(result.rows);
       })
       .catch((error) => {
