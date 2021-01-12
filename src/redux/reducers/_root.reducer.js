@@ -6,11 +6,8 @@ import eventReducer from './event.reducer';
 import registration from './registration.reducer';
 import dateReducer from './dateModal.reducer';
 import allUsers from './allUsers.reducer';
-<<<<<<< HEAD
 import imagesReducer from './image.reducer';
-=======
 import unverifiedUsers from './unverifiedUsers';
->>>>>>> develop
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.

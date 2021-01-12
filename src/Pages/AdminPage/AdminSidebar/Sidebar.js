@@ -6,10 +6,7 @@ import Verification from '../AdminSubComponents/Verification';
 
 //Material-UI imports
 import { Grid, Tabs, Tab, Typography } from '@material-ui/core';
-<<<<<<< HEAD
-=======
 import { makeStyles } from '@material-ui/core/styles';
->>>>>>> develop
 import ShowChartIcon from '@material-ui/icons/ShowChart';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
@@ -24,31 +21,14 @@ function SideBar(props) {
     setSelectedTab(newValue);
   };
   return (
-<<<<<<< HEAD
     <Grid container spacing={3}>
       <Grid item lg={3}>
-=======
-    <Grid container>
-      <Grid item lg={2}>
->>>>>>> develop
         <Tabs
           orientation="vertical"
           value={selectedTab}
           onChange={handleTabChange}
         >
           <Tab icon={<AccountCircleIcon />} label="Account Control" />
-<<<<<<< HEAD
-          <Tab icon={<CalendarTodayIcon />} label="Event Calendar" />
-          <Tab icon={<ShowChartIcon />} label="Verification" />
-          <Tab icon={<VerifiedUserIcon />} label="Statistics" />
-        </Tabs>
-      </Grid>
-      <Grid item lg={9}>
-        {selectedTab === 0 && <AccountControl />}
-        {selectedTab === 1 && <EventControl />}
-        {selectedTab === 2 && <Verification />}
-        {selectedTab === 3 && <Statistics />}
-=======
           <Tab icon={<VerifiedUserIcon />} label="New User Verification" />
           <Tab icon={<ShowChartIcon />} label="Demographics" />
           <Tab icon={<CalendarTodayIcon />} label="Event Calendar" />
@@ -61,7 +41,6 @@ function SideBar(props) {
         {selectedTab === 2 && <Statistics />}
         {selectedTab === 3 && <EventControl />}
         {selectedTab === 4 && <CreateTimeSlots />}
->>>>>>> develop
       </Grid>
     </Grid>
   );
