@@ -18,6 +18,7 @@ class AdminPage extends Component {
   };
 
   componentDidMount() {
+    console.log('>>>>>>>>>>>', this.props.store.allUsers);
     //grabs all users and events
     this.props.dispatch({
       type: 'GET_ADMIN_DATA',
@@ -26,14 +27,16 @@ class AdminPage extends Component {
       ...this.state,
       access_level: this.props.store.user.access_level_id,
     });
-    console.log('look ad dis chit', this.props.store);
   }
   render() {
-    return (
+    const userData = this.props.store.allUsers;
+    return this.props.store.allUsers.length > 0 ? (
       //displays the navigation, sidebar menu, and {display} <- which is switched above.
       <>
         <SideBar />
       </>
+    ) : (
+      <p>...loading</p>
     );
   }
 }

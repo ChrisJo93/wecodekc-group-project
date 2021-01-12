@@ -54,7 +54,7 @@ router.post(
         backgroundCheck,
         sex,
         zipCode,
-        0,
+        1,
       ])
       .then((result) => {
         newUserId = parseInt(result.rows[0].id);

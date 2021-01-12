@@ -1,136 +1,181 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import mapStoreToProps from '../../../redux/mapStoreToProps';
+import Select from '@material-ui/core/Select';
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
-import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+import MenuItem from '@material-ui/core/MenuItem';
+import Button from '@material-ui/core/Button';
+import FaceIcon from '@material-ui/icons/Face';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import swal from 'sweetalert';
 
-const columns = [
-  { id: 'name', label: 'Name', minWidth: 170 },
-  { id: 'code', label: 'ISO\u00a0Code', minWidth: 100 },
-  {
-    id: 'population',
-    label: 'Population',
-    minWidth: 170,
-    align: 'right',
-    format: (value) => value.toLocaleString('en-US'),
-  },
-  {
-    id: 'size',
-    label: 'Size\u00a0(km\u00b2)',
-    minWidth: 170,
-    align: 'right',
-    format: (value) => value.toLocaleString('en-US'),
-  },
-  {
-    id: 'density',
-    label: 'Density',
-    minWidth: 170,
-    align: 'right',
-    format: (value) => value.toFixed(2),
-  },
-];
-
-function createData(name, code, population, size) {
-  const density = population / size;
-  return { name, code, population, size, density };
-}
-
-const rows = [
-  createData('India', 'IN', 1324171354, 3287263),
-  createData('China', 'CN', 1403500365, 9596961),
-  createData('Italy', 'IT', 60483973, 301340),
-  createData('United States', 'US', 327167434, 9833520),
-  createData('Canada', 'CA', 37602103, 9984670),
-  createData('Australia', 'AU', 25475400, 7692024),
-  createData('Germany', 'DE', 83019200, 357578),
-  createData('Ireland', 'IE', 4857000, 70273),
-  createData('Mexico', 'MX', 126577691, 1972550),
-  createData('Japan', 'JP', 126317000, 377973),
-  createData('France', 'FR', 67022000, 640679),
-  createData('United Kingdom', 'GB', 67545757, 242495),
-  createData('Russia', 'RU', 146793744, 17098246),
-  createData('Nigeria', 'NG', 200962417, 923768),
-  createData('Brazil', 'BR', 210147125, 8515767),
-];
-
-const useStyles = makeStyles({
+const useRowStyles = makeStyles({
   root: {
-    width: '100%',
-  },
-  container: {
-    maxHeight: 440,
+    '& > *': {
+      borderBottom: 'unset',
+    },
   },
 });
 
-function StickyHeadTable() {
-  const classes = useStyles();
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
-
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
+function VerifyTable(props) {
+  console.log(props);
+  let rows = props.userData;
+  let permissionLevel;
+  let role;
+  const handleVerification = (selection) => (e) => {
+    switch (selection) {
+      case 'permissionLevel':
+        permissionLevel = e.target.value;
+        break;
+      case 'role':
+        role = e.target.value;
+      default:
+        break;
+    }
   };
 
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
+  const handleButton = (selection, id) => (e) => {
+    switch (selection) {
+      case 'finalize':
+        permissionLevel && role !== undefined
+          ? permissionLevel === 4
+            ? swal({
+                title: 'You are assigning ADMIN PRIVILEGES to this user',
+                text: 'To cancel press escape or click of the screen',
+                icon: 'warning',
+                dangerMode: true,
+              }).then((confirm) => {
+                if (confirm) {
+                  props.dispatch({
+                    type: 'VERIFY_USER',
+                    payload: {
+                      access_level: permissionLevel,
+                      volunteer_role: role,
+                      id: id,
+                    },
+                  });
+                  swal('Added!', 'New Admin Created!', 'success');
+                }
+              })
+            : props.dispatch({
+                type: 'VERIFY_USER',
+                payload: {
+                  access_level: permissionLevel,
+                  volunteer_role: role,
+                  id: id,
+                },
+              })
+          : swal({
+              title: 'Please select Role and Permissions for this user',
+              icon: 'warning',
+            });
+        break;
+      default:
+        break;
+    }
   };
-
+  console.log(rows);
   return (
-    <Paper className={classes.root}>
-      <TableContainer className={classes.container}>
-        <Table stickyHeader aria-label="sticky table">
-          <TableHead>
-            <TableRow>
-              {columns.map((column) => (
-                <TableCell
-                  key={column.id}
-                  align={column.align}
-                  style={{ minWidth: column.minWidth }}
+    <Paper>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell>View Profile</TableCell>
+            <TableCell>First Name</TableCell>
+            <TableCell>Last Name</TableCell>
+            <TableCell>Phone Number</TableCell>
+            <TableCell>Email</TableCell>
+            <TableCell>Birth Date</TableCell>
+            <TableCell>Background Check Permission</TableCell>
+            <TableCell>Role </TableCell>
+            <TableCell>Permissions</TableCell>
+            <TableCell>Finalize</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((row) => (
+            <TableRow key={row.id}>
+              <TableCell>
+                {
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    href="#contained-buttons"
+                  >
+                    <FaceIcon />
+                  </Button>
+                }
+              </TableCell>
+              <TableCell>{row.first_name}</TableCell>
+              <TableCell>{row.last_name}</TableCell>
+              <TableCell>{row.phone_number}</TableCell>
+              <TableCell>{row.email}</TableCell>
+              <TableCell>{row.birth_date}</TableCell>
+              <TableCell>
+                {row.background_check_permission === true
+                  ? 'Permission Granted'
+                  : '! Denied !'}
+              </TableCell>
+              <TableCell>
+                {
+                  <Select
+                    labelId="roleSelection"
+                    id="roleSelection"
+                    value={role}
+                    onChange={handleVerification('role')}
+                  >
+                    <MenuItem value="">
+                      <em>None</em>
+                    </MenuItem>
+                    <MenuItem value={1}>Tech Instructor</MenuItem>
+                    <MenuItem value={2}>Tech Assistant</MenuItem>
+                    <MenuItem value={3}>Classroom Assistant</MenuItem>
+                    <MenuItem value={4}>Non Tech Volunteer</MenuItem>
+                    <MenuItem value={5}>Social Media Volunteer</MenuItem>
+                    <MenuItem value={6}>General Office / Admin Help</MenuItem>
+                    <MenuItem value={7}>General IT / Tech Support</MenuItem>
+                  </Select>
+                }
+              </TableCell>
+              <TableCell>
+                {
+                  <Select
+                    labelId="permissionLevel"
+                    id="permissionLevel"
+                    value={permissionLevel}
+                    onChange={handleVerification('permissionLevel')}
+                  >
+                    <MenuItem value="">
+                      <em>None</em>
+                    </MenuItem>
+                    <MenuItem value={6}>Reject</MenuItem>
+                    <MenuItem value={2}>Volunteer</MenuItem>
+                    <MenuItem value={3}>Mentor</MenuItem>
+                    <MenuItem value={4}>ADMIN</MenuItem>
+                  </Select>
+                }
+              </TableCell>
+              <TableCell>
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  onClick={handleButton('finalize', row.id)}
                 >
-                  {column.label}
-                </TableCell>
-              ))}
+                  <CheckCircleIcon />
+                </Button>
+              </TableCell>
             </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
-                return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                    {columns.map((column) => {
-                      const value = row[column.id];
-                      return (
-                        <TableCell key={column.id} align={column.align}>
-                          {column.format && typeof value === 'number'
-                            ? column.format(value)
-                            : value}
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
-                );
-              })}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
-        component="div"
-        count={rows.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onChangePage={handleChangePage}
-        onChangeRowsPerPage={handleChangeRowsPerPage}
-      />
+          ))}
+        </TableBody>
+      </Table>
     </Paper>
   );
 }
 
-export default StickyHeadTable;
+export default connect(mapStoreToProps)(VerifyTable);
