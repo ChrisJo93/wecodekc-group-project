@@ -168,7 +168,9 @@ router.get(
   '/all',
   (req: Request, res: Response, next: express.NextFunction): void => {
     // GET route to get all volunteers/mentors information
-    const queryText: string = `SELECT * FROM "user"`;
+    const queryText: string = `SELECT * FROM "user"
+    JOIN "user_images" ON "user".id = "user_images".user_id
+    JOIN "images" ON "user_images".image_id = "images".id;`;
 
     pool
       .query(queryText)
