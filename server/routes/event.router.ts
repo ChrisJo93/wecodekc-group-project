@@ -63,7 +63,7 @@ router.get(
 router.get(
   '/user/:id',
   (req: Request, res: Response, next: express.NextFunction): void => {
-    const getEventID: string = `SELECT * FROM "event" WHERE id=$1;`;
+    const getEventID: string = `SELECT * FROM "event" JOIN "user_event" ON "event".id = "user_event".event_id WHERE "user_event".user_id =$1;`;
     pool
       .query(getEventID, [req.params.id])
       .then((result) => {

@@ -27,7 +27,7 @@ const useRowStyles = makeStyles({
 
 const emails = ['username@gmail.com', 'user02@gmail.com'];
 
-function VerifyTable(props) {
+function UserTable(props) {
   let rows = props.userData;
   let permissionLevel;
   let role;
@@ -202,4 +202,4 @@ function VerifyTable(props) {
   );
 }
 
-export default connect(mapStoreToProps)(VerifyTable);
+export default connect(mapStoreToProps)(UserTable);
