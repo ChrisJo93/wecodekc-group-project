@@ -33,7 +33,6 @@ router.post(
     const backgroundCheck: boolean = req.body.background_check_permission;
     const sex: number = parseInt(req.body.sex);
     const zipCode: number = parseInt(req.body.zip_code);
-    const access_level: number = parseInt(req.body.access_level);
     let newUserId: number;
 
     const queryOne: string = `INSERT INTO "user"(username, password,  first_name, middle_name,
@@ -55,7 +54,7 @@ router.post(
         backgroundCheck,
         sex,
         zipCode,
-        access_level,
+        1,
       ])
       .then((result) => {
         newUserId = parseInt(result.rows[0].id);

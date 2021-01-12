@@ -1,25 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Calendar from '../../../components/AdminComponents/Calendar/Calendar';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
-import Verify from '../../../components/AdminComponents/VerificationTable/Verify';
 
 // Basic class component structure for React with default state
 // value setup. When making a new component be sure to replace
 // the component name TemplateClass with the name for the new
 // component.
-
-class Verification extends Component {
+class EventControl extends Component {
   state = {
-    heading: 'Verification',
-    access_level: 0,
-    volunteer_role: 0,
-    id: 0,
+    heading: 'Event Control',
   };
 
   render() {
-    console.log(this.props.store.unverifiedUsers);
-    return <Verify userData={this.props.store.unverifiedUsers} />;
+    return (
+      <div className="adminPageDisplay">
+        <h2>{this.state.heading}</h2>
+      </div>
+    );
   }
 }
 
-export default connect(mapStoreToProps)(Verification);
+export default connect(mapStoreToProps)(EventControl);
