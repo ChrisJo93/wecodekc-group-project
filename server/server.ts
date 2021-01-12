@@ -8,6 +8,7 @@ import notesRouter from './routes/notes.router';
 import dropdownRouter from './routes/dropdown.router';
 import timeslotRouter from './routes/timeslot.router';
 import adminRouter from './routes/admin.router';
+import imageRouter from './routes/image.router';
 
 import * as dotenv from 'dotenv';
 dotenv.config();
@@ -34,6 +35,7 @@ app.use('/api/notes', notesRouter);
 app.use('/api/dropdown', dropdownRouter);
 app.use('/api/timeslot', timeslotRouter);
 app.use('/api/admin', adminRouter);
+app.use('/api/image', imageRouter);
 
 app.use(
   '/s3',

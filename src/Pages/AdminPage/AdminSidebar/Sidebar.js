@@ -21,7 +21,7 @@ function SideBar(props) {
     setSelectedTab(newValue);
   };
   return (
-    <Grid container>
+    <Grid container spacing={3}>
       <Grid item lg={2}>
         <Tabs
           orientation="vertical"

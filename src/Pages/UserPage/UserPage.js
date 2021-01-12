@@ -49,7 +49,9 @@ class UserPage extends Component {
               />
             </div>
             <div className="profile-area">
-              <Typography gutterBottom>{this.state.name}</Typography>
+              <Typography gutterBottom>
+                {this.props.store.user.username}
+              </Typography>
               <Typography gutterBottom>{this.state.role}</Typography>
               <Typography gutterBottom>{this.state.zipcode}</Typography>
               <Typography gutterBottom>{this.state.phone}</Typography>
@@ -64,7 +66,9 @@ class UserPage extends Component {
           </Grid>
           <Grid item lg={8} md={8} sm={8} xs={12}>
             <div className="profile-area">
-              <Typography gutterBottom>{this.state.name}'s Events</Typography>
+              <Typography gutterBottom>
+                {this.props.store.user.username}'s Events
+              </Typography>
             </div>
           </Grid>
         </Grid>
