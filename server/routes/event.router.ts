@@ -61,16 +61,18 @@ router.get(
 
 // GET EVENT BY USER ID
 router.get(
-  '/user/:id',
-  (req: Request, res: Response, next: express.NextFunction): void => {
-    const getEventID: string = `SELECT * FROM "event" WHERE id=$1;`;
+  '/user',
+  (req: any, res: Response, next: express.NextFunction): void => {
+    const user: number = req.user.id;
+    const queryText: string = `SELECT * FROM "user_event" WHERE id=$1;`;
+    const queryArray: number[] = [user];
     pool
-      .query(getEventID, [req.params.id])
+      .query(queryText, queryArray)
       .then((result) => {
         res.send(result.rows);
       })
       .catch((error) => {
-        console.log('error getting specific event', error);
+        console.log('error getting events associated with user', error);
         res.sendStatus(500);
       });
   }

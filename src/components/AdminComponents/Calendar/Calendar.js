@@ -15,6 +15,9 @@ import '@fullcalendar/common';
 import '@fullcalendar/timegrid/main.css';
 import './calendarStyle.css';
 
+//custom file import
+import CalendarAddButton from './CalendarAddButton';
+
 class Calendar extends Component {
   // calendarComponentRef = React.createRef(); not certain what this is doing but keeping it for now.
 
@@ -62,7 +65,7 @@ class Calendar extends Component {
         console.log(response, 'is anything here?');
       })
       .catch((error) => {
-        console.log('error pposting', error);
+        console.log('error posting', error);
       });
     this.setState({
       showForm: true,
@@ -79,14 +82,6 @@ class Calendar extends Component {
   showForm = (event) => {
     this.setState({
       showForm: !this.state.showForm,
-    });
-  };
-
-  //this seems superfluous, might remove entirely
-  toggleWeekends = () => {
-    this.setState({
-      // update a property
-      calendarWeekends: !this.state.calendarWeekends,
     });
   };
 
@@ -121,7 +116,6 @@ class Calendar extends Component {
     return (
       <div className="calendar">
         <div className="calendar-top">
-          <button onClick={this.toggleWeekends}>toggle weekends</button>&nbsp;
           <button onClick={this.gotoPast}>go to a date in the past</button>
         </div>
 
@@ -132,7 +126,7 @@ class Calendar extends Component {
           ''
         )}
 
-        <button onClick={this.showForm}>does something</button>
+        <CalendarAddButton />
         <div className="calendar-proper">
           <FullCalendar
             initialView="dayGridMonth"
