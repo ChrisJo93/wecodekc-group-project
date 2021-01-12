@@ -47,7 +47,7 @@ function VerifyTable(props) {
           ? permissionLevel === 4
             ? swal({
                 title: 'You are assigning ADMIN PRIVILEGES to this user',
-                text: 'To cancel press escape or click of the screen',
+                text: 'To cancel press escape',
                 icon: 'warning',
                 dangerMode: true,
               }).then((confirm) => {
