@@ -7,13 +7,11 @@ import EventListItem from '../../components/EventListItem/EventListItem';
 
 import {
   Grid,
-  Box,
-  // Card,
-  // Typography,
-  // CardContent,
-  // CardActions,
-  // Button,
-  // CardMedia,
+  Typography,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
 } from '@material-ui/core';
 
 import computer from './computer.jpg';
@@ -22,8 +20,10 @@ import child1 from './Child1.jpg';
 import child2 from './Child2.jpg';
 
 class EventsPage extends Component {
+  state = {
+    filter: '',
+  };
   componentDidMount() {
-    console.log(this.props.store.eventReducer);
     this.props.dispatch({
       type: 'GET_EVENTS',
     });
@@ -32,40 +32,58 @@ class EventsPage extends Component {
   render() {
     const eventsArray = this.props.store.eventReducer.map((item, index) => {
       return (
-        <Grid item xs={3} key={index}>
-          <EventListItem event={item} index={index} {...this.props} />
+        <Grid item sm={12} md={4} lg={4}>
+          <EventListItem
+            key={index}
+            event={item}
+            index={index}
+            {...this.props}
+          />
         </Grid>
       );
     });
 
     return (
-      <div className="grid">
-        <div style={{ padding: 20 }}>
-          <Grid container justify="center" alignItems="center">
-            <Grid item sm={12} md={4} lg={4}>
-              <img src={computer2} alt="coding" />
-            </Grid>
-            <Grid item sm={12} md={4} lg={4}>
-              <img src={computer} alt="coding" />
-            </Grid>
-            <Grid item sm={12} md={4} lg={4}>
-              <img src={computer2} alt="coding" />
-            </Grid>
+      <div style={{ padding: 20 }}>
+        <Grid container justify="center" alignItems="center">
+          <Grid item xs={4} sm={4} md={4} lg={4}>
+            <img src={computer2} alt="coding" />
           </Grid>
-
-          <h2>Click on an event to see its details!</h2>
-        </div>
-        <div style={{ padding: 20 }}>
-          <Grid
-            container
-            spacing={3}
-            direction="row"
-            justify="center"
-            alignItems="stretch"
-          >
-            {eventsArray}
+          <Grid item xs={4} sm={4} md={4} lg={4}>
+            <img src={computer} alt="coding" />
           </Grid>
-        </div>
+          <Grid item xs={4} sm={4} md={4} lg={4}>
+            <img src={computer2} alt="coding" />
+          </Grid>
+        </Grid>
+        <Grid container justify="space-evenly">
+          <Grid item>
+            <Typography variant="h3" component="h2" gutterBottom>
+              Upcoming Events
+            </Typography>
+          </Grid>
+          <Grid item>
+            <FormControl variant="outlined" fullWidth>
+              <InputLabel id="filter">Filter By</InputLabel>
+              <Select
+                labelId="filter"
+                id="filter"
+                // value={filter}
+                // onChange={this.handleChange}
+                label="filter"
+              >
+                <MenuItem value="">
+                  <em>Event Type or Date</em>
+                </MenuItem>
+                <MenuItem value={10}>By Event Type</MenuItem>
+                <MenuItem value={20}>By Date</MenuItem>
+              </Select>
+            </FormControl>
+          </Grid>
+        </Grid>
+        <Grid container spacing={3}>
+          {eventsArray}
+        </Grid>
       </div>
     );
   }
