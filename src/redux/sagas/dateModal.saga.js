@@ -9,6 +9,7 @@ function* getDates(action) {
       type: 'SET_DATES',
       payload: response.data,
     });
+    console.log('in respoonse saga', response.data);
   } catch (err) {
     console.log('error getting all dates', err);
     yield put({ type: 'GET_DATES_FAILED' });
