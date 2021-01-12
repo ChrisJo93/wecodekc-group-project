@@ -34,11 +34,7 @@ class DetailsPage extends Component {
         <Grid container justify="space-evenly">
           <Grid item>
             <Typography variant="h3" component="h2" gutterBottom>
-              Details!
-              {/* <p>
-                {this.props.store.eventDetailReducer &&
-                  this.props.store.eventDetailReducer.event_title}
-              </p> */}
+              Details!{JSON.stringify(this.props.store.eventDetailReducer[0])}
               {details.event_description}
             </Typography>
           </Grid>
@@ -46,7 +42,7 @@ class DetailsPage extends Component {
         </Grid>
         <Grid container spacing={3}>
           <Typography variant="h3" component="h2" gutterBottom>
-            {details.event_title}
+            <div>{details.event_title}</div>
           </Typography>
         </Grid>
       </div>
