@@ -119,7 +119,7 @@ router.post(
 router.put(
   '/update/:id',
   (req: Request, res: Response, next: express.NextFunction): void => {
-    const creator: number = parseInt(req.body.userId);
+    const id: number = parseInt(req.params.id);
     const recurring: boolean = req.body.recurring;
     const recurring_time_slot: number = parseInt(req.body.recurring_time_slot);
     const event_type: number = parseInt(req.body.event_type);
@@ -130,9 +130,9 @@ router.put(
     const event_title: string = req.body.event_title;
     const editEvent: string = `
     UPDATE "event" 
-    SET ("event_title"=$1, "event_description"=$2, "event_start"=$3, "event_end"=$4, 
-    "recurring"=$5, "recurring_time_slot"=$6, "event_address"=$7, "event_type"=$8, "creator"=$9)
-    WHERE "event".id=$10;`;
+    SET event_title=$1, event_description=$2, event_start=$3, event_end=$4, 
+    recurring=$5, recurring_time_slot=$6, event_address=$7, event_type=$8
+    WHERE id=$9;`;
     pool
       .query(editEvent, [
         event_title,
@@ -143,7 +143,7 @@ router.put(
         recurring_time_slot,
         event_address,
         event_type,
-        creator,
+        id,
       ])
       .then((result) => {
         res.sendStatus(200);
