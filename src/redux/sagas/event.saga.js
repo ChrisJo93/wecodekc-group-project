@@ -40,6 +40,16 @@ function* getUserEvents(action) {
   }
 }
 
+function* postUserEvent(action) {
+  try {
+    console.log('LOOK HERE USER EVENT', action.payload);
+    yield axios.post(`/api/event/user`, action.payload);
+  } catch (err) {
+    console.log('ERROR SAVING EVENT', err);
+    yield put({ type: 'POST_FAILED' });
+  }
+}
+
 function* postEvents(action) {
   try {
     yield axios.post('/api/event', action.payload);
@@ -87,6 +97,7 @@ function* eventSaga() {
   yield takeLatest('GET_EVENTS', getEvents);
   yield takeLatest('GET_EVENT_DETAILS', getEventDetails);
   yield takeLatest('GET_USER_EVENTS', getUserEvents);
+  yield takeLatest('POST_USER_EVENT', postUserEvent);
   yield takeLatest('POST_EVENTS', postEvents);
   yield takeLatest('UPDATE_EVENT', updateEvent);
   yield takeLatest('DELETE_EVENT', deleteEvent);

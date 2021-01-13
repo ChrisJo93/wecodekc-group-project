@@ -80,16 +80,16 @@ router.get(
 
 // POST EVENT WITH USER ID
 router.post(
-  '/user/:id',
+  '/user',
   (req: any, res: Response, next: express.NextFunction): void => {
+    console.log(req.body);
     const queryText: string = `INSERT INTO "user_event" (event_id, user_id, approved) VALUES($1, $2, $3);`;
-    const event_id: number = parseInt(req.body.id);
-    const user_id: number = parseInt(req.params.id);
+    const event_id: number = parseInt(req.body.eventId);
+    const user_id: number = parseInt(req.user.id);
     const approved: boolean = req.body.approved;
     pool
       .query(queryText, [event_id, user_id, approved])
       .then((result) => {
-        res.send(result.rows);
         res.sendStatus(200);
       })
       .catch((error) => {

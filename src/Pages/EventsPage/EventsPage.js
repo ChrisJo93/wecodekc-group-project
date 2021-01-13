@@ -25,6 +25,10 @@ class EventsPage extends Component {
     this.props.dispatch({
       type: 'GET_EVENTS',
     });
+    this.props.dispatch({
+      type: 'GET_EVENT_DETAILS',
+      payload: this.props.match.params.id,
+    });
   }
 
   render() {
