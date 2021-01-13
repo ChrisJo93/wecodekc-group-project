@@ -78,6 +78,27 @@ router.get(
   }
 );
 
+// POST EVENT WITH USER ID
+router.post(
+  '/user/:id',
+  (req: any, res: Response, next: express.NextFunction): void => {
+    const queryText: string = `INSERT INTO "user_event" (event_id, user_id, approved) VALUES($1, $2, $3);`;
+    const event_id: number = parseInt(req.body.id);
+    const user_id: number = parseInt(req.params.id);
+    const approved: boolean = req.body.approved;
+    pool
+      .query(queryText, [event_id, user_id, approved])
+      .then((result) => {
+        res.send(result.rows);
+        res.sendStatus(200);
+      })
+      .catch((error) => {
+        console.log('error posting events associated with user', error);
+        res.sendStatus(500);
+      });
+  }
+);
+
 // POST EVENT
 
 router.post(
