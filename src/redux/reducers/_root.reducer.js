@@ -6,6 +6,7 @@ import eventReducer from './event.reducer';
 import registration from './registration.reducer';
 import dateReducer from './dateModal.reducer';
 import allUsers from './allUsers.reducer';
+import eventDetailReducer from './event.details.reducer';
 import imagesReducer from './image.reducer';
 import unverifiedUsers from './unverifiedUsers';
 
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   dropdown,
   errors, // contains registrationMessage and loginMessage
   eventReducer,
+  eventDetailReducer,
   allUsers,
   unverifiedUsers,
   registration, //gathers reg information together
