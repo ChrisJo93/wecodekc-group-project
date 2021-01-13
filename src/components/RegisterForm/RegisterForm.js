@@ -24,7 +24,7 @@ class RegisterForm extends Component {
     first_name: '',
     middle_name: '',
     last_name: '',
-    birth_date: '',
+    birth_date: '2000-01-01',
     sex: '',
     race: '',
     email: '',
@@ -281,6 +281,7 @@ class RegisterForm extends Component {
                         Highest Level of Education
                       </InputLabel>
                       <Select
+                        style={{ backgroundColor: 'green' }}
                         labelId="education_level"
                         id="education_level"
                         multiple

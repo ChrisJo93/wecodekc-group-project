@@ -36,7 +36,7 @@ router.post(
     const zipCode: number = parseInt(req.body.zip_code);
     let newUserId: number;
 
-    const queryOne: string = `INSERT INTO "user"(username, password,  first_name, middle_name,
+    const queryOne: string = `INSERT INTO "user" (username, password,  first_name, middle_name,
       last_name, race, company, job_title, motivation_bio, experience_bio, custom_entry_skills,
       background_check_permission, sex, zip_code, access_level, email) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING id;`;
     pool
@@ -93,34 +93,30 @@ router.post(
 //making minor change for merge issue
 
 router.put(
-  '/register/:id',
-  (req: Request, res: Response, next: express.NextFunction): void => {
-    const password: string = encryptPassword(req.body.password);
-    const company: string = <string>req.body.company;
-    const jobTitle: string = <string>req.body.job_title;
-    const motivationBio: string = <string>req.body.motivation_bio;
-    const experienceBio: string = <string>req.body.experience_bio;
-    const customSkills: string = <string>req.body.custom_entry_skills;
+  '/update',
+  (req: any, res: Response, next: express.NextFunction): void => {
+    //TODO GET THE IMAGE LINK!
+    // const image: string = <string>req.body.imagelink;
+    console.log(req.body);
+    const first_name: string = <string>req.body.first_name;
+    const last_name: string = <string>req.body.last_name;
     const skills: Array<number> = req.body.skills;
-    const timeSlot: Array<number> = req.body.time_slot;
-    const educationLevel: Array<number> = req.body.education_level;
-    const backgroundCheck: boolean = req.body.background_check_permission;
+    const phone_number: string = <string>req.body.phone_number;
+    const email: string = <string>req.body.email;
     const zipCode: number = parseInt(req.body.zip_code);
-    const userId: number = parseInt(req.params.id);
+    const userId: number = req.user.id;
 
-    const queryOne: string = `UPDATE "USER" SET (password = $1, company = $2, job_title = $3, motivation_bio = $4, 
-      experience_bio = $5, custom_entry_skills = $6, background_check_permission = $7, zip_code = $8);`;
+    const queryOne: string = `UPDATE "user" SET first_name = $1, last_name = $2, zip_code = $3, phone_number = $4, email = $5 WHERE id = $6;`;
+    const queryArray: [string, string, number, string, string, number] = [
+      first_name,
+      last_name,
+      zipCode,
+      phone_number,
+      email,
+      userId,
+    ];
     pool
-      .query(queryOne, [
-        password,
-        company,
-        jobTitle,
-        motivationBio,
-        experienceBio,
-        customSkills,
-        backgroundCheck,
-        zipCode,
-      ])
+      .query(queryOne, queryArray)
       .then((result) => {
         let userPromises: Array<Promise<any>> = [];
         for (let index = 0; index < skills.length; index++) {
@@ -128,16 +124,16 @@ router.put(
           let query: string = `INSERT INTO "user_skills" (user_id, skills_id) VALUES ($1, $2)`;
           userPromises.push(pool.query(query, [userId, element]));
         }
-        for (let index = 0; index < timeSlot.length; index++) {
-          let element: number = timeSlot[index];
-          let query: string = `INSERT INTO "user_time_slot" (user_id, time_slot_id) VALUES ($1, $2)`;
-          userPromises.push(pool.query(query, [userId, element]));
-        }
-        for (let index = 0; index < educationLevel.length; index++) {
-          let element: number = educationLevel[index];
-          let query: string = `INSERT INTO "user_education_level" (user_id, education_level) VALUES ($1, $2)`;
-          userPromises.push(pool.query(query, [userId, element]));
-        }
+        // for (let index = 0; index < timeSlot.length; index++) {
+        //   let element: number = timeSlot[index];
+        //   let query: string = `INSERT INTO "user_time_slot" (user_id, time_slot_id) VALUES ($1, $2)`;
+        //   userPromises.push(pool.query(query, [userId, element]));
+        // }
+        // for (let index = 0; index < educationLevel.length; index++) {
+        //   let element: number = educationLevel[index];
+        //   let query: string = `INSERT INTO "user_education_level" (user_id, education_level) VALUES ($1, $2)`;
+        //   userPromises.push(pool.query(query, [userId, element]));
+        // }
         Promise.all(userPromises)
           .then(() => {
             res.sendStatus(200);

@@ -4,12 +4,15 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 
 //custom file imports
 import './user.css';
+import ProfileInfoPanel from './ProfileInfoPanel';
+import UserPageEdit from '../../components/UserPageEdit/UserPageEdit';
 
 //custom MATERIAL-UI imports
-import { Button, Grid, Typography, Container } from '@material-ui/core';
+import { Grid, Typography, Container } from '@material-ui/core';
 
 class UserPage extends Component {
   state = {
+    edit: false,
     event: '',
     name: 'Chris',
     role: 'A dude',
@@ -25,7 +28,15 @@ class UserPage extends Component {
     this.props.dispatch({
       type: 'GET_USER_EVENTS',
     });
+    this.props.dispatch({ type: 'GET_SKILL' });
   }
+
+  handleEdit = (e) => {
+    e.preventDefault();
+    this.setState({
+      edit: !this.state.edit,
+    });
+  };
 
   render() {
     // const skills = this.props.store.xxxxxReducer.map((item, index) => {
@@ -40,34 +51,11 @@ class UserPage extends Component {
         <Container>
           <Grid container justify="center">
             <Grid item lg={4} md={4} sm={4} xs={12}>
-              <div>
-                <img
-                  src={this.state.image}
-                  className="placeholder"
-                  alt="profile"
-                />
-              </div>
-              <div className="profile-area">
-                <Typography gutterBottom>
-                  {this.props.store.user.first_name}{' '}
-                  {this.props.store.user.last_name}
-                </Typography>
-                <Typography gutterBottom>{this.state.role}</Typography>
-                <Typography gutterBottom>
-                  {this.props.store.user.zip_code}
-                </Typography>
-                <Typography gutterBottom>
-                  {this.props.store.user.phone_number}
-                </Typography>
-                <Typography gutterBottom>
-                  {this.props.store.user.email}
-                </Typography>
-                <Typography gutterBottom>Skills:</Typography>
-                {/* <Typography gutterBottom>{skills}</Typography> */}
-                <Button color="secondary" variant="contained">
-                  Edit Profile
-                </Button>
-              </div>
+              {this.state.edit ? (
+                <UserPageEdit edit={this.handleEdit} />
+              ) : (
+                <ProfileInfoPanel edit={this.handleEdit} />
+              )}
             </Grid>
             <Grid item lg={8} md={8} sm={8} xs={12}>
               <div className="profile-area">

@@ -21,12 +21,12 @@ import {
 } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles({
-  avatar: {
-    backgroundColor: blue[100],
-    color: blue[600],
-  },
-});
+// const useStyles = makeStyles({
+//   avatar: {
+//     backgroundColor: blue[100],
+//     color: blue[600],
+//   },
+// });
 
 class LandingPage extends Component {
   // const classes = useStyles();
@@ -61,23 +61,28 @@ class LandingPage extends Component {
         <Grid container alignItems="stretch">
           <Grid item xs={12} md={6}>
             <Card className="card">
-              <Typography>Make an Impact!</Typography>
-              <Typography>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Curabitur id felis metus. Vestibulum et pulvinar tortor. Morbi
-                pharetra lacus ut ex molestie blandit. Etiam et turpis sit amet
-                risus mollis interdum. Suspendisse et justo vitae metus bibendum
-                fringilla sed sed justo. Aliquam sollicitudin dapibus lectus,
-                vitae consequat odio elementum eget. Praesent efficitur eros
-                vitae nunc interdum, eu interdum justo facilisis. Sed pulvinar
-                nulla ac dignissim efficitur. Quisque eget eros metus.
-                Vestibulum bibendum fringilla nibh a luctus. Duis a sapien
-                metus.
-              </Typography>
+              <CardContent>
+                <center>
+                  <Typography variant="h4" gutterBottom>
+                    Make an Impact!
+                  </Typography>
+                </center>
+                <Typography>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Curabitur id felis metus. Vestibulum et pulvinar tortor. Morbi
+                  pharetra lacus ut ex molestie blandit. Etiam et turpis sit
+                  amet risus mollis interdum. Suspendisse et justo vitae metus
+                  bibendum fringilla sed sed justo. Aliquam sollicitudin dapibus
+                  lectus, vitae consequat odio elementum eget. Praesent
+                  efficitur eros vitae nunc interdum, eu interdum justo
+                  facilisis. Sed pulvinar nulla ac dignissim efficitur. Quisque
+                  eget eros metus. Vestibulum bibendum fringilla nibh a luctus.
+                  Duis a sapien metus.
+                </Typography>
+              </CardContent>
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>
-            {/* TO DO -- FIGURE OUT IMAGES */}
             <Card className="card">
               <img
                 src={'https://wecodekc.s3.us-east-2.amazonaws.com/_W4A0840.jpg'}
@@ -110,7 +115,7 @@ class LandingPage extends Component {
                 <center>
                   <Typography variant="h4">Volunteer</Typography>
                 </center>
-                <p>
+                <Typography>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                   Curabitur id felis metus. Vestibulum et pulvinar tortor. Morbi
                   pharetra lacus ut ex molestie blandit. Etiam et turpis sit
@@ -121,7 +126,7 @@ class LandingPage extends Component {
                   facilisis. Sed pulvinar nulla ac dignissim efficitur. Quisque
                   eget eros metus. Vestibulum bibendum fringilla nibh a luctus.
                   Duis a sapien metus.
-                </p>
+                </Typography>
               </CardContent>
               <CardActions>
                 <Grid container justify="space-evenly">
