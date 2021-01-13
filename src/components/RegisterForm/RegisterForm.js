@@ -146,8 +146,9 @@ class RegisterForm extends Component {
                     <TextField
                       fullWidth
                       id="birth_date"
-                      label="birth_date"
+                      // label="birth date"
                       type="date"
+                      placeholder="birth date"
                       value={this.state.birth_date}
                       onChange={this.handleInputChangeFor('birth_date')}
                       // defaultValue="2000-01-01"

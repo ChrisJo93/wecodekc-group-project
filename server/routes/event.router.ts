@@ -61,7 +61,7 @@ router.get(
 
 // GET EVENT BY USER ID
 router.get(
-  '/user/:id',
+  '/user',
   (req: any, res: Response, next: express.NextFunction): void => {
     const queryText: string = `SELECT * FROM "event" JOIN "user_event" ON "event".id = "user_event".event_id WHERE "user_event".user_id =$1;`;
     const queryArray: number[] = [req.user.id];

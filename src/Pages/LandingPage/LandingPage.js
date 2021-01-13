@@ -19,6 +19,7 @@ import {
   Button,
   CardMedia,
 } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
 
 class LandingPage extends Component {
   componentDidMount() {
@@ -51,7 +52,7 @@ class LandingPage extends Component {
       <div className="grid">
         <Grid container alignItems="stretch">
           <Grid item xs={12} md={6}>
-            <Card>
+            <Card className="card">
               <Typography>Make an Impact!</Typography>
               <Typography>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -69,7 +70,7 @@ class LandingPage extends Component {
           </Grid>
           <Grid item xs={12} md={6}>
             {/* TO DO -- FIGURE OUT IMAGES */}
-            <Card>
+            <Card className="card">
               <img
                 src={'https://wecodekc.s3.us-east-2.amazonaws.com/_W4A0840.jpg'}
                 alt="coding"
@@ -81,7 +82,7 @@ class LandingPage extends Component {
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Card>
+            <Card className="card">
               <img
                 src={
                   'https://wecodekc.s3.us-east-2.amazonaws.com/christina-wocintechchat-com-YVT21p6pO_g-unsplash.jpg'
@@ -91,15 +92,12 @@ class LandingPage extends Component {
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Card>
-              <center>
-                <Typography variant="h4">Upcoming Events</Typography>
-              </center>
+            <Card className="card">
               <Carousel>{eventsArray}</Carousel>
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Card>
+            <Card className="card">
               <CardContent>
                 <Typography>Volunteer</Typography>
                 <p>
@@ -116,18 +114,22 @@ class LandingPage extends Component {
                 </p>
               </CardContent>
               <CardActions>
-                <Button
-                  color="primary"
-                  variant="contained"
-                  onClick={this.handleRegisterVolunteer}
-                >
-                  register
-                </Button>
+                <Grid container justify="space-evenly">
+                  <Grid item>
+                    <Button
+                      color="secondary"
+                      variant="contained"
+                      onClick={this.handleRegisterVolunteer}
+                    >
+                      register
+                    </Button>
+                  </Grid>
+                </Grid>
               </CardActions>
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Card>
+            <Card className="card">
               <img
                 src={'https://wecodekc.s3.us-east-2.amazonaws.com/_MG_6534.JPG'}
                 alt="volunteers smiling"
@@ -135,7 +137,7 @@ class LandingPage extends Component {
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Card>
+            <Card className="card">
               <img
                 src={
                   'https://wecodekc.s3.us-east-2.amazonaws.com/_MG_6571-1.jpg'
@@ -145,7 +147,7 @@ class LandingPage extends Component {
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Card>
+            <Card className="card">
               <CardContent>
                 <Typography>Mentor</Typography>
                 <p>
@@ -162,24 +164,21 @@ class LandingPage extends Component {
                 </p>
               </CardContent>
               <CardActions>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={this.handleRegisterMentor}
-                >
-                  register
-                </Button>
+                <Grid container justify="space-evenly">
+                  <Grid item>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={this.handleRegisterMentor}
+                    >
+                      register
+                    </Button>
+                  </Grid>
+                </Grid>
               </CardActions>
             </Card>
           </Grid>
         </Grid>
-
-        <center>
-          <h4>Already a Member?</h4>
-          <button className="btn btn_sizeSm" onClick={this.onLogin}>
-            Login
-          </button>
-        </center>
       </div>
     );
   }
