@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
+
+//material ui imports
 import {
   Button,
   Dialog,
   DialogActions,
   DialogContent,
-  DialogContentText,
   DialogTitle,
   FormControl,
   FormControlLabel,
@@ -22,7 +23,7 @@ class CreateEventDialog extends Component {
   state = {
     open: false,
     selectedValue: '',
-    selectedRadialValue: 'Course',
+    selectedRadialValue: 1,
     eventPayload: {
       event_title: '',
       event_description: '',
@@ -30,7 +31,17 @@ class CreateEventDialog extends Component {
       event_start: '',
       event_end: '',
       recurring: false,
+      event_type: 1,
+      recurring_time_slot: 1,
     },
+  };
+
+  postEvent = (event) => {
+    this.props.dispatch({
+      type: 'POST_EVENTS',
+      payload: this.state.eventPayload,
+    });
+    this.handleClose();
   };
 
   handleClickOpen = () => {
@@ -50,6 +61,7 @@ class CreateEventDialog extends Component {
   handleInputChangeFor = (propertyName) => (event) => {
     this.setState({
       eventPayload: {
+        ...this.state.eventPayload,
         [propertyName]: event.target.value,
       },
     });
@@ -60,6 +72,7 @@ class CreateEventDialog extends Component {
     //pulling value from date picker
     this.setState({
       eventPayload: {
+        ...this.state.eventPayload,
         [propertyName]: event.target.value,
       },
     });
@@ -69,14 +82,17 @@ class CreateEventDialog extends Component {
   handleInputChangeForSwitch = (event) => {
     this.setState({
       //slick toggle code
-      recurring: !this.state.recurring,
+      eventPayload: {
+        ...this.state.eventPayload,
+        recurring: !this.state.recurring,
+      },
     });
   };
 
   //handle radial button group
   handleRadialChange = (event) => {
     this.setState({
-      selectedRadialValue: event.target.value,
+      event_type: event.target.value,
     });
   };
 
@@ -139,16 +155,16 @@ class CreateEventDialog extends Component {
                 <RadioGroup
                   aria-label="Event_Type"
                   name="Events"
-                  value={this.state.selectedRadialValue}
+                  value={this.state.eventPayload.event_type}
                   onChange={this.handleRadialChange}
                 >
                   <FormControlLabel
-                    value="Event"
+                    value={parseInt(1)}
                     control={<Radio />}
                     label="Event"
                   />
                   <FormControlLabel
-                    value="Course"
+                    value={parseInt(2)}
                     control={<Radio />}
                     label="Course"
                   />
@@ -172,7 +188,7 @@ class CreateEventDialog extends Component {
           </DialogContent>
           <DialogActions>
             <Button
-              onClick={this.handleClose}
+              onClick={this.postEvent}
               color="secondary"
               variant="contained"
             >
