@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
 import axios from 'axios';
+import { DateTime } from 'luxon';
 
 //calendar imports
 import FullCalendar from '@fullcalendar/react';
@@ -53,11 +54,11 @@ class Calendar extends Component {
               // start: response.data[i].event_start,
               // end: response.data[i].event_end,
               rrule: {
-                count: null,
-                freq: null,
-                interval: null,
-                byweekday: null,
-                dtstart: null,
+                count: 1,
+                freq: 'weekly',
+                interval: 1,
+                byweekday: [],
+                dtstart: response.data[i].event_start,
               },
             }),
           });
@@ -68,12 +69,15 @@ class Calendar extends Component {
       });
     console.log(this.props.store.dateReducer);
   }
-
+  //sending dates for event population modal
   sendDate = (date) => {
+    const fixer = DateTime.fromISO(date);
+    const fixedDate = fixer.toISODate();
     this.props.dispatch({
       type: 'GET_DATES',
-      payload: date,
+      payload: fixedDate,
     });
+    console.log(fixedDate);
   };
 
   showForm = (event) => {
@@ -82,16 +86,10 @@ class Calendar extends Component {
     });
   };
 
-  // //need to make this dynamic with an input field
-  // gotoPast = () => {
-  //   let calendarApi = this.calendarComponentRef.current.getApi();
-  //   calendarApi.gotoDate('2000-01-01'); // call a method on the Calendar object
-  // };
-
   handleDateClick = (argument) => {
     console.log('checking', argument);
     //argument is a built in object with date attached
-    this.sendDate(new Date(argument.dateStr));
+    this.sendDate(argument.dateStr);
     if (
       window.confirm(
         'Would you like to add an event to ' + argument.dateStr + ' ?'
