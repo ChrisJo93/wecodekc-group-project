@@ -10,7 +10,7 @@ console.log('called');
 router.get(
   '/allUserGet',
   (req: Request, res: Response, next: express.NextFunction): void => {
-    const getAllUsers: string = `SELECT * FROM "user";`;
+    const getAllUsers: string = `SELECT * FROM "user" WHERE access_level > 1;`;
     pool
       .query(getAllUsers)
       .then((result) => {
