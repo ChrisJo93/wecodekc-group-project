@@ -50,7 +50,7 @@ router.put(
     const query = `UPDATE "user" 
     SET access_level=$1, volunteer_role=$2
     WHERE id=$3;`;
-    console.log(req.body);
+
     pool
       .query(query, [access_level, volunteer_role, id])
       .then((result) => {
@@ -78,7 +78,6 @@ router.put(
 
         transporter.sendMail(mailOptions, (err: Error | null, info: any) => {
           if (err != null) {
-            console.log(email);
             console.log(err, 'there is an error sending the email');
             res.sendStatus(500);
             return;
