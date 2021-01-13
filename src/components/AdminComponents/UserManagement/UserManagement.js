@@ -27,7 +27,7 @@ const useRowStyles = makeStyles({
 
 const emails = ['username@gmail.com', 'user02@gmail.com'];
 
-function VerifyTable(props) {
+function UserTable(props) {
   let rows = props.userData;
   let permissionLevel;
   let role;
@@ -52,7 +52,7 @@ function VerifyTable(props) {
     }
   };
 
-  const handleButton = (selection, id, email, first_name) => (e) => {
+  const handleButton = (selection, id) => (e) => {
     switch (selection) {
       case 'finalize':
         permissionLevel && role !== undefined
@@ -70,8 +70,6 @@ function VerifyTable(props) {
                       access_level: permissionLevel,
                       volunteer_role: role,
                       id: id,
-                      email: email,
-                      first_name: first_name,
                     },
                   });
                   swal('Added!', 'New Admin Created!', 'success');
@@ -83,8 +81,6 @@ function VerifyTable(props) {
                   access_level: permissionLevel,
                   volunteer_role: role,
                   id: id,
-                  email: email,
-                  first_name: first_name,
                 },
               })
           : swal({
@@ -193,12 +189,7 @@ function VerifyTable(props) {
                 <Button
                   variant="contained"
                   color="secondary"
-                  onClick={handleButton(
-                    'finalize',
-                    row.id,
-                    row.email,
-                    row.first_name
-                  )}
+                  onClick={handleButton('finalize', row.id)}
                 >
                   <CheckCircleIcon />
                 </Button>
@@ -211,4 +202,4 @@ function VerifyTable(props) {
   );
 }
 
-export default connect(mapStoreToProps)(VerifyTable);
+export default connect(mapStoreToProps)(UserTable);

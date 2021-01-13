@@ -37,6 +37,7 @@ CREATE TABLE "user" (
   race INT REFERENCES "race"(id),
   zip_code INT,
   phone_number VARCHAR(50),
+  email VARCHAR(50),
   company VARCHAR,
   job_title VARCHAR,
   motivation_bio TEXT,

@@ -50,6 +50,7 @@ class LoginForm extends Component {
               <Box mb={2}>
                 <TextField
                   size="small"
+                  type="text"
                   variant="outlined"
                   value={this.state.username}
                   onChange={this.handleInputChangeFor('username')}
@@ -61,6 +62,7 @@ class LoginForm extends Component {
               <Box mb={2}>
                 <TextField
                   size="small"
+                  type="password"
                   variant="outlined"
                   value={this.state.password}
                   onChange={this.handleInputChangeFor('password')}

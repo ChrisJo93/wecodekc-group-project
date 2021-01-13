@@ -7,6 +7,8 @@ import registration from './registration.reducer';
 import dateReducer from './dateModal.reducer';
 import allUsers from './allUsers.reducer';
 import eventDetailReducer from './event.details.reducer';
+import imagesReducer from './image.reducer';
+import unverifiedUsers from './unverifiedUsers';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -21,8 +23,10 @@ const rootReducer = combineReducers({
   eventReducer,
   eventDetailReducer,
   allUsers,
+  unverifiedUsers,
   registration, //gathers reg information together
   user, // will have an id and username if someone is logged in
+  imagesReducer, //getting all images from images table (AWS links)
 });
 
 export default rootReducer;

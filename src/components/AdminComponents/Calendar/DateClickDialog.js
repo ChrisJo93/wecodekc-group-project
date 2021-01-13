@@ -1,7 +1,4 @@
 import React from 'react';
-import ImageUpload from '../../components/ImageUpload/ImageUpload';
-
-//imports for dialog
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -16,11 +13,7 @@ import PersonIcon from '@material-ui/icons/Person';
 import AddIcon from '@material-ui/icons/Add';
 import Typography from '@material-ui/core/Typography';
 import { blue } from '@material-ui/core/colors';
-
-// This is one of our simplest components
-// It doesn't have local state, so it can be a function component.
-// It doesn't dispatch any redux actions or display any part of redux state
-// or even care what the redux state is, so it doesn't need 'connect()'
+import { DialogContentText, TextField } from '@material-ui/core';
 
 const emails = ['username@gmail.com', 'user02@gmail.com'];
 const useStyles = makeStyles({
@@ -30,7 +23,7 @@ const useStyles = makeStyles({
   },
 });
 
-function SimpleDialog(props) {
+export default function DateClickDialog(props) {
   const classes = useStyles();
   const { onClose, selectedValue, open } = props;
 
@@ -49,6 +42,8 @@ function SimpleDialog(props) {
       open={open}
     >
       <DialogTitle id="simple-dialog-title">Set backup account</DialogTitle>
+      <DialogContentText>Create an event!</DialogContentText>
+      <TextField variant="outlined" placeholder="title of event"></TextField>
       <List>
         {emails.map((email) => (
           <ListItem
@@ -82,42 +77,8 @@ function SimpleDialog(props) {
   );
 }
 
-SimpleDialog.propTypes = {
+DateClickDialog.propTypes = {
   onClose: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
   selectedValue: PropTypes.string.isRequired,
 };
-
-export default function AboutPage() {
-  const [open, setOpen] = React.useState(false);
-  const [selectedValue, setSelectedValue] = React.useState(emails[1]);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = (value) => {
-    setOpen(false);
-    setSelectedValue(value);
-  };
-  return (
-    <div className="container">
-      <div>
-        <ImageUpload />
-        <p>This about page is for anyone to read!</p>
-      </div>
-      <div>
-        <Typography variant="subtitle1">Selected: {selectedValue}</Typography>
-        <br />
-        <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-          Open simple dialog
-        </Button>
-        <SimpleDialog
-          selectedValue={selectedValue}
-          open={open}
-          onClose={handleClose}
-        />
-      </div>
-    </div>
-  );
-}

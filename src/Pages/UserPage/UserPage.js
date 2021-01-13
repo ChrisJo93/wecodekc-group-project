@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import LogOutButton from '../../components/LogOutButton/LogOutButton';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
 //custom file imports
@@ -22,19 +21,11 @@ class UserPage extends Component {
       'https://wecodekc.s3.us-east-2.amazonaws.com/default-profile-icon-16.jpg',
   };
 
-  // componentDidMount() {
-  //   axios
-  //     .get('/event')
-  //     .then((response) => {
-  //       this.setState({
-  //         event: response.data,
-  //       });
-  //     })
-  //     .catch((error) => {
-  //       console.log('couldnt pull user event', error);
-  //       console.log('here is data', response.data);
-  //     });
-  // }
+  componentDidMount() {
+    this.props.dispatch({
+      type: 'GET_USER_EVENTS',
+    });
+  }
 
   render() {
     return (
@@ -49,22 +40,26 @@ class UserPage extends Component {
               />
             </div>
             <div className="profile-area">
-              <Typography gutterBottom>{this.state.name}</Typography>
+              <Typography gutterBottom>
+                {this.props.store.user.first_name}{' '}
+                {this.props.store.user.last_name}
+              </Typography>
               <Typography gutterBottom>{this.state.role}</Typography>
               <Typography gutterBottom>{this.state.zipcode}</Typography>
               <Typography gutterBottom>{this.state.phone}</Typography>
               <Typography gutterBottom>{this.state.email}</Typography>
-              <Typography gutterbottom>Skills:</Typography>
+              <Typography gutterBottom>Skills:</Typography>
               <Typography gutterBottom>{this.state.skills}</Typography>
               <Button color="secondary" variant="contained">
                 Edit Profile
               </Button>
-              {/* <LogOutButton className="log-in" /> */}
             </div>
           </Grid>
           <Grid item lg={8} md={8} sm={8} xs={12}>
             <div className="profile-area">
-              <Typography gutterBottom>{this.state.name}'s Events</Typography>
+              <Typography gutterBottom>
+                {this.props.store.user.username}'s Events
+              </Typography>
             </div>
           </Grid>
         </Grid>
