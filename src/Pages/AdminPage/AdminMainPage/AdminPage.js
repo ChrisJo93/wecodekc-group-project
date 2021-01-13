@@ -20,7 +20,6 @@ class AdminPage extends Component {
   };
 
   componentDidMount() {
-    console.log('>>>>>>>>>>>', this.props.store.allUsers);
     //grabs all users and events
     this.props.dispatch({
       type: 'GET_ADMIN_DATA',

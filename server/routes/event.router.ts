@@ -63,9 +63,9 @@ router.get(
 router.get(
   '/user/:id',
   (req: Request, res: Response, next: express.NextFunction): void => {
-    const getEventID: string = `SELECT * FROM "event" JOIN "user_event" ON "event".id = "user_event".event_id WHERE "user_event".user_id =$1;`;
+    const getUserEvents: string = `SELECT * FROM "event" JOIN "user_event" ON "event".id = "user_event".event_id WHERE "user_event".user_id =$1;`;
     pool
-      .query(queryText, queryArray)
+      .query(getUserEvents, [req.params.id])
       .then((result) => {
         res.send(result.rows);
       })

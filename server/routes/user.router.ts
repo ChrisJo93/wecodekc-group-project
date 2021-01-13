@@ -172,25 +172,27 @@ router.get(
     sex_label,first_name, middle_name, last_name, birth_date,posting_date,
     zip_code,phone_number,company,job_title,motivation_bio,experience_bio,
     custom_entry_skills,access_label,role_label,
-    array_agg(DISTINCT(skills_label)) AS "skills_label_array", 
-    array_agg(DISTINCT(education_label)) AS "education_label_array",
-    array_agg(DISTINCT(time_slot_label)) AS "time_slot_label_array",
-    array_agg(DISTINCT(link_url)) AS "image_link_array"
-    FROM "user" 
-    JOIN "user_skills" ON "user".id = "user_skills".user_id 
-    JOIN "skills" ON "skills".id = "user_skills".id 
-    JOIN "user_education_level" ON "user".id  = "user_education_level".user_id 
-    JOIN "education_level" ON "user_education_level".education_level = "education_level".id  
-    JOIN "user_time_slot" ON "user".id = "user_time_slot".user_id
-    JOIN "time_slot" ON "user_time_slot".time_slot_id = "time_slot".id
-    JOIN "user_images" ON "user".id = "user_images".user_id 
-    JOIN "images" ON "user_images".image_id = "images".id
+    ARRAY(SELECT skills_label FROM "user" 
+		JOIN "user_skills" ON "user".id = "user_skills".user_id
+		JOIN "skills" on "user_skills".skills_id = "skills".id
+		WHERE "user".id = 1) AS "skills_label_array",
+    ARRAY(SELECT education_label FROM "user"
+		JOIN "user_education_level" ON "user".id = "user_education_level".user_id
+		JOIN "education_level" on "user_education_level".education_level = "education_level".id
+		WHERE "user".id = 1) AS "education_label_array",
+    ARRAY(SELECT time_slot_label FROM "user"
+		JOIN "user_time_slot" ON "user".id = "user_time_slot".user_id
+		JOIN "time_slot" ON "user_time_slot".time_slot_id = "time_slot".id
+		WHERE "user".id = 1) AS "time_slot_label_array",
+    ARRAY(SELECT link_url FROM "user"
+		JOIN "user_images" ON "user".id = "user_images".user_id 
+	  JOIN "images" ON "user_images".image_id = "images".id
+		WHERE "user".id = 1) AS "image_link_array"FROM "user" 
     JOIN "sex" ON "user".sex = "sex".id
     JOIN "access_level" ON "user".access_level = "access_level".id
     JOIN "volunteer_role" ON "user".volunteer_role = "volunteer_role".id
-    WHERE "user".id = $1 GROUP BY 
-    sex_label,username, first_name, middle_name, last_name, birth_date,posting_date,zip_code,phone_number,company,
-    job_title,motivation_bio,experience_bio,custom_entry_skills,access_label,role_label;`;
+    WHERE "user".id = 1;
+`;
 
     pool
       .query(queryText, [req.params.id])
@@ -198,7 +200,7 @@ router.get(
         res.send(dbResponse.rows);
       })
       .catch((err) => {
-        console.log('error getting all users', err);
+        console.log('error getting user detail data', err);
         res.sendStatus(500);
       });
   }
