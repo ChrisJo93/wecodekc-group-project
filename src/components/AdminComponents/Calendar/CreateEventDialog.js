@@ -1,9 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-
-import { blue } from '@material-ui/core/colors';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import mapStoreToProps from '../../../redux/mapStoreToProps';
 import {
+  Grid,
   Button,
   Typography,
   Dialog,
@@ -14,48 +13,60 @@ import {
   TextField,
 } from '@material-ui/core';
 
-const emails = ['username@gmail.com', 'user02@gmail.com'];
-const useStyles = makeStyles({
-  avatar: {
-    backgroundColor: blue[100],
-    color: blue[600],
-  },
-});
-
-export default function CreateEventDialog(props) {
-  const classes = useStyles();
-  const { onClose, selectedValue, open } = props;
-
-  const handleClose = () => {
-    onClose(selectedValue);
+class CreateEventDialog extends Component {
+  state = {
+    open: true,
   };
 
-  const handleListItemClick = (value) => {
-    onClose(value);
+  handleListItemClick = (value) => {
+    this.setState({
+      open: true,
+    });
   };
 
-  return (
-    <Dialog onClose={handleClose} open={open}>
-      <DialogTitle id="create-event">Create an event</DialogTitle>
-      <DialogContent>
-        <DialogContentText>Fill out the form</DialogContentText>
+  handleInputChangeFor = (propertyName) => (event) => {
+    this.setState({
+      [propertyName]: event.target.value,
+    });
+  };
 
-        <TextField variant="outlined" placeholder="title of event"></TextField>
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={handleClose} color="secondary" variant="contained">
-          Add
-        </Button>
-        <Button onClick={handleClose} color="secondary" variant="contained">
-          never mind
-        </Button>
-      </DialogActions>
-    </Dialog>
-  );
+  render() {
+    return (
+      <div>
+        <Dialog onClose={this.props.onClose} open={this.props.open}>
+          <DialogTitle id="create-event">Create An Event</DialogTitle>
+          <DialogContent>
+            {/* Added Grid but will need to reformat */}
+            <Grid>
+              <TextField
+                type="text"
+                variant="outlined"
+                value={''}
+                onChange={this.handleInputChangeFor('event_title')}
+                label="title"
+              />
+            </Grid>
+          </DialogContent>
+          <DialogActions>
+            <Button
+              onClick={console.log('lol you clicked the add modal')}
+              color="secondary"
+              variant="contained"
+            >
+              Add
+            </Button>
+            <Button
+              onClick={this.props.onClose}
+              color="secondary"
+              variant="contained"
+            >
+              never mind
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </div>
+    );
+  }
 }
 
-CreateEventDialog.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  open: PropTypes.bool.isRequired,
-  selectedValue: PropTypes.string.isRequired,
-};
+export default connect(mapStoreToProps)(CreateEventDialog);

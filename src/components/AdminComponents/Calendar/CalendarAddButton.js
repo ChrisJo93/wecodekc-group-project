@@ -6,14 +6,13 @@ import { Grid, Button } from '@material-ui/core';
 //custom file imports
 import CreateEventDialog from './CreateEventDialog';
 
-const emails = ['username@gmail.com', 'user02@gmail.com'];
-
 export default function CalendarAddButton() {
   const [open, setOpen] = React.useState(false);
   const [selectedValue, setSelectedValue] = React.useState(emails[1]);
 
   const handleClickOpen = () => {
     setOpen(true);
+    console.log('fuck');
   };
 
   const handleClose = (value) => {
