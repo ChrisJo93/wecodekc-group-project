@@ -52,7 +52,7 @@ function VerifyTable(props) {
     }
   };
 
-  const handleButton = (selection, id) => (e) => {
+  const handleButton = (selection, id, email, first_name) => (e) => {
     switch (selection) {
       case 'finalize':
         permissionLevel && role !== undefined
@@ -70,6 +70,8 @@ function VerifyTable(props) {
                       access_level: permissionLevel,
                       volunteer_role: role,
                       id: id,
+                      email: email,
+                      first_name: first_name,
                     },
                   });
                   swal('Added!', 'New Admin Created!', 'success');
@@ -81,6 +83,8 @@ function VerifyTable(props) {
                   access_level: permissionLevel,
                   volunteer_role: role,
                   id: id,
+                  email: email,
+                  first_name: first_name,
                 },
               })
           : swal({
@@ -189,7 +193,12 @@ function VerifyTable(props) {
                 <Button
                   variant="contained"
                   color="secondary"
-                  onClick={handleButton('finalize', row.id)}
+                  onClick={handleButton(
+                    'finalize',
+                    row.id,
+                    row.email,
+                    row.first_name
+                  )}
                 >
                   <CheckCircleIcon />
                 </Button>
