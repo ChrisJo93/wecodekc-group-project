@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { Grid, Typography, Paper, Button } from '@material-ui/core';
+import { DateTime } from 'luxon';
 
 import computer from './computer.jpg';
 import computer2 from './computer2.jpg';
@@ -14,9 +15,14 @@ class DetailsPage extends Component {
     });
   }
 
+  clickBackButton = (event) => {
+    this.props.history.push('/events');
+  };
+
   render() {
     const details = this.props.store.eventDetailReducer;
-    console.log(this.props.store.eventDetailReducer);
+    const date = DateTime.fromISO(details.event_start);
+    const humanDate = date.toLocaleString(DateTime.DATETIME_MED);
 
     return (
       <div style={{ padding: 20 }}>
@@ -33,18 +39,40 @@ class DetailsPage extends Component {
         </Grid>
         <div style={{ padding: 20 }}>
           <Grid container spacing={3}>
-            <Grid xs={4} sm={4} md={4} lg={4}>
-              <Paper variant="outlined">{details.event_title}</Paper>
-              <Paper>Date: {details.event_start}</Paper>
+            <Grid item xs={4} sm={4} md={4} lg={4}>
+              <Paper>{details.event_title}</Paper>
             </Grid>
+            <Grid item xs={4} sm={4} md={4} lg={4}>
+              <Paper>Date: {humanDate}</Paper>
+            </Grid>
+
             <Grid container spacing={3}>
-              <Grid xs={4} sm={4} md={4} lg={4}>
+              <Grid item xs={4} sm={4} md={4} lg={4}>
+                <Paper>
+                  {details.event_type === 1 ? (
+                    <img
+                      src={
+                        'https://wecodekc.s3.us-east-2.amazonaws.com/_W4A0876-1.jpg'
+                      }
+                      alt="course"
+                    />
+                  ) : (
+                    <img
+                      src={
+                        'https://wecodekc.s3.us-east-2.amazonaws.com/_W4A0816-1.jpg'
+                      }
+                      alt="event"
+                    />
+                  )}
+                </Paper>
+              </Grid>
+              <Grid item xs={4} sm={4} md={4} lg={4}>
                 <Paper>{details.event_address}</Paper>
               </Grid>
             </Grid>
             <div style={{ padding: 20 }}>
               <Grid container spacing={3}>
-                <Grid xs={4} sm={4} md={4} lg={4}>
+                <Grid item xs={4} sm={4} md={4} lg={4}>
                   <Paper>Description: {details.event_description}</Paper>
                 </Grid>
               </Grid>
@@ -56,24 +84,17 @@ class DetailsPage extends Component {
                 </Button>
               </Grid>
               <Grid item xs={6}>
-                <Button variant="contained" color="primary">
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={this.clickBackButton}
+                >
                   Back to Events
                 </Button>
               </Grid>
             </Grid>
           </Grid>
         </div>
-        {/* <Grid container justify="space-evenly">
-          <Grid item>
-            <Typography variant="h3" component="h2" gutterBottom>
-              <p>{details.event_title}</p>
-            </Typography>
-          </Grid>
-          <Grid item></Grid>
-        </Grid>
-        <Grid container spacing={3}>
-          <Typography variant="h3" component="h2" gutterBottom></Typography>
-        </Grid> */}
       </div>
     );
   }
