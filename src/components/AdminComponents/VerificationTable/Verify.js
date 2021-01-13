@@ -110,7 +110,7 @@ function VerifyTable(props) {
             <TableCell>Last Name</TableCell>
             <TableCell>Email</TableCell>
             <TableCell>Background Check Permission</TableCell>
-            <TableCell>Role </TableCell>
+            <TableCell>Volunteer Role </TableCell>
             <TableCell>Permissions</TableCell>
             <TableCell>Finalize</TableCell>
           </TableRow>
