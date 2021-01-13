@@ -48,7 +48,7 @@ class UserPage extends Component {
               <Typography gutterBottom>{this.state.zipcode}</Typography>
               <Typography gutterBottom>{this.state.phone}</Typography>
               <Typography gutterBottom>{this.state.email}</Typography>
-              <Typography gutterbottom>Skills:</Typography>
+              <Typography gutterBottom>Skills:</Typography>
               <Typography gutterBottom>{this.state.skills}</Typography>
               <Button color="secondary" variant="contained">
                 Edit Profile
