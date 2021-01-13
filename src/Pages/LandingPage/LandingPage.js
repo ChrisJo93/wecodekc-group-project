@@ -21,7 +21,15 @@ import {
 } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
+const useStyles = makeStyles({
+  avatar: {
+    backgroundColor: blue[100],
+    color: blue[600],
+  },
+});
+
 class LandingPage extends Component {
+  // const classes = useStyles();
   componentDidMount() {
     this.props.dispatch({
       type: 'GET_EVENTS',
@@ -99,7 +107,9 @@ class LandingPage extends Component {
           <Grid item xs={12} md={6}>
             <Card className="card">
               <CardContent>
-                <Typography>Volunteer</Typography>
+                <center>
+                  <Typography variant="h4">Volunteer</Typography>
+                </center>
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                   Curabitur id felis metus. Vestibulum et pulvinar tortor. Morbi
@@ -149,7 +159,9 @@ class LandingPage extends Component {
           <Grid item xs={12} md={6}>
             <Card className="card">
               <CardContent>
-                <Typography>Mentor</Typography>
+                <center>
+                  <Typography variant="h4">Mentor</Typography>
+                </center>
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                   Curabitur id felis metus. Vestibulum et pulvinar tortor. Morbi
