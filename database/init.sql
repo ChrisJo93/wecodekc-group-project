@@ -92,9 +92,7 @@ CREATE TABLE time_slot_day (
 CREATE TABLE time_slot (
   id SERIAL PRIMARY KEY,
   day_of_week INT REFERENCES "time_slot_day"(id),
-  time_slot_label VARCHAR(100),
-  date_time_start TIMESTAMP WITH TIME ZONE,
-  date_time_end TIMESTAMP WITH TIME ZONE
+  time_slot_label VARCHAR(100)
   );
 CREATE TABLE user_time_slot (
   id SERIAL PRIMARY KEY,
@@ -118,13 +116,20 @@ CREATE TABLE "event" (
   id SERIAL PRIMARY KEY,
   event_type INT REFERENCES "event_type",
   event_title VARCHAR(200),
+  count INT,
+  frequency VARCHAR(20),
   recurring BOOLEAN,
-  recurring_time_slot INT REFERENCES "time_slot",
   creator INT REFERENCES "user",
   event_address VARCHAR(500),
   event_start TIMESTAMP WITH TIME ZONE,
   event_end TIMESTAMP WITH TIME ZONE,
   event_description TEXT
+);
+
+CREATE TABLE event_recurring_time_slot (
+  id SERIAL PRIMARY KEY,
+  event_id INT REFERENCES "event",
+  time_slot_day INT REFERENCES "time_slot_day"
 );
 
 CREATE TABLE event_images (
