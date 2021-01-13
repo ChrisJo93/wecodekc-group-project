@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 //CUSTOM FILE IMPORTS
 
 import AboutPage from '../../Pages/AboutPage/AboutPage';
+import DetailsPage from '../../Pages/DetailsPage/DetailsPage';
 import EventsPage from '../../Pages/EventsPage/EventsPage';
 import Footer from '../Footer/Footer';
 import InfoPage from '../../Pages/InfoPage/InfoPage';
@@ -71,6 +72,13 @@ class App extends Component {
                 exact
                 path="/events"
                 component={EventsPage}
+              />
+
+              <Route
+                // shows EventsPage at all times (logged in or not)
+                exact
+                path="/event/details/:id"
+                component={DetailsPage}
               />
 
               {/* For protected routes, the view could show one of several things on the same route.

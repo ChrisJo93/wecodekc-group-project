@@ -16,7 +16,7 @@ import '@fullcalendar/timegrid/main.css';
 import './calendarStyle.css';
 
 //custom file import
-import CalendarAddButton from './CalendarAddButton';
+import CreateEventDialog from './CreateEventDialog';
 
 class Calendar extends Component {
   // calendarComponentRef = React.createRef(); not certain what this is doing but keeping it for now.
@@ -119,14 +119,13 @@ class Calendar extends Component {
           <button onClick={this.gotoPast}>go to a date in the past</button>
         </div>
 
-        {/* <img src={this.state.add} onClick={console.log('I do something')} /> */}
         {this.state.showForm === true ? (
           <EventForm showForm={this.showForm} />
         ) : (
           ''
         )}
 
-        <CalendarAddButton />
+        <CreateEventDialog />
         <div className="calendar-proper">
           <FullCalendar
             initialView="dayGridMonth"
