@@ -14,8 +14,8 @@ import {
   Grid,
   Radio,
   RadioGroup,
+  Switch,
   TextField,
-  Typography,
 } from '@material-ui/core';
 
 class CreateEventDialog extends Component {
@@ -23,11 +23,14 @@ class CreateEventDialog extends Component {
     open: false,
     selectedValue: '',
     selectedRadialValue: 'Course',
-    event_title: '',
-    event_description: '',
-    event_address: '',
-    event_start: '',
-    event_end: '',
+    eventPayload: {
+      event_title: '',
+      event_description: '',
+      event_address: '',
+      event_start: '',
+      event_end: '',
+      recurring: false,
+    },
   };
 
   handleClickOpen = () => {
@@ -43,35 +46,38 @@ class CreateEventDialog extends Component {
       selectedValue: value,
     });
   };
-  //function for text inputs
+  //handle text inputs
   handleInputChangeFor = (propertyName) => (event) => {
     this.setState({
-      [propertyName]: event.target.value,
+      eventPayload: {
+        [propertyName]: event.target.value,
+      },
     });
   };
 
-  //function for datetime picker
+  //handle datetime picker values
   handleInputChangeForDate = (propertyName) => (event) => {
     //pulling value from date picker
-    this.setState(
-      {
+    this.setState({
+      eventPayload: {
         [propertyName]: event.target.value,
       },
-      () => {
-        console.log(this.state.event_start, this.state.event_end);
-      }
-    );
+    });
   };
-  //function for radial button input
+
+  //handle recurrence switch
+  handleInputChangeForSwitch = (event) => {
+    this.setState({
+      //slick toggle code
+      recurring: !this.state.recurring,
+    });
+  };
+
+  //handle radial button group
   handleRadialChange = (event) => {
-    this.setState(
-      {
-        selectedRadialValue: event.target.value,
-      },
-      () => {
-        console.log(this.state.selectedRadialValue);
-      }
-    );
+    this.setState({
+      selectedRadialValue: event.target.value,
+    });
   };
 
   render() {
@@ -92,21 +98,21 @@ class CreateEventDialog extends Component {
               <TextField
                 type="text"
                 variant="outlined"
-                value={this.state.event_title}
+                value={this.state.eventPayload.event_title}
                 onChange={this.handleInputChangeFor('event_title')}
                 label="Title"
               />
               <TextField
                 type="text"
                 variant="outlined"
-                value={this.state.event_description}
+                value={this.state.eventPayload.event_description}
                 onChange={this.handleInputChangeFor('event_description')}
                 label="Description"
               />
               <TextField
                 type="text"
                 variant="outlined"
-                value={this.state.event_address}
+                value={this.state.eventPayload.event_address}
                 onChange={this.handleInputChangeFor('event_address')}
                 label="Address"
               />
@@ -146,6 +152,20 @@ class CreateEventDialog extends Component {
                     control={<Radio />}
                     label="Course"
                   />
+
+                  {/* This needs further work to handle ACTUAL recurrence.  */}
+                  <FormControlLabel
+                    control={
+                      <Switch
+                        // checked={this.state.recurring}
+                        onChange={this.handleInputChangeForSwitch}
+                        color="primary"
+                        name="Recurring"
+                        inputProps={{ 'aria-label': 'primary checkbox' }}
+                      />
+                    }
+                    label="Repeat"
+                  />
                 </RadioGroup>
               </FormControl>
             </Grid>
@@ -163,7 +183,7 @@ class CreateEventDialog extends Component {
               color="secondary"
               variant="contained"
             >
-              never mind
+              Never Mind
             </Button>
           </DialogActions>
         </Dialog>
