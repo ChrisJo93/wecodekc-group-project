@@ -18,6 +18,9 @@ router.post(
     console.log(req.body);
     const username: string = <string>req.body.username;
     const password: string = encryptPassword(req.body.password);
+    const registered_first_name: string = <string>req.body.first_name;
+    const registered_middle_name: string = <string>req.body.middle_name;
+    const registered_last_name: string = <string>req.body.last_name;
     const firstName: string = <string>req.body.first_name;
     const middleName: string = <string>req.body.middle_name;
     const lastName: string = <string>req.body.last_name;
@@ -38,7 +41,9 @@ router.post(
 
     const queryOne: string = `INSERT INTO "user"(username, password,  first_name, middle_name,
       last_name, race, company, job_title, motivation_bio, experience_bio, custom_entry_skills,
-      background_check_permission, sex, zip_code, access_level, email) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING id;`;
+      background_check_permission, sex, zip_code, access_level,
+      email, registered_first_name, registered_middle_name, registered_last_name) 
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19) RETURNING id;`;
     pool
       .query(queryOne, [
         username,
@@ -57,6 +62,9 @@ router.post(
         zipCode,
         1,
         email,
+        registered_first_name,
+        registered_middle_name,
+        registered_last_name,
       ])
       .then((result) => {
         newUserId = parseInt(result.rows[0].id);

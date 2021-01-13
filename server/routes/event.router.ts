@@ -83,7 +83,6 @@ router.get(
 router.post(
   '/',
   (req: any, res: Response, next: express.NextFunction): void => {
-    console.log(req.body);
     const creator: number = parseInt(req.user.id);
     const recurring: boolean = req.body.recurring;
     const recurring_time_slot: number = parseInt(req.body.recurring_time_slot);
