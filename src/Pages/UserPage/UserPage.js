@@ -39,13 +39,6 @@ class UserPage extends Component {
   };
 
   render() {
-    // const skills = this.props.store.xxxxxReducer.map((item, index) => {
-    //   return (
-    //     <div>
-    //       <Typography key={index}>{item.xxxxx}</Typography>
-    //     </div>
-    //   );
-    // });
     return (
       <div className="user-container">
         <Container>
