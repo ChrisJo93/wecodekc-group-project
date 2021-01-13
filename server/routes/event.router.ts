@@ -61,11 +61,9 @@ router.get(
 
 // GET EVENT BY USER ID
 router.get(
-  '/user',
-  (req: any, res: Response, next: express.NextFunction): void => {
-    const user: number = req.user.id;
-    const queryText: string = `SELECT * FROM "user_event" WHERE id=$1;`;
-    const queryArray: number[] = [user];
+  '/user/:id',
+  (req: Request, res: Response, next: express.NextFunction): void => {
+    const getEventID: string = `SELECT * FROM "event" JOIN "user_event" ON "event".id = "user_event".event_id WHERE "user_event".user_id =$1;`;
     pool
       .query(queryText, queryArray)
       .then((result) => {
