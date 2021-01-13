@@ -27,7 +27,7 @@ class EventListItem extends Component {
   }
 
   handleCLickDetails = (event) => {
-    // this.props.history.push(`/details/${this.props.eventId}`);
+    this.props.history.push(`/event/details/${this.props.event.id}`);
   };
 
   render() {

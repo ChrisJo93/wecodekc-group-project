@@ -21,6 +21,7 @@ router.post(
     const firstName: string = <string>req.body.first_name;
     const middleName: string = <string>req.body.middle_name;
     const lastName: string = <string>req.body.last_name;
+    const email: string = <string>req.body.email;
     const company: string = <string>req.body.company;
     const jobTitle: string = <string>req.body.job_title;
     const motivationBio: string = <string>req.body.motivation_bio;
@@ -37,7 +38,7 @@ router.post(
 
     const queryOne: string = `INSERT INTO "user"(username, password,  first_name, middle_name,
       last_name, race, company, job_title, motivation_bio, experience_bio, custom_entry_skills,
-      background_check_permission, sex, zip_code, access_level) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING id;`;
+      background_check_permission, sex, zip_code, access_level, email) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING id;`;
     pool
       .query(queryOne, [
         username,
@@ -55,6 +56,7 @@ router.post(
         sex,
         zipCode,
         1,
+        email,
       ])
       .then((result) => {
         newUserId = parseInt(result.rows[0].id);
@@ -165,15 +167,35 @@ router.post('/logout', (req: Request, res: Response): void => {
 });
 
 router.get(
-  '/all',
+  '/all/:id',
   (req: Request, res: Response, next: express.NextFunction): void => {
     // GET route to get all volunteers/mentors information
-    const queryText: string = `SELECT * FROM "user"
-    JOIN "user_images" ON "user".id = "user_images".user_id
-    JOIN "images" ON "user_images".image_id = "images".id;`;
+    const queryText: string = `SELECT 
+    sex_label,first_name, middle_name, last_name, birth_date,posting_date,
+    zip_code,phone_number,company,job_title,motivation_bio,experience_bio,
+    custom_entry_skills,access_label,role_label,
+    array_agg(DISTINCT(skills_label)) AS "skills_label_array", 
+    array_agg(DISTINCT(education_label)) AS "education_label_array",
+    array_agg(DISTINCT(time_slot_label)) AS "time_slot_label_array",
+    array_agg(DISTINCT(link_url)) AS "image_link_array"
+    FROM "user" 
+    JOIN "user_skills" ON "user".id = "user_skills".user_id 
+    JOIN "skills" ON "skills".id = "user_skills".id 
+    JOIN "user_education_level" ON "user".id  = "user_education_level".user_id 
+    JOIN "education_level" ON "user_education_level".education_level = "education_level".id  
+    JOIN "user_time_slot" ON "user".id = "user_time_slot".user_id
+    JOIN "time_slot" ON "user_time_slot".time_slot_id = "time_slot".id
+    JOIN "user_images" ON "user".id = "user_images".user_id 
+    JOIN "images" ON "user_images".image_id = "images".id
+    JOIN "sex" ON "user".sex = "sex".id
+    JOIN "access_level" ON "user".access_level = "access_level".id
+    JOIN "volunteer_role" ON "user".volunteer_role = "volunteer_role".id
+    WHERE "user".id = $1 GROUP BY 
+    sex_label,username, first_name, middle_name, last_name, birth_date,posting_date,zip_code,phone_number,company,
+    job_title,motivation_bio,experience_bio,custom_entry_skills,access_label,role_label;`;
 
     pool
-      .query(queryText)
+      .query(queryText, [req.params.id])
       .then((dbResponse) => {
         res.send(dbResponse.rows);
       })

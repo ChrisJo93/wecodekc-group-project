@@ -42,32 +42,10 @@ export default function SimpleDialog(props) {
       <DialogTitle id="title">User Information</DialogTitle>
       <List>
         {emails.map((email) => (
-          <ListItem
-            button
-            onClick={() => handleListItemClick(email)}
-            key={email}
-          >
-            <ListItemAvatar>
-              <Avatar className={classes.avatar}>
-                <PersonIcon />
-              </Avatar>
-            </ListItemAvatar>
+          <ListItem key={email}>
             <ListItemText primary={email} />
           </ListItem>
         ))}
-
-        <ListItem
-          autoFocus
-          button
-          onClick={() => handleListItemClick('addAccount')}
-        >
-          <ListItemAvatar>
-            <Avatar>
-              <AddIcon />
-            </Avatar>
-          </ListItemAvatar>
-          <ListItemText primary="Add account" />
-        </ListItem>
       </List>
     </Dialog>
   );

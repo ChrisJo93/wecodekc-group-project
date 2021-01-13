@@ -25,10 +25,11 @@ router.get(
 router.get(
   '/details/:id',
   (req: Request, res: Response, next: express.NextFunction): void => {
-    const getEventID: string = `SELECT * FROM event JOIN event_type ON (event.event_type = event_type.id) WHERE event.id=$1;`;
+    const getEventID: string = `SELECT * FROM "event" WHERE id=$1;`;
     pool
       .query(getEventID, [req.params.id])
       .then((result) => {
+        console.log(result.rows);
         res.send(result.rows);
       })
       .catch((error) => {
@@ -61,11 +62,10 @@ router.get(
 
 // GET EVENT BY USER ID
 router.get(
-  '/user',
+  '/user/:id',
   (req: any, res: Response, next: express.NextFunction): void => {
-    const user: number = req.user.id;
-    const queryText: string = `SELECT * FROM "user_event" WHERE id=$1;`;
-    const queryArray: number[] = [user];
+    const queryText: string = `SELECT * FROM "event" JOIN "user_event" ON "event".id = "user_event".event_id WHERE "user_event".user_id =$1;`;
+    const queryArray: number[] = [req.user.id];
     pool
       .query(queryText, queryArray)
       .then((result) => {

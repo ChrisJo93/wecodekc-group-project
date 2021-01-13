@@ -28,7 +28,7 @@ function SideBar(props) {
           value={selectedTab}
           onChange={handleTabChange}
         >
-          <Tab icon={<AccountCircleIcon />} label="Account Control" />
+          <Tab icon={<AccountCircleIcon />} label="User Management" />
           <Tab icon={<VerifiedUserIcon />} label="New User Verification" />
           <Tab icon={<ShowChartIcon />} label="Demographics" />
           <Tab icon={<CalendarTodayIcon />} label="Event Calendar" />
