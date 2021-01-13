@@ -21,6 +21,7 @@ router.post(
     const firstName: string = <string>req.body.first_name;
     const middleName: string = <string>req.body.middle_name;
     const lastName: string = <string>req.body.last_name;
+    const email: string = <string>req.body.email;
     const company: string = <string>req.body.company;
     const jobTitle: string = <string>req.body.job_title;
     const motivationBio: string = <string>req.body.motivation_bio;
@@ -37,7 +38,7 @@ router.post(
 
     const queryOne: string = `INSERT INTO "user"(username, password,  first_name, middle_name,
       last_name, race, company, job_title, motivation_bio, experience_bio, custom_entry_skills,
-      background_check_permission, sex, zip_code, access_level) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING id;`;
+      background_check_permission, sex, zip_code, access_level, email) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING id;`;
     pool
       .query(queryOne, [
         username,
@@ -55,6 +56,7 @@ router.post(
         sex,
         zipCode,
         1,
+        email,
       ])
       .then((result) => {
         newUserId = parseInt(result.rows[0].id);

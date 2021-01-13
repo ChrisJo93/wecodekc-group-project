@@ -29,11 +29,14 @@ router.post(
             res.sendStatus(200);
           })
           .catch((err) => {
-            console.log('error posting image to db', err);
+            console.log('error posting image to user_images', err);
             res.sendStatus(500);
           });
       })
-      .catch();
+      .catch((err) => {
+        console.log('error posting image to images', err);
+        res.sendStatus(500);
+      });
   }
 );
 
