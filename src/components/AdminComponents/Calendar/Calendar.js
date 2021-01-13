@@ -5,10 +5,11 @@ import axios from 'axios';
 
 //calendar imports
 import FullCalendar from '@fullcalendar/react';
+import interactionPlugin from '@fullcalendar/interaction';
+import rrulePlugin from '@fullcalendar/rrule';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
-import interactionPlugin from '@fullcalendar/interaction';
-import EventForm from './EventForm';
+
 import '@fullcalendar/daygrid';
 import '@fullcalendar/interaction';
 import '@fullcalendar/common';
@@ -35,19 +36,29 @@ class Calendar extends Component {
   };
 
   //grabbing all events and adding to event array
+  //using a direct axios call to avoid convoluting data.
   componentDidMount() {
     axios
       .get('/api/event')
       .then((response) => {
         //cycling through entire array
         for (let i = 0; i < response.data.length; i++) {
+          if (response.data[i].recurring) {
+          }
           this.setState({
             // adding new event to array
             calendarEvents: this.state.calendarEvents.concat({
               // creates a new event object
               title: response.data[i].event_title,
-              start: response.data[i].event_start,
-              end: response.data[i].event_end,
+              // start: response.data[i].event_start,
+              // end: response.data[i].event_end,
+              rrule: {
+                count: null,
+                freq: null,
+                interval: null,
+                byweekday: null,
+                dtstart: null,
+              },
             }),
           });
         }
@@ -57,20 +68,6 @@ class Calendar extends Component {
       });
     console.log(this.props.store.dateReducer);
   }
-
-  addEvent = (event) => {
-    axios
-      .post('/api/events', event)
-      .then((response) => {
-        console.log(response, 'is anything here?');
-      })
-      .catch((error) => {
-        console.log('error posting', error);
-      });
-    this.setState({
-      showForm: true,
-    });
-  };
 
   sendDate = (date) => {
     this.props.dispatch({
@@ -85,11 +82,11 @@ class Calendar extends Component {
     });
   };
 
-  //need to make this dynamic with an input field
-  gotoPast = () => {
-    let calendarApi = this.calendarComponentRef.current.getApi();
-    calendarApi.gotoDate('2000-01-01'); // call a method on the Calendar object
-  };
+  // //need to make this dynamic with an input field
+  // gotoPast = () => {
+  //   let calendarApi = this.calendarComponentRef.current.getApi();
+  //   calendarApi.gotoDate('2000-01-01'); // call a method on the Calendar object
+  // };
 
   handleDateClick = (argument) => {
     console.log('checking', argument);
@@ -119,12 +116,6 @@ class Calendar extends Component {
           <button onClick={this.gotoPast}>go to a date in the past</button>
         </div>
 
-        {this.state.showForm === true ? (
-          <EventForm showForm={this.showForm} />
-        ) : (
-          ''
-        )}
-
         <CreateEventDialog />
         <div className="calendar-proper">
           <FullCalendar
@@ -134,7 +125,12 @@ class Calendar extends Component {
               center: 'title',
               right: 'dayGridMonth,timeGridWeek,timeGridDay',
             }}
-            plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+            plugins={[
+              dayGridPlugin,
+              timeGridPlugin,
+              interactionPlugin,
+              rrulePlugin,
+            ]}
             ref={this.calendarComponentRef}
             weekends={this.state.calendarWeekends}
             events={this.state.calendarEvents}
