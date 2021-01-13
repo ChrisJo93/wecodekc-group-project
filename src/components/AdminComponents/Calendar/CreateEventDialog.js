@@ -2,38 +2,89 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
 import {
-  Grid,
   Button,
-  Typography,
   Dialog,
-  DialogTitle,
   DialogActions,
-  DialogContentText,
   DialogContent,
+  DialogContentText,
+  DialogTitle,
+  FormControl,
+  FormControlLabel,
+  FormLabel,
+  Grid,
+  Radio,
+  RadioGroup,
   TextField,
+  Typography,
 } from '@material-ui/core';
 
 class CreateEventDialog extends Component {
   state = {
-    open: true,
+    open: false,
+    selectedValue: '',
+    selectedRadialValue: 'Course',
+    event_title: '',
+    event_description: '',
+    event_address: '',
+    event_start: '',
+    event_end: '',
   };
 
-  handleListItemClick = (value) => {
+  handleClickOpen = () => {
     this.setState({
       open: true,
     });
+    console.log('getting there');
   };
 
+  handleClose = (value) => {
+    this.setState({
+      open: false,
+      selectedValue: value,
+    });
+  };
+  //function for text inputs
   handleInputChangeFor = (propertyName) => (event) => {
     this.setState({
       [propertyName]: event.target.value,
     });
   };
 
+  //function for datetime picker
+  handleInputChangeForDate = (propertyName) => (event) => {
+    //pulling value from date picker
+    this.setState(
+      {
+        [propertyName]: event.target.value,
+      },
+      () => {
+        console.log(this.state.event_start, this.state.event_end);
+      }
+    );
+  };
+  //function for radial button input
+  handleRadialChange = (event) => {
+    this.setState(
+      {
+        selectedRadialValue: event.target.value,
+      },
+      () => {
+        console.log(this.state.selectedRadialValue);
+      }
+    );
+  };
+
   render() {
     return (
       <div>
-        <Dialog onClose={this.props.onClose} open={this.props.open}>
+        <Button
+          color="primary"
+          variant="contained"
+          onClick={this.handleClickOpen}
+        >
+          Add Event
+        </Button>
+        <Dialog onClose={this.handleClose} open={this.state.open}>
           <DialogTitle id="create-event">Create An Event</DialogTitle>
           <DialogContent>
             {/* Added Grid but will need to reformat */}
@@ -41,22 +92,74 @@ class CreateEventDialog extends Component {
               <TextField
                 type="text"
                 variant="outlined"
-                value={''}
+                value={this.state.event_title}
                 onChange={this.handleInputChangeFor('event_title')}
-                label="title"
+                label="Title"
               />
+              <TextField
+                type="text"
+                variant="outlined"
+                value={this.state.event_description}
+                onChange={this.handleInputChangeFor('event_description')}
+                label="Description"
+              />
+              <TextField
+                type="text"
+                variant="outlined"
+                value={this.state.event_address}
+                onChange={this.handleInputChangeFor('event_address')}
+                label="Address"
+              />
+              <TextField
+                id="datetime-local"
+                label="Start Date"
+                type="datetime-local"
+                onChange={this.handleInputChangeForDate('event_start')}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
+              <TextField
+                id="datetime-local"
+                label="End Date"
+                type="datetime-local"
+                onChange={this.handleInputChangeForDate('event_end')}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
+              <FormControl component="fieldset">
+                <FormLabel component="legend">Event Type</FormLabel>
+                <RadioGroup
+                  aria-label="Event_Type"
+                  name="Events"
+                  value={this.state.selectedRadialValue}
+                  onChange={this.handleRadialChange}
+                >
+                  <FormControlLabel
+                    value="Event"
+                    control={<Radio />}
+                    label="Event"
+                  />
+                  <FormControlLabel
+                    value="Course"
+                    control={<Radio />}
+                    label="Course"
+                  />
+                </RadioGroup>
+              </FormControl>
             </Grid>
           </DialogContent>
           <DialogActions>
             <Button
-              onClick={console.log('lol you clicked the add modal')}
+              onClick={this.handleClose}
               color="secondary"
               variant="contained"
             >
               Add
             </Button>
             <Button
-              onClick={this.props.onClose}
+              onClick={this.handleClose}
               color="secondary"
               variant="contained"
             >
