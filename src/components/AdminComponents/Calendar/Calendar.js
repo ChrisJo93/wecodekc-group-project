@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
-import axios from 'axios';
-import { DateTime } from 'luxon';
+import Button from '@material-ui/core/Button';
 
 //calendar imports
 import FullCalendar from '@fullcalendar/react';
@@ -18,12 +17,19 @@ import '@fullcalendar/timegrid/main.css';
 import './calendarStyle.css';
 
 //custom file import
+import axios from 'axios';
+import { DateTime } from 'luxon';
 import CreateEventDialog from './CreateEventDialog';
+import DateListDialog from './DateListDialog';
+
+// import DateListDialog from './DateListDialog';
 
 class Calendar extends Component {
   // calendarComponentRef = React.createRef(); not certain what this is doing but keeping it for now.
 
   state = {
+    open: false,
+    selectedValue: '',
     calendarWeekends: true,
     calendarEvents: [
       {
@@ -87,24 +93,37 @@ class Calendar extends Component {
   };
 
   handleDateClick = (argument) => {
-    console.log('checking', argument);
     //argument is a built in object with date attached
     this.sendDate(argument.dateStr);
-    if (
-      window.confirm(
-        'Would you like to add an event to ' + argument.dateStr + ' ?'
-      )
-    ) {
-      this.setState({
-        // add new event data
-        calendarEvents: this.state.calendarEvents.concat({
-          // creates a new array
-          title: this.state.calendarEvents.title,
-          start: this.state.calendarEvents.start,
-          end: this.state.calendarEvents.end,
-        }),
-      });
-    }
+    // if (
+    //   window.confirm(
+    //     'Would you like to add an event to ' + argument.dateStr + ' ?'
+    //   )
+    // ) {
+    this.setState({
+      // add new event data
+      calendarEvents: this.state.calendarEvents.concat({
+        // creates a new array
+        title: this.state.calendarEvents.title,
+        start: this.state.calendarEvents.start,
+        end: this.state.calendarEvents.end,
+      }),
+    });
+
+    this.handleClickOpen();
+  };
+
+  handleClickOpen = () => {
+    this.setState({
+      open: !this.state.open,
+    });
+  };
+
+  handleClose = (value) => {
+    this.setState({
+      open: false,
+      selectedValue: value,
+    });
   };
 
   render() {
@@ -115,6 +134,22 @@ class Calendar extends Component {
         </div>
 
         <CreateEventDialog />
+        <div>
+          Selected: {this.state.selectedValue}
+          <br />
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={this.handleClickOpen}
+          >
+            Open simple dialog
+          </Button>
+          <DateListDialog
+            open={this.state.open}
+            onClose={this.handleClose}
+            selectedValue={this.state.selectedValue}
+          />
+        </div>
         <div className="calendar-proper">
           <FullCalendar
             initialView="dayGridMonth"
