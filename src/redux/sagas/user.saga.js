@@ -40,7 +40,7 @@ function* getUsers(action) {
 function* updateUser(action) {
   console.log(action.payload);
   try {
-    yield axios.put(`/api/user/update/`, action.payload);
+    yield axios.put(`/api/user/update`, action.payload);
     yield put({
       type: 'GET_USERS',
     });

@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import { Grid, Typography, Paper, Button } from '@material-ui/core';
 import { DateTime } from 'luxon';
 
-import computer from './computer.jpg';
-import computer2 from './computer2.jpg';
+//material-ui imports
+import { Grid, Typography, Button } from '@material-ui/core';
+
+//custom file imports
+import EventsBar from '../../components/EventsBar/EventsBar';
 
 class DetailsPage extends Component {
   state = {
@@ -40,76 +42,56 @@ class DetailsPage extends Component {
 
     return (
       <div style={{ padding: 20 }}>
-        <Grid container justify="center" alignItems="center">
-          <Grid item xs={4} sm={4} md={4} lg={4}>
-            <img src={computer2} alt="coding" />
-          </Grid>
-          <Grid item xs={4} sm={4} md={4} lg={4}>
-            <img src={computer} alt="coding" />
-          </Grid>
-          <Grid item xs={4} sm={4} md={4} lg={4}>
-            <img src={computer2} alt="coding" />
-          </Grid>
-        </Grid>
+        <EventsBar />
         <div style={{ padding: 20 }}>
-          <Grid container spacing={3}>
-            <Grid item xs={4} sm={4} md={4} lg={4}>
-              <Paper>{details.event_title}</Paper>
-            </Grid>
-            <Grid item xs={4} sm={4} md={4} lg={4}>
-              <Paper>Date: {humanDate}</Paper>
-            </Grid>
+          <Typography variant="h2" gutterBottom>
+            {details.event_title}
+          </Typography>
 
-            <Grid container spacing={3}>
-              <Grid item xs={4} sm={4} md={4} lg={4}>
-                <Paper>
-                  {details.event_type === 1 ? (
-                    <img
-                      src={
-                        'https://wecodekc.s3.us-east-2.amazonaws.com/_W4A0876-1.jpg'
-                      }
-                      alt="course"
-                    />
-                  ) : (
-                    <img
-                      src={
-                        'https://wecodekc.s3.us-east-2.amazonaws.com/_W4A0816-1.jpg'
-                      }
-                      alt="event"
-                    />
-                  )}
-                </Paper>
-              </Grid>
-              <Grid item xs={4} sm={4} md={4} lg={4}>
-                <Paper>{details.event_address}</Paper>
-              </Grid>
+          <Grid container spacing={3}>
+            <Grid item lg={3}>
+              {details.event_type === 1 ? (
+                <img
+                  src={
+                    'https://wecodekc.s3.us-east-2.amazonaws.com/_W4A0876-1.jpg'
+                  }
+                  alt="course"
+                />
+              ) : (
+                <img
+                  src={
+                    'https://wecodekc.s3.us-east-2.amazonaws.com/_W4A0816-1.jpg'
+                  }
+                  alt="event"
+                />
+              )}
             </Grid>
-            <div style={{ padding: 20 }}>
-              <Grid container spacing={3}>
-                <Grid item xs={4} sm={4} md={4} lg={4}>
-                  <Paper>Description: {details.event_description}</Paper>
-                </Grid>
-              </Grid>
-            </div>
-            <Grid container spacing={3}>
-              <Grid item xs={6}>
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  onClick={this.clickAttendButton}
-                >
-                  Click to attend Event
-                </Button>
-              </Grid>
-              <Grid item xs={6}>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={this.clickBackButton}
-                >
-                  Back to Events
-                </Button>
-              </Grid>
+            <Grid item lg={9}>
+              <Typography>Date: {humanDate}</Typography>
+              <Typography> Location: {details.event_address}</Typography>
+            </Grid>
+          </Grid>
+          <div style={{ padding: 20 }}>
+            <Typography>{details.event_description}</Typography>
+          </div>
+          <Grid container justify="space-evenly" spacing={3}>
+            <Grid item>
+              <Button
+                variant="contained"
+                color="secondary"
+                onClick={this.clickAttendButton}
+              >
+                Click to attend
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={this.clickBackButton}
+              >
+                Back to all Events
+              </Button>
             </Grid>
           </Grid>
         </div>

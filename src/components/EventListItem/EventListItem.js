@@ -8,7 +8,6 @@ import { DateTime } from 'luxon';
 //MATERIAL-UI IMPORTS
 import {
   Card,
-  CardActionArea,
   CardMedia,
   CardActions,
   CardContent,
@@ -37,7 +36,7 @@ class EventListItem extends Component {
     const date = DateTime.fromISO(event.event_start);
     const humanDate = date.toLocaleString(DateTime.DATETIME_MED);
     return (
-      <Card>
+      <Card className="card">
         {event.event_type === 1 ? (
           <CardHeader
             avatar={<Avatar>C</Avatar>}
@@ -72,16 +71,18 @@ class EventListItem extends Component {
         </CardContent>
 
         <CardActions>
-          <center>
-            <Button
-              variant="contained"
-              size="small"
-              color="secondary"
-              onClick={this.handleCLickDetails}
-            >
-              Details
-            </Button>
-          </center>
+          <Grid container justify="space-evenly">
+            <Grid item>
+              <Button
+                variant="contained"
+                size="small"
+                color="secondary"
+                onClick={this.handleCLickDetails}
+              >
+                Details
+              </Button>
+            </Grid>
+          </Grid>
         </CardActions>
       </Card>
     );
