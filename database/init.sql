@@ -126,7 +126,7 @@ CREATE TABLE "event" (
   event_description TEXT
 );
 
-CREATE TABLE event_recurring_time_slot (
+CREATE TABLE event_day_slot (
   id SERIAL PRIMARY KEY,
   event_id INT REFERENCES "event",
   time_slot_day INT REFERENCES "time_slot_day"
