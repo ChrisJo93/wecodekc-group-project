@@ -135,6 +135,7 @@ CREATE TABLE event_images (
   event_id INT REFERENCES "event",
   image_id INT REFERENCES "images"
 );
+
 CREATE TABLE user_event (
   id SERIAL PRIMARY KEY,
   user_id INT REFERENCES "user",

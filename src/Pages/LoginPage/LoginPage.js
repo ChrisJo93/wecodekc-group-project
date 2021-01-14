@@ -36,7 +36,7 @@ function LoginPage(props) {
     <div>
       <Grid container justify="center">
         <Grid item>
-          <Tabs value={selectedTab} onChange={handleTabChange}>
+          <Tabs value={selectedTab} onChange={handleTabChange} centered>
             <Tab label="log-in" />
             <Tab label="register" />
           </Tabs>

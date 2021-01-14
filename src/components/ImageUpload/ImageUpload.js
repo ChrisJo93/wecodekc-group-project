@@ -13,6 +13,17 @@ class ImageUpload extends Component {
   };
 
   render() {
+    const dropStyles = {
+      width: '200px',
+      height: '200px',
+      border: 'grey',
+    };
+
+    // const innerDropElement= {
+    //   <div>
+    //   </div>
+    // }
+
     const uploadOptions = {
       server: 'http://localhost:5000',
       // signingUrlQueryParams: { uploadType: 'avatar' },
@@ -25,6 +36,8 @@ class ImageUpload extends Component {
         s3Url={s3Url}
         maxSize={1024 * 1024 * 5}
         upload={uploadOptions}
+        style={dropStyles}
+        // children={innerDropElement}
       />
     );
   }

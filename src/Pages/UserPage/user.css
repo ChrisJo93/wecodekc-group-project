@@ -8,7 +8,11 @@
 }
 
 .profile-area {
-  background-color: #6cc5ea;
+  background-color: #a8d8ec;
   padding: 20px;
   margin: 10px;
+}
+
+.user-container {
+  padding-top: 20px;
 }

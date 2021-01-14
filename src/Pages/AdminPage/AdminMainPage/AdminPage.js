@@ -4,6 +4,7 @@ import mapStoreToProps from '../../../redux/mapStoreToProps';
 import SideBar from '../../../components/AdminComponents/AdminSidebar/Sidebar';
 
 //CUSTOM MATERIAL UI IMPORTS
+import { LinearProgress } from '@material-ui/core';
 
 class AdminPage extends Component {
   state = {
@@ -37,7 +38,7 @@ class AdminPage extends Component {
         <SideBar />
       </>
     ) : (
-      <p>...loading</p>
+      <LinearProgress color="secondary" />
     );
   }
 }
