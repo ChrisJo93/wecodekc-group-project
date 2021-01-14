@@ -31,11 +31,12 @@ class CreateEventDialog extends Component {
       event_start: '',
       event_end: '',
       recurring: false,
-      event_type: 1,
+      event_type: '1',
       recurring_time_slot: 1,
     },
   };
 
+  //posts event and closes dialog
   postEvent = (event) => {
     this.props.dispatch({
       type: 'POST_EVENTS',
@@ -44,19 +45,21 @@ class CreateEventDialog extends Component {
     this.handleClose();
   };
 
+  //opens the dialog
   handleClickOpen = () => {
     this.setState({
       open: true,
     });
-    console.log('getting there');
   };
 
+  //closes the dialog, grabs date id as selectedValue
   handleClose = (value) => {
     this.setState({
       open: false,
       selectedValue: value,
     });
   };
+
   //handle text inputs
   handleInputChangeFor = (propertyName) => (event) => {
     this.setState({
@@ -92,7 +95,10 @@ class CreateEventDialog extends Component {
   //handle radial button group
   handleRadialChange = (event) => {
     this.setState({
-      event_type: event.target.value,
+      eventPayload: {
+        ...this.state.eventPayload,
+        event_type: event.target.value,
+      },
     });
   };
 
@@ -159,12 +165,12 @@ class CreateEventDialog extends Component {
                   onChange={this.handleRadialChange}
                 >
                   <FormControlLabel
-                    value={parseInt(1)}
+                    value="1"
                     control={<Radio />}
                     label="Event"
                   />
                   <FormControlLabel
-                    value={parseInt(2)}
+                    value="2"
                     control={<Radio />}
                     label="Course"
                   />
@@ -188,18 +194,18 @@ class CreateEventDialog extends Component {
           </DialogContent>
           <DialogActions>
             <Button
-              onClick={this.postEvent}
-              color="secondary"
-              variant="contained"
-            >
-              Add
-            </Button>
-            <Button
               onClick={this.handleClose}
               color="secondary"
               variant="contained"
             >
               Never Mind
+            </Button>
+            <Button
+              onClick={this.postEvent}
+              color="secondary"
+              variant="contained"
+            >
+              Add
             </Button>
           </DialogActions>
         </Dialog>

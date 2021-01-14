@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
-import axios from 'axios';
+import Button from '@material-ui/core/Button';
 
 //calendar imports
 import FullCalendar from '@fullcalendar/react';
+import interactionPlugin from '@fullcalendar/interaction';
+import rrulePlugin from '@fullcalendar/rrule';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
-import interactionPlugin from '@fullcalendar/interaction';
-import EventForm from './EventForm';
+
 import '@fullcalendar/daygrid';
 import '@fullcalendar/interaction';
 import '@fullcalendar/common';
@@ -16,12 +17,19 @@ import '@fullcalendar/timegrid/main.css';
 import './calendarStyle.css';
 
 //custom file import
+import axios from 'axios';
+import { DateTime } from 'luxon';
 import CreateEventDialog from './CreateEventDialog';
+import DateListDialog from './DateListDialog';
+
+// import DateListDialog from './DateListDialog';
 
 class Calendar extends Component {
   // calendarComponentRef = React.createRef(); not certain what this is doing but keeping it for now.
 
   state = {
+    open: false,
+    selectedValue: 'Nothing Selected',
     calendarWeekends: true,
     calendarEvents: [
       {
@@ -31,16 +39,17 @@ class Calendar extends Component {
       },
     ],
     showForm: false,
-    add: 'https://image.flaticon.com/icons/png/512/42/42953.png',
   };
 
   //grabbing all events and adding to event array
+  //using a direct axios call to avoid convoluting data.
   componentDidMount() {
     axios
       .get('/api/event')
       .then((response) => {
-        //cycling through entire array
         for (let i = 0; i < response.data.length; i++) {
+          if (response.data[i].recurring) {
+          }
           this.setState({
             // adding new event to array
             calendarEvents: this.state.calendarEvents.concat({
@@ -48,6 +57,14 @@ class Calendar extends Component {
               title: response.data[i].event_title,
               start: response.data[i].event_start,
               end: response.data[i].event_end,
+              //We will use rrule for mock data if we can't solve issue before Sunday.
+              // rrule: {
+              //   count: 2,
+              //   freq: 'weekly',
+              //   interval: 3,
+              //   byweekday: [],
+              //   dtstart: response.data[i].event_start,
+              // },
             }),
           });
         }
@@ -57,25 +74,13 @@ class Calendar extends Component {
       });
     console.log(this.props.store.dateReducer);
   }
-
-  addEvent = (event) => {
-    axios
-      .post('/api/events', event)
-      .then((response) => {
-        console.log(response, 'is anything here?');
-      })
-      .catch((error) => {
-        console.log('error posting', error);
-      });
-    this.setState({
-      showForm: true,
-    });
-  };
-
+  //sending dates for event population modal
   sendDate = (date) => {
+    const fixer = DateTime.fromISO(date);
+    const fixedDate = fixer.toISODate();
     this.props.dispatch({
       type: 'GET_DATES',
-      payload: date,
+      payload: fixedDate,
     });
   };
 
@@ -85,31 +90,40 @@ class Calendar extends Component {
     });
   };
 
-  //need to make this dynamic with an input field
-  gotoPast = () => {
-    let calendarApi = this.calendarComponentRef.current.getApi();
-    calendarApi.gotoDate('2000-01-01'); // call a method on the Calendar object
+  handleDateClick = (argument) => {
+    //sending date to date fixer function (sendDate)
+    this.sendDate(argument.dateStr);
+
+    this.setState({
+      // add new event data
+      calendarEvents: this.state.calendarEvents.concat({
+        // creates a new array
+        title: this.state.calendarEvents.title,
+        start: this.state.calendarEvents.start,
+        end: this.state.calendarEvents.end,
+      }),
+    });
+    //opens event list modal
+    this.handleClickOpen();
   };
 
-  handleDateClick = (argument) => {
-    console.log('checking', argument);
-    //argument is a built in object with date attached
-    this.sendDate(new Date(argument.dateStr));
-    if (
-      window.confirm(
-        'Would you like to add an event to ' + argument.dateStr + ' ?'
-      )
-    ) {
-      this.setState({
-        // add new event data
-        calendarEvents: this.state.calendarEvents.concat({
-          // creates a new array
-          title: this.state.calendarEvents.title,
-          start: this.state.calendarEvents.start,
-          end: this.state.calendarEvents.end,
-        }),
-      });
-    }
+  handleClickOpen = () => {
+    this.setState({
+      open: !this.state.open,
+    });
+  };
+
+  handleClose = (value) => (event) => {
+    this.setState(
+      {
+        open: false,
+        selectedValue:
+          value == (null, undefined, '') ? value : this.state.selectedValue,
+      },
+      () => {
+        console.log(this.state.selectedValue, value);
+      }
+    );
   };
 
   render() {
@@ -119,13 +133,16 @@ class Calendar extends Component {
           <button onClick={this.gotoPast}>go to a date in the past</button>
         </div>
 
-        {this.state.showForm === true ? (
-          <EventForm showForm={this.showForm} />
-        ) : (
-          ''
-        )}
-
         <CreateEventDialog />
+
+        <div>
+          <br />
+          <DateListDialog
+            open={this.state.open}
+            onClose={this.handleClose}
+            selectedValue={this.state.selectedValue}
+          />
+        </div>
         <div className="calendar-proper">
           <FullCalendar
             initialView="dayGridMonth"
@@ -134,7 +151,12 @@ class Calendar extends Component {
               center: 'title',
               right: 'dayGridMonth,timeGridWeek,timeGridDay',
             }}
-            plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+            plugins={[
+              dayGridPlugin,
+              timeGridPlugin,
+              interactionPlugin,
+              rrulePlugin,
+            ]}
             ref={this.calendarComponentRef}
             weekends={this.state.calendarWeekends}
             events={this.state.calendarEvents}
