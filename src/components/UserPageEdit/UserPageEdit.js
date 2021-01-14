@@ -55,7 +55,6 @@ class UserPageEdit extends Component {
   };
 
   handleSubmit = (e) => {
-    e.preventDefault();
     this.props.dispatch({ type: 'PUT_USER', payload: this.state });
   };
 

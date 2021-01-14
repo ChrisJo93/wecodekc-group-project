@@ -16,6 +16,7 @@ class ImageUpload extends Component {
     const dropStyles = {
       width: '200px',
       height: '200px',
+      border: 'grey',
     };
 
     // const innerDropElement= {
