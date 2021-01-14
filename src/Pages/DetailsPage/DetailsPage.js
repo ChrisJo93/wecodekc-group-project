@@ -3,17 +3,11 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { DateTime } from 'luxon';
 
-<<<<<<< HEAD
 //material-ui imports
 import { Grid, Typography, Button } from '@material-ui/core';
 
 //custom file imports
 import EventsBar from '../../components/EventsBar/EventsBar';
-=======
-import computer from './computer.jpg';
-import computer2 from './computer2.jpg';
-import UpdateDetailsDialog from './UpdateDetailsDialog';
->>>>>>> develop
 
 class DetailsPage extends Component {
   state = {
@@ -144,7 +138,6 @@ class DetailsPage extends Component {
                 Click to attend
               </Button>
             </Grid>
-<<<<<<< HEAD
             <Grid item>
               <Button
                 variant="contained"
@@ -153,52 +146,6 @@ class DetailsPage extends Component {
               >
                 Back to all Events
               </Button>
-=======
-            <div style={{ padding: 20 }}>
-              <Grid container spacing={3}>
-                <Grid item xs={4} sm={4} md={4} lg={4}>
-                  <Paper>Description: {details.event_description}</Paper>
-                </Grid>
-              </Grid>
-            </div>
-            <Grid container spacing={3}>
-              <Grid item xs={6}>
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  onClick={this.clickAttendButton}
-                >
-                  Click to attend Event
-                </Button>
-              </Grid>
-              {this.props.store.user_level === 4 ||
-                (5 && (
-                  <Grid item xs={6}>
-                    {/* <Button
-                      variant="contained"
-                      color="secondary"
-                      onClick={this.handleClickOpen}
-                    >
-                      Edit
-                    </Button> */}
-                    <UpdateDetailsDialog
-                      onClose={this.handleClose}
-                      open={this.open}
-                      // selectedValue={}
-                    />
-                  </Grid>
-                ))}
-
-              <Grid item xs={6}>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={this.clickBackButton}
-                >
-                  Back to Events
-                </Button>
-              </Grid>
->>>>>>> develop
             </Grid>
           </Grid>
         </div>
