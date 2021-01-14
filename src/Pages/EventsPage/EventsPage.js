@@ -66,7 +66,7 @@ class EventsPage extends Component {
           </Grid>
           <Grid item>
             <FormControl variant="outlined" fullWidth>
-              <InputLabel id="filter">Filter By</InputLabel>
+              <InputLabel id="filter">Sort By</InputLabel>
               <Select
                 style={{ minWidth: 140 }}
                 labelId="filter"
