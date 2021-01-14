@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
-import UserManagement from '../../../components/AdminComponents/UserManagement/UserManagement';
+import UserManagement from '../UserManagement/UserManagement';
 
 // Basic class component structure for React with default state
 // value setup. When making a new component be sure to replace

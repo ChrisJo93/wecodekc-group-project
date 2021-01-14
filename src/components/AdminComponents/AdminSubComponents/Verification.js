@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
 import Verify from '../../../components/AdminComponents/VerificationTable/Verify';
+import ControlPanel from '../AdminSubComponents/ControlPanel';
 
 // Basic class component structure for React with default state
 // value setup. When making a new component be sure to replace
@@ -18,7 +19,12 @@ class Verification extends Component {
 
   render() {
     console.log(this.props.store.unverifiedUsers);
-    return <Verify userData={this.props.store.unverifiedUsers} />;
+    return (
+      <>
+        <ControlPanel />
+        <Verify userData={this.props.store.unverifiedUsers} />
+      </>
+    );
   }
 }
 

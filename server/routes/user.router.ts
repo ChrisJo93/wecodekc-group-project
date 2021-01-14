@@ -181,7 +181,7 @@ router.get(
     const queryText: string = `SELECT 
     sex_label,first_name, middle_name, last_name, birth_date,posting_date,
     zip_code,phone_number,company,job_title,motivation_bio,experience_bio,
-    custom_entry_skills,access_label,role_label,
+    custom_entry_skills,access_label,
     ARRAY(SELECT skills_label FROM "user" 
 		JOIN "user_skills" ON "user".id = "user_skills".user_id
 		JOIN "skills" on "user_skills".skills_id = "skills".id
@@ -196,12 +196,11 @@ router.get(
 		WHERE "user".id = 1) AS "time_slot_label_array",
     ARRAY(SELECT link_url FROM "user"
 		JOIN "user_images" ON "user".id = "user_images".user_id 
-JOIN "images" ON "user_images".image_id = "images".id
+    JOIN "images" ON "user_images".image_id = "images".id
 		WHERE "user".id = 1) AS "image_link_array"FROM "user" 
     JOIN "sex" ON "user".sex = "sex".id
     JOIN "access_level" ON "user".access_level = "access_level".id
-    JOIN "volunteer_role" ON "user".volunteer_role = "volunteer_role".id
-    WHERE "user".id = 1;
+    WHERE "user".id = $1;
 `;
 
     pool
