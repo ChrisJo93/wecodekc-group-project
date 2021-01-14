@@ -41,6 +41,7 @@
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-saga": "^1.0.2",
+    "rrule": "^2.6.6",
     "sweetalert": "^2.1.2",
     "sweetalert-react": "^0.4.11",
     "sweetalert2": "^10.13.0",
