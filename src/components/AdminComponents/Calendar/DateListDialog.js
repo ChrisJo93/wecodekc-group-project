@@ -9,7 +9,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
 import PersonIcon from '@material-ui/icons/Person';
-import AddIcon from '@material-ui/icons/Add';
 
 class DateListDialog extends Component {
   state = {
@@ -36,7 +35,7 @@ class DateListDialog extends Component {
           {this.state.events.map((date) => (
             <ListItem
               button
-              onClick={() => this.handleListItemClick(date.id)}
+              onClick={() => this.handleListItemClick(date)}
               // key={date}
             >
               <ListItemAvatar>
@@ -47,8 +46,8 @@ class DateListDialog extends Component {
               <ListItemText primary={date.event_title} />
             </ListItem>
           ))}
-
-          <ListItem
+          {/* This part is for an automatic "add" button to render with list. Might use for extra functionality. Prolly not. */}
+          {/* <ListItem
             autoFocus
             button
             onClick={() => this.handleListItemClick(this.state.events[1].id)}
@@ -59,7 +58,7 @@ class DateListDialog extends Component {
               </Avatar>
             </ListItemAvatar>
             <ListItemText primary="fuck lol" />
-          </ListItem>
+          </ListItem> */}
         </List>
       </Dialog>
     );
