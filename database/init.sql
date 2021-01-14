@@ -84,6 +84,23 @@ CREATE TABLE user_skills (
   user_id INT REFERENCES "user",
   skills_id INT REFERENCES "skills"
 );
+CREATE TABLE event_type (
+  id SERIAL PRIMARY KEY,
+  type_label VARCHAR
+);
+CREATE TABLE "event" (
+  id SERIAL PRIMARY KEY,
+  event_type INT REFERENCES "event_type",
+  event_title VARCHAR(200),
+  count INT,
+  frequency VARCHAR(20),
+  recurring BOOLEAN,
+  creator INT REFERENCES "user",
+  event_address VARCHAR(500),
+  event_start TIMESTAMP WITH TIME ZONE,
+  event_end TIMESTAMP WITH TIME ZONE,
+  event_description TEXT
+);
 CREATE TABLE time_slot_day (
   id SERIAL PRIMARY KEY,
   day_number INT,
@@ -92,10 +109,13 @@ CREATE TABLE time_slot_day (
 CREATE TABLE time_slot (
   id SERIAL PRIMARY KEY,
   day_of_week INT REFERENCES "time_slot_day"(id),
-  time_slot_label VARCHAR(100),
-  date_time_start TIMESTAMP WITH TIME ZONE,
-  date_time_end TIMESTAMP WITH TIME ZONE
-  );
+  time_slot_label VARCHAR(100)
+);
+CREATE TABLE day_slot (
+  id SERIAL PRIMARY KEY,
+  event_id INT REFERENCES "event",
+  time_slot_day INT REFERENCES "time_slot_day"
+);
 CREATE TABLE user_time_slot (
   id SERIAL PRIMARY KEY,
   user_id INT REFERENCES "user", 
@@ -110,23 +130,6 @@ CREATE TABLE user_education_level (
   user_id INT REFERENCES "user",
   education_level INT REFERENCES "education_level"
 );
-CREATE TABLE event_type (
-  id SERIAL PRIMARY KEY,
-  type_label VARCHAR
-);
-CREATE TABLE "event" (
-  id SERIAL PRIMARY KEY,
-  event_type INT REFERENCES "event_type",
-  event_title VARCHAR(200),
-  recurring BOOLEAN,
-  recurring_time_slot INT REFERENCES "time_slot",
-  creator INT REFERENCES "user",
-  event_address VARCHAR(500),
-  event_start TIMESTAMP WITH TIME ZONE,
-  event_end TIMESTAMP WITH TIME ZONE,
-  event_description TEXT
-);
-
 CREATE TABLE event_images (
   id SERIAL PRIMARY KEY,
   event_id INT REFERENCES "event",

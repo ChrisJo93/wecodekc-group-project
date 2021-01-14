@@ -9,6 +9,7 @@ import allUsers from './allUsers.reducer';
 import eventDetailReducer from './event.details.reducer';
 import imagesReducer from './image.reducer';
 import unverifiedUsers from './unverifiedUsers';
+import userEventReducer from './user.event.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   eventReducer,
   eventDetailReducer,
+  userEventReducer,
   allUsers,
   unverifiedUsers,
   registration, //gathers reg information together

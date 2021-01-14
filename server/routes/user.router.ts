@@ -192,7 +192,7 @@ router.get(
 		WHERE "user".id = 1) AS "education_label_array",
     ARRAY(SELECT time_slot_label FROM "user"
 		JOIN "user_time_slot" ON "user".id = "user_time_slot".user_id
-		JOIN "time_slot" ON "user_time_slot".time_slot_id = "time_slot".id
+		JOIN time_slot ON "user_time_slot".time_slot_id = time_slot.id
 		WHERE "user".id = 1) AS "time_slot_label_array",
     ARRAY(SELECT link_url FROM "user"
 		JOIN "user_images" ON "user".id = "user_images".user_id 

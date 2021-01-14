@@ -8,11 +8,13 @@ import { DateTime } from 'luxon';
 //MATERIAL-UI IMPORTS
 import {
   Card,
+  CardActionArea,
   CardMedia,
   CardActions,
   CardContent,
   Button,
   Typography,
+  Grid,
   CardHeader,
   Avatar,
 } from '@material-ui/core';
