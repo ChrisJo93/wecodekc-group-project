@@ -31,6 +31,10 @@ class EventListItem extends Component {
     this.props.history.push(`/event/details/${this.props.event.id}`);
   };
 
+  // const useStyles = makeStyles({
+  //   card: { maxWidth: 345, },
+  //   media: { height: 140, }, });
+
   render() {
     const { event } = this.props;
     const date = DateTime.fromISO(event.event_start);
