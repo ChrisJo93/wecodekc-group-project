@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
+import Grid from '@material-ui/core/Grid';
 
 // Basic class component structure for React with default state
 // value setup. When making a new component be sure to replace
@@ -14,13 +15,17 @@ class ControlPanel extends Component {
   render() {
     const details = this.props.store.userDetailReducer;
     return details.length > 0 ? (
-      <div>
+      <Grid container>
         <h2>{this.state.heading}</h2>
-        <h3>User: {details[0].first_name}</h3>
-        <h3>Phone:{details[0].phone_number}</h3>
-        <h3>hello</h3>
-        <h3>hello</h3>
-      </div>
+        <Grid item lg={3}>
+          <p>User: {details[0].last_name}</p>
+          <p>Company: {details[0].company}</p>
+          <p>Job_title: {details[0].job_title}</p>
+          <p>Phone: {details[0].phone_number}</p>
+          <p>Experience: {details[0].experience_bio}</p>
+          <p>Motivation: {details[0].motivation_bio}</p>
+        </Grid>
+      </Grid>
     ) : (
       <div>
         <h1>Select a user to get details</h1>
