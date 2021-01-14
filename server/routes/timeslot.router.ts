@@ -26,10 +26,10 @@ router.post(
     const dateTimeStart: string = <string>req.body.date_time_start;
     const dateTimeEnd: string = <string>req.body.date_time_end;
 
-    const queryOne: string = `INSERT INTO "time_slot"(day_of_week, time_slot_label, date_time_start, date_time_end ) 
-      VALUES ($1, $2, $3, $4)`;
+    const queryOne: string = `INSERT INTO "time_slot"(day_of_week, time_slot_label) 
+      VALUES ($1, $2)`;
     pool
-      .query(queryOne, [dayOfWeek, timeSlotLabel, dateTimeStart, dateTimeEnd])
+      .query(queryOne, [dayOfWeek, timeSlotLabel])
       .then(() => {
         res.sendStatus(200);
       })
