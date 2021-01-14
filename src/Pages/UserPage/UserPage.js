@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import EventListItem from '../../components/EventListItem/EventListItem';
 
 //custom file imports
 import './user.css';
@@ -28,6 +29,18 @@ class UserPage extends Component {
   }
 
   render() {
+    const userEvent = this.props.store.userEventReducer.map((item, index) => {
+      return (
+        <Grid item sm={12} md={4} lg={4}>
+          <EventListItem
+            key={index}
+            event={item}
+            index={index}
+            {...this.props}
+          />
+        </Grid>
+      );
+    });
     return (
       <Container>
         <Grid container justify="center">
@@ -60,6 +73,7 @@ class UserPage extends Component {
               <Typography gutterBottom>
                 {this.props.store.user.username}'s Events
               </Typography>
+              <Typography>{userEvent}</Typography>
             </div>
           </Grid>
         </Grid>
