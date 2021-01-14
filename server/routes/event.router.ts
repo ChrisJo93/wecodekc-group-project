@@ -25,7 +25,10 @@ router.get(
 router.get(
   '/details/:id',
   (req: Request, res: Response, next: express.NextFunction): void => {
-    const getEventID: string = `SELECT * FROM "event" WHERE id=$1;`;
+    const getEventID: string = `SELECT "event".*, "time_slot_day".id AS "id for day", 
+    "time_slot_day".day_number,"time_slot_day".day_name  FROM "event" JOIN "day_slot" 
+    ON "event".id = "day_slot".event_id JOIN "time_slot_day" ON "day_slot".time_slot_day 
+    = "time_slot_day".id WHERE "event".id = $1;`;
     pool
       .query(getEventID, [req.params.id])
       .then((result) => {
@@ -76,6 +79,27 @@ router.get(
   }
 );
 
+// POST EVENT WITH USER ID
+router.post(
+  '/user',
+  (req: any, res: Response, next: express.NextFunction): void => {
+    console.log(req.body);
+    const queryText: string = `INSERT INTO "user_event" (event_id, user_id, approved) VALUES($1, $2, $3);`;
+    const event_id: number = parseInt(req.body.eventId);
+    const user_id: number = parseInt(req.user.id);
+    const approved: boolean = req.body.approved;
+    pool
+      .query(queryText, [event_id, user_id, approved])
+      .then((result) => {
+        res.sendStatus(200);
+      })
+      .catch((error) => {
+        console.log('error posting events associated with user', error);
+        res.sendStatus(500);
+      });
+  }
+);
+
 // POST EVENT
 
 router.post(
@@ -84,17 +108,18 @@ router.post(
     console.log(req.body);
     const creator: number = parseInt(req.user.id);
     const recurring: boolean = req.body.recurring;
-    const recurring_time_slot: number = parseInt(req.body.recurring_time_slot);
+    const count: number = parseInt(req.body.count);
+    const recurring_time_slot: Array<number> = req.body.recurring_time_slot;
+    const frequency: string = req.body.frequency;
     const event_type: number = parseInt(req.body.event_type);
     const event_address: string = req.body.event_address;
     const event_start: string = req.body.event_start;
     const event_end: string = req.body.event_end;
     const event_description: string = req.body.event_description;
     const event_title: string = req.body.event_title;
-
     const queryOne: string = `INSERT INTO "event"(event_title, event_description, event_start, event_end, 
-      recurring, recurring_time_slot, event_address, event_type, creator) 
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`;
+      recurring, event_address, event_type, creator, count, frequency) 
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id`;
     pool
       .query(queryOne, [
         event_title,
@@ -102,15 +127,30 @@ router.post(
         event_start,
         event_end,
         recurring,
-        recurring_time_slot,
         event_address,
         event_type,
         creator,
+        count,
+        frequency,
       ])
-      .then(() => {
-        res.sendStatus(200);
+      .then((result) => {
+        const eventId = parseInt(result.rows[0].id);
+        let eventPromises: Array<Promise<any>> = [];
+        for (let index = 0; index < recurring_time_slot.length; index++) {
+          let element: number = recurring_time_slot[index];
+          let query: string = `INSERT INTO "day_slot" (event_id, time_slot_day) VALUES ($1, $2)`;
+          eventPromises.push(pool.query(query, [eventId, element]));
+        }
+        Promise.all(eventPromises)
+          .then(() => {
+            res.sendStatus(200);
+          })
+          .catch(() => {
+            res.sendStatus(500);
+          });
       })
-      .catch(() => {
+      .catch((error) => {
+        console.log(error);
         res.sendStatus(500);
       });
   }
@@ -120,22 +160,22 @@ router.post(
 router.put(
   '/update/:id',
   (req: Request, res: Response, next: express.NextFunction): void => {
-    const id: number = parseInt(req.params.id);
+    const id = req.params.id;
     const recurring: boolean = req.body.recurring;
-    const recurring_time_slot: number = parseInt(req.body.recurring_time_slot);
+    const count: number = parseInt(req.body.count);
+    const recurring_time_slot: Array<number> = req.body.recurring_time_slot;
+    const frequency: string = req.body.frequency;
     const event_type: number = parseInt(req.body.event_type);
     const event_address: string = req.body.event_address;
     const event_start: string = req.body.event_start;
     const event_end: string = req.body.event_end;
     const event_description: string = req.body.event_description;
     const event_title: string = req.body.event_title;
-    const editEvent: string = `
-    UPDATE "event" 
+    const query: string = `UPDATE "event" 
     SET event_title=$1, event_description=$2, event_start=$3, event_end=$4, 
-    recurring=$5, recurring_time_slot=$6, event_address=$7, event_type=$8
-    WHERE id=$9;`;
+    recurring=$5, event_address=$7, event_type=$8, frequency=$10, count=$11  WHERE id=$9;`;
     pool
-      .query(editEvent, [
+      .query(query, [
         event_title,
         event_description,
         event_start,
@@ -145,9 +185,24 @@ router.put(
         event_address,
         event_type,
         id,
+        frequency,
+        count,
       ])
       .then((result) => {
-        res.sendStatus(200);
+        const eventId = parseInt(result.rows[0].id);
+        let eventPromises: Array<Promise<any>> = [];
+        for (let index = 0; index < recurring_time_slot.length; index++) {
+          let element: number = recurring_time_slot[index];
+          let query: string = `UPDATE "event" SET event_title=$1, event_description=$2 WHERE id=$3,`;
+          eventPromises.push(pool.query(query, [eventId, element, id]));
+        }
+        Promise.all(eventPromises)
+          .then(() => {
+            res.sendStatus(200);
+          })
+          .catch(() => {
+            res.sendStatus(500);
+          });
       })
       .catch((error) => {
         console.log(error);

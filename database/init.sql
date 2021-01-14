@@ -28,6 +28,9 @@ CREATE TABLE "user" (
   password VARCHAR(100),
   access_level INT DEFAULT 1 REFERENCES "access_level"(id),
   volunteer_role INT REFERENCES "volunteer_role"(id), 
+  registered_first_name VARCHAR(50),
+  registered_middle_name VARCHAR(50),
+  registered_last_name VARCHAR(50),
   first_name VARCHAR(50),
   middle_name VARCHAR(50),
   last_name VARCHAR(50),
@@ -89,14 +92,12 @@ CREATE TABLE time_slot_day (
 CREATE TABLE time_slot (
   id SERIAL PRIMARY KEY,
   day_of_week INT REFERENCES "time_slot_day"(id),
-  time_slot_label VARCHAR(100),
-  date_time_start TIMESTAMP WITH TIME ZONE,
-  date_time_end TIMESTAMP WITH TIME ZONE
+  time_slot_label VARCHAR(100)
   );
 CREATE TABLE user_time_slot (
   id SERIAL PRIMARY KEY,
   user_id INT REFERENCES "user", 
-  time_slot_id INT REFERENCES "time_slot"
+  time_slot_id INT REFERENCES "day_slot"
 );
 CREATE TABLE education_level(
   id SERIAL PRIMARY KEY,
@@ -115,13 +116,20 @@ CREATE TABLE "event" (
   id SERIAL PRIMARY KEY,
   event_type INT REFERENCES "event_type",
   event_title VARCHAR(200),
+  count INT,
+  frequency VARCHAR(20),
   recurring BOOLEAN,
-  recurring_time_slot INT REFERENCES "time_slot",
   creator INT REFERENCES "user",
   event_address VARCHAR(500),
   event_start TIMESTAMP WITH TIME ZONE,
   event_end TIMESTAMP WITH TIME ZONE,
   event_description TEXT
+);
+
+CREATE TABLE day_slot (
+  id SERIAL PRIMARY KEY,
+  event_id INT REFERENCES "event",
+  time_slot_day INT REFERENCES "time_slot_day"
 );
 
 CREATE TABLE event_images (

@@ -8,12 +8,26 @@ import computer from './computer.jpg';
 import computer2 from './computer2.jpg';
 
 class DetailsPage extends Component {
+  state = {
+    newUserEvent: {
+      eventId: this.props.match.params.id,
+      approved: 'false',
+    },
+  };
   componentDidMount() {
     this.props.dispatch({
       type: 'GET_EVENT_DETAILS',
       payload: this.props.match.params.id,
     });
   }
+
+  clickAttendButton = (event) => {
+    event.preventDefault();
+    this.props.dispatch({
+      type: 'POST_USER_EVENT',
+      payload: this.state.newUserEvent,
+    });
+  };
 
   clickBackButton = (event) => {
     this.props.history.push('/events');
@@ -79,7 +93,11 @@ class DetailsPage extends Component {
             </div>
             <Grid container spacing={3}>
               <Grid item xs={6}>
-                <Button variant="contained" color="secondary">
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  onClick={this.clickAttendButton}
+                >
                   Click to attend Event
                 </Button>
               </Grid>

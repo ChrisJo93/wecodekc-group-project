@@ -12,9 +12,9 @@ import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 import FaceIcon from '@material-ui/icons/Face';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import EditIcon from '@material-ui/icons/Edit';
 import swal from 'sweetalert';
-import VerificationDialog from './VerificationDialog';
+import VerificationDialog from '../VerificationTable/VerificationDialog';
 import { FormControl } from '@material-ui/core';
 
 const useRowStyles = makeStyles({
@@ -25,10 +25,9 @@ const useRowStyles = makeStyles({
   },
 });
 
-const emails = ['username@gmail.com', 'user02@gmail.com'];
-
 function UserTable(props) {
-  let rows = props.userData;
+  const toggle = false;
+  const rows = props.userData;
   let permissionLevel;
   let role;
 
@@ -36,7 +35,7 @@ function UserTable(props) {
     setOpen(false);
     setSelectedValue(value);
   };
-
+  const emails = ['username@gmail.com', 'user02@gmail.com'];
   const [open, setOpen] = React.useState(false);
   const [selectedValue, setSelectedValue] = React.useState(emails[1]);
 
@@ -54,6 +53,9 @@ function UserTable(props) {
 
   const handleButton = (selection, id) => (e) => {
     switch (selection) {
+      case 'toggleEdit':
+        toggle = true;
+        break;
       case 'finalize':
         permissionLevel && role !== undefined
           ? permissionLevel === 4
@@ -105,10 +107,9 @@ function UserTable(props) {
             <TableCell>First Name</TableCell>
             <TableCell>Last Name</TableCell>
             <TableCell>Email</TableCell>
-            <TableCell>Background Check Permission</TableCell>
-            <TableCell>Role </TableCell>
+            <TableCell>Volunteer Role </TableCell>
             <TableCell>Permissions</TableCell>
-            <TableCell>Finalize</TableCell>
+            <TableCell>Account Edit</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -132,14 +133,7 @@ function UserTable(props) {
               </TableCell>
               <TableCell>{row.first_name}</TableCell>
               <TableCell>{row.last_name}</TableCell>
-
               <TableCell>{row.email}</TableCell>
-
-              <TableCell>
-                {row.background_check_permission === true
-                  ? 'Permission Granted'
-                  : '! Denied !'}
-              </TableCell>
               <TableCell>
                 {
                   <FormControl style={{ minWidth: 120 }}>
@@ -177,10 +171,10 @@ function UserTable(props) {
                       <MenuItem value="">
                         <em>None</em>
                       </MenuItem>
-                      <MenuItem value={6}>Reject</MenuItem>
                       <MenuItem value={2}>Volunteer</MenuItem>
                       <MenuItem value={3}>Mentor</MenuItem>
                       <MenuItem value={4}>ADMIN</MenuItem>
+                      <MenuItem value={6}>REMOVE</MenuItem>
                     </Select>
                   </FormControl>
                 }
@@ -191,7 +185,7 @@ function UserTable(props) {
                   color="secondary"
                   onClick={handleButton('finalize', row.id)}
                 >
-                  <CheckCircleIcon />
+                  <EditIcon />
                 </Button>
               </TableCell>
             </TableRow>
