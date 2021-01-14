@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+
+//custom file imports
 import EventListItem from '../../components/EventListItem/EventListItem';
+import EventsBar from '../../components/EventsBar/EventsBar';
 
-// import './EventsPage.css';
-
+//material ui imports
 import {
   Grid,
   Typography,
@@ -13,9 +15,6 @@ import {
   MenuItem,
   Select,
 } from '@material-ui/core';
-
-import computer from './computer.jpg';
-import computer2 from './computer2.jpg';
 
 class EventsPage extends Component {
   state = {
@@ -51,17 +50,7 @@ class EventsPage extends Component {
 
     return (
       <div style={{ padding: 20 }}>
-        <Grid container justify="center" alignItems="center">
-          <Grid item xs={4} sm={4} md={4} lg={4}>
-            <img src={computer2} alt="coding" />
-          </Grid>
-          <Grid item xs={4} sm={4} md={4} lg={4}>
-            <img src={computer} alt="coding" />
-          </Grid>
-          <Grid item xs={4} sm={4} md={4} lg={4}>
-            <img src={computer2} alt="coding" />
-          </Grid>
-        </Grid>
+        <EventsBar />
         <Grid container justify="space-evenly">
           <Grid item>
             <Typography variant="h3" component="h2" gutterBottom>
@@ -70,7 +59,7 @@ class EventsPage extends Component {
           </Grid>
           <Grid item>
             <FormControl variant="outlined" fullWidth>
-              <InputLabel id="filter">Filter By</InputLabel>
+              <InputLabel id="filter">Sort By</InputLabel>
               <Select
                 style={{ minWidth: 140 }}
                 labelId="filter"

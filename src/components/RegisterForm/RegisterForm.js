@@ -10,7 +10,6 @@ import {
   TextField,
   FormControl,
   InputLabel,
-  Input,
   Select,
   MenuItem,
   Button,
@@ -24,7 +23,7 @@ class RegisterForm extends Component {
     first_name: '',
     middle_name: '',
     last_name: '',
-    birth_date: '',
+    birth_date: '2000-01-01',
     sex: '',
     race: '',
     email: '',
@@ -146,8 +145,9 @@ class RegisterForm extends Component {
                     <TextField
                       fullWidth
                       id="birth_date"
-                      label="birth_date"
+                      // label="birth date"
                       type="date"
+                      placeholder="birth date"
                       value={this.state.birth_date}
                       onChange={this.handleInputChangeFor('birth_date')}
                       // defaultValue="2000-01-01"
@@ -275,17 +275,20 @@ class RegisterForm extends Component {
                     </div>
                   </Box>
                   <Box mb={2}>
-                    <FormControl variant="outlined">
+                    <FormControl variant="outlined" fullWidth>
                       <InputLabel id="education_level">
                         Highest Level of Education
                       </InputLabel>
                       <Select
+                        // style={{
+                        //   border: 'solid grey',
+                        // }}
                         labelId="education_level"
                         id="education_level"
                         multiple
                         value={this.state.education_level}
                         onChange={this.handleInputChangeFor('education_level')}
-                        input={<Input id="select-multiple-chip" />}
+                        // input={<Input id="select-multiple-chip" />}
                         renderValue={(selected) => (
                           <div>
                             {selected.map((value) => (

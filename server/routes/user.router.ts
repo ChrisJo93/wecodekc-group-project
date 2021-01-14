@@ -39,7 +39,7 @@ router.post(
     const zipCode: number = parseInt(req.body.zip_code);
     let newUserId: number;
 
-    const queryOne: string = `INSERT INTO "user"(username, password,  first_name, middle_name,
+    const queryOne: string = `INSERT INTO "user" (username, password,  first_name, middle_name,
       last_name, race, company, job_title, motivation_bio, experience_bio, custom_entry_skills,
       background_check_permission, sex, zip_code, access_level,
       email, registered_first_name, registered_middle_name, registered_last_name) 
@@ -101,34 +101,30 @@ router.post(
 //making minor change for merge issue
 
 router.put(
-  '/register/:id',
-  (req: Request, res: Response, next: express.NextFunction): void => {
-    const password: string = encryptPassword(req.body.password);
-    const company: string = <string>req.body.company;
-    const jobTitle: string = <string>req.body.job_title;
-    const motivationBio: string = <string>req.body.motivation_bio;
-    const experienceBio: string = <string>req.body.experience_bio;
-    const customSkills: string = <string>req.body.custom_entry_skills;
+  '/update',
+  (req: any, res: Response, next: express.NextFunction): void => {
+    //TODO GET THE IMAGE LINK!
+    // const image: string = <string>req.body.imagelink;
+    console.log(req.body);
+    const first_name: string = <string>req.body.first_name;
+    const last_name: string = <string>req.body.last_name;
     const skills: Array<number> = req.body.skills;
-    const timeSlot: Array<number> = req.body.time_slot;
-    const educationLevel: Array<number> = req.body.education_level;
-    const backgroundCheck: boolean = req.body.background_check_permission;
+    const phone_number: string = <string>req.body.phone_number;
+    const email: string = <string>req.body.email;
     const zipCode: number = parseInt(req.body.zip_code);
-    const userId: number = parseInt(req.params.id);
+    const userId: number = req.user.id;
 
-    const queryOne: string = `UPDATE "USER" SET (password = $1, company = $2, job_title = $3, motivation_bio = $4, 
-      experience_bio = $5, custom_entry_skills = $6, background_check_permission = $7, zip_code = $8);`;
+    const queryOne: string = `UPDATE "user" SET first_name = $1, last_name = $2, zip_code = $3, phone_number = $4, email = $5 WHERE id = $6;`;
+    const queryArray: [string, string, number, string, string, number] = [
+      first_name,
+      last_name,
+      zipCode,
+      phone_number,
+      email,
+      userId,
+    ];
     pool
-      .query(queryOne, [
-        password,
-        company,
-        jobTitle,
-        motivationBio,
-        experienceBio,
-        customSkills,
-        backgroundCheck,
-        zipCode,
-      ])
+      .query(queryOne, queryArray)
       .then((result) => {
         let userPromises: Array<Promise<any>> = [];
         for (let index = 0; index < skills.length; index++) {
@@ -136,16 +132,16 @@ router.put(
           let query: string = `INSERT INTO "user_skills" (user_id, skills_id) VALUES ($1, $2)`;
           userPromises.push(pool.query(query, [userId, element]));
         }
-        for (let index = 0; index < timeSlot.length; index++) {
-          let element: number = timeSlot[index];
-          let query: string = `INSERT INTO "user_time_slot" (user_id, time_slot_id) VALUES ($1, $2)`;
-          userPromises.push(pool.query(query, [userId, element]));
-        }
-        for (let index = 0; index < educationLevel.length; index++) {
-          let element: number = educationLevel[index];
-          let query: string = `INSERT INTO "user_education_level" (user_id, education_level) VALUES ($1, $2)`;
-          userPromises.push(pool.query(query, [userId, element]));
-        }
+        // for (let index = 0; index < timeSlot.length; index++) {
+        //   let element: number = timeSlot[index];
+        //   let query: string = `INSERT INTO "user_time_slot" (user_id, time_slot_id) VALUES ($1, $2)`;
+        //   userPromises.push(pool.query(query, [userId, element]));
+        // }
+        // for (let index = 0; index < educationLevel.length; index++) {
+        //   let element: number = educationLevel[index];
+        //   let query: string = `INSERT INTO "user_education_level" (user_id, education_level) VALUES ($1, $2)`;
+        //   userPromises.push(pool.query(query, [userId, element]));
+        // }
         Promise.all(userPromises)
           .then(() => {
             res.sendStatus(200);
@@ -181,7 +177,7 @@ router.get(
     const queryText: string = `SELECT 
     sex_label,first_name, middle_name, last_name, birth_date,posting_date,
     zip_code,phone_number,company,job_title,motivation_bio,experience_bio,
-    custom_entry_skills,access_label,role_label,
+    custom_entry_skills,access_label,
     ARRAY(SELECT skills_label FROM "user" 
 		JOIN "user_skills" ON "user".id = "user_skills".user_id
 		JOIN "skills" on "user_skills".skills_id = "skills".id
@@ -196,12 +192,11 @@ router.get(
 		WHERE "user".id = 1) AS "time_slot_label_array",
     ARRAY(SELECT link_url FROM "user"
 		JOIN "user_images" ON "user".id = "user_images".user_id 
-JOIN "images" ON "user_images".image_id = "images".id
+    JOIN "images" ON "user_images".image_id = "images".id
 		WHERE "user".id = 1) AS "image_link_array"FROM "user" 
     JOIN "sex" ON "user".sex = "sex".id
     JOIN "access_level" ON "user".access_level = "access_level".id
-    JOIN "volunteer_role" ON "user".volunteer_role = "volunteer_role".id
-    WHERE "user".id = 1;
+    WHERE "user".id = $1;
 `;
 
     pool

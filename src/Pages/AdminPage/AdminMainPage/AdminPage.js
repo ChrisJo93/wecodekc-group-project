@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
-import SideBar from '../AdminSidebar/Sidebar';
+import SideBar from '../../../components/AdminComponents/AdminSidebar/Sidebar';
 
 //CUSTOM MATERIAL UI IMPORTS
+import { LinearProgress } from '@material-ui/core';
 
 class AdminPage extends Component {
   state = {
@@ -33,12 +34,11 @@ class AdminPage extends Component {
     const userData = this.props.store.allUsers;
     return this.props.store.allUsers.length > 0 ? (
       //displays the navigation, sidebar menu, and {display} <- which is switched above.
-
       <>
         <SideBar />
       </>
     ) : (
-      <p>...loading</p>
+      <LinearProgress color="secondary" />
     );
   }
 }

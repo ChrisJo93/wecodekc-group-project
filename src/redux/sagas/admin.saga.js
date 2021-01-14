@@ -38,9 +38,24 @@ function* verify(action) {
   }
 }
 
+function* getAll(action) {
+  try {
+    const response = yield axios.get(`/api/user/all/${action.payload}`);
+    console.log('look here <<<<<<', response.data);
+    yield put({
+      type: 'SET_USER_DETAIL',
+      payload: response.data,
+    });
+  } catch (err) {
+    console.log('ERROR UPDATING EVENT', err);
+    yield put({ type: 'PUT_FAILED' });
+  }
+}
+
 function* adminSaga() {
   yield takeLatest('GET_ADMIN_DATA', dataGrab);
   yield takeLatest('VERIFY_USER', verify);
+  yield takeLatest('GET_USER_DETAIL', getAll);
 }
 
 export default adminSaga;

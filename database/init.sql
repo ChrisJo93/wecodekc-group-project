@@ -119,7 +119,7 @@ CREATE TABLE day_slot (
 CREATE TABLE user_time_slot (
   id SERIAL PRIMARY KEY,
   user_id INT REFERENCES "user", 
-  time_slot_id INT REFERENCES "day_slot"
+  time_slot_id INT REFERENCES "time_slot"
 );
 CREATE TABLE education_level(
   id SERIAL PRIMARY KEY,
@@ -135,6 +135,7 @@ CREATE TABLE event_images (
   event_id INT REFERENCES "event",
   image_id INT REFERENCES "images"
 );
+
 CREATE TABLE user_event (
   id SERIAL PRIMARY KEY,
   user_id INT REFERENCES "user",
