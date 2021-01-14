@@ -84,16 +84,16 @@ CREATE TABLE user_skills (
   user_id INT REFERENCES "user",
   skills_id INT REFERENCES "skills"
 );
-CREATE TABLE time_slot_day (
-  id SERIAL PRIMARY KEY,
-  day_number INT,
-  day_name VARCHAR(10)
-);
 CREATE TABLE time_slot (
   id SERIAL PRIMARY KEY,
   day_of_week INT REFERENCES "time_slot_day"(id),
   time_slot_label VARCHAR(100)
   );
+CREATE TABLE time_slot_day (
+  id SERIAL PRIMARY KEY,
+  day_number INT,
+  day_name VARCHAR(10)
+);
 CREATE TABLE user_time_slot (
   id SERIAL PRIMARY KEY,
   user_id INT REFERENCES "user", 

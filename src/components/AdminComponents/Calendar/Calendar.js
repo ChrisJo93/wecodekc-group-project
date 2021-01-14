@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
-import Button from '@material-ui/core/Button';
+import { withRouter } from 'react-router-dom';
 
 //calendar imports
 import FullCalendar from '@fullcalendar/react';
@@ -22,11 +22,7 @@ import { DateTime } from 'luxon';
 import CreateEventDialog from './CreateEventDialog';
 import DateListDialog from './DateListDialog';
 
-// import DateListDialog from './DateListDialog';
-
 class Calendar extends Component {
-  // calendarComponentRef = React.createRef(); not certain what this is doing but keeping it for now.
-
   state = {
     open: false,
     selectedValue: 'Nothing Selected',
@@ -109,30 +105,27 @@ class Calendar extends Component {
 
   handleClickOpen = () => {
     this.setState({
+      //toggle for open close
       open: !this.state.open,
     });
   };
 
-  handleClose = (value) => (event) => {
-    this.setState(
-      {
-        open: false,
-        selectedValue:
-          value == (null, undefined, '') ? value : this.state.selectedValue,
-      },
-      () => {
-        console.log(this.state.selectedValue, value);
-      }
-    );
+  handleClose = (value) => {
+    this.setState({
+      open: false,
+      selectedValue:
+        //allows click outside of modal to close it. Prevents load bug.
+        value == (null, undefined, '') ? value : this.state.selectedValue,
+    });
+    //push only when an event id is present
+    if (value > 0) {
+      this.props.history.push(`/event/details/${value}`);
+    }
   };
 
   render() {
     return (
       <div className="calendar">
-        <div className="calendar-top">
-          <button onClick={this.gotoPast}>go to a date in the past</button>
-        </div>
-
         <CreateEventDialog />
 
         <div>
@@ -168,4 +161,4 @@ class Calendar extends Component {
   }
 }
 
-export default connect(mapStoreToProps)(Calendar);
+export default withRouter(connect(mapStoreToProps)(Calendar));
