@@ -45,12 +45,10 @@ router.get(
 router.get(
   '/calendar/:date',
   (req: any, res: Response, next: express.NextFunction): void => {
-    console.log(req.params.date);
-    const dateQuery = `'%${new Date(req.params.date).getFullYear()}-%${
-      new Date(req.params.date).getMonth() + 1
-    }-%${new Date(req.params.date).getDate()}%'`;
-    console.log('in server', dateQuery);
-    const getEventID: string = `SELECT * FROM event WHERE event_start::text LIKE ${dateQuery};`;
+    console.log('in server', req.params.date);
+    const date = `'${req.params.date}%'`;
+
+    const getEventID: string = `SELECT * FROM event WHERE event_start::text LIKE ${date}`;
     pool
       .query(getEventID)
       .then((result) => {
