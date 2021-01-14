@@ -68,6 +68,7 @@ class UserPage extends Component {
                 <Typography gutterBottom>
                   {this.props.store.user.username}'s Events
                 </Typography>
+                {userEvent}
               </div>
             </Grid>
           </Grid>
