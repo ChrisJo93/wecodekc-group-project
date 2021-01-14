@@ -21,6 +21,23 @@ router.get(
   }
 );
 
+// GET EVENTS FOR DETAILS PAGE - ALEX
+router.get(
+  '/:id',
+  (req: Request, res: Response, next: express.NextFunction): void => {
+    const getEvent: string = `SELECT * FROM "event";`;
+    pool
+      .query(getEvent)
+      .then((result) => {
+        res.send(result.rows);
+      })
+      .catch((error) => {
+        console.log('error getting events', error);
+        res.sendStatus(500);
+      });
+  }
+);
+
 // GET EVENT BY ID
 router.get(
   '/details/:id',
