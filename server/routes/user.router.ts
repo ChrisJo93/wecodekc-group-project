@@ -196,7 +196,7 @@ router.get(
 		WHERE "user".id = 1) AS "time_slot_label_array",
     ARRAY(SELECT link_url FROM "user"
 		JOIN "user_images" ON "user".id = "user_images".user_id 
-	  JOIN "images" ON "user_images".image_id = "images".id
+JOIN "images" ON "user_images".image_id = "images".id
 		WHERE "user".id = 1) AS "image_link_array"FROM "user" 
     JOIN "sex" ON "user".sex = "sex".id
     JOIN "access_level" ON "user".access_level = "access_level".id
