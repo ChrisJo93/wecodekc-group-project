@@ -9,18 +9,13 @@ import ProfileInfoPanel from './ProfileInfoPanel';
 import UserPageEdit from '../../components/UserPageEdit/UserPageEdit';
 
 //custom MATERIAL-UI imports
-import { Grid, Typography, Container } from '@material-ui/core';
+import { Grid, Typography, Container, Button } from '@material-ui/core';
+import UserEventItem from './UserEventItem';
 
 class UserPage extends Component {
   state = {
     edit: false,
     event: '',
-    name: 'Chris',
-    role: 'A dude',
-    zipcode: '71101',
-    phone: '318-555-1029',
-    email: 'adude@gmail.com',
-    skills: 'C#, Python, ',
     image:
       'https://wecodekc.s3.us-east-2.amazonaws.com/default-profile-icon-16.jpg',
   };
@@ -39,15 +34,19 @@ class UserPage extends Component {
     });
   };
 
+  removeEvent = (e) => {
+    console.log('remove clicked');
+  };
+
   render() {
     const userEvent = this.props.store.userEventReducer.map((item, index) => {
       return (
-        <Grid item sm={12} md={4} lg={4}>
-          <EventListItem
-            key={index}
+        <Grid item sm={12}>
+          <UserEventItem
             event={item}
             index={index}
             {...this.props}
+            className="height"
           />
         </Grid>
       );
@@ -65,9 +64,12 @@ class UserPage extends Component {
             </Grid>
             <Grid item lg={8} md={8} sm={8} xs={12}>
               <div className="profile-area">
-                <Typography gutterBottom>
+                <Typography variant="h4" gutterBottom>
                   {this.props.store.user.username}'s Events
                 </Typography>
+                <Grid container spacing={3}>
+                  {userEvent}
+                </Grid>
               </div>
             </Grid>
           </Grid>
