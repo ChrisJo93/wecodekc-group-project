@@ -12,26 +12,14 @@ import PersonIcon from '@material-ui/icons/Person';
 import { CircularProgress } from '@material-ui/core';
 
 class DateListDialog extends Component {
-  state = {
-    events: this.props.store.dateReducer,
-  };
-
-  handleClose = () => {
-    this.props.onClose(this.props.selectedValue);
-  };
-
   handleListItemClick = (value) => {
     this.props.onClose(value);
   };
 
   render() {
     return (
-      <Dialog
-        onClose={this.props.onClose}
-        aria-labelledby="simple-dialog-title"
-        open={this.props.open}
-      >
-        <DialogTitle id="simple-dialog-title">Select An Event</DialogTitle>
+      <Dialog onClose={this.props.onClose} open={this.props.open}>
+        <DialogTitle>Select An Event</DialogTitle>
 
         <List>
           {this.props.store.dateReducer <= 0 ? (
@@ -40,7 +28,11 @@ class DateListDialog extends Component {
             this.props.store.dateReducer.map((date, index) => (
               <ListItem
                 button
-                onClick={() => this.handleListItemClick(date.id)}
+                onClick={() =>
+                  this.handleListItemClick(
+                    date.id ? date.id : console.log('no selection made')
+                  )
+                }
                 key={index}
               >
                 <ListItemAvatar>
@@ -52,19 +44,6 @@ class DateListDialog extends Component {
               </ListItem>
             ))
           )}
-          {/* This part is for an automatic "add" button to render with list. Might use for extra functionality. Prolly not. */}
-          {/* <ListItem
-            autoFocus
-            button
-            onClick={() => this.handleListItemClick(this.state.events[1].id)}
-          >
-            <ListItemAvatar>
-              <Avatar>
-                <AddIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText primary="fuck lol" />
-          </ListItem> */}
         </List>
       </Dialog>
     );
