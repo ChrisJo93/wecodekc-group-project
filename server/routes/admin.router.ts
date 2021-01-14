@@ -72,7 +72,7 @@ router.put(
           subject: 'WeCodeKC approves you!', // Subject line
           html: `<div>
             <h1>Hello, ${first_name}!</h1>
-            <p>You have been approved and can now sign up for events! Thanks for joining us at WeCodeKC</p>
+            <p>You have been approved as a user and can now sign up for events! Thanks for joining us at WeCodeKC.</p>
           </div>`, // plain text body
         };
 
