@@ -122,7 +122,7 @@ class Calendar extends Component {
   handleClose = (value) => {
     this.setState({
       open: false,
-      selectedValue: value,
+      selectedValue: value ? value : 'nothing here',
     });
   };
 
@@ -134,6 +134,7 @@ class Calendar extends Component {
         </div>
 
         <CreateEventDialog />
+
         <div>
           Selected: {this.state.selectedValue}
           <br />
