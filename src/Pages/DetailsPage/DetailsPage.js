@@ -10,21 +10,9 @@ import UpdateDetailsDialog from './UpdateDetailsDialog';
 
 class DetailsPage extends Component {
   state = {
-    showForm: false,
-
     newUserEvent: {
       eventId: this.props.match.params.id,
       approved: 'false',
-    },
-    eventPayload: {
-      event_title: '',
-      event_description: '',
-      event_address: '',
-      event_start: '',
-      event_end: '',
-      recurring: false,
-      event_type: '1',
-      recurring_time_slot: 1,
     },
   };
   componentDidMount() {
@@ -44,48 +32,6 @@ class DetailsPage extends Component {
 
   clickBackButton = (event) => {
     this.props.history.push('/events');
-  };
-
-  handleClose = (value) => (event) => {
-    this.setState(
-      {
-        open: false,
-        selectedValue:
-          value == (null, undefined, '') ? value : this.state.selectedValue,
-      },
-      () => {
-        console.log(this.state.selectedValue, value);
-      }
-    );
-  };
-
-  showForm = (event) => {
-    this.setState({
-      showForm: !this.state.showForm,
-    });
-  };
-
-  updateReview = (event) => {
-    event.preventDefault();
-    this.props.dispatch({
-      type: 'UPDATE_EVENT',
-      payload: {
-        ...this.state.eventPayload,
-      },
-    });
-    this.setState({
-      eventPayload: {
-        event_title: '',
-        event_description: '',
-        event_address: '',
-        event_start: '',
-        event_end: '',
-        recurring: false,
-        event_type: '1',
-        recurring_time_slot: 1,
-      },
-    });
-    this.props.history.push(`/event/details/${this.props.match.params.id}`);
   };
 
   render() {
