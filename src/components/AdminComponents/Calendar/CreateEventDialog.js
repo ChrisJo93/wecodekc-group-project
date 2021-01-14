@@ -36,6 +36,7 @@ class CreateEventDialog extends Component {
     },
   };
 
+  //posts event and closes dialog
   postEvent = (event) => {
     this.props.dispatch({
       type: 'POST_EVENTS',
@@ -44,19 +45,21 @@ class CreateEventDialog extends Component {
     this.handleClose();
   };
 
+  //opens the dialog
   handleClickOpen = () => {
     this.setState({
       open: true,
     });
-    console.log('getting there');
   };
 
+  //closes the dialog, grabs date id as selectedValue
   handleClose = (value) => {
     this.setState({
       open: false,
       selectedValue: value,
     });
   };
+
   //handle text inputs
   handleInputChangeFor = (propertyName) => (event) => {
     this.setState({

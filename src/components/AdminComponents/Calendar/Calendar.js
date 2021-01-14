@@ -29,7 +29,7 @@ class Calendar extends Component {
 
   state = {
     open: false,
-    selectedValue: '',
+    selectedValue: 'Nothing Selected',
     calendarWeekends: true,
     calendarEvents: [
       {
@@ -39,7 +39,6 @@ class Calendar extends Component {
       },
     ],
     showForm: false,
-    add: 'https://image.flaticon.com/icons/png/512/42/42953.png',
   };
 
   //grabbing all events and adding to event array
@@ -48,7 +47,6 @@ class Calendar extends Component {
     axios
       .get('/api/event')
       .then((response) => {
-        //cycling through entire array
         for (let i = 0; i < response.data.length; i++) {
           if (response.data[i].recurring) {
           }
@@ -57,15 +55,16 @@ class Calendar extends Component {
             calendarEvents: this.state.calendarEvents.concat({
               // creates a new event object
               title: response.data[i].event_title,
-              // start: response.data[i].event_start,
-              // end: response.data[i].event_end,
-              rrule: {
-                count: 1,
-                freq: 'weekly',
-                interval: 1,
-                byweekday: [],
-                dtstart: response.data[i].event_start,
-              },
+              start: response.data[i].event_start,
+              end: response.data[i].event_end,
+              //We will use rrule for mock data if we can't solve issue before Sunday.
+              // rrule: {
+              //   count: 2,
+              //   freq: 'weekly',
+              //   interval: 3,
+              //   byweekday: [],
+              //   dtstart: response.data[i].event_start,
+              // },
             }),
           });
         }
@@ -83,7 +82,6 @@ class Calendar extends Component {
       type: 'GET_DATES',
       payload: fixedDate,
     });
-    console.log(fixedDate);
   };
 
   showForm = (event) => {
@@ -93,13 +91,9 @@ class Calendar extends Component {
   };
 
   handleDateClick = (argument) => {
-    //argument is a built in object with date attached
+    //sending date to date fixer function (sendDate)
     this.sendDate(argument.dateStr);
-    // if (
-    //   window.confirm(
-    //     'Would you like to add an event to ' + argument.dateStr + ' ?'
-    //   )
-    // ) {
+
     this.setState({
       // add new event data
       calendarEvents: this.state.calendarEvents.concat({
@@ -109,7 +103,7 @@ class Calendar extends Component {
         end: this.state.calendarEvents.end,
       }),
     });
-
+    //opens event list modal
     this.handleClickOpen();
   };
 
@@ -119,11 +113,17 @@ class Calendar extends Component {
     });
   };
 
-  handleClose = (value) => {
-    this.setState({
-      open: false,
-      selectedValue: value ? value : 'nothing here',
-    });
+  handleClose = (value) => (event) => {
+    this.setState(
+      {
+        open: false,
+        selectedValue:
+          value == (null, undefined, '') ? value : this.state.selectedValue,
+      },
+      () => {
+        console.log(this.state.selectedValue, value);
+      }
+    );
   };
 
   render() {
@@ -136,15 +136,7 @@ class Calendar extends Component {
         <CreateEventDialog />
 
         <div>
-          Selected: {this.state.selectedValue}
           <br />
-          <Button
-            variant="outlined"
-            color="primary"
-            onClick={this.handleClickOpen}
-          >
-            Open simple dialog
-          </Button>
           <DateListDialog
             open={this.state.open}
             onClose={this.handleClose}
