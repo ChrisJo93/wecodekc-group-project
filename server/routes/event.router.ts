@@ -26,8 +26,8 @@ router.get(
   '/details/:id',
   (req: Request, res: Response, next: express.NextFunction): void => {
     const getEventID: string = `SELECT "event".*, "time_slot_day".id AS "id for day", 
-    "time_slot_day".day_number,"time_slot_day".day_name  FROM "event" JOIN "event_recurring_time_slot" 
-    ON "event".id = "event_recurring_time_slot".event_id JOIN "time_slot_day" ON "event_recurring_time_slot".time_slot_day 
+    "time_slot_day".day_number,"time_slot_day".day_name  FROM "event" JOIN "day_slot" 
+    ON "event".id = "day_slot".event_id JOIN "time_slot_day" ON "day_slot".time_slot_day 
     = "time_slot_day".id WHERE "event".id = $1;`;
     pool
       .query(getEventID, [req.params.id])
@@ -140,7 +140,7 @@ router.post(
         let eventPromises: Array<Promise<any>> = [];
         for (let index = 0; index < recurring_time_slot.length; index++) {
           let element: number = recurring_time_slot[index];
-          let query: string = `INSERT INTO "event_recurring_time_slot" (event_id, time_slot_day) VALUES ($1, $2)`;
+          let query: string = `INSERT INTO "day_slot" (event_id, time_slot_day) VALUES ($1, $2)`;
           eventPromises.push(pool.query(query, [eventId, element]));
         }
         Promise.all(eventPromises)
