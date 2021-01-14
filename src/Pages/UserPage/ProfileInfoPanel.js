@@ -10,6 +10,8 @@ class ProfileInfoPanel extends Component {
     return (
       <div>
         <div>
+          {/* TODO - CONDITIONAL RENDER PROFILE PIC IF IMAGE EXISTS */}
+          {/* {this.props.store.userReducer.image_link } */}
           <img
             src={
               'https://wecodekc.s3.us-east-2.amazonaws.com/default-profile-icon-16.jpg'
@@ -22,6 +24,7 @@ class ProfileInfoPanel extends Component {
           <Typography gutterBottom>
             {this.props.store.user.first_name} {this.props.store.user.last_name}
           </Typography>
+          {/* TODO ROLE FROM USER REDUCER */}
           <Typography gutterBottom>HARDCODE ROLE</Typography>
           <Typography gutterBottom>{this.props.store.user.zip_code}</Typography>
           <Typography gutterBottom>
@@ -29,6 +32,7 @@ class ProfileInfoPanel extends Component {
           </Typography>
           <Typography gutterBottom>{this.props.store.user.email}</Typography>
           <Typography gutterBottom>Skills:</Typography>
+          {/* TODO SKILLS FROM USER REDUCER */}
           {/* <Typography gutterBottom>{skills}</Typography> */}
           <Button
             color="secondary"
