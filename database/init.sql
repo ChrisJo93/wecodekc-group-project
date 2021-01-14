@@ -84,30 +84,8 @@ CREATE TABLE user_skills (
   user_id INT REFERENCES "user",
   skills_id INT REFERENCES "skills"
 );
-CREATE TABLE time_slot (
-  id SERIAL PRIMARY KEY,
-  day_of_week INT REFERENCES "time_slot_day"(id),
-  time_slot_label VARCHAR(100)
-  );
-CREATE TABLE time_slot_day (
-  id SERIAL PRIMARY KEY,
-  day_number INT,
-  day_name VARCHAR(10)
-);
-CREATE TABLE user_time_slot (
-  id SERIAL PRIMARY KEY,
-  user_id INT REFERENCES "user", 
-  time_slot_id INT REFERENCES "day_slot"
-);
-CREATE TABLE education_level(
-  id SERIAL PRIMARY KEY,
-  education_label varchar(100)
-);
-CREATE TABLE user_education_level (
-  id SERIAL PRIMARY KEY,
-  user_id INT REFERENCES "user",
-  education_level INT REFERENCES "education_level"
-);
+<<<<<<< HEAD
+=======
 CREATE TABLE event_type (
   id SERIAL PRIMARY KEY,
   type_label VARCHAR
@@ -125,13 +103,44 @@ CREATE TABLE "event" (
   event_end TIMESTAMP WITH TIME ZONE,
   event_description TEXT
 );
-
+CREATE TABLE time_slot_day (
+  id SERIAL PRIMARY KEY,
+  day_number INT,
+  day_name VARCHAR(10)
+);
+>>>>>>> develop
+CREATE TABLE time_slot (
+  id SERIAL PRIMARY KEY,
+  day_of_week INT REFERENCES "time_slot_day"(id),
+  time_slot_label VARCHAR(100)
+<<<<<<< HEAD
+  );
+CREATE TABLE time_slot_day (
+  id SERIAL PRIMARY KEY,
+  day_number INT,
+  day_name VARCHAR(10)
+=======
+);
 CREATE TABLE day_slot (
   id SERIAL PRIMARY KEY,
   event_id INT REFERENCES "event",
   time_slot_day INT REFERENCES "time_slot_day"
+>>>>>>> develop
 );
-
+CREATE TABLE user_time_slot (
+  id SERIAL PRIMARY KEY,
+  user_id INT REFERENCES "user", 
+  time_slot_id INT REFERENCES "day_slot"
+);
+CREATE TABLE education_level(
+  id SERIAL PRIMARY KEY,
+  education_label varchar(100)
+);
+CREATE TABLE user_education_level (
+  id SERIAL PRIMARY KEY,
+  user_id INT REFERENCES "user",
+  education_level INT REFERENCES "education_level"
+);
 CREATE TABLE event_images (
   id SERIAL PRIMARY KEY,
   event_id INT REFERENCES "event",

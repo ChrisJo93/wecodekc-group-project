@@ -67,11 +67,11 @@ INSERT INTO "skills" (skills_label) VALUES
   (5 , 'Friday'),
   (6 , 'Saturday');
 
-    INSERT INTO "event_type" (type_label) VALUES 
+  INSERT INTO "event_type" (type_label) VALUES 
   ('Course'),
   ('Event');
 
-      INSERT INTO "languages" (languages_label) VALUES 
+  INSERT INTO "languages" (languages_label) VALUES 
   ('English'),
   ('Spanish'),
   ('German'),
@@ -80,4 +80,12 @@ INSERT INTO "skills" (skills_label) VALUES
   ('Chinese Cantonese'),
   ('Japanese'),
   ('Arabic');
- 
+
+  INSERT INTO "time_slot"(day_of_week, time_slot_label) VALUES
+  (2, '5pm to 9pm'),
+  (3, '5pm to 9pm'),
+  (4, '5pm to 9pm'),
+  (5, '5pm to 9pm'),
+  (6, '5pm to 9pm'),
+  (7, '10am to 2pm');
+
