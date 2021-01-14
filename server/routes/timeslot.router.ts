@@ -26,7 +26,7 @@ router.post(
     const dateTimeStart: string = <string>req.body.date_time_start;
     const dateTimeEnd: string = <string>req.body.date_time_end;
 
-    const queryOne: string = `INSERT INTO day_slot(day_of_week, time_slot_label) 
+    const queryOne: string = `INSERT INTO time_slot(day_of_week, time_slot_label) 
       VALUES ($1, $2)`;
     pool
       .query(queryOne, [dayOfWeek, timeSlotLabel])
@@ -42,7 +42,7 @@ router.post(
 router.delete(
   '/:id',
   (req: Request, res: Response, next: express.NextFunction): void => {
-    const deleteTimeSlot: string = `DELETE FROM day_slot WHERE "id" =$1;`;
+    const deleteTimeSlot: string = `DELETE FROM time_slot WHERE "id" =$1;`;
     pool
       .query(deleteTimeSlot, [req.params.id])
       .then((result) => {
