@@ -59,13 +59,13 @@ INSERT INTO "skills" (skills_label) VALUES
   ('General IT_Technical Support');
 
   INSERT INTO "time_slot_day" (day_number, day_name) VALUES 
+  (0 , 'Sunday'),
   (1 , 'Monday'),
   (2 , 'Tuesday'),
   (3 , 'Wednesday'),
   (4 , 'Thursday'),
   (5 , 'Friday'),
-  (6 , 'Saturday'),
-  (7 , 'Sunday'); 
+  (6 , 'Saturday');
 
     INSERT INTO "event_type" (type_label) VALUES 
   ('Course'),
