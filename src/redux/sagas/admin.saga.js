@@ -83,11 +83,28 @@ function* allIdGet(action) {
   }
 }
 
+function* verifiedUserDetailReducerAll(action) {
+  try {
+    const response = yield axios.get(`/api/user/verifiedUserDetailAll`);
+    yield put({
+      type: 'SET_VERIFIED_USER_ALL_DETAIL',
+      payload: response.data,
+    });
+  } catch (err) {
+    console.log('ERROR UPDATING SET_VERIFIED_USER_ALL_DETAIL', err);
+    yield put({ type: 'PUT_FAILED' });
+  }
+}
+
 function* adminSaga() {
   yield takeLatest('GET_ADMIN_DATA', dataGrab);
   yield takeLatest('VERIFY_USER', verify);
   yield takeLatest('GET_NEW_USER_DETAIL', getNewUserDetail);
   yield takeLatest('GET_VERIFIED_USER_DETAIL', verifiedUserDetailReducer);
+  yield takeLatest(
+    'GET_VERIFIED_USER_ALL_DETAIL',
+    verifiedUserDetailReducerAll
+  );
   yield takeLatest('GET_ALL_ID', allIdGet);
 }
 
