@@ -1,18 +1,21 @@
-INSERT INTO "race" (race_label) VALUES 
+INSERT INTO "ethnicity" (ethnicity_label) VALUES 
   ('White not Hispanic'),
   ('Hispanic or Latino'),
   ('Black or African American Alone'),
   ('Native American or Alaskan Native'),
   ('Native Hawaiian or Pacific Islander'),
   ('Asian'),
-  ('Two or More Races'),
+  ('Two or More ethnicitys'),
   ('Prefer not to answer');
 
-INSERT INTO "sex" (sex_label) VALUES 
+INSERT INTO "gender" (gender_label) VALUES 
   ('Male'),
   ('Female'),
-  ('Other'),
-  ('Prefer not to answer');
+  ('transgender'),
+  ('non-binary'),
+  ('gender neutral'),
+  ('Not listed');
+
 
 INSERT INTO "education_level" (education_label) VALUES 
   ('No schooling completed'),
@@ -50,6 +53,7 @@ INSERT INTO "skills" (skills_label) VALUES
   (6, 'rejected');
 
     INSERT INTO "volunteer_role" (role_label) VALUES 
+  ('None Assigned'),
   ('Tech Instructor'),
   ('Tech Assistant'),
   ('Classroom Assistant'),
