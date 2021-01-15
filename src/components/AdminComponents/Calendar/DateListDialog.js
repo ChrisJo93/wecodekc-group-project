@@ -22,28 +22,26 @@ class DateListDialog extends Component {
         <DialogTitle>Select An Event</DialogTitle>
 
         <List>
-          {this.props.store.dateReducer <= 0 ? (
-            <CircularProgress color="secondary" />
-          ) : (
-            this.props.store.dateReducer.map((date, index) => (
-              <ListItem
-                button
-                onClick={() =>
-                  this.handleListItemClick(
-                    date.id ? date.id : console.log('no selection made')
-                  )
-                }
-                key={index}
-              >
-                <ListItemAvatar>
-                  <Avatar>
-                    <PersonIcon />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText primary={date.event_title} />
-              </ListItem>
-            ))
-          )}
+          {this.props.store.dateReducer <= 0
+            ? 'No Events For This Date'
+            : this.props.store.dateReducer.map((date, index) => (
+                <ListItem
+                  button
+                  onClick={() =>
+                    this.handleListItemClick(
+                      date.id ? date.id : console.log('no selection made')
+                    )
+                  }
+                  key={index}
+                >
+                  <ListItemAvatar>
+                    <Avatar>
+                      <PersonIcon />
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText primary={date.event_title} />
+                </ListItem>
+              ))}
         </List>
       </Dialog>
     );

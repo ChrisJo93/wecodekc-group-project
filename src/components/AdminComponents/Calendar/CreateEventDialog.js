@@ -19,6 +19,12 @@ import {
   TextField,
 } from '@material-ui/core';
 
+//Calendar imports
+import { RRule, RRuleSet, rrulestr } from 'rrule';
+
+//custom imports
+import RecurringForm from './RecurringForm';
+
 class CreateEventDialog extends Component {
   state = {
     open: false,
@@ -34,6 +40,13 @@ class CreateEventDialog extends Component {
       event_type: '1',
       recurring_time_slot: 1,
     },
+    rule: new RRule({
+      freq: RRule.WEEKLY,
+      interval: 0,
+      byweekday: [],
+      dtstart: '',
+      until: '',
+    }),
   };
 
   //posts event and closes dialog
@@ -87,7 +100,7 @@ class CreateEventDialog extends Component {
       //slick toggle code
       eventPayload: {
         ...this.state.eventPayload,
-        recurring: !this.state.recurring,
+        recurring: !this.state.eventPayload.recurring,
       },
     });
   };
@@ -100,6 +113,17 @@ class CreateEventDialog extends Component {
         event_type: event.target.value,
       },
     });
+  };
+
+  handleChangeForFreq = (event) => (frequency) => {
+    this.setState(
+      {
+        rule: { freq: frequency },
+      },
+      () => {
+        console.log(this.state.rule.freq);
+      }
+    );
   };
 
   render() {
@@ -179,7 +203,6 @@ class CreateEventDialog extends Component {
                   <FormControlLabel
                     control={
                       <Switch
-                        // checked={this.state.recurring}
                         onChange={this.handleInputChangeForSwitch}
                         color="primary"
                         name="Recurring"
@@ -188,6 +211,14 @@ class CreateEventDialog extends Component {
                     }
                     label="Repeat"
                   />
+                  {this.state.eventPayload.recurring === true ? (
+                    <RecurringForm
+                      rule={this.state.rule}
+                      handleChangeForFreq={this.handleChangeForFreq}
+                    />
+                  ) : (
+                    ''
+                  )}
                 </RadioGroup>
               </FormControl>
             </Grid>
