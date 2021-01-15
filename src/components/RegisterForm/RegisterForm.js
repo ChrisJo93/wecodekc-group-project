@@ -58,7 +58,7 @@ class RegisterForm extends Component {
     const level = this.props.store.dropdown.educationReducer.map(
       (item, index) => {
         return (
-          <MenuItem value={item.id} key={index}>
+          <MenuItem value={item.id} key={index} name={item.education_label}>
             {item.education_label}
           </MenuItem>
         );
@@ -291,8 +291,8 @@ class RegisterForm extends Component {
                         // input={<Input id="select-multiple-chip" />}
                         renderValue={(selected) => (
                           <div>
-                            {selected.map((value) => (
-                              <Chip key={value} label={value} />
+                            {selected.map((name) => (
+                              <Chip key={name} label={name} />
                             ))}
                           </div>
                         )}

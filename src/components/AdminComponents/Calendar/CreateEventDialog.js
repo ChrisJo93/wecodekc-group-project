@@ -118,82 +118,91 @@ class CreateEventDialog extends Component {
           <DialogContent>
             <Grid container>
               <Grid item sm={12} lg={6}>
-                <TextField
-                  type="text"
-                  variant="outlined"
-                  value={this.state.eventPayload.event_title}
-                  onChange={this.handleInputChangeFor('event_title')}
-                  label="Title"
-                />
-                <TextField
-                  type="text"
-                  variant="outlined"
-                  value={this.state.eventPayload.event_description}
-                  onChange={this.handleInputChangeFor('event_description')}
-                  label="Description"
-                />
-                <TextField
-                  type="text"
-                  variant="outlined"
-                  value={this.state.eventPayload.event_address}
-                  onChange={this.handleInputChangeFor('event_address')}
-                  label="Address"
-                />
-                <TextField
-                  id="datetime-local"
-                  label="Start Date"
-                  type="datetime-local"
-                  onChange={this.handleInputChangeForDate('event_start')}
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                />
-
-                <TextField
-                  id="datetime-local"
-                  label="End Date"
-                  type="datetime-local"
-                  onChange={this.handleInputChangeForDate('event_end')}
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                />
+                <Box mb={2}>
+                  <TextField
+                    type="text"
+                    variant="outlined"
+                    value={this.state.eventPayload.event_title}
+                    onChange={this.handleInputChangeFor('event_title')}
+                    label="Title"
+                  />
+                </Box>
+                <Box mb={2}>
+                  <TextField
+                    type="text"
+                    variant="outlined"
+                    value={this.state.eventPayload.event_description}
+                    onChange={this.handleInputChangeFor('event_description')}
+                    label="Description"
+                  />
+                </Box>
+                <Box mb={2}>
+                  <TextField
+                    type="text"
+                    variant="outlined"
+                    value={this.state.eventPayload.event_address}
+                    onChange={this.handleInputChangeFor('event_address')}
+                    label="Address"
+                  />
+                </Box>
+                <FormLabel component="legend">Event Type</FormLabel>
+                <RadioGroup
+                  row
+                  aria-label="Event_Type"
+                  name="Events"
+                  value={this.state.eventPayload.event_type}
+                  onChange={this.handleRadialChange}
+                >
+                  <FormControlLabel
+                    value="1"
+                    control={<Radio />}
+                    label="Event"
+                  />
+                  <FormControlLabel
+                    value="2"
+                    control={<Radio />}
+                    label="Course"
+                  />
+                </RadioGroup>
               </Grid>
               <Grid item sm={12} lg={6}>
-                <FormControl component="fieldset">
-                  <FormLabel component="legend">Event Type</FormLabel>
-                  <RadioGroup
-                    aria-label="Event_Type"
-                    name="Events"
-                    value={this.state.eventPayload.event_type}
-                    onChange={this.handleRadialChange}
-                  >
-                    <FormControlLabel
-                      value="1"
-                      control={<Radio />}
-                      label="Event"
+                <Box mb={2}>
+                  <TextField
+                    variant="outlined"
+                    id="datetime-local"
+                    label="Start Date"
+                    type="datetime-local"
+                    onChange={this.handleInputChangeForDate('event_start')}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                  />
+                </Box>
+                <Box mb={2}>
+                  <TextField
+                    variant="outlined"
+                    id="datetime-local"
+                    label="End Date"
+                    type="datetime-local"
+                    onChange={this.handleInputChangeForDate('event_end')}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                  />
+                </Box>
+                {/* This needs further work to handle ACTUAL recurrence.  */}
+                <FormControlLabel
+                  control={
+                    <Switch
+                      // checked={this.state.recurring}
+                      onChange={this.handleInputChangeForSwitch}
+                      color="primary"
+                      name="Recurring"
+                      inputProps={{ 'aria-label': 'primary checkbox' }}
                     />
-                    <FormControlLabel
-                      value="2"
-                      control={<Radio />}
-                      label="Course"
-                    />
-
-                    {/* This needs further work to handle ACTUAL recurrence.  */}
-                    <FormControlLabel
-                      control={
-                        <Switch
-                          // checked={this.state.recurring}
-                          onChange={this.handleInputChangeForSwitch}
-                          color="primary"
-                          name="Recurring"
-                          inputProps={{ 'aria-label': 'primary checkbox' }}
-                        />
-                      }
-                      label="Repeat"
-                    />
-                  </RadioGroup>
-                </FormControl>
+                  }
+                  label="Repeat"
+                />
               </Grid>
             </Grid>
           </DialogContent>

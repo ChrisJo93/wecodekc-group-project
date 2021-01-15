@@ -11,3 +11,7 @@
   margin: 0 auto;
   max-width: 900px;
 }
+
+.dialog {
+  padding: 200px;
+}
