@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
+
+//CUSTOM FILE IMPORTS
 import SideBar from '../../../components/AdminComponents/AdminSidebar/Sidebar';
+import './AdminPage.css';
 
 //CUSTOM MATERIAL UI IMPORTS
 import { LinearProgress } from '@material-ui/core';
@@ -32,13 +35,16 @@ class AdminPage extends Component {
   }
   render() {
     const userData = this.props.store.allUsers;
-    return this.props.store.allUsers.length > 0 ? (
-      //displays the navigation, sidebar menu, and {display} <- which is switched above.
-      <>
-        <SideBar />
-      </>
-    ) : (
-      <LinearProgress color="secondary" />
+    return (
+      <div className="topBorder">
+        {this.props.store.allUsers.length > 0 ? (
+          //displays the navigation, sidebar menu, and {display} <- which is switched above.
+
+          <SideBar />
+        ) : (
+          <LinearProgress color="secondary" />
+        )}
+      </div>
     );
   }
 }

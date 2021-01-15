@@ -74,7 +74,8 @@ router.get(
 router.get(
   '/time',
   (req: Request, res: Response, next: express.NextFunction): void => {
-    const getTimeSlot: string = `SELECT * FROM "day_slot";`;
+    const getTimeSlot: string = `SELECT * FROM "time_slot"
+    JOIN "time_slot_day" ON "time_slot".day_of_week = "time_slot_day".id;`;
     pool
       .query(getTimeSlot)
       .then((result) => {
