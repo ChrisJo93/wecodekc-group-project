@@ -30,14 +30,9 @@ function DemographicsTable(props) {
           <TableRow>
             <TableCell>Volunteer Role</TableCell>
             <TableCell>Active Courses / Events</TableCell>
-<<<<<<< HEAD
-            <TableCell>Ethnicity</TableCell>
-            <TableCell>Gender</TableCell>
-=======
             <TableCell>ethnicity</TableCell>
             <TableCell>gender</TableCell>
             <TableCell>Age</TableCell>
->>>>>>> develop
             <TableCell>Highest Education Level</TableCell>
             <TableCell>Zip Code</TableCell>
           </TableRow>
