@@ -14,7 +14,6 @@ import Button from '@material-ui/core/Button';
 import FaceIcon from '@material-ui/icons/Face';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import swal from 'sweetalert';
-import VerificationDialog from './VerificationDialog';
 import { FormControl } from '@material-ui/core';
 
 const useRowStyles = makeStyles({
@@ -25,20 +24,10 @@ const useRowStyles = makeStyles({
   },
 });
 
-const emails = ['username@gmail.com', 'user02@gmail.com'];
-
 function VerifyTable(props) {
   let rows = props.userData;
   let permissionLevel;
   let role;
-
-  const handleClose = (value) => {
-    setOpen(false);
-    setSelectedValue(value);
-  };
-
-  const [open, setOpen] = React.useState(false);
-  const [selectedValue, setSelectedValue] = React.useState(emails[1]);
 
   const handleVerification = (selection) => (e) => {
     switch (selection) {
@@ -53,7 +42,14 @@ function VerifyTable(props) {
   };
 
   const handleButton = (selection, id, email, first_name) => (e) => {
+    console.log();
     switch (selection) {
+      case 'profile':
+        props.dispatch({
+          type: 'GET_NEW_USER_DETAIL',
+          payload: id,
+        });
+        break;
       case 'finalize':
         permissionLevel && role !== undefined
           ? permissionLevel === 4
@@ -92,9 +88,6 @@ function VerifyTable(props) {
               icon: 'warning',
             });
         break;
-      case 'profile':
-        setOpen(true);
-        break;
       default:
         break;
     }
@@ -128,17 +121,10 @@ function VerifyTable(props) {
                     <FaceIcon />
                   </Button>
                 }
-                <VerificationDialog
-                  selectedValue={selectedValue}
-                  open={open}
-                  onClose={handleClose}
-                />
               </TableCell>
               <TableCell>{row.first_name}</TableCell>
               <TableCell>{row.last_name}</TableCell>
-
               <TableCell>{row.email}</TableCell>
-
               <TableCell>
                 {row.background_check_permission === true
                   ? 'Permission Granted'

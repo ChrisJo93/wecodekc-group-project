@@ -24,6 +24,22 @@ router.get(
 );
 
 router.get(
+  '/allIdGet',
+  (req: Request, res: Response, next: express.NextFunction): void => {
+    const getAllID: string = `SELECT "user".id FROM "user";`;
+    pool
+      .query(getAllID)
+      .then((result) => {
+        res.send(result.rows);
+      })
+      .catch((error) => {
+        console.log('error getting allId', error);
+        res.sendStatus(500);
+      });
+  }
+);
+
+router.get(
   '/unverifiedGet',
   (req: Request, res: Response, next: express.NextFunction): void => {
     const getAllUsers: string = `SELECT * FROM "user" WHERE access_level = 1;`;
@@ -72,7 +88,7 @@ router.put(
           subject: 'WeCodeKC approves you!', // Subject line
           html: `<div>
             <h1>Hello, ${first_name}!</h1>
-            <p>You have been approved and can now sign up for events! Thanks for joining us at WeCodeKC</p>
+            <p>You have been approved as a user and can now sign up for events! Thanks for joining us at WeCodeKC.</p>
           </div>`, // plain text body
         };
 

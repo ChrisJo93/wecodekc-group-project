@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import { Grid, Typography, Paper, Button } from '@material-ui/core';
 import { DateTime } from 'luxon';
 
-import computer from './computer.jpg';
-import computer2 from './computer2.jpg';
-import UpdateDetailsDialog from './UpdateDetailsDialog';
+//material-ui imports
+import { Grid, Typography, Button, Box } from '@material-ui/core';
+
+//custom file imports
+import EventsBar from '../../components/EventsBar/EventsBar';
 
 class DetailsPage extends Component {
   state = {
@@ -40,52 +41,11 @@ class DetailsPage extends Component {
       type: 'POST_USER_EVENT',
       payload: this.state.newUserEvent,
     });
+    this.props.history.push('/events');
   };
 
   clickBackButton = (event) => {
     this.props.history.push('/events');
-  };
-
-  handleClose = (value) => (event) => {
-    this.setState(
-      {
-        open: false,
-        selectedValue:
-          value == (null, undefined, '') ? value : this.state.selectedValue,
-      },
-      () => {
-        console.log(this.state.selectedValue, value);
-      }
-    );
-  };
-
-  showForm = (event) => {
-    this.setState({
-      showForm: !this.state.showForm,
-    });
-  };
-
-  updateReview = (event) => {
-    event.preventDefault();
-    this.props.dispatch({
-      type: 'UPDATE_EVENT',
-      payload: {
-        ...this.state.eventPayload,
-      },
-    });
-    this.setState({
-      eventPayload: {
-        event_title: '',
-        event_description: '',
-        event_address: '',
-        event_start: '',
-        event_end: '',
-        recurring: false,
-        event_type: '1',
-        recurring_time_slot: 1,
-      },
-    });
-    this.props.history.push(`/event/details/${this.props.match.params.id}`);
   };
 
   render() {
@@ -95,96 +55,58 @@ class DetailsPage extends Component {
 
     return (
       <div style={{ padding: 20 }}>
-        <Grid container justify="center" alignItems="center">
-          <Grid item xs={4} sm={4} md={4} lg={4}>
-            <img src={computer2} alt="coding" />
-          </Grid>
-          <Grid item xs={4} sm={4} md={4} lg={4}>
-            <img src={computer} alt="coding" />
-          </Grid>
-          <Grid item xs={4} sm={4} md={4} lg={4}>
-            <img src={computer2} alt="coding" />
-          </Grid>
-        </Grid>
+        <EventsBar />
         <div style={{ padding: 20 }}>
-          <Grid container spacing={3}>
-            <Grid item xs={4} sm={4} md={4} lg={4}>
-              <Paper>{details.event_title}</Paper>
-            </Grid>
-            <Grid item xs={4} sm={4} md={4} lg={4}>
-              <Paper>Date: {humanDate}</Paper>
-            </Grid>
+          <Typography variant="h2" gutterBottom>
+            {details.event_title}
+          </Typography>
 
-            <Grid container spacing={3}>
-              <Grid item xs={4} sm={4} md={4} lg={4}>
-                <Paper>
-                  {details.event_type === 1 ? (
-                    <img
-                      src={
-                        'https://wecodekc.s3.us-east-2.amazonaws.com/_W4A0876-1.jpg'
-                      }
-                      alt="course"
-                    />
-                  ) : (
-                    <img
-                      src={
-                        'https://wecodekc.s3.us-east-2.amazonaws.com/_W4A0816-1.jpg'
-                      }
-                      alt="event"
-                    />
-                  )}
-                </Paper>
-              </Grid>
-              <Grid item xs={4} sm={4} md={4} lg={4}>
-                <Paper>{details.event_address}</Paper>
-              </Grid>
+          <Grid container spacing={3}>
+            <Grid item lg={3}>
+              {details.event_type === 1 ? (
+                <img
+                  src={
+                    'https://wecodekc.s3.us-east-2.amazonaws.com/_W4A0876-1.jpg'
+                  }
+                  alt="course"
+                />
+              ) : (
+                <img
+                  src={
+                    'https://wecodekc.s3.us-east-2.amazonaws.com/_W4A0816-1.jpg'
+                  }
+                  alt="event"
+                />
+              )}
             </Grid>
-            <div style={{ padding: 20 }}>
-              <Grid container spacing={3}>
-                <Grid item xs={4} sm={4} md={4} lg={4}>
-                  <Paper>Description: {details.event_description}</Paper>
-                </Grid>
-              </Grid>
-            </div>
-            <Grid container spacing={3}>
-              <Grid item xs={6}>
+            <Grid item lg={3}>
+              <Typography>Date: {humanDate}</Typography>
+              <Typography> Location: {details.event_address}</Typography>
+            </Grid>
+            <Grid item lg={3}>
+              <Box mb={2}>
                 <Button
                   variant="contained"
                   color="secondary"
                   onClick={this.clickAttendButton}
                 >
-                  Click to attend Event
+                  Click to attend
                 </Button>
-              </Grid>
-              {this.props.store.user_level === 4 ||
-                (5 && (
-                  <Grid item xs={6}>
-                    {/* <Button
-                      variant="contained"
-                      color="secondary"
-                      onClick={this.handleClickOpen}
-                    >
-                      Edit
-                    </Button> */}
-                    <UpdateDetailsDialog
-                      onClose={this.handleClose}
-                      open={this.open}
-                      // selectedValue={}
-                    />
-                  </Grid>
-                ))}
-
-              <Grid item xs={6}>
+              </Box>
+              <Box mb={2}>
                 <Button
                   variant="contained"
                   color="primary"
                   onClick={this.clickBackButton}
                 >
-                  Back to Events
+                  Back to all Events
                 </Button>
-              </Grid>
+              </Box>
             </Grid>
           </Grid>
+          <div style={{ padding: 20 }}>
+            <Typography>{details.event_description}</Typography>
+          </div>
         </div>
       </div>
     );

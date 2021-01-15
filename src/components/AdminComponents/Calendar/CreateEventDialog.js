@@ -4,6 +4,7 @@ import mapStoreToProps from '../../../redux/mapStoreToProps';
 
 //material ui imports
 import {
+  Box,
   Button,
   Dialog,
   DialogActions,
@@ -139,105 +140,114 @@ class CreateEventDialog extends Component {
         <Dialog onClose={this.handleClose} open={this.state.open}>
           <DialogTitle id="create-event">Create An Event</DialogTitle>
           <DialogContent>
-            {/* Added Grid but will need to reformat */}
-            <Grid>
-              <TextField
-                type="text"
-                variant="outlined"
-                value={this.state.eventPayload.event_title}
-                onChange={this.handleInputChangeFor('event_title')}
-                label="Title"
-              />
-              <TextField
-                type="text"
-                variant="outlined"
-                value={this.state.eventPayload.event_description}
-                onChange={this.handleInputChangeFor('event_description')}
-                label="Description"
-              />
-              <TextField
-                type="text"
-                variant="outlined"
-                value={this.state.eventPayload.event_address}
-                onChange={this.handleInputChangeFor('event_address')}
-                label="Address"
-              />
-              <TextField
-                id="datetime-local"
-                label="Start Date"
-                type="datetime-local"
-                onChange={this.handleInputChangeForDate('event_start')}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-              />
-              <TextField
-                id="datetime-local"
-                label="End Date"
-                type="datetime-local"
-                onChange={this.handleInputChangeForDate('event_end')}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-              />
-              <FormControl component="fieldset">
-                <FormLabel component="legend">Event Type</FormLabel>
-                <RadioGroup
-                  aria-label="Event_Type"
-                  name="Events"
-                  value={this.state.eventPayload.event_type}
-                  onChange={this.handleRadialChange}
-                >
-                  <FormControlLabel
-                    value="1"
-                    control={<Radio />}
-                    label="Event"
-                  />
-                  <FormControlLabel
-                    value="2"
-                    control={<Radio />}
-                    label="Course"
-                  />
+            <Grid container>
+              <Grid item sm={12} lg={6}>
+                <TextField
+                  type="text"
+                  variant="outlined"
+                  value={this.state.eventPayload.event_title}
+                  onChange={this.handleInputChangeFor('event_title')}
+                  label="Title"
+                />
+                <TextField
+                  type="text"
+                  variant="outlined"
+                  value={this.state.eventPayload.event_description}
+                  onChange={this.handleInputChangeFor('event_description')}
+                  label="Description"
+                />
+                <TextField
+                  type="text"
+                  variant="outlined"
+                  value={this.state.eventPayload.event_address}
+                  onChange={this.handleInputChangeFor('event_address')}
+                  label="Address"
+                />
+                <TextField
+                  id="datetime-local"
+                  label="Start Date"
+                  type="datetime-local"
+                  onChange={this.handleInputChangeForDate('event_start')}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                />
 
-                  {/* This needs further work to handle ACTUAL recurrence.  */}
-                  <FormControlLabel
-                    control={
-                      <Switch
-                        onChange={this.handleInputChangeForSwitch}
-                        color="primary"
-                        name="Recurring"
-                        inputProps={{ 'aria-label': 'primary checkbox' }}
-                      />
-                    }
-                    label="Repeat"
-                  />
-                  {this.state.eventPayload.recurring === true ? (
-                    <RecurringForm
-                      rule={this.state.rule}
-                      handleChangeForFreq={this.handleChangeForFreq}
+                <TextField
+                  id="datetime-local"
+                  label="End Date"
+                  type="datetime-local"
+                  onChange={this.handleInputChangeForDate('event_end')}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                />
+              </Grid>
+              <Grid item sm={12} lg={6}>
+                <FormControl component="fieldset">
+                  <FormLabel component="legend">Event Type</FormLabel>
+                  <RadioGroup
+                    aria-label="Event_Type"
+                    name="Events"
+                    value={this.state.eventPayload.event_type}
+                    onChange={this.handleRadialChange}
+                  >
+                    <FormControlLabel
+                      value="1"
+                      control={<Radio />}
+                      label="Event"
                     />
-                  ) : (
-                    ''
-                  )}
-                </RadioGroup>
-              </FormControl>
+                    <FormControlLabel
+                      value="2"
+                      control={<Radio />}
+                      label="Course"
+                    />
+
+                    {/* This needs further work to handle ACTUAL recurrence.  */}
+                    <FormControlLabel
+                      control={
+                        <Switch
+                          // checked={this.state.recurring}
+                          onChange={this.handleInputChangeForSwitch}
+                          color="primary"
+                          name="Recurring"
+                          inputProps={{ 'aria-label': 'primary checkbox' }}
+                        />
+                      }
+                      label="Repeat"
+                    />
+                    {this.state.eventPayload.recurring === true ? (
+                      <RecurringForm
+                        rule={this.state.rule}
+                        handleChangeForFreq={this.handleChangeForFreq}
+                      />
+                    ) : (
+                      ''
+                    )}
+                  </RadioGroup>
+                </FormControl>
+              </Grid>
             </Grid>
           </DialogContent>
           <DialogActions>
-            <Button
-              onClick={this.handleClose}
-              color="secondary"
-              variant="contained"
-            >
-              Never Mind
-            </Button>
-            <Button
-              onClick={this.postEvent}
-              color="secondary"
-              variant="contained"
-            >
-              Add
-            </Button>
+            <Box m={2}>
+              <Button
+                onClick={this.handleClose}
+                color="secondary"
+                variant="contained"
+              >
+                Never Mind
+              </Button>
+            </Box>
+            <Box m={2}>
+              <Button
+                onClick={this.postEvent}
+                color="secondary"
+                variant="contained"
+              >
+                Add
+              </Button>
+            </Box>
           </DialogActions>
         </Dialog>
       </div>

@@ -19,8 +19,24 @@ import {
   Button,
   CardMedia,
 } from '@material-ui/core';
+import { withStyles, createStyles } from '@material-ui/core/styles';
+
+const muiStyles = (theme) =>
+  createStyles({
+    // avatar: {
+    //   backgroundColor: blue[100],
+    //   color: blue[600],
+    // },
+    cardMedia: {
+      height: '300px',
+      [theme.breakpoints.down('sm')]: {
+        height: '100px',
+      },
+    },
+  });
 
 class LandingPage extends Component {
+  // const classes = useStyles();
   componentDidMount() {
     this.props.dispatch({
       type: 'GET_EVENTS',
@@ -51,37 +67,43 @@ class LandingPage extends Component {
       <div className="grid">
         <Grid container alignItems="stretch">
           <Grid item xs={12} md={6}>
-            <Card>
-              <Typography>Make an Impact!</Typography>
-              <Typography>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Curabitur id felis metus. Vestibulum et pulvinar tortor. Morbi
-                pharetra lacus ut ex molestie blandit. Etiam et turpis sit amet
-                risus mollis interdum. Suspendisse et justo vitae metus bibendum
-                fringilla sed sed justo. Aliquam sollicitudin dapibus lectus,
-                vitae consequat odio elementum eget. Praesent efficitur eros
-                vitae nunc interdum, eu interdum justo facilisis. Sed pulvinar
-                nulla ac dignissim efficitur. Quisque eget eros metus.
-                Vestibulum bibendum fringilla nibh a luctus. Duis a sapien
-                metus.
-              </Typography>
+            <Card className="card">
+              <CardContent>
+                <center>
+                  <Typography variant="h4" gutterBottom>
+                    Make an Impact!
+                  </Typography>
+                </center>
+                <Typography>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Curabitur id felis metus. Vestibulum et pulvinar tortor. Morbi
+                  pharetra lacus ut ex molestie blandit. Etiam et turpis sit
+                  amet risus mollis interdum. Suspendisse et justo vitae metus
+                  bibendum fringilla sed sed justo. Aliquam sollicitudin dapibus
+                  lectus, vitae consequat odio elementum eget. Praesent
+                  efficitur eros vitae nunc interdum, eu interdum justo
+                  facilisis. Sed pulvinar nulla ac dignissim efficitur. Quisque
+                  eget eros metus. Vestibulum bibendum fringilla nibh a luctus.
+                  Duis a sapien metus.
+                </Typography>
+              </CardContent>
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>
-            {/* TO DO -- FIGURE OUT IMAGES */}
-            <Card>
-              <img
+            <Card className="card">
+              {/* <img
                 src={'https://wecodekc.s3.us-east-2.amazonaws.com/_W4A0840.jpg'}
                 alt="coding"
-              />
+              /> */}
               <CardMedia
                 image="https://wecodekc.s3.us-east-2.amazonaws.com/_W4A0840.jpg"
                 title="coding"
+                className={this.props.classes.cardMedia}
               />
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Card>
+            <Card className="card">
               <img
                 src={
                   'https://wecodekc.s3.us-east-2.amazonaws.com/christina-wocintechchat-com-YVT21p6pO_g-unsplash.jpg'
@@ -91,18 +113,17 @@ class LandingPage extends Component {
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Card>
-              <center>
-                <Typography variant="h4">Upcoming Events</Typography>
-              </center>
+            <Card className="card">
               <Carousel>{eventsArray}</Carousel>
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Card>
+            <Card className="card">
               <CardContent>
-                <Typography>Volunteer</Typography>
-                <p>
+                <center>
+                  <Typography variant="h4">Volunteer</Typography>
+                </center>
+                <Typography>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                   Curabitur id felis metus. Vestibulum et pulvinar tortor. Morbi
                   pharetra lacus ut ex molestie blandit. Etiam et turpis sit
@@ -113,21 +134,25 @@ class LandingPage extends Component {
                   facilisis. Sed pulvinar nulla ac dignissim efficitur. Quisque
                   eget eros metus. Vestibulum bibendum fringilla nibh a luctus.
                   Duis a sapien metus.
-                </p>
+                </Typography>
               </CardContent>
               <CardActions>
-                <Button
-                  color="primary"
-                  variant="contained"
-                  onClick={this.handleRegisterVolunteer}
-                >
-                  register
-                </Button>
+                <Grid container justify="space-evenly">
+                  <Grid item>
+                    <Button
+                      color="secondary"
+                      variant="contained"
+                      onClick={this.handleRegisterVolunteer}
+                    >
+                      register
+                    </Button>
+                  </Grid>
+                </Grid>
               </CardActions>
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Card>
+            <Card className="card">
               <img
                 src={'https://wecodekc.s3.us-east-2.amazonaws.com/_MG_6534.JPG'}
                 alt="volunteers smiling"
@@ -135,7 +160,7 @@ class LandingPage extends Component {
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Card>
+            <Card className="card">
               <img
                 src={
                   'https://wecodekc.s3.us-east-2.amazonaws.com/_MG_6571-1.jpg'
@@ -145,9 +170,11 @@ class LandingPage extends Component {
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Card>
+            <Card className="card">
               <CardContent>
-                <Typography>Mentor</Typography>
+                <center>
+                  <Typography variant="h4">Mentor</Typography>
+                </center>
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                   Curabitur id felis metus. Vestibulum et pulvinar tortor. Morbi
@@ -162,27 +189,24 @@ class LandingPage extends Component {
                 </p>
               </CardContent>
               <CardActions>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={this.handleRegisterMentor}
-                >
-                  register
-                </Button>
+                <Grid container justify="space-evenly">
+                  <Grid item>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={this.handleRegisterMentor}
+                    >
+                      register
+                    </Button>
+                  </Grid>
+                </Grid>
               </CardActions>
             </Card>
           </Grid>
         </Grid>
-
-        <center>
-          <h4>Already a Member?</h4>
-          <button className="btn btn_sizeSm" onClick={this.onLogin}>
-            Login
-          </button>
-        </center>
       </div>
     );
   }
 }
 
-export default connect(mapStoreToProps)(LandingPage);
+export default connect(mapStoreToProps)(withStyles(muiStyles)(LandingPage));

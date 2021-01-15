@@ -38,9 +38,57 @@ function* verify(action) {
   }
 }
 
+function* getNewUserDetail(action) {
+  try {
+    const response = yield axios.get(
+      `/api/user/newUserDetail/${action.payload}`
+    );
+    console.log('look here <<<<<<', response.data);
+    yield put({
+      type: 'SET_NEW_USER_DETAIL',
+      payload: response.data,
+    });
+  } catch (err) {
+    console.log('ERROR UPDATING EVENT', err);
+    yield put({ type: 'PUT_FAILED' });
+  }
+}
+
+function* verifiedUserDetailReducer(action) {
+  try {
+    const response = yield axios.get(
+      `/api/user/verifiedUserDetail/${action.payload}`
+    );
+    console.log('look here <<<<<<', response.data);
+    yield put({
+      type: 'SET_VERIFIED_USER_DETAIL',
+      payload: response.data,
+    });
+  } catch (err) {
+    console.log('ERROR UPDATING EVENT', err);
+    yield put({ type: 'PUT_FAILED' });
+  }
+}
+
+function* allIdGet(action) {
+  try {
+    const response = yield axios.get(`/api/user/allIdGet`);
+    yield put({
+      type: 'SET_ALL_ID',
+      payload: response.data,
+    });
+  } catch (err) {
+    console.log('ERROR GETTING ALL ID', err);
+    yield put({ type: 'PUT_FAILED' });
+  }
+}
+
 function* adminSaga() {
   yield takeLatest('GET_ADMIN_DATA', dataGrab);
   yield takeLatest('VERIFY_USER', verify);
+  yield takeLatest('GET_NEW_USER_DETAIL', getNewUserDetail);
+  yield takeLatest('GET_VERIFIED_USER_DETAIL', verifiedUserDetailReducer);
+  yield takeLatest('GET_ALL_ID', allIdGet);
 }
 
 export default adminSaga;

@@ -1,7 +1,6 @@
 import React from 'react';
 import AccountControl from '../AdminSubComponents/AccountControl';
 import EventControl from '../AdminSubComponents/EventControl';
-import Statistics from '../AdminSubComponents/Statistics';
 import Verification from '../AdminSubComponents/Verification';
 
 //Material-UI imports
@@ -12,6 +11,7 @@ import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
 import CreateTimeSlots from '../AdminSubComponents/CreateTimeSlots';
 import ScheduleIcon from '@material-ui/icons/Schedule';
+import DemographicsControl from '../AdminSubComponents/DemographicsControl';
 
 function SideBar(props) {
   //config for tabs
@@ -37,7 +37,7 @@ function SideBar(props) {
       <Grid item lg={10}>
         {selectedTab === 0 && <AccountControl />}
         {selectedTab === 1 && <Verification />}
-        {selectedTab === 2 && <Statistics />}
+        {selectedTab === 2 && <DemographicsControl />}
         {selectedTab === 3 && <EventControl />}
         {selectedTab === 4 && <CreateTimeSlots />}
       </Grid>

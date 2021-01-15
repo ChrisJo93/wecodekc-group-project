@@ -14,7 +14,6 @@ import Button from '@material-ui/core/Button';
 import FaceIcon from '@material-ui/icons/Face';
 import EditIcon from '@material-ui/icons/Edit';
 import swal from 'sweetalert';
-import VerificationDialog from '../VerificationTable/VerificationDialog';
 import { FormControl } from '@material-ui/core';
 
 const useRowStyles = makeStyles({
@@ -31,14 +30,6 @@ function UserTable(props) {
   let permissionLevel;
   let role;
 
-  const handleClose = (value) => {
-    setOpen(false);
-    setSelectedValue(value);
-  };
-  const emails = ['username@gmail.com', 'user02@gmail.com'];
-  const [open, setOpen] = React.useState(false);
-  const [selectedValue, setSelectedValue] = React.useState(emails[1]);
-
   const handleVerification = (selection) => (e) => {
     switch (selection) {
       case 'permissionLevel':
@@ -53,8 +44,11 @@ function UserTable(props) {
 
   const handleButton = (selection, id) => (e) => {
     switch (selection) {
-      case 'toggleEdit':
-        toggle = true;
+      case 'profile':
+        props.dispatch({
+          type: 'GET_VERIFIED_USER_DETAIL',
+          payload: id,
+        });
         break;
       case 'finalize':
         permissionLevel && role !== undefined
@@ -90,9 +84,6 @@ function UserTable(props) {
               icon: 'warning',
             });
         break;
-      case 'profile':
-        setOpen(true);
-        break;
       default:
         break;
     }
@@ -125,11 +116,6 @@ function UserTable(props) {
                     <FaceIcon />
                   </Button>
                 }
-                <VerificationDialog
-                  selectedValue={selectedValue}
-                  open={open}
-                  onClose={handleClose}
-                />
               </TableCell>
               <TableCell>{row.first_name}</TableCell>
               <TableCell>{row.last_name}</TableCell>
