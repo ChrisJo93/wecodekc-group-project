@@ -13,6 +13,7 @@ class RegisterPageTwo extends Component {
     this.props.dispatch({ type: 'GET_SKILL' });
     this.props.dispatch({ type: 'GET_TIME' });
     this.props.dispatch({ type: 'GET_LANGUAGE' });
+    this.props.dispatch({ type: 'GET_TIME' });
   }
 
   render() {

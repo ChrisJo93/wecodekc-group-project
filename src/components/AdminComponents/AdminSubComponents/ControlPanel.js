@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
-import Grid from '@material-ui/core/Grid';
+
+//Material-UI imports
+import { Typography, Grid } from '@material-ui/core';
 
 // Basic class component structure for React with default state
 // value setup. When making a new component be sure to replace
@@ -16,19 +18,21 @@ class ControlPanel extends Component {
     const details = this.props.store.userDetailReducer;
     return details.length > 0 ? (
       <Grid container>
-        <h2>{this.state.heading}</h2>
+        <Typography variant="h4">{this.state.heading}</Typography>
         <Grid item lg={3}>
-          <p>User: {details[0].last_name}</p>
-          <p>Company: {details[0].company}</p>
-          <p>Job_title: {details[0].job_title}</p>
-          <p>Phone: {details[0].phone_number}</p>
-          <p>Experience: {details[0].experience_bio}</p>
-          <p>Motivation: {details[0].motivation_bio}</p>
+          <Typography>User: {details[0].last_name}</Typography>
+          <Typography>Company: {details[0].company}</Typography>
+          <Typography>Job_title: {details[0].job_title}</Typography>
+          <Typography>Phone: {details[0].phone_number}</Typography>
+          <Typography>Experience: {details[0].experience_bio}</Typography>
+          <Typography>Motivation: {details[0].motivation_bio}</Typography>
         </Grid>
       </Grid>
     ) : (
       <div>
-        <h1>Select a user to get details</h1>
+        <Typography variant="h4" gutterBottom>
+          Select a user to get details
+        </Typography>
       </div>
     );
   }

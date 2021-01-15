@@ -129,9 +129,7 @@ class Calendar extends Component {
   render() {
     return (
       <div className="calendar">
-        <div className="calendar-top">
-          <button onClick={this.gotoPast}>go to a date in the past</button>
-        </div>
+        <div className="calendar-top"></div>
 
         <CreateEventDialog />
 
