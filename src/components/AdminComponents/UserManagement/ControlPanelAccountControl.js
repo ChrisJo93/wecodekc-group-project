@@ -44,11 +44,7 @@ class ControlPanelVerification extends Component {
             </ul>
           </Grid>
           <Grid item lg={2}>
-            <ul>
-              {details[0].education_label_array.map((element) => (
-                <li>{element}</li>
-              ))}
-            </ul>
+            <ul>{details[0].education_label}</ul>
           </Grid>
           <Grid item lg={6}>
             <ul>

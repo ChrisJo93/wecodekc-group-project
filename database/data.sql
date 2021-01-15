@@ -53,6 +53,7 @@ INSERT INTO "skills" (skills_label) VALUES
   (6, 'rejected');
 
     INSERT INTO "volunteer_role" (role_label) VALUES 
+  ('None Assigned'),
   ('Tech Instructor'),
   ('Tech Assistant'),
   ('Classroom Assistant'),
