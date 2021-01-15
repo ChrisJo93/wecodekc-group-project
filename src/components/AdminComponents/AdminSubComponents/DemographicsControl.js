@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
-import Verify from '../../../components/AdminComponents/VerificationTable/Verify';
-import ControlPanelVerification from '../../AdminComponents/VerificationTable/ControlPanelVerification';
+import Demographics from '../DemographicsFolder/Demographics';
+import ControlPanelDemographics from '../DemographicsFolder/ControlPanelDemographics';
 
 // Basic class component structure for React with default state
 // value setup. When making a new component be sure to replace
 // the component name TemplateClass with the name for the new
 // component.
 
-class Verification extends Component {
+class DemographicsControl extends Component {
+  componentDidMount() {
+    this.props.dispatch({
+      type: 'GET_ALL_ID',
+    });
+  }
   state = {
     heading: 'Verification',
     access_level: 0,
@@ -20,11 +25,11 @@ class Verification extends Component {
   render() {
     return (
       <>
-        <ControlPanelVerification />
-        <Verify userData={this.props.store.unverifiedUsers} />
+        <ControlPanelDemographics />
+        <Demographics userData={this.props.store.allUsers} />
       </>
     );
   }
 }
 
-export default connect(mapStoreToProps)(Verification);
+export default connect(mapStoreToProps)(DemographicsControl);

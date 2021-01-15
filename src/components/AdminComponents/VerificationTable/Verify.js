@@ -46,7 +46,7 @@ function VerifyTable(props) {
     switch (selection) {
       case 'profile':
         props.dispatch({
-          type: 'GET_USER_DETAIL',
+          type: 'GET_NEW_USER_DETAIL',
           payload: id,
         });
         break;
