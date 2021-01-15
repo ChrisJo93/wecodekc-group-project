@@ -7,13 +7,13 @@ CREATE TABLE access_level (
   access_level INT,
   access_label VARCHAR(50)
 );
-CREATE TABLE sex (
+CREATE TABLE gender (
   id SERIAL PRIMARY KEY,
-  sex_label VARCHAR(20)
+  gender_label VARCHAR(20)
 );
-CREATE TABLE race (
+CREATE TABLE ethnicity (
   id SERIAL PRIMARY KEY,
-  race_label varchar(100)
+  ethnicity_label varchar(100)
 );
 
 CREATE TABLE volunteer_role (
@@ -36,8 +36,8 @@ CREATE TABLE "user" (
   last_name VARCHAR(50),
   birth_date VARCHAR,
   posting_date DATE DEFAULT CURRENT_DATE, 
-  sex INT REFERENCES "sex"(id),
-  race INT REFERENCES "race"(id),
+  gender INT REFERENCES "gender"(id),
+  ethnicity INT REFERENCES "ethnicity"(id),
   zip_code INT,
   phone_number VARCHAR(50),
   email VARCHAR(50),

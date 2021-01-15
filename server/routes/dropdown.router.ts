@@ -24,32 +24,32 @@ router.get(
 );
 
 router.get(
-  '/race',
+  '/ethnicity',
   (req: Request, res: Response, next: express.NextFunction): void => {
-    const getRace: string = `SELECT * FROM "race";`;
+    const getethnicity: string = `SELECT * FROM "ethnicity";`;
     pool
-      .query(getRace)
+      .query(getethnicity)
       .then((result) => {
         res.send(result.rows);
       })
       .catch((error) => {
-        console.log('error getting race', error);
+        console.log('error getting ethnicity', error);
         res.sendStatus(500);
       });
   }
 );
 
 router.get(
-  '/sex',
+  '/gender',
   (req: Request, res: Response, next: express.NextFunction): void => {
-    const getSex: string = `SELECT * FROM "sex";`;
+    const getgender: string = `SELECT * FROM "gender";`;
     pool
-      .query(getSex)
+      .query(getgender)
       .then((result) => {
         res.send(result.rows);
       })
       .catch((error) => {
-        console.log('error getting sex', error);
+        console.log('error getting gender', error);
         res.sendStatus(500);
       });
   }
