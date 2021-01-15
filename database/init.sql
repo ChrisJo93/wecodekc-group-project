@@ -21,11 +21,17 @@ CREATE TABLE volunteer_role (
   role_label VARCHAR(150)
 );
 
+CREATE TABLE education_level(
+  id SERIAL PRIMARY KEY,
+  education_label varchar(100)
+);
+
 CREATE TABLE "user" (
   id SERIAL PRIMARY KEY,
   is_active  BOOLEAN,
   username VARCHAR(50),
   password VARCHAR(100),
+  highest_education_level INT REFERENCES "education_level"(id),
   access_level INT DEFAULT 1 REFERENCES "access_level"(id),
   volunteer_role INT REFERENCES "volunteer_role"(id), 
   registered_first_name VARCHAR(50),
@@ -120,15 +126,6 @@ CREATE TABLE user_time_slot (
   id SERIAL PRIMARY KEY,
   user_id INT REFERENCES "user", 
   time_slot_id INT REFERENCES "time_slot"
-);
-CREATE TABLE education_level(
-  id SERIAL PRIMARY KEY,
-  education_label varchar(100)
-);
-CREATE TABLE user_education_level (
-  id SERIAL PRIMARY KEY,
-  user_id INT REFERENCES "user",
-  education_level INT REFERENCES "education_level"
 );
 CREATE TABLE event_images (
   id SERIAL PRIMARY KEY,
