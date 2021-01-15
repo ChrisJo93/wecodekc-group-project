@@ -12,8 +12,9 @@ INSERT INTO "gender" (gender_label) VALUES
   ('Male'),
   ('Female'),
   ('transgender'),
-   ('non-binary'),
-  ('gender neutral');
+  ('non-binary'),
+  ('gender neutral'),
+  ('Not listed');
 
 
 INSERT INTO "education_level" (education_label) VALUES 
