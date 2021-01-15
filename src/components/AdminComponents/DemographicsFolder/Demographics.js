@@ -35,6 +35,7 @@ function DemographicsTable(props) {
             <TableCell>Active Courses / Events</TableCell>
             <TableCell>ethnicity</TableCell>
             <TableCell>gender</TableCell>
+            <TableCell>Age</TableCell>
             <TableCell>Highest Education Level</TableCell>
             <TableCell>Zip Code</TableCell>
           </TableRow>
@@ -46,7 +47,7 @@ function DemographicsTable(props) {
               <TableCell>{'filler'}</TableCell>
               <TableCell>{row.ethnicity_label}</TableCell>
               <TableCell>{row.gender_label}</TableCell>
-              <TableCell>{'filler'}</TableCell>
+              <TableCell>{row.age}</TableCell>
               <TableCell>{row.zip_code}</TableCell>
             </TableRow>
           ))}
