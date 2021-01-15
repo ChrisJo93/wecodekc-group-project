@@ -11,22 +11,22 @@ const educationReducer = (state = [], action) => {
   }
 };
 
-const raceReducer = (state = [], action) => {
+const ethnicityReducer = (state = [], action) => {
   switch (action.type) {
-    case 'SET_RACE':
+    case 'SET_ETHNICITY':
       return action.payload;
-    case 'UNSET_RACE':
+    case 'UNSET_ETHNICITY':
       return [];
     default:
       return state;
   }
 };
 
-const sexReducer = (state = [], action) => {
+const genderReducer = (state = [], action) => {
   switch (action.type) {
-    case 'SET_SEX':
+    case 'SET_GENDER':
       return action.payload;
-    case 'UNSET_SEX':
+    case 'UNSET_GENDER':
       return [];
     default:
       return state;
@@ -68,8 +68,8 @@ const languageReducer = (state = [], action) => {
 
 export default combineReducers({
   educationReducer,
-  sexReducer,
-  raceReducer,
+  genderReducer,
+  ethnicityReducer,
   skillReducer,
   timeReducer,
   languageReducer,

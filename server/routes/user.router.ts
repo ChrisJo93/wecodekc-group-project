@@ -15,7 +15,6 @@ router.get('/', rejectUnauthenticated, (req: Request, res: Response): void => {
 router.post(
   '/register',
   (req: Request, res: Response, next: express.NextFunction): void => {
-    console.log(req.body);
     const username: string = <string>req.body.username;
     const password: string = encryptPassword(req.body.password);
     const registered_first_name: string = <string>req.body.first_name;
@@ -33,7 +32,7 @@ router.post(
     const skills: Array<number> = req.body.skills;
     const timeSlot: Array<number> = req.body.time_slot;
     const educationLevel: Array<number> = req.body.education_level;
-    const race: number = req.body.race;
+    const ethnicity: number = req.body.ethnicity;
     const backgroundCheck: boolean = req.body.background_check_permission;
     const sex: number = parseInt(req.body.sex);
     const zipCode: number = parseInt(req.body.zip_code);
@@ -51,7 +50,7 @@ router.post(
         firstName,
         middleName,
         lastName,
-        race,
+        ethnicity,
         company,
         jobTitle,
         motivationBio,

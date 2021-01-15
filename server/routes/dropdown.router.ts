@@ -24,16 +24,16 @@ router.get(
 );
 
 router.get(
-  '/race',
+  '/ethnicity',
   (req: Request, res: Response, next: express.NextFunction): void => {
-    const getRace: string = `SELECT * FROM "race";`;
+    const getEthnicity: string = `SELECT * FROM "ethnicity";`;
     pool
-      .query(getRace)
+      .query(getEthnicity)
       .then((result) => {
         res.send(result.rows);
       })
       .catch((error) => {
-        console.log('error getting race', error);
+        console.log('error getting ethnicity', error);
         res.sendStatus(500);
       });
   }

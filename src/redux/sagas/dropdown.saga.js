@@ -14,28 +14,28 @@ function* getEducation(actions) {
   }
 }
 
-function* getRace(actions) {
+function* getEthnicity(actions) {
   try {
-    const response = yield axios.get('/api/dropdown/race');
+    const response = yield axios.get('/api/dropdown/ethnicity');
     yield put({
-      type: 'SET_RACE',
+      type: 'SET_ETHNICITY',
       payload: response.data,
     });
   } catch (err) {
-    console.log('ERROR GETTING RACE', err);
+    console.log('ERROR GETTING ethnicity', err);
     yield put({ type: 'GET_FAILED' });
   }
 }
 
-function* getSex(actions) {
+function* getGender(actions) {
   try {
-    const response = yield axios.get('/api/dropdown/sex');
+    const response = yield axios.get('/api/dropdown/gender');
     yield put({
-      type: 'SET_SEX',
+      type: 'SET_GENDER',
       payload: response.data,
     });
   } catch (err) {
-    console.log('ERROR GETTING SEX', err);
+    console.log('ERROR GETTING GENDER', err);
     yield put({ type: 'GET_FAILED' });
   }
 }
@@ -81,8 +81,8 @@ function* getLanguage(actions) {
 
 function* dropdownSaga() {
   yield takeLatest('GET_EDUCATION', getEducation);
-  yield takeLatest('GET_RACE', getRace);
-  yield takeLatest('GET_SEX', getSex);
+  yield takeLatest('GET_ETHNICITY', getEthnicity);
+  yield takeLatest('GET_GENDER', getGender);
   yield takeLatest('GET_SKILL', getSkill);
   yield takeLatest('GET_TIME', getTime);
   yield takeLatest('GET_LANGUAGE', getLanguage);

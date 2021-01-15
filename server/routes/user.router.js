@@ -88,7 +88,7 @@ router.put('/id:', (req, res) => {
       user.middle_name,
       user.last_name,
       user.posting_date,
-      user.sex,
+      user.gender,
       user.zip_code,
       user.company,
       user.job_title,

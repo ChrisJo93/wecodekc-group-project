@@ -24,8 +24,8 @@ class RegisterForm extends Component {
     middle_name: '',
     last_name: '',
     birth_date: '2000-01-01',
-    sex: '',
-    race: '',
+    gender: '',
+    ethnicity: '',
     email: '',
     phone_number: '',
     zip_code: '',
@@ -64,20 +64,24 @@ class RegisterForm extends Component {
         );
       }
     );
-    const race = this.props.store.dropdown.raceReducer.map((item, index) => {
-      return (
-        <MenuItem value={item.id} key={index}>
-          {item.race_label}
-        </MenuItem>
-      );
-    });
-    const sex = this.props.store.dropdown.sexReducer.map((item, index) => {
-      return (
-        <MenuItem value={item.id} key={index}>
-          {item.sex_label}
-        </MenuItem>
-      );
-    });
+    const ethnicity = this.props.store.dropdown.ethnicityReducer.map(
+      (item, index) => {
+        return (
+          <MenuItem value={item.id} key={index}>
+            {item.ethnicity_label}
+          </MenuItem>
+        );
+      }
+    );
+    const gender = this.props.store.dropdown.genderReducer.map(
+      (item, index) => {
+        return (
+          <MenuItem value={item.id} key={index}>
+            {item.gender_label}
+          </MenuItem>
+        );
+      }
+    );
     return (
       <Container>
         <Grid container justify="center">
@@ -157,35 +161,35 @@ class RegisterForm extends Component {
                   </Box>
                   <Box mb={2}>
                     <FormControl variant="outlined" size="small" fullWidth>
-                      <InputLabel id="sex">Sex</InputLabel>
+                      <InputLabel id="gender">Gender</InputLabel>
                       <Select
-                        labelId="sex"
-                        id="sex"
-                        value={this.state.sex}
-                        onChange={this.handleInputChangeFor('sex')}
-                        label="sex"
+                        labelId="gender"
+                        id="gender"
+                        value={this.state.gender}
+                        onChange={this.handleInputChangeFor('gender')}
+                        label="gender"
                       >
                         <MenuItem value="">
                           <em>None</em>
                         </MenuItem>
-                        {sex}
+                        {gender}
                       </Select>
                     </FormControl>
                   </Box>
                   <Box mb={2}>
                     <FormControl variant="outlined" size="small" fullWidth>
-                      <InputLabel id="Race">Race</InputLabel>
+                      <InputLabel id="Ethnicity">Ethnicity</InputLabel>
                       <Select
-                        labelId="race"
-                        id="race"
-                        value={this.state.race}
-                        onChange={this.handleInputChangeFor('race')}
-                        label="race"
+                        labelId="ethnicity"
+                        id="ethnicity"
+                        value={this.state.ethnicity}
+                        onChange={this.handleInputChangeFor('ethnicity')}
+                        label="ethnicity"
                       >
                         <MenuItem value="">
                           <em>None</em>
                         </MenuItem>
-                        {race}
+                        {ethnicity}
                       </Select>
                     </FormControl>
                   </Box>
@@ -280,15 +284,11 @@ class RegisterForm extends Component {
                         Highest Level of Education
                       </InputLabel>
                       <Select
-                        // style={{
-                        //   border: 'solid grey',
-                        // }}
                         labelId="education_level"
                         id="education_level"
                         multiple
                         value={this.state.education_level}
                         onChange={this.handleInputChangeFor('education_level')}
-                        // input={<Input id="select-multiple-chip" />}
                         renderValue={(selected) => (
                           <div>
                             {selected.map((name) => (
