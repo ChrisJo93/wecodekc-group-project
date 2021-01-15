@@ -25,6 +25,7 @@ const useRowStyles = makeStyles({
 });
 
 function DemographicsTable(props) {
+  const rows = props.userData;
   return (
     <Paper>
       <Table>
@@ -38,7 +39,18 @@ function DemographicsTable(props) {
             <TableCell>Zip Code</TableCell>
           </TableRow>
         </TableHead>
-        <TableBody></TableBody>
+        <TableBody>
+          {rows.map((row) => (
+            <TableRow key={row.id}>
+              <TableCell>{row.volunteer_role}</TableCell>
+              <TableCell>{'filler'}</TableCell>
+              <TableCell>{row.race_label}</TableCell>
+              <TableCell>{row.sex_label}</TableCell>
+              <TableCell>{'filler'}</TableCell>
+              <TableCell>{row.zip_code}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
       </Table>
     </Paper>
   );

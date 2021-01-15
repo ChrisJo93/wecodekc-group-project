@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PieChart from 'react-minimal-pie-chart';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
 import Grid from '@material-ui/core/Grid';
@@ -6,7 +7,6 @@ import Select from '@material-ui/core/Select';
 import { FormControl } from '@material-ui/core';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
-import { PieChart } from '@material-ui/icons';
 
 // Basic class component structure for React with default state
 // value setup. When making a new component be sure to replace
@@ -48,6 +48,7 @@ class ControlPanelDemographics extends Component {
               Descending
             </Button>
           </Grid>
+          <Grid item lg={2}></Grid>
           <Grid item lg={3}>
             <h1>Demographics</h1>
             <h3>Total Volunteers : </h3>
@@ -57,12 +58,16 @@ class ControlPanelDemographics extends Component {
               Download
             </Button>
           </Grid>
-          <Grid item lg={7}>
+          <Grid item lg={2}></Grid>
+          <Grid item lg={2}>
             <PieChart
               data={[
-                { title: 'One', value: 40, color: '#E38627' },
-                { title: 'Two', value: 40, color: '#C13C37' },
-                { title: 'Three', value: 20, color: '#6A2135' },
+                { title: 'One', value: 20, color: '#4d2aff' },
+                { title: 'Two', value: 5, color: '#1eff9a' },
+                { title: 'Three', value: 15, color: '#bab72d' },
+                { title: 'four', value: 30, color: '#E38627' },
+                { title: 'five', value: 10, color: '#C13C37' },
+                { title: 'six', value: 10, color: '#6A2135' },
               ]}
             />
           </Grid>

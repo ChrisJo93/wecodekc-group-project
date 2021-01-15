@@ -26,7 +26,7 @@ class DemographicsControl extends Component {
     return (
       <>
         <ControlPanelDemographics />
-        <Demographics userData={this.props.store.unverifiedUsers} />
+        <Demographics userData={this.props.store.allUsers} />
       </>
     );
   }
