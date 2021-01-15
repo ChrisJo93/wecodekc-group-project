@@ -10,7 +10,6 @@ import {
   TextField,
   FormControl,
   InputLabel,
-  Input,
   Select,
   MenuItem,
   Button,
@@ -59,7 +58,7 @@ class RegisterForm extends Component {
     const level = this.props.store.dropdown.educationReducer.map(
       (item, index) => {
         return (
-          <MenuItem value={item.id} key={index}>
+          <MenuItem value={item.id} key={index} name={item.education_label}>
             {item.education_label}
           </MenuItem>
         );
@@ -276,22 +275,24 @@ class RegisterForm extends Component {
                     </div>
                   </Box>
                   <Box mb={2}>
-                    <FormControl variant="outlined">
+                    <FormControl variant="outlined" fullWidth>
                       <InputLabel id="education_level">
                         Highest Level of Education
                       </InputLabel>
                       <Select
-                        style={{ backgroundColor: 'green' }}
+                        // style={{
+                        //   border: 'solid grey',
+                        // }}
                         labelId="education_level"
                         id="education_level"
                         multiple
                         value={this.state.education_level}
                         onChange={this.handleInputChangeFor('education_level')}
-                        input={<Input id="select-multiple-chip" />}
+                        // input={<Input id="select-multiple-chip" />}
                         renderValue={(selected) => (
                           <div>
-                            {selected.map((value) => (
-                              <Chip key={value} label={value} />
+                            {selected.map((name) => (
+                              <Chip key={name} label={name} />
                             ))}
                           </div>
                         )}
