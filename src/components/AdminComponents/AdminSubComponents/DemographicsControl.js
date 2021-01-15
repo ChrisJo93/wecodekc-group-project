@@ -12,7 +12,7 @@ import ControlPanelDemographics from '../DemographicsFolder/ControlPanelDemograp
 class DemographicsControl extends Component {
   componentDidMount() {
     this.props.dispatch({
-      type: 'GET_ALL_ID',
+      type: 'GET_VERIFIED_USER_ALL_DETAIL',
     });
   }
   state = {
@@ -23,10 +23,11 @@ class DemographicsControl extends Component {
   };
 
   render() {
+    console.log(this.props.store);
     return (
       <>
         <ControlPanelDemographics />
-        <Demographics userData={this.props.store.allUsers} />
+        <Demographics userData={this.props.store.verifiedUserDetailAll} />
       </>
     );
   }

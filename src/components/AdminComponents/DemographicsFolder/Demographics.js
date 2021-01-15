@@ -43,11 +43,12 @@ function DemographicsTable(props) {
         <TableBody>
           {rows.map((row) => (
             <TableRow key={row.id}>
-              <TableCell>{row.volunteer_role}</TableCell>
-              <TableCell>{'filler'}</TableCell>
+              <TableCell>{row.role_label}</TableCell>
+              <TableCell>{'active courses'}</TableCell>
               <TableCell>{row.ethnicity_label}</TableCell>
               <TableCell>{row.gender_label}</TableCell>
               <TableCell>{row.age}</TableCell>
+              <TableCell>{row.education_label}</TableCell>
               <TableCell>{row.zip_code}</TableCell>
             </TableRow>
           ))}
