@@ -12,17 +12,15 @@ import {
   FormControl,
   FormLabel,
 } from '@material-ui/core';
-import { RRule, RRuleSet, rrulestr } from 'rrule';
+import { RRule } from 'rrule';
 
 class RecurringForm extends Component {
   state = {
     freq: 'sillyWillies',
     interval: '',
     byweekday: [],
-    dtstart: new Date(),
-    until: new Date(),
-    checked: false,
-    age: 1,
+    dtstart: '',
+    until: '',
   };
 
   handleChangeForFreqCheck = (event) => {
@@ -40,51 +38,86 @@ class RecurringForm extends Component {
       }
     );
   };
-
+  //I love this code so much
+  //my personal genius, this function handles the state change for the day of week array but ALSO uses the switch function to change
+  //the day integer from the checkbox BACK into a viable format for RRule
   handleChangeForDay = (day) => (event) => {
     this.setState(
       {
-        byweekday: [...this.state.byweekday, this.handleSwitch(day)],
+        byweekday: [...this.state.byweekday, this.handleSwitchBack(day)],
       },
       () => {
-        console.log('lol', this.handleSwitch(day));
+        console.log(day, this.handleSwitchBack(day), this.state.byweekday);
       }
     );
   };
-
+  //changes RRule integer into a readable day for checkboxes
   handleSwitch = (day) => {
     switch (day) {
       case 0:
-        day = 'Sunday';
-        return day;
-        break;
-      case 1:
         day = 'Monday';
         return day;
         break;
-      case 2:
+      case 1:
         day = 'Tuesday';
         return day;
         break;
-      case 3:
+      case 2:
         day = 'Wednesday';
         return day;
         break;
-      case 4:
+      case 3:
         day = 'Thursday';
         return day;
         break;
-      case 5:
+      case 4:
         day = 'Friday';
         return day;
         break;
-      case 6:
+      case 5:
         day = 'Saturday';
+        return day;
+        break;
+      case 6:
+        day = 'Sunday';
+        return day;
+    }
+  };
+  //changes day integer back into viable RRule format
+  handleSwitchBack = (day) => {
+    switch (day) {
+      case 0:
+        day = RRule.MO;
+        return day;
+        break;
+      case 1:
+        day = RRule.TU;
+        return day;
+        break;
+      case 2:
+        day = RRule.WE;
+        return day;
+        break;
+      case 3:
+        day = RRule.TH;
+        return day;
+        break;
+      case 4:
+        day = RRule.FR;
+        return day;
+        break;
+      case 5:
+        day = RRule.SA;
+        return day;
+        break;
+      case 6:
+        day = RRule.SU;
         return day;
     }
   };
 
   render() {
+    //adding RRule days to an array
     const monday = RRule.MO;
     const tuesday = RRule.TU;
     const wednesday = RRule.WE;
@@ -93,24 +126,26 @@ class RecurringForm extends Component {
     const saturday = RRule.SA;
     const sunday = RRule.SU;
     const dayarray = [
+      sunday,
       monday,
       tuesday,
       wednesday,
       thursday,
       friday,
       saturday,
-      sunday,
     ];
-
+    //mapping through those readable days to render as checkboxes
     const listofdays = dayarray.map((day, index) => {
       return (
         <FormControlLabel
+          //using this switch function to rename the weekday's integer as a readable day
           label={this.handleSwitch(day.weekday)}
           key={index}
           control={
             <Checkbox
               color="primary"
               value={day}
+              //adding whichever day of the week is checked to the array on state
               onChange={this.handleChangeForDay(day.weekday)}
               name={day}
             />
@@ -134,7 +169,11 @@ class RecurringForm extends Component {
         <TextField
           type="number"
           variant="outlined"
-          value={this.state.interval}
+          value={
+            this.state.interval <= 0 && this.state.interval === 0
+              ? ''
+              : this.state.interval
+          }
           onChange={this.handleChangeForInterval}
           label="Interval"
         />
