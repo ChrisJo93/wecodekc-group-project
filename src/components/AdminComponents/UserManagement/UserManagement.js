@@ -52,8 +52,11 @@ function UserTable(props) {
 
   const handleButton = (selection, id) => (e) => {
     switch (selection) {
-      case 'toggleEdit':
-        toggle = true;
+      case 'profile':
+        props.dispatch({
+          type: 'GET_VERIFIED_USER_DETAIL',
+          payload: id,
+        });
         break;
       case 'finalize':
         permissionLevel && role !== undefined

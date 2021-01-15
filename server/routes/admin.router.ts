@@ -24,6 +24,22 @@ router.get(
 );
 
 router.get(
+  '/allIdGet',
+  (req: Request, res: Response, next: express.NextFunction): void => {
+    const getAllID: string = `SELECT "user".id FROM "user";`;
+    pool
+      .query(getAllID)
+      .then((result) => {
+        res.send(result.rows);
+      })
+      .catch((error) => {
+        console.log('error getting allId', error);
+        res.sendStatus(500);
+      });
+  }
+);
+
+router.get(
   '/unverifiedGet',
   (req: Request, res: Response, next: express.NextFunction): void => {
     const getAllUsers: string = `SELECT * FROM "user" WHERE access_level = 1;`;
