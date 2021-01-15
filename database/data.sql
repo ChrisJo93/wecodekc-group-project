@@ -12,8 +12,9 @@ INSERT INTO "gender" (gender_label) VALUES
   ('Male'),
   ('Female'),
   ('transgender'),
-   ('non-binary'),
-  ('gender neutral');
+  ('non-binary'),
+  ('gender neutral'),
+  ('Not listed');
 
 
 INSERT INTO "education_level" (education_label) VALUES 
@@ -52,6 +53,7 @@ INSERT INTO "skills" (skills_label) VALUES
   (6, 'rejected');
 
     INSERT INTO "volunteer_role" (role_label) VALUES 
+  ('None Assigned'),
   ('Tech Instructor'),
   ('Tech Assistant'),
   ('Classroom Assistant'),

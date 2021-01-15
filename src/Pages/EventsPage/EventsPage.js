@@ -44,6 +44,10 @@ class EventsPage extends Component {
       );
     });
 
+    // const sortDate = this.props.store.eventReducer.sort(
+    //   (a, b) => a.event_start > b.event_start
+    // );
+
     return (
       <div style={{ padding: 20 }}>
         <EventsBar />

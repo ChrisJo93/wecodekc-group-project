@@ -31,7 +31,7 @@ router.post(
     const customSkills: string = <string>req.body.custom_entry_skills;
     const skills: Array<number> = req.body.skills;
     const timeSlot: Array<number> = req.body.time_slot;
-    const educationLevel: Array<number> = req.body.education_level;
+    const educationLevel: number = req.body.education_level;
     const ethnicity: number = req.body.ethnicity;
     const backgroundCheck: boolean = req.body.background_check_permission;
     const gender: number = parseInt(req.body.gender);
@@ -41,8 +41,8 @@ router.post(
     const queryOne: string = `INSERT INTO "user" (username, password,  first_name, middle_name,
       last_name, ethnicity, company, job_title, motivation_bio, experience_bio, custom_entry_skills,
       background_check_permission, gender, zip_code, access_level,
-      email, registered_first_name, registered_middle_name, registered_last_name) 
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19) RETURNING id;`;
+      email, registered_first_name, registered_middle_name, registered_last_name, volunteer_role, highest_education_level) 
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20,$21) RETURNING id;`;
     pool
       .query(queryOne, [
         username,
@@ -64,6 +64,8 @@ router.post(
         registered_first_name,
         registered_middle_name,
         registered_last_name,
+        1,
+        educationLevel,
       ])
       .then((result) => {
         newUserId = parseInt(result.rows[0].id);
@@ -76,11 +78,6 @@ router.post(
         for (let index = 0; index < timeSlot.length; index++) {
           let element: number = timeSlot[index];
           let query: string = `INSERT INTO "user_time_slot" (user_id, time_slot_id) VALUES ($1, $2)`;
-          userPromises.push(pool.query(query, [newUserId, element]));
-        }
-        for (let index = 0; index < educationLevel.length; index++) {
-          let element: number = educationLevel[index];
-          let query: string = `INSERT INTO "user_education_level" (user_id, education_level) VALUES ($1, $2)`;
           userPromises.push(pool.query(query, [newUserId, element]));
         }
         Promise.all(userPromises)
@@ -175,15 +172,11 @@ router.get(
     // GET route to get all volunteers/mentors information
     const queryText: string = `SELECT gender_label,first_name, middle_name, last_name, birth_date,posting_date,
     zip_code,phone_number,company,job_title,motivation_bio,experience_bio,
-    custom_entry_skills,access_label,
+    custom_entry_skills,access_label, education_label,
     ARRAY(SELECT skills_label FROM "user" 
 		JOIN "user_skills" ON "user".id = "user_skills".user_id
 		JOIN "skills" on "user_skills".skills_id = "skills".id
 		WHERE "user".id = $1) AS "skills_label_array",
-    ARRAY(SELECT education_label FROM "user"
-		JOIN "user_education_level" ON "user".id = "user_education_level".user_id
-		JOIN "education_level" on "user_education_level".education_level = "education_level".id
-		WHERE "user".id = $1) AS "education_label_array",
     ARRAY(SELECT time_slot_label FROM "user"
 		JOIN "user_time_slot" ON "user".id = "user_time_slot".user_id
 		JOIN time_slot ON "user_time_slot".time_slot_id = time_slot.id
@@ -191,7 +184,8 @@ router.get(
     ARRAY(SELECT link_url FROM "user"
 		JOIN "user_images" ON "user".id = "user_images".user_id 
     JOIN "images" ON "user_images".image_id = "images".id
-		WHERE "user".id = $1) AS "image_link_array"FROM "user" 
+    WHERE "user".id = $1) AS "image_link_array"FROM "user" 
+    JOIN "education_level" ON "user".highest_education_level = "education_level".id
     JOIN "gender" ON "user".gender = "gender".id
     JOIN "access_level" ON "user".access_level = "access_level".id
     WHERE "user".id = $1;
@@ -216,15 +210,11 @@ router.get(
     const queryText: string = `SELECT 
     gender_label,first_name, middle_name, last_name, birth_date,posting_date,
     zip_code,phone_number,company,job_title,motivation_bio,experience_bio,
-    custom_entry_skills, access_label, role_label, access_label,
+    custom_entry_skills, access_label, role_label, access_label, education_label,
     ARRAY(SELECT skills_label FROM "user" 
 		JOIN "user_skills" ON "user".id = "user_skills".user_id
 		JOIN "skills" on "user_skills".skills_id = "skills".id
 		WHERE "user".id = $1) AS "skills_label_array",
-    ARRAY(SELECT education_label FROM "user"
-		JOIN "user_education_level" ON "user".id = "user_education_level".user_id
-		JOIN "education_level" on "user_education_level".education_level = "education_level".id
-		WHERE "user".id = $1) AS "education_label_array",
 	ARRAY(SELECT note_on_subject FROM "user"
 		JOIN "admin_note" ON "user".id = "admin_note".user_id_subject
 		WHERE "user".id = $1) AS "admin_note_array",
@@ -238,6 +228,7 @@ router.get(
 		WHERE "user".id = $1) AS "image_link_array"FROM "user" 
 	JOIN "access_level" ON "user".access_level = "access_level".id
   JOIN "volunteer_role" ON "user".volunteer_role = "volunteer_role".id
+  JOIN "education_level" ON "user".highest_education_level = "education_level".id
     JOIN "ethnicity" ON "user".ethnicity = "ethnicity".id 
     JOIN "gender" ON "user".gender = "gender".id
     WHERE "user".id = $1;
@@ -245,6 +236,44 @@ router.get(
 
     pool
       .query(queryText, [req.params.id])
+      .then((dbResponse) => {
+        res.send(dbResponse.rows);
+      })
+      .catch((err) => {
+        console.log('error getting user detail data', err);
+        res.sendStatus(500);
+      });
+  }
+);
+
+router.get(
+  '/verifiedUserDetailAll',
+  (req: Request, res: Response, next: express.NextFunction): void => {
+    // GET route to get all volunteers/mentors information
+    const queryText: string = `SELECT 
+    gender_label,first_name, middle_name, last_name, birth_date,posting_date,
+    zip_code,phone_number,company,job_title,motivation_bio,experience_bio, ethnicity_label,education_label,
+    custom_entry_skills, access_label, role_label, access_label, education_label,
+    ARRAY(SELECT skills_label FROM "user" 
+		JOIN "user_skills" ON "user".id = "user_skills".user_id
+		JOIN "skills" on "user_skills".skills_id = "skills".id) AS "skills_label_array",
+	ARRAY(SELECT note_on_subject FROM "user"
+		JOIN "admin_note" ON "user".id = "admin_note".user_id_subject) AS "admin_note_array",
+    ARRAY(SELECT time_slot_label FROM "user"
+		JOIN "user_time_slot" ON "user".id = "user_time_slot".user_id
+		JOIN time_slot ON "user_time_slot".time_slot_id = time_slot.id) AS "time_slot_label_array",
+    ARRAY(SELECT link_url FROM "user"
+		JOIN "user_images" ON "user".id = "user_images".user_id 
+    JOIN "images" ON "user_images".image_id = "images".id) AS "image_link_array"FROM "user" 
+	JOIN "access_level" ON "user".access_level = "access_level".id
+  JOIN "volunteer_role" ON "user".volunteer_role = "volunteer_role".id
+  JOIN "education_level" ON "user".highest_education_level = "education_level".id
+    JOIN "ethnicity" ON "user".ethnicity = "ethnicity".id 
+    JOIN "gender" ON "user".gender = "gender".id;
+`;
+
+    pool
+      .query(queryText)
       .then((dbResponse) => {
         res.send(dbResponse.rows);
       })
