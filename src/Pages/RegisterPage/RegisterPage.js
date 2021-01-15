@@ -11,13 +11,8 @@ class RegisterPage extends Component {
   componentDidMount() {
     //dispatch to get all education levels for dropdown
     this.props.dispatch({ type: 'GET_EDUCATION' });
-<<<<<<< HEAD
     this.props.dispatch({ type: 'GET_ETHNICITY' });
     this.props.dispatch({ type: 'GET_GENDER' });
-=======
-    this.props.dispatch({ type: 'GET_ethnicity' });
-    this.props.dispatch({ type: 'GET_gender' });
->>>>>>> develop
   }
 
   render() {

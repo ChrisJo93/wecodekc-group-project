@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import EventListItem from '../../components/EventListItem/EventListItem';
 
 //custom file imports
 import './user.css';
 import ProfileInfoPanel from './ProfileInfoPanel';
 import UserPageEdit from '../../components/UserPageEdit/UserPageEdit';
+import UserEventItem from './UserEventItem';
 
 //custom MATERIAL-UI imports
-import { Grid, Typography, Container, Button } from '@material-ui/core';
-import UserEventItem from './UserEventItem';
+import { Grid, Typography, Container } from '@material-ui/core';
 
 class UserPage extends Component {
   state = {

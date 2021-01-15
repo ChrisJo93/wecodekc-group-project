@@ -26,15 +26,9 @@ router.get(
 router.get(
   '/ethnicity',
   (req: Request, res: Response, next: express.NextFunction): void => {
-<<<<<<< HEAD
-    const getEthnicity: string = `SELECT * FROM "ethnicity";`;
-    pool
-      .query(getEthnicity)
-=======
     const getethnicity: string = `SELECT * FROM "ethnicity";`;
     pool
       .query(getethnicity)
->>>>>>> develop
       .then((result) => {
         res.send(result.rows);
       })

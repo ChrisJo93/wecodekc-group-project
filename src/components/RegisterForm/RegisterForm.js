@@ -31,7 +31,7 @@ class RegisterForm extends Component {
     zip_code: '',
     company: '',
     job_title: '',
-    education_level: [],
+    education_level: '',
     username: '',
     password: '',
   };
@@ -161,11 +161,7 @@ class RegisterForm extends Component {
                   </Box>
                   <Box mb={2}>
                     <FormControl variant="outlined" size="small" fullWidth>
-<<<<<<< HEAD
                       <InputLabel id="gender">Gender</InputLabel>
-=======
-                      <InputLabel id="gender">gender</InputLabel>
->>>>>>> develop
                       <Select
                         labelId="gender"
                         id="gender"
@@ -182,11 +178,7 @@ class RegisterForm extends Component {
                   </Box>
                   <Box mb={2}>
                     <FormControl variant="outlined" size="small" fullWidth>
-<<<<<<< HEAD
                       <InputLabel id="Ethnicity">Ethnicity</InputLabel>
-=======
-                      <InputLabel id="ethnicity">ethnicity</InputLabel>
->>>>>>> develop
                       <Select
                         labelId="ethnicity"
                         id="ethnicity"
@@ -287,24 +279,20 @@ class RegisterForm extends Component {
                     </div>
                   </Box>
                   <Box mb={2}>
-                    <FormControl variant="outlined" fullWidth>
+                    <FormControl variant="outlined" size="small" fullWidth>
                       <InputLabel id="education_level">
                         Highest Level of Education
                       </InputLabel>
                       <Select
                         labelId="education_level"
                         id="education_level"
-                        multiple
                         value={this.state.education_level}
                         onChange={this.handleInputChangeFor('education_level')}
-                        renderValue={(selected) => (
-                          <div>
-                            {selected.map((name) => (
-                              <Chip key={name} label={name} />
-                            ))}
-                          </div>
-                        )}
+                        label="education_level"
                       >
+                        <MenuItem value="">
+                          <em>None</em>
+                        </MenuItem>
                         {level}
                       </Select>
                     </FormControl>

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
+
+//custom file imports
 import Verify from '../../../components/AdminComponents/VerificationTable/Verify';
 import ControlPanelVerification from '../../AdminComponents/VerificationTable/ControlPanelVerification';
 
