@@ -26,9 +26,15 @@ router.get(
 router.get(
   '/ethnicity',
   (req: Request, res: Response, next: express.NextFunction): void => {
+<<<<<<< HEAD
     const getEthnicity: string = `SELECT * FROM "ethnicity";`;
     pool
       .query(getEthnicity)
+=======
+    const getethnicity: string = `SELECT * FROM "ethnicity";`;
+    pool
+      .query(getethnicity)
+>>>>>>> develop
       .then((result) => {
         res.send(result.rows);
       })
@@ -40,16 +46,16 @@ router.get(
 );
 
 router.get(
-  '/sex',
+  '/gender',
   (req: Request, res: Response, next: express.NextFunction): void => {
-    const getSex: string = `SELECT * FROM "sex";`;
+    const getgender: string = `SELECT * FROM "gender";`;
     pool
-      .query(getSex)
+      .query(getgender)
       .then((result) => {
         res.send(result.rows);
       })
       .catch((error) => {
-        console.log('error getting sex', error);
+        console.log('error getting gender', error);
         res.sendStatus(500);
       });
   }

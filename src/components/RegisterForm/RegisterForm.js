@@ -161,7 +161,11 @@ class RegisterForm extends Component {
                   </Box>
                   <Box mb={2}>
                     <FormControl variant="outlined" size="small" fullWidth>
+<<<<<<< HEAD
                       <InputLabel id="gender">Gender</InputLabel>
+=======
+                      <InputLabel id="gender">gender</InputLabel>
+>>>>>>> develop
                       <Select
                         labelId="gender"
                         id="gender"
@@ -178,7 +182,11 @@ class RegisterForm extends Component {
                   </Box>
                   <Box mb={2}>
                     <FormControl variant="outlined" size="small" fullWidth>
+<<<<<<< HEAD
                       <InputLabel id="Ethnicity">Ethnicity</InputLabel>
+=======
+                      <InputLabel id="ethnicity">ethnicity</InputLabel>
+>>>>>>> develop
                       <Select
                         labelId="ethnicity"
                         id="ethnicity"

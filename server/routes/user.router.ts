@@ -34,13 +34,13 @@ router.post(
     const educationLevel: Array<number> = req.body.education_level;
     const ethnicity: number = req.body.ethnicity;
     const backgroundCheck: boolean = req.body.background_check_permission;
-    const sex: number = parseInt(req.body.sex);
+    const gender: number = parseInt(req.body.gender);
     const zipCode: number = parseInt(req.body.zip_code);
     let newUserId: number;
 
     const queryOne: string = `INSERT INTO "user" (username, password,  first_name, middle_name,
-      last_name, race, company, job_title, motivation_bio, experience_bio, custom_entry_skills,
-      background_check_permission, sex, zip_code, access_level,
+      last_name, ethnicity, company, job_title, motivation_bio, experience_bio, custom_entry_skills,
+      background_check_permission, gender, zip_code, access_level,
       email, registered_first_name, registered_middle_name, registered_last_name) 
       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19) RETURNING id;`;
     pool
@@ -57,7 +57,7 @@ router.post(
         experienceBio,
         customSkills,
         backgroundCheck,
-        sex,
+        gender,
         zipCode,
         1,
         email,
@@ -173,7 +173,7 @@ router.get(
   '/newUserDetail/:id',
   (req: Request, res: Response, next: express.NextFunction): void => {
     // GET route to get all volunteers/mentors information
-    const queryText: string = `SELECT sex_label,first_name, middle_name, last_name, birth_date,posting_date,
+    const queryText: string = `SELECT gender_label,first_name, middle_name, last_name, birth_date,posting_date,
     zip_code,phone_number,company,job_title,motivation_bio,experience_bio,
     custom_entry_skills,access_label,
     ARRAY(SELECT skills_label FROM "user" 
@@ -192,7 +192,7 @@ router.get(
 		JOIN "user_images" ON "user".id = "user_images".user_id 
     JOIN "images" ON "user_images".image_id = "images".id
 		WHERE "user".id = $1) AS "image_link_array"FROM "user" 
-    JOIN "sex" ON "user".sex = "sex".id
+    JOIN "gender" ON "user".gender = "gender".id
     JOIN "access_level" ON "user".access_level = "access_level".id
     WHERE "user".id = $1;
 `;
@@ -214,7 +214,7 @@ router.get(
   (req: Request, res: Response, next: express.NextFunction): void => {
     // GET route to get all volunteers/mentors information
     const queryText: string = `SELECT 
-    sex_label,first_name, middle_name, last_name, birth_date,posting_date,
+    gender_label,first_name, middle_name, last_name, birth_date,posting_date,
     zip_code,phone_number,company,job_title,motivation_bio,experience_bio,
     custom_entry_skills, access_label, role_label, access_label,
     ARRAY(SELECT skills_label FROM "user" 
@@ -238,8 +238,8 @@ router.get(
 		WHERE "user".id = $1) AS "image_link_array"FROM "user" 
 	JOIN "access_level" ON "user".access_level = "access_level".id
   JOIN "volunteer_role" ON "user".volunteer_role = "volunteer_role".id
-    JOIN "race" ON "user".race = "race".id 
-    JOIN "sex" ON "user".sex = "sex".id
+    JOIN "ethnicity" ON "user".ethnicity = "ethnicity".id 
+    JOIN "gender" ON "user".gender = "gender".id
     WHERE "user".id = $1;
 `;
 

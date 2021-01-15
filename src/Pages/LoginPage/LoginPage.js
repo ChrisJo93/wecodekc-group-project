@@ -20,10 +20,17 @@ function LoginPage(props) {
       type: 'GET_EDUCATION',
     });
     dispatch({
+<<<<<<< HEAD
       type: 'GET_GENDER',
     });
     dispatch({
       type: 'GET_ETHNICITY',
+=======
+      type: 'GET_gender',
+    });
+    dispatch({
+      type: 'GET_ethnicity',
+>>>>>>> develop
     });
   }, [dispatch]);
 
