@@ -21,6 +21,13 @@ class UserEventItem extends Component {
     this.props.history.push(`/event/details/${this.props.event.id}`);
   };
 
+  removeEvent = (e) => {
+    this.props.dispatch({
+      type: 'DELETE_USER_EVENT',
+      payload: this.props.event.id,
+    });
+  };
+
   render() {
     const { event } = this.props;
     const date = DateTime.fromISO(event.event_start);
