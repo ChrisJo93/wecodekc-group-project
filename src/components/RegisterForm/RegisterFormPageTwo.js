@@ -76,7 +76,7 @@ class RegisterFormPageTwo extends Component {
     //loop through to get each skill from database
     const skills = this.props.store.dropdown.skillReducer.map((item, index) => {
       return (
-        <MenuItem value={item.id} key={index}>
+        <MenuItem value={item.id} key={index} name={item.skills_label}>
           {item.skills_label}
         </MenuItem>
       );
@@ -85,7 +85,7 @@ class RegisterFormPageTwo extends Component {
     const time = this.props.store.dropdown.timeReducer.map((item, index) => {
       return (
         <MenuItem value={item.id} key={index}>
-          {item.time_slot}
+          {item.day_name} {item.time_slot_label}
         </MenuItem>
       );
     });
