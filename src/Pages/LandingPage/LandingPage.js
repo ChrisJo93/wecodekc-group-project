@@ -75,16 +75,21 @@ class LandingPage extends Component {
                   </Typography>
                 </center>
                 <Typography>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Curabitur id felis metus. Vestibulum et pulvinar tortor. Morbi
-                  pharetra lacus ut ex molestie blandit. Etiam et turpis sit
-                  amet risus mollis interdum. Suspendisse et justo vitae metus
-                  bibendum fringilla sed sed justo. Aliquam sollicitudin dapibus
-                  lectus, vitae consequat odio elementum eget. Praesent
-                  efficitur eros vitae nunc interdum, eu interdum justo
-                  facilisis. Sed pulvinar nulla ac dignissim efficitur. Quisque
-                  eget eros metus. Vestibulum bibendum fringilla nibh a luctus.
-                  Duis a sapien metus.
+                  <p>
+                    Our mission is to give youth the opportunity to learn
+                    technology concepts, and leadership skills; creating a
+                    pipeline of future-ready professionals through project-based
+                    learning and innovative programs.<br></br>
+                    <br></br>
+                    WE CODE KC is an initiative that serves the urban core of
+                    Kansas City, exposing youth to various programming
+                    languages, technology, cyber security, and computer science
+                    concepts. Learning the basic concept of coding develops
+                    creativity, problem solving skills, builds confidence and
+                    helps to build a positive future. Every child, no matter
+                    their zip code or their family’s financial status, should
+                    have the opportunity to learn to code.
+                  </p>
                 </Typography>
               </CardContent>
             </Card>
