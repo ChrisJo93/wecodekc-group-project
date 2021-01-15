@@ -1,4 +1,4 @@
-import { put, takeLatest } from 'redux-saga/effects';
+import { put, take, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
 function* getEvents(action) {
@@ -37,6 +37,21 @@ function* getUserEvents(action) {
   } catch (err) {
     console.log('error getting event for specific users', err);
     yield put({ type: 'GET_USER_EVENT_FAILED' });
+  }
+}
+
+function* deleteUserEvents(action) {
+  console.log('LOOK FOR DELETE USER EVENT', action.payload);
+  try {
+    yield axios.delete(`/api/event/user/${action.payload}`, {
+      data: action.payload,
+    });
+    yield put({
+      type: 'GET_USER_EVENTS',
+    });
+  } catch (err) {
+    console.log('ERROR DELETING USER EVENT', err);
+    yield put({ type: 'DELETE_FAILED' });
   }
 }
 
@@ -98,6 +113,7 @@ function* eventSaga() {
   yield takeLatest('GET_EVENT_DETAILS', getEventDetails);
   yield takeLatest('GET_USER_EVENTS', getUserEvents);
   yield takeLatest('POST_USER_EVENT', postUserEvent);
+  yield takeLatest('DELETE_USER_EVENT', deleteUserEvents);
   yield takeLatest('POST_EVENTS', postEvents);
   yield takeLatest('UPDATE_EVENT', updateEvent);
   yield takeLatest('DELETE_EVENT', deleteEvent);

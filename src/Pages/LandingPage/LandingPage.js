@@ -75,7 +75,6 @@ class LandingPage extends Component {
                   </Typography>
                 </center>
                 <Typography>
-<<<<<<< HEAD
                   <p>
                     Our mission is to give youth the opportunity to learn
                     technology concepts, and leadership skills; creating a
@@ -91,19 +90,6 @@ class LandingPage extends Component {
                     their zip code or their family’s financial status, should
                     have the opportunity to learn to code.
                   </p>
-=======
-                  Our mission is to give youth the opportunity to learn
-                  technology concepts, and leadership skills; creating a
-                  pipeline of future-ready professionals through project-based
-                  learning and innovative programs. WE CODE KC is an initiative
-                  that serves the urban core of Kansas City, exposing youth to
-                  various programming languages, technology, cyber security, and
-                  computer science concepts. Learning the basic concept of
-                  coding develops creativity, problem solving skills, builds
-                  confidence and helps to build a positive future. Every child,
-                  no matter their zip code or their family’s financial status,
-                  should have the opportunity to learn to code.
->>>>>>> develop
                 </Typography>
               </CardContent>
             </Card>

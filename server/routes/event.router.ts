@@ -226,4 +226,22 @@ router.delete(
   }
 );
 
+// DELETE USER EVENT
+router.delete(
+  '/user/:id',
+  (req: any, res: Response, next: express.NextFunction): void => {
+    console.log(req.body);
+    const deleteEvent: string = `DELETE FROM "user_event" WHERE "id" =$1;`;
+    pool
+      .query(deleteEvent, [req.params.id])
+      .then((result) => {
+        res.sendStatus(200);
+      })
+      .catch((error) => {
+        console.log(error);
+        res.sendStatus(500);
+      });
+  }
+);
+
 export default router;
