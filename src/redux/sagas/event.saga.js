@@ -41,7 +41,6 @@ function* getUserEvents(action) {
 }
 
 function* deleteUserEvents(action) {
-  console.log('LOOK FOR DELETE USER EVENT', action.payload);
   try {
     yield axios.delete(`/api/event/user/${action.payload}`, {
       data: action.payload,
@@ -57,7 +56,6 @@ function* deleteUserEvents(action) {
 
 function* postUserEvent(action) {
   try {
-    console.log('LOOK HERE USER EVENT', action.payload);
     yield axios.post(`/api/event/user`, action.payload);
   } catch (err) {
     console.log('ERROR SAVING EVENT', err);

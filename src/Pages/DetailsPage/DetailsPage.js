@@ -25,11 +25,15 @@ class DetailsPage extends Component {
 
   clickAttendButton = (event) => {
     event.preventDefault();
-    this.props.dispatch({
-      type: 'POST_USER_EVENT',
-      payload: this.state.newUserEvent,
-    });
-    this.props.history.push('/events');
+    if (this.props.store.user.access_level >= 2) {
+      this.props.dispatch({
+        type: 'POST_USER_EVENT',
+        payload: this.state.newUserEvent,
+      });
+      this.props.history.push('/events');
+    } else {
+      this.props.history.push('/login');
+    }
   };
 
   clickBackButton = (event) => {
@@ -80,6 +84,17 @@ class DetailsPage extends Component {
                 >
                   Click to attend
                 </Button>
+              </Box>
+              <Box mb={2}>
+                {this.props.store.user.access_level >= 4 && (
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    // onClick={this.clickAttendButton}
+                  >
+                    Update Event
+                  </Button>
+                )}
               </Box>
               <Box mb={2}>
                 <Button
