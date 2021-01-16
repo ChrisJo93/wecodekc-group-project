@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import DropzoneS3Uploader from 'react-dropzone-s3-uploader';
 
+//material ui imports
+import { Typography } from '@material-ui/core';
+
 class ImageUpload extends Component {
   handleFinishedUpload = (info) => {
     console.log('File uploaded with filename', info.filename);
@@ -16,14 +19,15 @@ class ImageUpload extends Component {
     const dropStyles = {
       width: '200px',
       height: '200px',
-      border: '1px solid grey',
+
       borderRadius: '100%',
     };
 
-    // const innerDropElement= {
-    //   <div>
-    //   </div>
-    // }
+    const innerDropElement = (
+      <div className="innerDrop">
+        <Typography>Upload a profile picture</Typography>
+      </div>
+    );
 
     const uploadOptions = {
       server: 'http://localhost:5000',
@@ -38,7 +42,7 @@ class ImageUpload extends Component {
         maxSize={1024 * 1024 * 5}
         upload={uploadOptions}
         style={dropStyles}
-        // children={innerDropElement}
+        children={innerDropElement}
       />
     );
   }

@@ -1,5 +1,6 @@
 import React from 'react';
-import ImageUpload from '../../components/ImageUpload/ImageUpload';
+
+import './AboutPage.css';
 
 //imports for dialog
 import PropTypes from 'prop-types';
@@ -43,42 +44,44 @@ function SimpleDialog(props) {
   };
 
   return (
-    <Dialog
-      onClose={handleClose}
-      aria-labelledby="simple-dialog-title"
-      open={open}
-    >
-      <DialogTitle id="simple-dialog-title">Set backup account</DialogTitle>
-      <List>
-        {emails.map((email) => (
+    <div>
+      <Dialog
+        onClose={handleClose}
+        aria-labelledby="simple-dialog-title"
+        open={open}
+      >
+        <DialogTitle id="simple-dialog-title">Set backup account</DialogTitle>
+        <List>
+          {emails.map((email) => (
+            <ListItem
+              button
+              onClick={() => handleListItemClick(email)}
+              key={email}
+            >
+              <ListItemAvatar>
+                <Avatar className={classes.avatar}>
+                  <PersonIcon />
+                </Avatar>
+              </ListItemAvatar>
+              <ListItemText primary={email} />
+            </ListItem>
+          ))}
+
           <ListItem
+            autoFocus
             button
-            onClick={() => handleListItemClick(email)}
-            key={email}
+            onClick={() => handleListItemClick('addAccount')}
           >
             <ListItemAvatar>
-              <Avatar className={classes.avatar}>
-                <PersonIcon />
+              <Avatar>
+                <AddIcon />
               </Avatar>
             </ListItemAvatar>
-            <ListItemText primary={email} />
+            <ListItemText primary="Add account" />
           </ListItem>
-        ))}
-
-        <ListItem
-          autoFocus
-          button
-          onClick={() => handleListItemClick('addAccount')}
-        >
-          <ListItemAvatar>
-            <Avatar>
-              <AddIcon />
-            </Avatar>
-          </ListItemAvatar>
-          <ListItemText primary="Add account" />
-        </ListItem>
-      </List>
-    </Dialog>
+        </List>
+      </Dialog>
+    </div>
   );
 }
 
@@ -102,10 +105,21 @@ export default function AboutPage() {
   };
   return (
     <div className="container">
-      <div>
-        <ImageUpload />
-        <p>This about page is for anyone to read!</p>
-      </div>
+      <img
+        src="https://wecodekc.s3.us-east-2.amazonaws.com/_MG_6525.JPG"
+        alt="girls smiling"
+        className="card-image"
+      />
+      <img
+        src={'https://wecodekc.s3.us-east-2.amazonaws.com/_W4A0886-1.jpg'}
+        alt="girl colouring"
+        className="card-image"
+      />
+      <img
+        src="https://wecodekc.s3.us-east-2.amazonaws.com/WeCodeKC-COLORLOGO.png"
+        alt="logo"
+        className="card-label"
+      />
       <div>
         <Typography variant="subtitle1">Selected: {selectedValue}</Typography>
         <br />

@@ -23,10 +23,6 @@ import { withStyles, createStyles } from '@material-ui/core/styles';
 
 const muiStyles = (theme) =>
   createStyles({
-    // avatar: {
-    //   backgroundColor: blue[100],
-    //   color: blue[600],
-    // },
     cardMedia: {
       height: '400px',
       [theme.breakpoints.down('sm')]: {
@@ -36,7 +32,7 @@ const muiStyles = (theme) =>
   });
 
 class LandingPage extends Component {
-  // const classes = useStyles();
+  //get all events for the carousel
   componentDidMount() {
     this.props.dispatch({
       type: 'GET_EVENTS',
@@ -46,7 +42,7 @@ class LandingPage extends Component {
   state = {};
 
   onLogin = (event) => {
-    this.props.history.push('/login');
+    this.props.history.push('/login-register');
   };
 
   handleRegisterMentor = (e) => {
@@ -67,7 +63,7 @@ class LandingPage extends Component {
       <div className="grid">
         <Grid container alignItems="stretch">
           <Grid item xs={12} md={6}>
-            <Card className="card">
+            <Card className="card" style={{ padding: '50px' }}>
               <CardContent>
                 <center>
                   <Typography variant="h4" gutterBottom>
@@ -118,7 +114,7 @@ class LandingPage extends Component {
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Card className="card">
+            <Card className="card" style={{ padding: '50px' }}>
               <CardContent>
                 <center>
                   <Typography variant="h4">Volunteer</Typography>
@@ -136,6 +132,7 @@ class LandingPage extends Component {
                       color="secondary"
                       variant="contained"
                       onClick={this.handleRegisterVolunteer}
+                      size="large"
                     >
                       register
                     </Button>
@@ -159,11 +156,12 @@ class LandingPage extends Component {
                 image="https://wecodekc.s3.us-east-2.amazonaws.com/_MG_6571-1.jpg"
                 title="mentor"
                 className={this.props.classes.cardMedia}
+                size="large"
               />
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Card className="card">
+            <Card className="card" style={{ padding: '50px' }}>
               <CardContent>
                 <center>
                   <Typography variant="h4">Mentor</Typography>
@@ -182,6 +180,7 @@ class LandingPage extends Component {
                       variant="contained"
                       color="primary"
                       onClick={this.handleRegisterMentor}
+                      size="large"
                     >
                       register
                     </Button>

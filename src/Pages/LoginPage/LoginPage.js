@@ -20,10 +20,10 @@ function LoginPage(props) {
       type: 'GET_EDUCATION',
     });
     dispatch({
-      type: 'GET_gender',
+      type: 'GET_GENDER',
     });
     dispatch({
-      type: 'GET_ethnicity',
+      type: 'GET_ETHNICITY',
     });
   }, [dispatch]);
 
@@ -40,9 +40,10 @@ function LoginPage(props) {
             <Tab label="log-in" />
             <Tab label="register" />
           </Tabs>
-
-          {selectedTab === 0 && <LoginForm />}
-          {selectedTab === 1 && <RegisterTab />}
+          <div className="topBorder">
+            {selectedTab === 0 && <LoginForm />}
+            {selectedTab === 1 && <RegisterTab />}
+          </div>
         </Grid>
       </Grid>
     </div>

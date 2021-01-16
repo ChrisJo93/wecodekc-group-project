@@ -1,20 +1,28 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
-import Select from '@material-ui/core/Select';
+
+//MATERIAL UI IMPORTS
+import {
+  Select,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+  Paper,
+  MenuItem,
+  Button,
+  FormControl,
+  TableContainer,
+} from '@material-ui/core/';
 import { makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import MenuItem from '@material-ui/core/MenuItem';
-import Button from '@material-ui/core/Button';
 import FaceIcon from '@material-ui/icons/Face';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+
+//custom imports
 import swal from 'sweetalert';
-import { FormControl } from '@material-ui/core';
+import ControlPanelAccountControl from '../UserManagement/ControlPanelAccountControl';
 
 const useRowStyles = makeStyles({
   root: {
@@ -94,7 +102,7 @@ function VerifyTable(props) {
   };
 
   return (
-    <Paper>
+    <TableContainer>
       <Table>
         <TableHead>
           <TableRow>
@@ -134,6 +142,7 @@ function VerifyTable(props) {
                 {
                   <FormControl style={{ minWidth: 120 }}>
                     <Select
+                      style={{ minWidth: 160, maxWidth: 160 }}
                       variant="outlined"
                       labelId="roleSelection"
                       id="roleSelection"
@@ -158,6 +167,7 @@ function VerifyTable(props) {
                 {
                   <FormControl style={{ minWidth: 120 }}>
                     <Select
+                      style={{ minWidth: 140, maxWidth: 140 }}
                       variant="outlined"
                       labelId="permissionLevel"
                       id="permissionLevel"
@@ -170,7 +180,7 @@ function VerifyTable(props) {
                       <MenuItem value={6}>Reject</MenuItem>
                       <MenuItem value={2}>Volunteer</MenuItem>
                       <MenuItem value={3}>Mentor</MenuItem>
-                      <MenuItem value={4}>ADMIN</MenuItem>
+                      <MenuItem value={4}>Admin</MenuItem>
                     </Select>
                   </FormControl>
                 }
@@ -191,9 +201,10 @@ function VerifyTable(props) {
               </TableCell>
             </TableRow>
           ))}
+          <ControlPanelAccountControl />
         </TableBody>
       </Table>
-    </Paper>
+    </TableContainer>
   );
 }
 
