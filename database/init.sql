@@ -7,13 +7,13 @@ CREATE TABLE access_level (
   access_level INT,
   access_label VARCHAR(50)
 );
-CREATE TABLE sex (
+CREATE TABLE gender (
   id SERIAL PRIMARY KEY,
-  sex_label VARCHAR(20)
+  gender_label VARCHAR(20)
 );
-CREATE TABLE race (
+CREATE TABLE ethnicity (
   id SERIAL PRIMARY KEY,
-  race_label varchar(100)
+  ethnicity_label varchar(100)
 );
 
 CREATE TABLE volunteer_role (
@@ -21,11 +21,17 @@ CREATE TABLE volunteer_role (
   role_label VARCHAR(150)
 );
 
+CREATE TABLE education_level(
+  id SERIAL PRIMARY KEY,
+  education_label varchar(100)
+);
+
 CREATE TABLE "user" (
   id SERIAL PRIMARY KEY,
   is_active  BOOLEAN,
   username VARCHAR(50),
   password VARCHAR(100),
+  highest_education_level INT REFERENCES "education_level"(id),
   access_level INT DEFAULT 1 REFERENCES "access_level"(id),
   volunteer_role INT REFERENCES "volunteer_role"(id), 
   registered_first_name VARCHAR(50),
@@ -36,8 +42,8 @@ CREATE TABLE "user" (
   last_name VARCHAR(50),
   birth_date VARCHAR,
   posting_date DATE DEFAULT CURRENT_DATE, 
-  sex INT REFERENCES "sex"(id),
-  race INT REFERENCES "race"(id),
+  gender INT REFERENCES "gender"(id),
+  ethnicity INT REFERENCES "ethnicity"(id),
   zip_code INT,
   phone_number VARCHAR(50),
   email VARCHAR(50),
@@ -120,15 +126,6 @@ CREATE TABLE user_time_slot (
   id SERIAL PRIMARY KEY,
   user_id INT REFERENCES "user", 
   time_slot_id INT REFERENCES "time_slot"
-);
-CREATE TABLE education_level(
-  id SERIAL PRIMARY KEY,
-  education_label varchar(100)
-);
-CREATE TABLE user_education_level (
-  id SERIAL PRIMARY KEY,
-  user_id INT REFERENCES "user",
-  education_level INT REFERENCES "education_level"
 );
 CREATE TABLE event_images (
   id SERIAL PRIMARY KEY,

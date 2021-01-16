@@ -14,6 +14,7 @@ import newUserDetailReducer from '../reducers/newUserDetail.reducer';
 import verifiedUserDetailReducer from '../reducers/verifiedUserDetail.reducer';
 import allIdGet from '../reducers/allIdGet.reducer';
 import repeatEventReducer from './repeat.event.reducer';
+import verifiedUserDetailAll from '../reducers/verifiedUserDetailAll.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -36,6 +37,7 @@ const rootReducer = combineReducers({
   imagesReducer, //getting all images from images table (AWS links)
   newUserDetailReducer,
   verifiedUserDetailReducer,
+  verifiedUserDetailAll,
   allIdGet,
 });
 

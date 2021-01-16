@@ -1,14 +1,30 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
-import Avatar from '@material-ui/core/Avatar';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ListItemText from '@material-ui/core/ListItemText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Dialog from '@material-ui/core/Dialog';
-import PersonIcon from '@material-ui/icons/Person';
+
+import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
+import {
+  CircularProgress,
+  Dialog,
+  DialogTitle,
+  ListItemText,
+  ListItemAvatar,
+  ListItem,
+  List,
+  Avatar,
+} from '@material-ui/core';
+import { withStyles, createStyles } from '@material-ui/core/styles';
+
+const muiStyles = (theme) =>
+  createStyles({
+    // avatar: {
+    //   backgroundColor: blue[100],
+    //   color: blue[600],
+    // },
+    dialog: {
+      padding: '300px',
+    },
+  });
 
 class DateListDialog extends Component {
   handleListItemClick = (value) => {
@@ -17,34 +33,40 @@ class DateListDialog extends Component {
 
   render() {
     return (
-      <Dialog onClose={this.props.onClose} open={this.props.open}>
+      <Dialog
+        onClose={this.props.onClose}
+        open={this.props.open}
+        className={this.props.classes.dialog}
+      >
         <DialogTitle>Select An Event</DialogTitle>
 
         <List>
-          {this.props.store.dateReducer <= 0
-            ? 'No Events For This Date'
-            : this.props.store.dateReducer.map((date, index) => (
-                <ListItem
-                  button
-                  onClick={() =>
-                    this.handleListItemClick(
-                      date.id ? date.id : console.log('no selection made')
-                    )
-                  }
-                  key={index}
-                >
-                  <ListItemAvatar>
-                    <Avatar>
-                      <PersonIcon />
-                    </Avatar>
-                  </ListItemAvatar>
-                  <ListItemText primary={date.event_title} />
-                </ListItem>
-              ))}
+          {this.props.store.dateReducer <= 0 ? (
+            <CircularProgress color="secondary" />
+          ) : (
+            this.props.store.dateReducer.map((date, index) => (
+              <ListItem
+                button
+                onClick={() =>
+                  this.handleListItemClick(
+                    date.id ? date.id : console.log('no selection made')
+                  )
+                }
+                key={index}
+              >
+                <ListItemAvatar>
+                  <Avatar>
+                    <CalendarTodayIcon />
+                  </Avatar>
+                </ListItemAvatar>
+                <ListItemText primary={date.event_title} />
+              </ListItem>
+            ))
+          )}
         </List>
       </Dialog>
     );
   }
 }
 
-export default connect(mapStoreToProps)(DateListDialog);
+export default connect(mapStoreToProps)(withStyles(muiStyles)(DateListDialog));

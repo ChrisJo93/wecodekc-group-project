@@ -7,7 +7,7 @@ import Grid from '@material-ui/core/Grid';
 // value setup. When making a new component be sure to replace
 // the component name TemplateClass with the name for the new
 // component.
-class ControlPanelVerification extends Component {
+class ControlPanelAccountControl extends Component {
   render() {
     const array = [1, 2, 3, 4, 5];
     const details = this.props.store.verifiedUserDetailReducer;
@@ -44,11 +44,7 @@ class ControlPanelVerification extends Component {
             </ul>
           </Grid>
           <Grid item lg={2}>
-            <ul>
-              {details[0].education_label_array.map((element) => (
-                <li>{element}</li>
-              ))}
-            </ul>
+            <ul>{details[0].education_label}</ul>
           </Grid>
           <Grid item lg={6}>
             <ul>
@@ -67,4 +63,4 @@ class ControlPanelVerification extends Component {
   }
 }
 
-export default connect(mapStoreToProps)(ControlPanelVerification);
+export default connect(mapStoreToProps)(ControlPanelAccountControl);
