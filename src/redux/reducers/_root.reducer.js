@@ -15,6 +15,9 @@ import verifiedUserDetailReducer from '../reducers/verifiedUserDetail.reducer';
 import allIdGet from '../reducers/allIdGet.reducer';
 import repeatEventReducer from './repeat.event.reducer';
 import verifiedUserDetailAll from '../reducers/verifiedUserDetailAll.reducer';
+import ethnicity from '../reducers/ethnicity.reducer';
+import gender from '../reducers/gender.reducer';
+import volunteerRole from '../reducers/volunteerRole.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -39,6 +42,9 @@ const rootReducer = combineReducers({
   verifiedUserDetailReducer,
   verifiedUserDetailAll,
   allIdGet,
+  ethnicity,
+  gender,
+  volunteerRole,
 });
 
 export default rootReducer;
