@@ -22,6 +22,7 @@ class ControlPanelDemographics extends Component {
         <Grid container>
           <Grid item lg={2}>
             <FormControl style={{ minWidth: 120 }}>
+              <h3>Sort By</h3>
               <Select
                 variant="outlined"
                 labelId="roleSelection"
@@ -41,19 +42,13 @@ class ControlPanelDemographics extends Component {
                 <MenuItem value={null}></MenuItem>
               </Select>
             </FormControl>
-            <Button variant="contained" color="secondary">
-              Ascending
-            </Button>
-            <Button variant="contained" color="secondary" s>
-              Descending
-            </Button>
           </Grid>
           <Grid item lg={2}></Grid>
           <Grid item lg={3}>
             <h1>Demographics</h1>
-            <h3>Total Volunteers : </h3>
-            <h3>Total Mentors : </h3>
-            <h3>Total Admins : </h3>
+            <h4>Total Admins : </h4>
+            <h4>Total Mentors : </h4>
+            <h4>Total Volunteers : </h4>
             <Button variant="contained" color="secondary" s>
               Download
             </Button>
