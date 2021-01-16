@@ -16,11 +16,12 @@ import { RRule } from 'rrule';
 
 class RecurringForm extends Component {
   state = {
-    freq: 'sillyWillies',
-    interval: '',
+    freq: RRule.WEEKLY,
+    interval: 1,
     byweekday: [],
-    dtstart: '',
-    until: '',
+    dtstart: new Date(Date.UTC(2021, 1, 1, 10, 30)),
+    until: new Date(Date.UTC(2021, 12, 31)),
+    NoStop: false,
   };
 
   handleChangeForFreqCheck = (event) => {
@@ -29,28 +30,38 @@ class RecurringForm extends Component {
 
   handleChangeForInterval = (event) => {
     event.preventDefault();
-    this.setState(
-      {
-        interval: event.target.value,
-      },
-      () => {
-        console.log(this.state);
-      }
-    );
+    this.setState({
+      interval: parseInt(event.target.value),
+    });
+  };
+
+  handleChangeForDate = (date) => (event) => {
+    this.setState({ ...this.state, [date]: new Date(event.target.value) });
+    console.log(date, event.target.value);
+  };
+
+  handleRepeatEvent = (event) => {
+    const rule = new RRule({
+      freq: this.state.freq,
+      interval: this.state.interval,
+      byweekday: this.state.byweekday,
+      dtstart: new Date(this.props.start),
+      until: this.state.until,
+    });
+    this.props.dispatch({
+      type: 'SET_REPEAT_EVENTS',
+      payload: rule.all(),
+    });
   };
   //I love this code so much
   //my personal genius, this function handles the state change for the day of week array but ALSO uses the switch function to change
   //the day integer from the checkbox BACK into a viable format for RRule
   handleChangeForDay = (day) => (event) => {
-    this.setState(
-      {
-        byweekday: [...this.state.byweekday, this.handleSwitchBack(day)],
-      },
-      () => {
-        console.log(day, this.handleSwitchBack(day), this.state.byweekday);
-      }
-    );
+    this.setState({
+      byweekday: [...this.state.byweekday, this.handleSwitchBack(day)],
+    });
   };
+
   //changes RRule integer into a readable day for checkboxes
   handleSwitch = (day) => {
     switch (day) {
@@ -177,6 +188,25 @@ class RecurringForm extends Component {
           onChange={this.handleChangeForInterval}
           label="Interval"
         />
+        {/* <TextField
+          id="datetime-local"
+          label="Start Date"
+          type="datetime-local"
+          onChange={this.handleChangeForDate('dtstart')}
+          InputLabelProps={{
+            shrink: true,
+          }}
+        /> */}
+        <TextField
+          id="datetime-local"
+          label="Repeat Until"
+          type="datetime-local"
+          onChange={this.handleChangeForDate('until')}
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
+        <button onClick={this.handleRepeatEvent}>I do something</button>
       </div>
     );
   }

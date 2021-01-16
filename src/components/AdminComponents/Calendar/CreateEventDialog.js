@@ -34,20 +34,27 @@ class CreateEventDialog extends Component {
     eventPayload: {
       event_title: '',
       event_description: '',
-      event_address: '',
       event_start: '',
       event_end: '',
       recurring: false,
-      event_type: '1',
       recurring_time_slot: 1,
+      count: 1,
+      frequency: 'weekly',
+      event_address: '',
+      event_type: 1,
     },
-    rule: new RRule({
-      freq: RRule.WEEKLY,
-      interval: 0,
-      byweekday: [],
-      dtstart: '',
-      until: '',
-    }),
+    repeatEventPayload: {
+      event_title: '',
+      event_description: '',
+      event_start: '',
+      event_end: '',
+      recurring: true,
+      recurring_time_slot: 1,
+      count: 1,
+      frequency: 'weekly',
+      event_address: '',
+      event_type: '',
+    },
   };
 
   //posts event and closes dialog
@@ -57,6 +64,19 @@ class CreateEventDialog extends Component {
       payload: this.state.eventPayload,
     });
     this.handleClose();
+    console.log('in the repeat log', this.test());
+  };
+
+  test = (event) => {
+    for (let i = 0; i < this.props.store.repeatEventReducer.length; i++) {
+      console.log(this.props.store.repeatEventReducer[i]);
+    }
+    // this.setState({
+    //   repeatEventPayload: {
+    //     ...this.state.repeatEventPayload,
+    //     ...this.props.store.repeatEventReducer[i],
+    //   },
+    // });
   };
 
   //opens the dialog
@@ -114,17 +134,6 @@ class CreateEventDialog extends Component {
         event_type: event.target.value,
       },
     });
-  };
-
-  handleChangeForFreq = (event) => (frequency) => {
-    this.setState(
-      {
-        rule: { freq: frequency },
-      },
-      () => {
-        console.log(this.state.rule.freq);
-      }
-    );
   };
 
   render() {
@@ -207,7 +216,6 @@ class CreateEventDialog extends Component {
                     <FormControlLabel
                       control={
                         <Switch
-                          // checked={this.state.recurring}
                           onChange={this.handleInputChangeForSwitch}
                           color="primary"
                           name="Recurring"
@@ -218,8 +226,7 @@ class CreateEventDialog extends Component {
                     />
                     {this.state.eventPayload.recurring === true ? (
                       <RecurringForm
-                        rule={this.state.rule}
-                        handleChangeForFreq={this.handleChangeForFreq}
+                        start={this.state.eventPayload.event_start}
                       />
                     ) : (
                       ''

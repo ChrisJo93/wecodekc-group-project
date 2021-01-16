@@ -44,8 +44,8 @@ class Calendar extends Component {
       .get('/api/event')
       .then((response) => {
         for (let i = 0; i < response.data.length; i++) {
-          if (response.data[i].recurring) {
-          }
+          // if (response.data[i].recurring) {
+          // }
           this.setState({
             // adding new event to array
             calendarEvents: this.state.calendarEvents.concat({
@@ -53,7 +53,7 @@ class Calendar extends Component {
               title: response.data[i].event_title,
               start: response.data[i].event_start,
               end: response.data[i].event_end,
-              //We will use rrule for mock data if we can't solve issue before Sunday.
+              // We will use rrule for mock data if we can't solve issue before Sunday.
               // rrule: {
               //   count: 2,
               //   freq: 'weekly',

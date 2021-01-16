@@ -13,6 +13,7 @@ import userEventReducer from './user.event.reducer';
 import newUserDetailReducer from '../reducers/newUserDetail.reducer';
 import verifiedUserDetailReducer from '../reducers/verifiedUserDetail.reducer';
 import allIdGet from '../reducers/allIdGet.reducer';
+import repeatEventReducer from './repeat.event.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -27,6 +28,7 @@ const rootReducer = combineReducers({
   eventReducer,
   eventDetailReducer,
   userEventReducer,
+  repeatEventReducer,
   allUsers,
   unverifiedUsers,
   registration, //gathers reg information together
