@@ -21,11 +21,12 @@ class UserPage extends Component {
 
   componentDidMount() {
     this.props.dispatch({
+      type: 'GET_VERIFIED_USER_DETAIL',
+      payload: this.props.store.user.id,
+    });
+    this.props.dispatch({
       type: 'GET_USER_EVENTS',
     });
-    // this.props.dispatch({
-    //   type: 'GET_VERIFIED_USER_ALL_DETAIL',
-    // });
     this.props.dispatch({ type: 'GET_SKILL' });
   }
 
@@ -53,7 +54,7 @@ class UserPage extends Component {
         </Grid>
       );
     });
-    return (
+    return this.props.store.verifiedUserDetailReducer[0] !== undefined ? (
       <div className="user-container">
         <Container>
           <Grid container justify="center">
@@ -77,6 +78,8 @@ class UserPage extends Component {
           </Grid>
         </Container>
       </div>
+    ) : (
+      <p>...loading</p>
     );
   }
 }
