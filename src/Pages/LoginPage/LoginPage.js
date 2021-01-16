@@ -40,9 +40,10 @@ function LoginPage(props) {
             <Tab label="log-in" />
             <Tab label="register" />
           </Tabs>
-
-          {selectedTab === 0 && <LoginForm />}
-          {selectedTab === 1 && <RegisterTab />}
+          <div className="topBorder">
+            {selectedTab === 0 && <LoginForm />}
+            {selectedTab === 1 && <RegisterTab />}
+          </div>
         </Grid>
       </Grid>
     </div>

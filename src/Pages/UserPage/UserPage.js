@@ -5,7 +5,7 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 //custom file imports
 import './user.css';
 import ProfileInfoPanel from './ProfileInfoPanel';
-import UserPageEdit from '../../components/UserPageEdit/UserPageEdit';
+import UserPageEdit from './UserPageEdit';
 import UserEventItem from './UserEventItem';
 
 //custom MATERIAL-UI imports
@@ -23,6 +23,9 @@ class UserPage extends Component {
     this.props.dispatch({
       type: 'GET_USER_EVENTS',
     });
+    // this.props.dispatch({
+    //   type: 'GET_VERIFIED_USER_ALL_DETAIL',
+    // });
     this.props.dispatch({ type: 'GET_SKILL' });
   }
 
@@ -40,7 +43,7 @@ class UserPage extends Component {
   render() {
     const userEvent = this.props.store.userEventReducer.map((item, index) => {
       return (
-        <Grid item sm={12}>
+        <Grid key={item.id} item sm={12}>
           <UserEventItem
             event={item}
             index={index}
@@ -54,14 +57,14 @@ class UserPage extends Component {
       <div className="user-container">
         <Container>
           <Grid container justify="center">
-            <Grid item lg={4} md={4} sm={4} xs={12}>
+            <Grid item lg={4} md={3} sm={12} xs={12}>
               {this.state.edit ? (
                 <UserPageEdit edit={this.handleEdit} />
               ) : (
                 <ProfileInfoPanel edit={this.handleEdit} />
               )}
             </Grid>
-            <Grid item lg={8} md={8} sm={8} xs={12}>
+            <Grid item lg={8} md={9} sm={12} xs={12}>
               <div className="profile-area">
                 <Typography variant="h4" gutterBottom>
                   {this.props.store.user.username}'s Events

@@ -36,7 +36,7 @@ const muiStyles = (theme) =>
   });
 
 class LandingPage extends Component {
-  // const classes = useStyles();
+  //get all events for the carousel
   componentDidMount() {
     this.props.dispatch({
       type: 'GET_EVENTS',
@@ -46,7 +46,7 @@ class LandingPage extends Component {
   state = {};
 
   onLogin = (event) => {
-    this.props.history.push('/login');
+    this.props.history.push('/login-register');
   };
 
   handleRegisterMentor = (e) => {
@@ -136,6 +136,7 @@ class LandingPage extends Component {
                       color="secondary"
                       variant="contained"
                       onClick={this.handleRegisterVolunteer}
+                      size="large"
                     >
                       register
                     </Button>
@@ -159,6 +160,7 @@ class LandingPage extends Component {
                 image="https://wecodekc.s3.us-east-2.amazonaws.com/_MG_6571-1.jpg"
                 title="mentor"
                 className={this.props.classes.cardMedia}
+                size="large"
               />
             </Card>
           </Grid>
@@ -182,6 +184,7 @@ class LandingPage extends Component {
                       variant="contained"
                       color="primary"
                       onClick={this.handleRegisterMentor}
+                      size="large"
                     >
                       register
                     </Button>

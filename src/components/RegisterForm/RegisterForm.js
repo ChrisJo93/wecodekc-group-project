@@ -87,7 +87,7 @@ class RegisterForm extends Component {
         <Grid container justify="center">
           <Grid item>
             <form className="opacity" onSubmit={this.handleNextClick}>
-              <Typography variant="h3" component="h2" gutterBottom>
+              <Typography variant="h4" component="h2" gutterBottom>
                 Registration
               </Typography>
               {this.props.store.errors.registrationMessage && (

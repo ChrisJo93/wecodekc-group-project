@@ -100,7 +100,7 @@ router.put(
   '/update',
   (req: any, res: Response, next: express.NextFunction): void => {
     //TODO GET THE IMAGE LINK!
-    // const image: string = <string>req.body.imagelink;
+    // const image: string = <string>req.body.image_link;
     console.log(req.body);
     const first_name: string = <string>req.body.first_name;
     const last_name: string = <string>req.body.last_name;
@@ -194,6 +194,7 @@ router.get(
     pool
       .query(queryText, [req.params.id])
       .then((dbResponse) => {
+        console.log(dbResponse.rows);
         res.send(dbResponse.rows);
       })
       .catch((err) => {
@@ -237,6 +238,7 @@ router.get(
     pool
       .query(queryText, [req.params.id])
       .then((dbResponse) => {
+        console.log(dbResponse.rows);
         res.send(dbResponse.rows);
       })
       .catch((err) => {
@@ -275,7 +277,7 @@ router.get(
     pool
       .query(queryText)
       .then((dbResponse) => {
-        res.send(dbResponse.rows);
+        res.send(dbResponse.rows[0]);
       })
       .catch((err) => {
         console.log('error getting user detail data', err);
