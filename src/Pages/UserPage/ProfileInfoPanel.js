@@ -7,7 +7,7 @@ import { Button, Typography } from '@material-ui/core';
 
 class ProfileInfoPanel extends Component {
   render() {
-    const skills = this.props.store.verifiedUserDetailAll.skills_label_array;
+    const skills = this.props.store.verifiedUserDetailReducer;
     console.log('SKILLS LOOK HERE:', skills);
     // //loop through to get each skill from database
     // // if (this.props.store.verifiedUserDetailAll) {
@@ -49,7 +49,7 @@ class ProfileInfoPanel extends Component {
           {/* TODO ROLE FROM USER REDUCER */}
           <Typography gutterBottom>
             Role:
-            {this.props.store.verifiedUserDetailAll.role_label}
+            {this.props.store.verifiedUserDetailReducer.role_label}
           </Typography>
           <Typography gutterBottom>
             Zipcode: {this.props.store.user.zip_code}
@@ -62,11 +62,11 @@ class ProfileInfoPanel extends Component {
           </Typography>
           <Typography gutterBottom>
             Company:
-            {this.props.store.verifiedUserDetailAll.company}
+            {this.props.store.verifiedUserDetailReducer.company}
           </Typography>
           <Typography gutterBottom>Skills:</Typography>
           {JSON.stringify(
-            this.props.store.verifiedUserDetailAll.skills_label_array
+            this.props.store.verifiedUserDetailReducer.skills_label_array
           )}
           {/* {this.props.store.verifiedUserDetailAll.skills_label_array && (
             <Typography>{skills}</Typography>

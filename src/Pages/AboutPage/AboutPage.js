@@ -105,7 +105,7 @@ export default function AboutPage() {
   };
   return (
     <div className="container">
-      <img
+      {/* <img
         src="https://wecodekc.s3.us-east-2.amazonaws.com/_MG_6525.JPG"
         alt="girls smiling"
         className="card-image"
@@ -114,13 +114,15 @@ export default function AboutPage() {
         src={'https://wecodekc.s3.us-east-2.amazonaws.com/_W4A0886-1.jpg'}
         alt="girl colouring"
         className="card-image"
-      />
-      <img
-        src="https://wecodekc.s3.us-east-2.amazonaws.com/WeCodeKC-COLORLOGO.png"
-        alt="logo"
-        className="card-label"
-      />
-      <div>
+      /> */}
+      <div className="cardBanner">
+        <img
+          src="https://wecodekc.s3.us-east-2.amazonaws.com/WeCodeKC-COLORLOGO.png"
+          alt="logo"
+          className="card-label"
+        />
+      </div>
+      {/* <div>
         <Typography variant="subtitle1">Selected: {selectedValue}</Typography>
         <br />
         <Button variant="outlined" color="primary" onClick={handleClickOpen}>
@@ -131,7 +133,7 @@ export default function AboutPage() {
           open={open}
           onClose={handleClose}
         />
-      </div>
+      </div> */}
     </div>
   );
 }
