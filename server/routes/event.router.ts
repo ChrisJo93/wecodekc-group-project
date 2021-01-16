@@ -7,7 +7,7 @@ const router: express.Router = express.Router();
 router.get(
   '/',
   (req: Request, res: Response, next: express.NextFunction): void => {
-    const getEvent: string = `SELECT * FROM "event";`;
+    const getEvent: string = `SELECT * FROM "event" ORDER BY event_end ASC;`;
     pool
       .query(getEvent)
       .then((result) => {

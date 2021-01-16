@@ -18,17 +18,30 @@ import {
 
 class EventsPage extends Component {
   state = {
-    filter: '',
+    typeOfEvent: '',
+    //course = true/ event = false
   };
   componentDidMount() {
     this.props.dispatch({
       type: 'GET_EVENTS',
     });
-    // this.props.dispatch({
-    //   type: 'GET_EVENT_DETAILS',
-    //   payload: this.props.match.params.id,
-    // });
   }
+  // handleChange = (e) => {
+  //   this.setState({
+  //     typeOfEvent: !this.props.store.eventReducer.event_type,
+  //   });
+  //   this.props.dispatch({
+  //     type: 'GET_EVENTS',
+  //     typeOfEvent: this.state.ascDsc,
+  //   });
+  // };
+
+  // handleEdit = (e) => {
+  //   e.preventDefault();
+  //   this.setState({
+  //     ascDsc: !this.state.edit,
+  //   });
+  // };
 
   render() {
     const eventsArray = this.props.store.eventReducer.map((item, index) => {
@@ -43,10 +56,6 @@ class EventsPage extends Component {
         </Grid>
       );
     });
-
-    // const sortDate = this.props.store.eventReducer.sort(
-    //   (a, b) => a.event_start > b.event_start
-    // );
 
     return (
       <div style={{ padding: 20 }}>
@@ -64,15 +73,16 @@ class EventsPage extends Component {
                 style={{ minWidth: 140 }}
                 labelId="filter"
                 id="filter"
-                // value={filter}
+                value={this.state.ascDsc}
                 // onChange={this.handleChange}
                 label="filter"
               >
-                <MenuItem value="">
-                  <em>Event Type or Date</em>
+                <MenuItem value={false} onChange={this.handleChange}>
+                  Courses Only
                 </MenuItem>
-                <MenuItem value={10}>By Event Type</MenuItem>
-                <MenuItem value={20}>By Date</MenuItem>
+                <MenuItem value={true} onChange={this.handleChange}>
+                  Events Only
+                </MenuItem>
               </Select>
             </FormControl>
           </Grid>
