@@ -66,7 +66,7 @@ function* postUserEvent(action) {
 function* postEvents(action) {
   try {
     yield axios.post('/api/event', action.payload);
-
+    console.log('in the saga', action.payload);
     yield put({
       type: 'GET_EVENTS',
     });
@@ -76,6 +76,18 @@ function* postEvents(action) {
   }
 }
 
+function* postRepeatEvents(action) {
+  try {
+    yield axios.post('/api/event', action.payload);
+    console.log('in the saga', action.payload);
+    yield put({
+      type: 'GET_EVENTS',
+    });
+  } catch (err) {
+    console.log('ERROR SAVING EVENT', err);
+    yield put({ type: 'POST_FAILED' });
+  }
+}
 function* updateEvent(action) {
   try {
     yield axios.put(

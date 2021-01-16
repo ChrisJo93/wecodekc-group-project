@@ -20,6 +20,12 @@ import {
   TextField,
 } from '@material-ui/core';
 
+//Calendar imports
+import { RRule, RRuleSet, rrulestr } from 'rrule';
+
+//custom imports
+import RecurringForm from './RecurringForm';
+
 class CreateEventDialog extends Component {
   state = {
     open: false,
@@ -28,12 +34,26 @@ class CreateEventDialog extends Component {
     eventPayload: {
       event_title: '',
       event_description: '',
-      event_address: '',
       event_start: '',
       event_end: '',
       recurring: false,
-      event_type: '1',
       recurring_time_slot: 1,
+      count: 1,
+      frequency: 'weekly',
+      event_address: '',
+      event_type: 1,
+    },
+    repeatEventPayload: {
+      event_title: '',
+      event_description: '',
+      event_start: '',
+      event_end: '',
+      recurring: true,
+      recurring_time_slot: 1,
+      count: 1,
+      frequency: 'weekly',
+      event_address: '',
+      event_type: '',
     },
   };
 
@@ -44,6 +64,19 @@ class CreateEventDialog extends Component {
       payload: this.state.eventPayload,
     });
     this.handleClose();
+    console.log('in the repeat log', this.test());
+  };
+
+  test = (event) => {
+    for (let i = 0; i < this.props.store.repeatEventReducer.length; i++) {
+      console.log(this.props.store.repeatEventReducer[i]);
+    }
+    // this.setState({
+    //   repeatEventPayload: {
+    //     ...this.state.repeatEventPayload,
+    //     ...this.props.store.repeatEventReducer[i],
+    //   },
+    // });
   };
 
   //opens the dialog
@@ -88,7 +121,7 @@ class CreateEventDialog extends Component {
       //slick toggle code
       eventPayload: {
         ...this.state.eventPayload,
-        recurring: !this.state.recurring,
+        recurring: !this.state.eventPayload.recurring,
       },
     });
   };
@@ -190,20 +223,26 @@ class CreateEventDialog extends Component {
                     }}
                   />
                 </Box>
-                {/* This needs further work to handle ACTUAL recurrence.  */}
-                <FormControlLabel
-                  control={
-                    <Switch
-                      // checked={this.state.recurring}
-                      onChange={this.handleInputChangeForSwitch}
-                      color="primary"
-                      name="Recurring"
-                      inputProps={{ 'aria-label': 'primary checkbox' }}
-                    />
-                  }
-                  label="Repeat"
-                />
               </Grid>
+
+              {/* This needs further work to handle ACTUAL recurrence.  */}
+              <FormControlLabel
+                control={
+                  <Switch
+                    onChange={this.handleInputChangeForSwitch}
+                    color="primary"
+                    name="Recurring"
+                    inputProps={{ 'aria-label': 'primary checkbox' }}
+                  />
+                }
+                label="Repeat"
+              />
+              {this.state.eventPayload.recurring === true ? (
+                <RecurringForm start={this.state.eventPayload.event_start} />
+              ) : (
+                ''
+              )}
+              <FormControlLabel />
             </Grid>
           </DialogContent>
           <DialogActions>
