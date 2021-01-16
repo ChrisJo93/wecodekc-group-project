@@ -126,11 +126,6 @@ class Calendar extends Component {
   render() {
     return (
       <div className="calendar">
-<<<<<<< HEAD
-=======
-        <div className="calendar-top"></div>
-
->>>>>>> develop
         <CreateEventDialog />
 
         <div>
