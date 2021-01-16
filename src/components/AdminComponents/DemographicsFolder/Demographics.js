@@ -37,6 +37,7 @@ function DemographicsTable(props) {
             <TableCell>Zip Code</TableCell>
           </TableRow>
         </TableHead>
+
         <TableBody>
           {rows.map((row) => (
             <TableRow key={row.id}>

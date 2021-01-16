@@ -277,7 +277,7 @@ router.get(
     pool
       .query(queryText)
       .then((dbResponse) => {
-        res.send(dbResponse.rows[0]);
+        res.send(dbResponse.rows);
       })
       .catch((err) => {
         console.log('error getting user detail data', err);

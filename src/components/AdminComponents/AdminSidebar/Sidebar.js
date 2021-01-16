@@ -5,10 +5,6 @@ import Verification from '../AdminSubComponents/Verification';
 
 //Material-UI imports
 import { Grid, Tabs, Tab } from '@material-ui/core';
-<<<<<<< HEAD
-
-=======
->>>>>>> develop
 import ShowChartIcon from '@material-ui/icons/ShowChart';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
