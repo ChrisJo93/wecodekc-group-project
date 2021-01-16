@@ -23,10 +23,6 @@ import { withStyles, createStyles } from '@material-ui/core/styles';
 
 const muiStyles = (theme) =>
   createStyles({
-    // avatar: {
-    //   backgroundColor: blue[100],
-    //   color: blue[600],
-    // },
     cardMedia: {
       height: '400px',
       [theme.breakpoints.down('sm')]: {
@@ -67,7 +63,7 @@ class LandingPage extends Component {
       <div className="grid">
         <Grid container alignItems="stretch">
           <Grid item xs={12} md={6}>
-            <Card className="card">
+            <Card className="card" style={{ padding: '50px' }}>
               <CardContent>
                 <center>
                   <Typography variant="h4" gutterBottom>
@@ -118,7 +114,7 @@ class LandingPage extends Component {
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Card className="card">
+            <Card className="card" style={{ padding: '50px' }}>
               <CardContent>
                 <center>
                   <Typography variant="h4">Volunteer</Typography>
@@ -165,7 +161,7 @@ class LandingPage extends Component {
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Card className="card">
+            <Card className="card" style={{ padding: '50px' }}>
               <CardContent>
                 <center>
                   <Typography variant="h4">Mentor</Typography>
