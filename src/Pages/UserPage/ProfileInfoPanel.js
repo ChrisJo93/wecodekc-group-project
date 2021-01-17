@@ -7,6 +7,7 @@ import { Button, Typography } from '@material-ui/core';
 
 class ProfileInfoPanel extends Component {
   render() {
+<<<<<<< HEAD
     const skills = this.props.store.verifiedUserDetailReducer;
     console.log('SKILLS LOOK HERE:', skills);
     // //loop through to get each skill from database
@@ -17,16 +18,23 @@ class ProfileInfoPanel extends Component {
     //   }
     // );
     // // }
+=======
+    //loop through to get each skill from database
+    const skills = this.props.store.verifiedUserDetailReducer[0].skills_label_array.map(
+      (item, index) => {
+        return <Typography key={index}>{item}</Typography>;
+      }
+    );
+>>>>>>> develop
 
     return (
       <div>
         <div>
-          {/* TODO - CONDITIONAL RENDER PROFILE PIC IF IMAGE EXISTS */}
-          {/* {JSON.stringify(
-            this.props.store.verifiedUserDetailAll.image_link_array
-          )} */}
-
-          {!this.props.store.verifiedUserDetailAll.image_link_array ? (
+          TODO - CONDITIONAL RENDER PROFILE PIC IF IMAGE EXISTS
+          {JSON.stringify(
+            this.props.store.verifiedUserDetailReducer.image_link_array
+          )}
+          {!this.props.store.verifiedUserDetailReducer.image_link_array ? (
             <img
               src={
                 'https://wecodekc.s3.us-east-2.amazonaws.com/default-profile-icon-16.jpg'
@@ -36,7 +44,9 @@ class ProfileInfoPanel extends Component {
             />
           ) : (
             <img
-              src={this.props.store.verifiedUserDetailAll.image_link_array[0]}
+              src={
+                this.props.store.verifiedUserDetailReducer.image_link_array[0]
+              }
               className="placeholder"
               alt="profile"
             />
@@ -68,9 +78,9 @@ class ProfileInfoPanel extends Component {
           {JSON.stringify(
             this.props.store.verifiedUserDetailReducer.skills_label_array
           )}
-          {/* {this.props.store.verifiedUserDetailAll.skills_label_array && (
+          {this.props.store.verifiedUserDetailAll.skills_label_array && (
             <Typography>{skills}</Typography>
-          )} */}
+          )}
 
           {skills}
           <Button
