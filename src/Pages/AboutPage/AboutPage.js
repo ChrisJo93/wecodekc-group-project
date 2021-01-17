@@ -105,23 +105,13 @@ export default function AboutPage() {
   };
   return (
     <div className="container">
-      {/* <img
-        src="https://wecodekc.s3.us-east-2.amazonaws.com/_MG_6525.JPG"
-        alt="girls smiling"
-        className="card-image"
-      />
-      <img
-        src={'https://wecodekc.s3.us-east-2.amazonaws.com/_W4A0886-1.jpg'}
-        alt="girl colouring"
-        className="card-image"
-      /> */}
-      <div className="cardBanner">
+      {/* <div className="cardBanner">
         <img
           src="https://wecodekc.s3.us-east-2.amazonaws.com/WeCodeKC-COLORLOGO.png"
           alt="logo"
           className="card-label"
         />
-      </div>
+      </div> */}
       {/* <div>
         <Typography variant="subtitle1">Selected: {selectedValue}</Typography>
         <br />

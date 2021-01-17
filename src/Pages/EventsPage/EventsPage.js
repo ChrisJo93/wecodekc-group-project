@@ -56,9 +56,9 @@ class EventsPage extends Component {
     // );
 
     return (
-      <div style={{ padding: 20 }}>
+      <div style={{ padding: 30 }}>
         <EventsBar />
-        <Box mb={2}>
+        <Box mb={2} mt={5}>
           <Grid container justify="space-evenly">
             <Grid item>
               <Typography
