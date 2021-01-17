@@ -83,7 +83,7 @@ class RegisterForm extends Component {
       }
     );
     return (
-      <Container>
+      <Container style={{ padding: '100px' }}>
         <Grid container justify="center">
           <Grid item>
             <form className="opacity" onSubmit={this.handleNextClick}>
