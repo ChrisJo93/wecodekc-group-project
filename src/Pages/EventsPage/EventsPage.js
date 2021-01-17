@@ -29,13 +29,30 @@ const muiStyles = (theme) =>
 
 class EventsPage extends Component {
   state = {
-    filter: '',
+    typeOfEvent: '',
+    //course = true/ event = false
   };
   componentDidMount() {
     this.props.dispatch({
       type: 'GET_EVENTS',
     });
   }
+  // handleChange = (e) => {
+  //   this.setState({
+  //     typeOfEvent: !this.props.store.eventReducer.event_type,
+  //   });
+  //   this.props.dispatch({
+  //     type: 'GET_EVENTS',
+  //     typeOfEvent: this.state.ascDsc,
+  //   });
+  // };
+
+  // handleEdit = (e) => {
+  //   e.preventDefault();
+  //   this.setState({
+  //     ascDsc: !this.state.edit,
+  //   });
+  // };
 
   render() {
     const eventsArray = this.props.store.eventReducer.map((item, index) => {
@@ -50,10 +67,6 @@ class EventsPage extends Component {
         </Grid>
       );
     });
-
-    // const sortDate = this.props.store.eventReducer.sort(
-    //   (a, b) => a.event_start > b.event_start
-    // );
 
     return (
       <div style={{ padding: 30 }}>

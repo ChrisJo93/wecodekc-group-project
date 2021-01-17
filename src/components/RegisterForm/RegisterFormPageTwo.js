@@ -62,12 +62,124 @@ class RegisterFormPageTwo extends Component {
     });
   };
 
+  handleSwitchSkills = (skill) => {
+    switch (skill) {
+      case 1:
+        skill = 'JavaScript';
+        return skill;
+        break;
+      case 2:
+        skill = 'CSS';
+        return skill;
+        break;
+      case 3:
+        skill = 'HTML';
+        return skill;
+        break;
+      case 4:
+        skill = 'React';
+        return skill;
+        break;
+      case 5:
+        skill = 'Angular';
+        return skill;
+        break;
+      case 6:
+        skill = 'Python';
+        return skill;
+      case 7:
+        skill = 'C#';
+        return skill;
+      case 8:
+        skill = 'C++';
+        return skill;
+      case 9:
+        skill = 'C';
+        return skill;
+      case 10:
+        skill = 'Java';
+        return skill;
+      case 11:
+        skill = 'PostgreSQL';
+        return skill;
+      case 12:
+        skill = 'MongoDB';
+        return skill;
+    }
+  };
+
+  handleSwitchLanguage = (language) => {
+    switch (language) {
+      case 1:
+        language = 'English';
+        return language;
+        break;
+      case 2:
+        language = 'Spanish';
+        return language;
+        break;
+      case 3:
+        language = 'German';
+        return language;
+        break;
+      case 4:
+        language = 'French';
+        return language;
+        break;
+      case 5:
+        language = 'Chinese-Mandarin';
+        return language;
+        break;
+      case 6:
+        language = 'Chinese Cantonese';
+        return language;
+      case 7:
+        language = 'Japanese';
+        return language;
+      case 8:
+        language = 'Arabic';
+        return language;
+    }
+  };
+
+  handleSwitchDay = (day) => {
+    switch (day) {
+      case 1:
+        day = 'Sunday';
+        return day;
+      case 2:
+        day = 'Monday';
+        return day;
+        break;
+      case 3:
+        day = 'Tuesday';
+        return day;
+        break;
+      case 4:
+        day = 'Wednesday';
+        return day;
+        break;
+      case 5:
+        day = 'Thursday';
+        return day;
+        break;
+      case 6:
+        day = 'Friday';
+        return day;
+        break;
+      case 7:
+        day = 'Saturday';
+        return day;
+        break;
+    }
+  };
+
   render() {
     //loop through to get each language from database
     const languages = this.props.store.dropdown.languageReducer.map(
       (item, index) => {
         return (
-          <MenuItem value={item.id} key={index}>
+          <MenuItem value={item.id} name={item.languages_label} key={index}>
             {item.languages_label}
           </MenuItem>
         );
@@ -85,7 +197,12 @@ class RegisterFormPageTwo extends Component {
     //loop through to get each time slot from database
     const time = this.props.store.dropdown.timeReducer.map((item, index) => {
       return (
-        <MenuItem value={item.id} key={index}>
+        <MenuItem
+          value={item.id}
+          key={index}
+          name={item.day_name}
+          name={item.time_slot_label}
+        >
           {item.day_name} {item.time_slot_label}
         </MenuItem>
       );
@@ -169,7 +286,10 @@ class RegisterFormPageTwo extends Component {
                     renderValue={(selected) => (
                       <div>
                         {selected.map((value) => (
-                          <Chip key={value} label={value} />
+                          <Chip
+                            key={value}
+                            label={this.handleSwitchLanguage(value)}
+                          />
                         ))}
                       </div>
                     )}
@@ -195,7 +315,10 @@ class RegisterFormPageTwo extends Component {
                     renderValue={(selected) => (
                       <div>
                         {selected.map((value) => (
-                          <Chip key={value} label={value} />
+                          <Chip
+                            key={value}
+                            label={this.handleSwitchSkills(value)}
+                          />
                         ))}
                       </div>
                     )}
@@ -229,7 +352,10 @@ class RegisterFormPageTwo extends Component {
                     renderValue={(selected) => (
                       <div>
                         {selected.map((value) => (
-                          <Chip key={value} label={value} />
+                          <Chip
+                            key={value}
+                            label={this.handleSwitchDay(value)}
+                          />
                         ))}
                       </div>
                     )}
