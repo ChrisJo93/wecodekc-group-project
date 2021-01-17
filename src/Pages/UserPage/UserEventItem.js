@@ -11,8 +11,8 @@ import {
   CardActions,
   Button,
   Grid,
-  CardHeader,
   Avatar,
+  CardHeader,
 } from '@material-ui/core';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 

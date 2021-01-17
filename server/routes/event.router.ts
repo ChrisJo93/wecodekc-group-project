@@ -3,11 +3,22 @@ import express from 'express';
 import pool from '../modules/pool';
 const router: express.Router = express.Router();
 
+//custom import third-party dependency
+import * as nodemailer from 'nodemailer';
+
+//random number function
+function randomNumber(): number {
+  return Math.floor(Math.random() * (1 + 5 - 1) + 1);
+}
+
 // GET ALL EVENTS
 router.get(
   '/',
   (req: Request, res: Response, next: express.NextFunction): void => {
-    const getEvent: string = `SELECT * FROM "event" ORDER BY event_end ASC;`;
+    const getEvent: string = `SELECT * FROM "event"
+    JOIN "event_images" ON "event".id = "event_images".event_id
+    JOIN "images" on "event_images".image_id = "images".id
+    ORDER BY event_end ASC;`;
     pool
       .query(getEvent)
       .then((result) => {
@@ -133,6 +144,7 @@ router.post(
     const event_end: string = req.body.event_end;
     const event_description: string = req.body.event_description;
     const event_title: string = req.body.event_title;
+    const image_id: number = randomNumber();
     const queryOne: string = `INSERT INTO "event"(event_title, event_description, event_start, event_end, 
       recurring, event_address, event_type, creator, count, frequency) 
       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id`;
@@ -159,7 +171,17 @@ router.post(
         }
         Promise.all(eventPromises)
           .then(() => {
-            res.sendStatus(200);
+            const queryText: string = `INSERT INTO "event_images" (event_id, image_id) VALUES ($1, $2)`;
+            const queryArray: number[] = [eventId, image_id];
+            pool
+              .query(queryText, queryArray)
+              .then((dbResponse) => {
+                res.sendStatus(200);
+              })
+              .catch((err) => {
+                console.log('error with inserting into event_images', err);
+                res.sendStatus(500);
+              });
           })
           .catch(() => {
             res.sendStatus(500);
@@ -248,12 +270,62 @@ router.delete(
 router.delete(
   '/user/:id',
   (req: any, res: Response, next: express.NextFunction): void => {
-    console.log(req.body);
-    const deleteEvent: string = `DELETE FROM "user_event" WHERE "id" =$1;`;
+    const queryText: string = `SELECT first_name, last_name, event_title, "user_event".id FROM "user_event"
+    JOIN "event" ON "user_event".event_id = "event".id
+    JOIN "user" ON "user_event".user_id = "user".id
+    WHERE "user".id = $1`;
+    const queryArray: number[] = [req.user.id];
     pool
-      .query(deleteEvent, [req.params.id])
-      .then((result) => {
-        res.sendStatus(200);
+      .query(queryText, queryArray)
+      .then((dbResponse) => {
+        const user_event_id: number = dbResponse.rows[0].id;
+        const user_first_name: string = dbResponse.rows[0].first_name;
+        const user_last_name: string = dbResponse.rows[0].last_name;
+        const event_title: string = dbResponse.rows[0].event_title;
+        const deleteEvent: string = `DELETE FROM "user_event" WHERE "id" =$1;`;
+        pool
+          .query(deleteEvent, [user_event_id])
+          .then((result) => {
+            // // referenced from Myron Schippers' repo on nodemailer
+            // //send a message to the volunteer/mentor following verification (nodemailer)
+            const transportConfig = {
+              service: 'gmail',
+              auth: {
+                user: process.env.MAILER_EMAIL,
+                pass: process.env.MAILER_PASSWORD,
+              },
+            };
+
+            let transporter = nodemailer.createTransport(transportConfig);
+
+            const mailOptions = {
+              from: req.user.email, // sender address
+              to: process.env.MAILER_EMAIL, // list of receivers
+              subject: 'Event update about user', // Subject line
+              html: `<div>
+            <h1>Notification of change in event</h1>
+            <p>${user_first_name} ${user_last_name} is no longer attending ${event_title}.</p>
+          </div>`, // plain text body
+            };
+            transporter.sendMail(
+              mailOptions,
+              (err: Error | null, info: any) => {
+                if (err != null) {
+                  console.log(err, 'there is an error sending the email');
+                  res.sendStatus(500);
+                  return;
+                }
+                console.log('email sent');
+                res.sendStatus(201);
+              }
+            );
+
+            // res.sendStatus(200);
+          })
+          .catch((error) => {
+            console.log(error);
+            res.sendStatus(500);
+          });
       })
       .catch((error) => {
         console.log(error);

@@ -106,7 +106,7 @@ const Nav = (props) => {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              <MenuItem>
+              <MenuItem onClick={handleClose}>
                 {' '}
                 <Link
                   className="nav-link"
@@ -119,7 +119,7 @@ const Nav = (props) => {
                   {loginLinkData.text}
                 </Link>
               </MenuItem>
-              <MenuItem>
+              <MenuItem onClick={handleClose}>
                 <Link
                   className="nav-link"
                   to="/events"
@@ -129,7 +129,7 @@ const Nav = (props) => {
                 </Link>
               </MenuItem>
               {props.store.user.access_level >= 4 && (
-                <MenuItem>
+                <MenuItem onClick={handleClose}>
                   {' '}
                   <Link
                     className="nav-link"
@@ -140,7 +140,7 @@ const Nav = (props) => {
                   </Link>
                 </MenuItem>
               )}
-              <MenuItem>
+              <MenuItem onClick={handleClose}>
                 {' '}
                 {props.store.user.id && (
                   <>

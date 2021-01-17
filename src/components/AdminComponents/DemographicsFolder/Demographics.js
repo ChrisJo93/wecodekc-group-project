@@ -30,8 +30,8 @@ function DemographicsTable(props) {
           <TableRow>
             <TableCell>Volunteer Role</TableCell>
             <TableCell>Active Courses / Events</TableCell>
-            <TableCell>ethnicity</TableCell>
-            <TableCell>gender</TableCell>
+            <TableCell>Ethnicity</TableCell>
+            <TableCell>Gender</TableCell>
             <TableCell>Age</TableCell>
             <TableCell>Highest Education Level</TableCell>
             <TableCell>Zip Code</TableCell>
