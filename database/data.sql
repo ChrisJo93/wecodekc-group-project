@@ -1,19 +1,19 @@
 INSERT INTO "ethnicity" (ethnicity_label) VALUES 
   ('White not Hispanic'),
   ('Hispanic or Latino'),
-  ('Black or African American Alone'),
+  ('Black or African American'),
   ('Native American or Alaskan Native'),
   ('Native Hawaiian or Pacific Islander'),
   ('Asian'),
-  ('Two or More ethnicitys'),
+  ('Two or more of the above'),
   ('Prefer not to answer');
 
 INSERT INTO "gender" (gender_label) VALUES 
   ('Male'),
   ('Female'),
-  ('transgender'),
-  ('non-binary'),
-  ('gender neutral'),
+  ('Transgender'),
+  ('Non-binary'),
+  ('Gender Neutral'),
   ('Not listed');
 
 
@@ -93,3 +93,9 @@ INSERT INTO "skills" (skills_label) VALUES
   (6, '5pm to 9pm'),
   (7, '10am to 2pm');
 
+INSERT INTO "images" (image_name, link_url) VALUES
+('event photo', 'https://wecodekc.s3.us-east-2.amazonaws.com/_MG_6515_edited-2.jpg'),
+('event photo', 'https://wecodekc.s3.us-east-2.amazonaws.com/_MG_6521.JPG'),
+('event photo', 'https://wecodekc.s3.us-east-2.amazonaws.com/_MG_6522.JPG'),
+('event photo', 'https://wecodekc.s3.us-east-2.amazonaws.com/_MG_6523-1.jpg'),
+('event photo', 'https://wecodekc.s3.us-east-2.amazonaws.com/_W4A0816-1.jpg');

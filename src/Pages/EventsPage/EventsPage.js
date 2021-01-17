@@ -14,21 +14,45 @@ import {
   InputLabel,
   MenuItem,
   Select,
+  Box,
 } from '@material-ui/core';
+import { withStyles, createStyles } from '@material-ui/core/styles';
+
+const muiStyles = (theme) =>
+  createStyles({
+    typography: {
+      [theme.breakpoints.down('sm')]: {
+        height: '50%',
+      },
+    },
+  });
 
 class EventsPage extends Component {
   state = {
-    filter: '',
+    orderBy: 1,
+    //course = true/ event = false
   };
   componentDidMount() {
     this.props.dispatch({
       type: 'GET_EVENTS',
     });
-    // this.props.dispatch({
-    //   type: 'GET_EVENT_DETAILS',
-    //   payload: this.props.match.params.id,
-    // });
   }
+  handleChange = (e) => {
+    this.setState({
+      orderBy: e.target.value,
+    });
+    this.props.dispatch({
+      type: 'GET_EVENTS',
+      orderBy: this.state.orderBy,
+    });
+  };
+
+  // handleEdit = (e) => {
+  //   e.preventDefault();
+  //   this.setState({
+  //     ascDsc: !this.state.edit,
+  //   });
+  // };
 
   render() {
     const eventsArray = this.props.store.eventReducer.map((item, index) => {
@@ -44,39 +68,40 @@ class EventsPage extends Component {
       );
     });
 
-    // const sortDate = this.props.store.eventReducer.sort(
-    //   (a, b) => a.event_start > b.event_start
-    // );
-
     return (
-      <div style={{ padding: 20 }}>
+      <div style={{ padding: 30 }}>
         <EventsBar />
-        <Grid container justify="space-evenly">
-          <Grid item>
-            <Typography variant="h3" component="h2" gutterBottom>
-              Upcoming Events
-            </Typography>
-          </Grid>
-          <Grid item>
-            <FormControl variant="outlined" fullWidth>
-              <InputLabel id="filter">Sort By</InputLabel>
-              <Select
-                style={{ minWidth: 140 }}
-                labelId="filter"
-                id="filter"
-                // value={filter}
-                // onChange={this.handleChange}
-                label="filter"
+        <Box mb={2} mt={5}>
+          <Grid container justify="space-evenly">
+            <Grid item>
+              <Typography
+                variant="h3"
+                component="h2"
+                gutterBottom
+                className={this.props.classes.typography}
               >
-                <MenuItem value="">
-                  <em>Event Type or Date</em>
-                </MenuItem>
-                <MenuItem value={10}>By Event Type</MenuItem>
-                <MenuItem value={20}>By Date</MenuItem>
-              </Select>
-            </FormControl>
+                Upcoming Events
+              </Typography>
+            </Grid>
+            <Grid item>
+              <FormControl variant="outlined" fullWidth>
+                <InputLabel id="filter">Sort By</InputLabel>
+                <Select
+                  style={{ minWidth: 140 }}
+                  labelId="filter"
+                  id="filter"
+                  value={this.state.orderBy}
+                  onChange={this.handleChange}
+                  label="filter"
+                >
+                  <MenuItem value={1}>Both</MenuItem>
+                  <MenuItem value={2}>Events</MenuItem>
+                  <MenuItem value={3}>Courses</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
           </Grid>
-        </Grid>
+        </Box>
         <Grid container spacing={3}>
           {eventsArray}
         </Grid>
@@ -85,4 +110,4 @@ class EventsPage extends Component {
   }
 }
 
-export default connect(mapStoreToProps)(EventsPage);
+export default connect(mapStoreToProps)(withStyles(muiStyles)(EventsPage));

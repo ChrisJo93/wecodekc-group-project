@@ -14,7 +14,7 @@ import AboutPage from '../../Pages/AboutPage/AboutPage';
 import DetailsPage from '../../Pages/DetailsPage/DetailsPage';
 import EventsPage from '../../Pages/EventsPage/EventsPage';
 import Footer from '../Footer/Footer';
-import InfoPage from '../../Pages/InfoPage/InfoPage';
+
 import LandingPage from '../../Pages/LandingPage/LandingPage';
 import LoginPage from '../../Pages/LoginPage/LoginPage';
 import RegisterPage from '../../Pages/RegisterPage/RegisterPage';
@@ -91,14 +91,7 @@ class App extends Component {
                 path="/user"
                 component={UserPage}
               />
-              <Route exact path="/admin" component={AdminPage} />
-
-              <ProtectedRoute
-                // logged in shows InfoPage else shows LoginPage
-                exact
-                path="/info"
-                component={InfoPage}
-              />
+              <ProtectedRoute exact path="/admin" component={AdminPage} />
 
               {/* When a value is supplied for the authRedirect prop the user will
             be redirected to the path supplied when logged in, otherwise they will
@@ -108,7 +101,7 @@ class App extends Component {
                 // - if logged in, redirects to "/user"
                 // - else shows LoginPage at /login
                 exact
-                path="/login"
+                path="/login-register"
                 component={LoginPage}
                 authRedirect="/user"
               />

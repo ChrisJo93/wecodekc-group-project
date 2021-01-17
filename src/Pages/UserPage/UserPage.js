@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import EventListItem from '../../components/EventListItem/EventListItem';
 
 //custom file imports
 import './user.css';
 import ProfileInfoPanel from './ProfileInfoPanel';
-import UserPageEdit from '../../components/UserPageEdit/UserPageEdit';
+import UserPageEdit from './UserPageEdit';
+import UserEventItem from './UserEventItem';
 
 //custom MATERIAL-UI imports
-import { Grid, Typography, Container, Button } from '@material-ui/core';
-import UserEventItem from './UserEventItem';
+import { Grid, Typography, Container } from '@material-ui/core';
 
 class UserPage extends Component {
   state = {
@@ -21,6 +20,10 @@ class UserPage extends Component {
   };
 
   componentDidMount() {
+    this.props.dispatch({
+      type: 'GET_VERIFIED_USER_DETAIL',
+      payload: this.props.store.user.id,
+    });
     this.props.dispatch({
       type: 'GET_USER_EVENTS',
     });
@@ -41,7 +44,7 @@ class UserPage extends Component {
   render() {
     const userEvent = this.props.store.userEventReducer.map((item, index) => {
       return (
-        <Grid item sm={12}>
+        <Grid key={item.id} item sm={12}>
           <UserEventItem
             event={item}
             index={index}
@@ -51,18 +54,18 @@ class UserPage extends Component {
         </Grid>
       );
     });
-    return (
+    return this.props.store.verifiedUserDetailReducer[0] !== undefined ? (
       <div className="user-container">
         <Container>
           <Grid container justify="center">
-            <Grid item lg={4} md={4} sm={4} xs={12}>
+            <Grid item lg={4} md={3} sm={12} xs={12}>
               {this.state.edit ? (
                 <UserPageEdit edit={this.handleEdit} />
               ) : (
                 <ProfileInfoPanel edit={this.handleEdit} />
               )}
             </Grid>
-            <Grid item lg={8} md={8} sm={8} xs={12}>
+            <Grid item lg={8} md={9} sm={12} xs={12}>
               <div className="profile-area">
                 <Typography variant="h4" gutterBottom>
                   {this.props.store.user.username}'s Events
@@ -75,6 +78,8 @@ class UserPage extends Component {
           </Grid>
         </Container>
       </div>
+    ) : (
+      <p>...loading</p>
     );
   }
 }

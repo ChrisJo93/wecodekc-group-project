@@ -11,8 +11,8 @@ class RegisterPage extends Component {
   componentDidMount() {
     //dispatch to get all education levels for dropdown
     this.props.dispatch({ type: 'GET_EDUCATION' });
-    this.props.dispatch({ type: 'GET_ethnicity' });
-    this.props.dispatch({ type: 'GET_gender' });
+    this.props.dispatch({ type: 'GET_ETHNICITY' });
+    this.props.dispatch({ type: 'GET_GENDER' });
   }
 
   render() {
@@ -24,7 +24,7 @@ class RegisterPage extends Component {
             type="button"
             className="btn btn_asLink"
             onClick={() => {
-              this.props.history.push('/login');
+              this.props.history.push('/login-register');
             }}
           >
             Login

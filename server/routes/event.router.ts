@@ -7,7 +7,25 @@ const router: express.Router = express.Router();
 router.get(
   '/',
   (req: Request, res: Response, next: express.NextFunction): void => {
-    const getEvent: string = `SELECT * FROM "event";`;
+    const getEvent: string = `SELECT * FROM "event" ORDER BY event_end ASC;`;
+    pool
+      .query(getEvent)
+      .then((result) => {
+        res.send(result.rows);
+      })
+      .catch((error) => {
+        console.log('error getting events', error);
+        res.sendStatus(500);
+      });
+  }
+);
+
+router.get(
+  '/:selection',
+  (req: Request, res: Response, next: express.NextFunction): void => {
+    const selection = req.params.selection;
+    console.log('EVENT SELECTION', selection);
+    const getEvent: string = `SELECT * FROM "event" ORDER BY event_end ASC;`;
     pool
       .query(getEvent)
       .then((result) => {

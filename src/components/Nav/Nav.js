@@ -6,8 +6,29 @@ import './Nav.css';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
 //Material-UI imports
-import { AppBar, Toolbar, Typography } from '@material-ui/core';
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  IconButton,
+  MenuItem,
+  Menu,
+} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import MenuIcon from '@material-ui/icons/Menu';
+import { withStyles, createStyles } from '@material-ui/core/styles';
+
+const muiStyles = (theme) =>
+  createStyles({
+    app: {
+      [theme.breakpoints.down('sm')]: {
+        height: '75px',
+      },
+    },
+    menuButton: {
+      marginRight: theme.spacing(2),
+    },
+  });
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,8 +44,13 @@ const useStyles = makeStyles((theme) => ({
 
 const Nav = (props) => {
   let loginLinkData = {
-    path: '/login',
+    path: '/login-register',
     text: 'Login / Register',
+  };
+
+  let adminData = {
+    path: '/admin',
+    text: 'Admin',
   };
 
   if (props.store.user.id != null) {
@@ -32,11 +58,30 @@ const Nav = (props) => {
     loginLinkData.text = 'Home';
   }
 
+  if (props.store.user.access_level === 4 || 5) {
+    adminData.path = '/admin';
+    adminData.text = 'Admin';
+  }
+
   const classes = useStyles();
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
     <div className={classes.root}>
-      <AppBar style={{ position: 'static', left: 0, top: 0 }}>
+      <AppBar
+        style={{ position: 'static', left: 0, top: 0 }}
+        className={props.classes.app}
+      >
         <Toolbar>
           <Link to="/home" className={classes.title}>
             <Typography
@@ -49,28 +94,61 @@ const Nav = (props) => {
             </Typography>
           </Link>
           <div className="nav-right">
-            <Link className="nav-link" to={loginLinkData.path}>
-              {/* Show this link if they are logged in or not,
+            <div className={props.classes.menuButton}>
+              <IconButton onClick={handleClick} edge="start">
+                <MenuIcon />
+              </IconButton>
+            </div>
+            <Menu
+              id="simple-menu"
+              anchorEl={anchorEl}
+              keepMounted
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+            >
+              <MenuItem>
+                {' '}
+                <Link
+                  className="nav-link"
+                  to={loginLinkData.path}
+                  style={{ minWidth: 100 }}
+                >
+                  {/* Show this link if they are logged in or not,
           but call this link 'Home' if they are logged in,
           and call this link 'Login / Register' if they are not */}
-              {loginLinkData.text}
-            </Link>
-            {/* Show the link to the info page and the logout button if the user is logged in */}
-            {props.store.user.id && (
-              <>
-                <Link className="nav-link" to="/info">
-                  Info Page
+                  {loginLinkData.text}
                 </Link>
-                <LogOutButton className="nav-link" />
-              </>
-            )}
-            {/* Always show this link since the about page is not protected */}
-            <Link className="nav-link" to="/about">
-              About
-            </Link>
-            <Link className="nav-link" to="/events">
-              Events
-            </Link>
+              </MenuItem>
+              <MenuItem>
+                <Link
+                  className="nav-link"
+                  to="/events"
+                  style={{ minWidth: 100 }}
+                >
+                  Events
+                </Link>
+              </MenuItem>
+              {props.store.user.access_level >= 4 && (
+                <MenuItem>
+                  {' '}
+                  <Link
+                    className="nav-link"
+                    to="/admin"
+                    style={{ minWidth: 100 }}
+                  >
+                    Admin
+                  </Link>
+                </MenuItem>
+              )}
+              <MenuItem>
+                {' '}
+                {props.store.user.id && (
+                  <>
+                    <LogOutButton className="nav-link" />
+                  </>
+                )}
+              </MenuItem>
+            </Menu>
           </div>
         </Toolbar>
       </AppBar>
@@ -78,4 +156,4 @@ const Nav = (props) => {
   );
 };
 
-export default connect(mapStoreToProps)(Nav);
+export default connect(mapStoreToProps)(withStyles(muiStyles)(Nav));

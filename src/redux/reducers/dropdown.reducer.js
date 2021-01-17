@@ -13,9 +13,9 @@ const educationReducer = (state = [], action) => {
 
 const ethnicityReducer = (state = [], action) => {
   switch (action.type) {
-    case 'SET_ethnicity':
+    case 'SET_ETHNICITY':
       return action.payload;
-    case 'UNSET_ethnicity':
+    case 'UNSET_ETHNICITY':
       return [];
     default:
       return state;
@@ -24,9 +24,9 @@ const ethnicityReducer = (state = [], action) => {
 
 const genderReducer = (state = [], action) => {
   switch (action.type) {
-    case 'SET_gender':
+    case 'SET_GENDER':
       return action.payload;
-    case 'UNSET_gender':
+    case 'UNSET_GENDER':
       return [];
     default:
       return state;

@@ -32,7 +32,7 @@ class DetailsPage extends Component {
       });
       this.props.history.push('/events');
     } else {
-      this.props.history.push('/login');
+      this.props.history.push('/login-register');
     }
   };
 
@@ -54,7 +54,7 @@ class DetailsPage extends Component {
           </Typography>
 
           <Grid container spacing={3}>
-            <Grid item lg={3}>
+            <Grid item lg={4}>
               {details.event_type === 1 ? (
                 <img
                   src={
@@ -78,6 +78,7 @@ class DetailsPage extends Component {
             <Grid item lg={3}>
               <Box mb={2}>
                 <Button
+                  size="large"
                   variant="contained"
                   color="secondary"
                   onClick={this.clickAttendButton}
@@ -87,11 +88,7 @@ class DetailsPage extends Component {
               </Box>
               <Box mb={2}>
                 {this.props.store.user.access_level >= 4 && (
-                  <Button
-                    variant="contained"
-                    color="secondary"
-                    // onClick={this.clickAttendButton}
-                  >
+                  <Button variant="contained" color="secondary">
                     Update Event
                   </Button>
                 )}
