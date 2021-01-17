@@ -6,11 +6,19 @@ const router: express.Router = express.Router();
 //custom import third-party dependency
 import * as nodemailer from 'nodemailer';
 
+//random number function
+function randomNumber(): number {
+  return Math.floor(Math.random() * (1 + 5 - 1) + 1);
+}
+
 // GET ALL EVENTS
 router.get(
   '/',
   (req: Request, res: Response, next: express.NextFunction): void => {
-    const getEvent: string = `SELECT * FROM "event" ORDER BY event_end ASC;`;
+    const getEvent: string = `SELECT * FROM "event"
+    JOIN "event_images" ON "event".id = "event_images".event_id
+    JOIN "images" on "event_images".image_id = "images".id
+    ORDER BY event_end ASC;`;
     pool
       .query(getEvent)
       .then((result) => {
@@ -118,6 +126,7 @@ router.post(
     const event_end: string = req.body.event_end;
     const event_description: string = req.body.event_description;
     const event_title: string = req.body.event_title;
+    const image_id: number = randomNumber();
     const queryOne: string = `INSERT INTO "event"(event_title, event_description, event_start, event_end, 
       recurring, event_address, event_type, creator, count, frequency) 
       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id`;
@@ -144,7 +153,17 @@ router.post(
         }
         Promise.all(eventPromises)
           .then(() => {
-            res.sendStatus(200);
+            const queryText: string = `INSERT INTO "event_images" (event_id, image_id) VALUES ($1, $2)`;
+            const queryArray: number[] = [eventId, image_id];
+            pool
+              .query(queryText, queryArray)
+              .then((dbResponse) => {
+                res.sendStatus(200);
+              })
+              .catch((err) => {
+                console.log('error with inserting into event_images', err);
+                res.sendStatus(500);
+              });
           })
           .catch(() => {
             res.sendStatus(500);
