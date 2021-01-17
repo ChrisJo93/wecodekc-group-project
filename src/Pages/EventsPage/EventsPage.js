@@ -39,11 +39,11 @@ class EventsPage extends Component {
   }
   handleChange = (e) => {
     this.setState({
-      typeOfEvent: !this.props.store.eventReducer.event_type,
+      orderBy: e.target.value,
     });
     this.props.dispatch({
       type: 'GET_EVENTS',
-      typeOfEvent: this.state.orderBy,
+      orderBy: this.state.orderBy,
     });
   };
 
@@ -90,8 +90,8 @@ class EventsPage extends Component {
                   style={{ minWidth: 140 }}
                   labelId="filter"
                   id="filter"
-                  // value={filter}
-                  // onChange={this.handleChange}
+                  value={this.state.orderBy}
+                  onChange={this.handleChange}
                   label="filter"
                 >
                   <MenuItem value={1}>Both</MenuItem>

@@ -2,15 +2,34 @@ import { put, take, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
 function* getEvents(action) {
-  try {
-    const response = yield axios.get('/api/event');
-    yield put({
-      type: 'SET_EVENTS',
-      payload: response.data,
-    });
-  } catch (err) {
-    console.log('ERROR GETTING EVENTS', err);
-    yield put({ type: 'GET_FAILED' });
+  switch (action.payload) {
+    case undefined:
+      try {
+        const response = yield axios.get('/api/event');
+        yield put({
+          type: 'SET_EVENTS',
+          payload: response.data,
+        });
+      } catch (err) {
+        console.log('ERROR GETTING EVENTS', err);
+        yield put({ type: 'GET_FAILED' });
+      }
+
+      break;
+
+    default:
+      try {
+        console.log('IN DEFAULT GET EVENTS', action.payload);
+        const response = yield axios.get(`/api/event/${action.payload}`);
+        yield put({
+          type: 'SET_EVENTS',
+          payload: response.data,
+        });
+      } catch (err) {
+        console.log('ERROR GETTING EVENTS', err);
+        yield put({ type: 'GET_FAILED' });
+      }
+      break;
   }
 }
 
