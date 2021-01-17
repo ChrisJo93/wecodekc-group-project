@@ -36,7 +36,7 @@ class ControlPanelVerification extends Component {
           <Grid item lg={2}>
             <Typography>Last Name: {details[0].last_name}</Typography>
             <Typography>Company: {details[0].company}</Typography>
-            <Typography>Job_title: {details[0].job_title}</Typography>
+            <Typography>Job Title: {details[0].job_title}</Typography>
             <Typography>Phone: {details[0].phone_number}</Typography>
           </Grid>
           <Grid item lg={2}>

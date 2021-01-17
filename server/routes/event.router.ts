@@ -263,11 +263,11 @@ router.delete(
 
             const mailOptions = {
               from: req.user.email, // sender address
-              to: req.user.email, // list of receivers
-              subject: 'User change in event', // Subject line
+              to: process.env.MAILER_EMAIL, // list of receivers
+              subject: 'Event update about user', // Subject line
               html: `<div>
             <h1>Notification of change in event</h1>
-            <p>${user_first_name} ${user_last_name} is no longer attending ${event_title}</p>
+            <p>${user_first_name} ${user_last_name} is no longer attending ${event_title}.</p>
           </div>`, // plain text body
             };
             transporter.sendMail(
