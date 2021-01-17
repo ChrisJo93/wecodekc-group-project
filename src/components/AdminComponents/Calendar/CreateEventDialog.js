@@ -64,19 +64,28 @@ class CreateEventDialog extends Component {
       payload: this.state.eventPayload,
     });
     this.handleClose();
-    console.log('in the repeat log', this.test());
+    console.log('in the repeat log', this.postRepeatEvent);
   };
 
-  test = (event) => {
+  postRepeatEvent = (event) => {
     for (let i = 0; i < this.props.store.repeatEventReducer.length; i++) {
       console.log(this.props.store.repeatEventReducer[i]);
     }
-    // this.setState({
-    //   repeatEventPayload: {
-    //     ...this.state.repeatEventPayload,
-    //     ...this.props.store.repeatEventReducer[i],
-    //   },
-    // });
+    //   this.setState({
+    //     repeatEventPayload: {
+    //       event_title: this.state.eventPayload.event_title,
+    //       event_description: this.state.eventPayload.event_description,
+    //       event_start: this.props.store.repeatEventReducer[i],
+    //       event_end: '',
+    //       reccuring: true,
+    //       recurring_time_slot: 1,
+    //       count: 1,
+    //       frequency: 'weekly',
+    //       event_address: '',
+    //       event_type: '',
+    //     },
+    //   });
+    // }
   };
 
   //opens the dialog
@@ -242,7 +251,6 @@ class CreateEventDialog extends Component {
               ) : (
                 ''
               )}
-              <FormControlLabel />
             </Grid>
           </DialogContent>
           <DialogActions>

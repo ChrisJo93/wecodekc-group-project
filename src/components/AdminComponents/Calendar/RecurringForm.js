@@ -21,7 +21,6 @@ class RecurringForm extends Component {
     byweekday: [],
     dtstart: new Date(Date.UTC(2021, 1, 1, 10, 30)),
     until: new Date(Date.UTC(2021, 12, 31)),
-    NoStop: false,
   };
 
   handleChangeForFreqCheck = (event) => {
@@ -188,15 +187,6 @@ class RecurringForm extends Component {
           onChange={this.handleChangeForInterval}
           label="Interval"
         />
-        {/* <TextField
-          id="datetime-local"
-          label="Start Date"
-          type="datetime-local"
-          onChange={this.handleChangeForDate('dtstart')}
-          InputLabelProps={{
-            shrink: true,
-          }}
-        /> */}
         <TextField
           id="datetime-local"
           label="Repeat Until"
