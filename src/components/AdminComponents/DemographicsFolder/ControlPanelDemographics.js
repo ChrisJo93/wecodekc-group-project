@@ -33,7 +33,7 @@ class ControlPanelDemographics extends Component {
     const ethnicity = this.props.store.ethnicity;
     const role = this.props.store.volunteerRole;
     let selection;
-    let graphData = [];
+    let graphData = [{ title: 'One', value: 20, color: '#4d2aff' }];
     return (
       <div>
         <Grid container>
