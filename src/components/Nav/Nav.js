@@ -25,6 +25,9 @@ const muiStyles = (theme) =>
         height: '75px',
       },
     },
+    menuButton: {
+      marginRight: theme.spacing(2),
+    },
   });
 
 const useStyles = makeStyles((theme) => ({
@@ -45,9 +48,19 @@ const Nav = (props) => {
     text: 'Login / Register',
   };
 
+  let adminData = {
+    path: '/admin',
+    text: 'Admin',
+  };
+
   if (props.store.user.id != null) {
     loginLinkData.path = '/user';
     loginLinkData.text = 'Home';
+  }
+
+  if (props.store.user.access_level === 4 || 5) {
+    adminData.path = '/admin';
+    adminData.text = 'Admin';
   }
 
   const classes = useStyles();
@@ -81,9 +94,11 @@ const Nav = (props) => {
             </Typography>
           </Link>
           <div className="nav-right">
-            {/* <IconButton onClick={handleClick} edge="start">
-              <MenuIcon />
-            </IconButton>
+            <div className={props.classes.menuButton}>
+              <IconButton onClick={handleClick} edge="start">
+                <MenuIcon />
+              </IconButton>
+            </div>
             <Menu
               id="simple-menu"
               anchorEl={anchorEl}
@@ -91,45 +106,49 @@ const Nav = (props) => {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              <MenuItem onClick={handleClose}>Login/Register</MenuItem>
-              <MenuItem onClick={handleClose}>Events</MenuItem>
-
-              {props.store.user.access_level_id === 4 && (
-                <MenuItem onClick={handleClose}>Admin</MenuItem>
-              )}
-            </Menu> */}
-            <Link className="nav-link" to={loginLinkData.path}>
-              {/* Show this link if they are logged in or not,
+              <MenuItem>
+                {' '}
+                <Link
+                  className="nav-link"
+                  to={loginLinkData.path}
+                  style={{ minWidth: 100 }}
+                >
+                  {/* Show this link if they are logged in or not,
           but call this link 'Home' if they are logged in,
           and call this link 'Login / Register' if they are not */}
-              {loginLinkData.text}
-            </Link>
-            {/* Show the link to the info page and the logout button if the user is logged in */}
-            {props.store.user.id && (
-              <>
-                <LogOutButton className="nav-link" />
-              </>
-            )}
-            {/* Always show this link since the about page is not protected */}
-
-            <Link className="nav-link" to="/events">
-              Events
-            </Link>
-
-            {props.store.user.access_level === 4 && (
-              <>
-                <Link className="nav-link" to="/admin">
-                  Admin
+                  {loginLinkData.text}
                 </Link>
-              </>
-            )}
-            {props.store.user.access_level === 5 && (
-              <>
-                <Link className="nav-link" to="/admin">
-                  Admin
+              </MenuItem>
+              <MenuItem>
+                <Link
+                  className="nav-link"
+                  to="/events"
+                  style={{ minWidth: 100 }}
+                >
+                  Events
                 </Link>
-              </>
-            )}
+              </MenuItem>
+              {props.store.user.access_level >= 4 && (
+                <MenuItem>
+                  {' '}
+                  <Link
+                    className="nav-link"
+                    to="/admin"
+                    style={{ minWidth: 100 }}
+                  >
+                    Admin
+                  </Link>
+                </MenuItem>
+              )}
+              <MenuItem>
+                {' '}
+                {props.store.user.id && (
+                  <>
+                    <LogOutButton className="nav-link" />
+                  </>
+                )}
+              </MenuItem>
+            </Menu>
           </div>
         </Toolbar>
       </AppBar>

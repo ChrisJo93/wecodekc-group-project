@@ -7,25 +7,12 @@ import { Button, Typography } from '@material-ui/core';
 
 class ProfileInfoPanel extends Component {
   render() {
-<<<<<<< HEAD
-    const skills = this.props.store.verifiedUserDetailReducer;
-    console.log('SKILLS LOOK HERE:', skills);
-    // //loop through to get each skill from database
-    // // if (this.props.store.verifiedUserDetailAll) {
-    // const skills = this.props.store.verifiedUserDetailAll.skills_label_array.map(
-    //   (item, index) => {
-    //     return <Typography key={index}>{item}</Typography>;
-    //   }
-    // );
-    // // }
-=======
     //loop through to get each skill from database
     const skills = this.props.store.verifiedUserDetailReducer[0].skills_label_array.map(
       (item, index) => {
         return <Typography key={index}>{item}</Typography>;
       }
     );
->>>>>>> develop
 
     return (
       <div>

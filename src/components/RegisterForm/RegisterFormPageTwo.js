@@ -30,6 +30,7 @@ class RegisterFormPageTwo extends Component {
     skills: [],
     time_slot: [],
     languages: [],
+    custom_entry_skills: '',
   };
 
   registerUser = (event) => {
@@ -80,6 +81,7 @@ class RegisterFormPageTwo extends Component {
         </MenuItem>
       );
     });
+
     //loop through to get each time slot from database
     const time = this.props.store.dropdown.timeReducer.map((item, index) => {
       return (
@@ -90,11 +92,11 @@ class RegisterFormPageTwo extends Component {
     });
 
     return (
-      <Container>
+      <Container style={{ padding: '75px' }}>
         <Grid container justify="center">
           <Grid item>
             <form className="opacity" onSubmit={this.registerUser}>
-              <Typography variant="h3" component="h2" gutterBottom>
+              <Typography variant="h4" component="h2" gutterBottom>
                 Registration
               </Typography>
               {this.props.store.errors.registrationMessage && (
@@ -118,7 +120,6 @@ class RegisterFormPageTwo extends Component {
                   variant="outlined"
                   onChange={this.handleInputChangeFor('motivation_bio')}
                 />
-
                 <TextField
                   fullWidth
                   multiline
@@ -179,7 +180,6 @@ class RegisterFormPageTwo extends Component {
                     What languages do you speak? If none, leave blank.
                   </InputLabel>
                 </FormControl>
-
                 <FormControl variant="outlined" fullWidth>
                   <InputLabel id="skills">
                     Please select any technical skills you have and would like
@@ -203,6 +203,18 @@ class RegisterFormPageTwo extends Component {
                     {skills}
                   </Select>
                 </FormControl>
+
+                <TextField
+                  fullWidth
+                  multiline
+                  rows={2}
+                  placeholder="Do you have any other skills you would like to add?"
+                  type="text"
+                  name="custom_entry_skills"
+                  value={this.state.custom_entry_skills}
+                  variant="outlined"
+                  onChange={this.handleInputChangeFor('custom_entry_skills')}
+                />
                 <FormControl variant="outlined" fullWidth>
                   <InputLabel id="time">
                     Please select when you are available

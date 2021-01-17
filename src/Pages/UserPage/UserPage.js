@@ -27,13 +27,6 @@ class UserPage extends Component {
     this.props.dispatch({
       type: 'GET_USER_EVENTS',
     });
-<<<<<<< HEAD
-    this.props.dispatch({
-      type: 'GET_VERIFIED_USER_DETAIL',
-      payload: this.props.store.user.id,
-    });
-=======
->>>>>>> develop
     this.props.dispatch({ type: 'GET_SKILL' });
   }
 

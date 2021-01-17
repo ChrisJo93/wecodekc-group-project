@@ -87,11 +87,7 @@ class DetailsPage extends Component {
               </Box>
               <Box mb={2}>
                 {this.props.store.user.access_level >= 4 && (
-                  <Button
-                    variant="contained"
-                    color="secondary"
-                    // onClick={this.clickAttendButton}
-                  >
+                  <Button variant="contained" color="secondary">
                     Update Event
                   </Button>
                 )}

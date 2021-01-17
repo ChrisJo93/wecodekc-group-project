@@ -5,15 +5,15 @@ INSERT INTO "ethnicity" (ethnicity_label) VALUES
   ('Native American or Alaskan Native'),
   ('Native Hawaiian or Pacific Islander'),
   ('Asian'),
-  ('Two or More ethnicitys'),
+  ('Two or more of the above'),
   ('Prefer not to answer');
 
 INSERT INTO "gender" (gender_label) VALUES 
   ('Male'),
   ('Female'),
-  ('transgender'),
-  ('non-binary'),
-  ('gender neutral'),
+  ('Transgender'),
+  ('Non-binary'),
+  ('Gender Neutral'),
   ('Not listed');
 
 
