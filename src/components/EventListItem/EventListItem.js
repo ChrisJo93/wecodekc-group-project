@@ -12,12 +12,26 @@ import {
   CardActions,
   CardContent,
   Button,
-  Typography,
   Grid,
   CardHeader,
   Avatar,
 } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { withStyles, createStyles } from '@material-ui/core/styles';
+
+const muiStyles = (theme) =>
+  createStyles({
+    // avatar: {
+    //   backgroundColor: blue[100],
+    //   color: blue[600],
+    // },
+    cardMedia: {
+      height: '300px',
+      [theme.breakpoints.down('sm')]: {
+        height: '50%',
+        width: '300px',
+      },
+    },
+  });
 
 class EventListItem extends Component {
   componentDidMount() {
@@ -57,21 +71,18 @@ class EventListItem extends Component {
 
         <CardContent>
           {event.event_type === 1 ? (
-            <img
-              src={'https://wecodekc.s3.us-east-2.amazonaws.com/_W4A0876-1.jpg'}
-              alt="course"
+            <CardMedia
+              className={this.props.classes.cardMedia}
+              image="https://wecodekc.s3.us-east-2.amazonaws.com/_W4A0876-1.jpg"
+              title="course"
             />
           ) : (
-            <img
-              src={'https://wecodekc.s3.us-east-2.amazonaws.com/_W4A0816-1.jpg'}
-              alt="event"
+            <CardMedia
+              className={this.props.classes.cardMedia}
+              image="https://wecodekc.s3.us-east-2.amazonaws.com/_W4A0816-1.jpg"
+              title="event"
             />
           )}
-
-          {/* <CardMedia
-              image="https://wecodekc.s3.us-east-2.amazonaws.com/_W4A0816-1.jpg"
-              title="Event"
-            /> */}
         </CardContent>
 
         <CardActions>
@@ -93,4 +104,4 @@ class EventListItem extends Component {
   }
 }
 
-export default connect()(withRouter(EventListItem));
+export default withRouter(connect()(withStyles(muiStyles)(EventListItem)));

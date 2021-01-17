@@ -32,7 +32,7 @@ class DetailsPage extends Component {
       });
       this.props.history.push('/events');
     } else {
-      this.props.history.push('/login');
+      this.props.history.push('/login-register');
     }
   };
 

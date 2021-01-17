@@ -1,7 +1,7 @@
 INSERT INTO "ethnicity" (ethnicity_label) VALUES 
   ('White not Hispanic'),
   ('Hispanic or Latino'),
-  ('Black or African American Alone'),
+  ('Black or African American'),
   ('Native American or Alaskan Native'),
   ('Native Hawaiian or Pacific Islander'),
   ('Asian'),

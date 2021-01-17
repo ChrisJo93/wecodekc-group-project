@@ -7,6 +7,9 @@ function* dataGrab(action) {
     // const noteGet = yield axios.get(`/api/user/notes/${action.payload}`);
     const unverifiedGet = yield axios.get('/api/admin/unverifiedGet');
     const eventGet = yield axios.get('/api/event');
+    const ethnicityGet = yield axios.get(`/api/demographics/ethnicity`);
+    const genderGet = yield axios.get(`/api/demographics/gender`);
+    const roleGet = yield axios.get(`/api/demographics/volunteerRole`);
     yield put({
       type: 'SET_ALL_USERS',
       payload: allUserGet.data,
@@ -22,6 +25,18 @@ function* dataGrab(action) {
     yield put({
       type: 'SET_EVENTS',
       payload: eventGet.data,
+    });
+    yield put({
+      type: 'SET_ETHNICITY',
+      payload: ethnicityGet.data,
+    });
+    yield put({
+      type: 'SET_GENDER',
+      payload: genderGet.data,
+    });
+    yield put({
+      type: 'SET_VOLUNTEER',
+      payload: roleGet.data,
     });
   } catch (err) {
     console.log('ERROR UPDATING USER', err);
@@ -43,7 +58,7 @@ function* getNewUserDetail(action) {
     const response = yield axios.get(
       `/api/user/newUserDetail/${action.payload}`
     );
-    console.log('look here <<<<<<', response.data);
+
     yield put({
       type: 'SET_NEW_USER_DETAIL',
       payload: response.data,
@@ -59,7 +74,7 @@ function* verifiedUserDetailReducer(action) {
     const response = yield axios.get(
       `/api/user/verifiedUserDetail/${action.payload}`
     );
-    console.log('look here <<<<<<', response.data);
+
     yield put({
       type: 'SET_VERIFIED_USER_DETAIL',
       payload: response.data,

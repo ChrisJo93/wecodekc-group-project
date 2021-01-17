@@ -14,7 +14,18 @@ import {
   InputLabel,
   MenuItem,
   Select,
+  Box,
 } from '@material-ui/core';
+import { withStyles, createStyles } from '@material-ui/core/styles';
+
+const muiStyles = (theme) =>
+  createStyles({
+    typography: {
+      [theme.breakpoints.down('sm')]: {
+        height: '50%',
+      },
+    },
+  });
 
 class EventsPage extends Component {
   state = {
@@ -60,33 +71,39 @@ class EventsPage extends Component {
     return (
       <div style={{ padding: 20 }}>
         <EventsBar />
-        <Grid container justify="space-evenly">
-          <Grid item>
-            <Typography variant="h3" component="h2" gutterBottom>
-              Upcoming Events
-            </Typography>
-          </Grid>
-          <Grid item>
-            <FormControl variant="outlined" fullWidth>
-              <InputLabel id="filter">Sort By</InputLabel>
-              <Select
-                style={{ minWidth: 140 }}
-                labelId="filter"
-                id="filter"
-                value={this.state.ascDsc}
-                // onChange={this.handleChange}
-                label="filter"
+        <Box mb={2}>
+          <Grid container justify="space-evenly">
+            <Grid item>
+              <Typography
+                variant="h3"
+                component="h2"
+                gutterBottom
+                className={this.props.classes.typography}
               >
-                <MenuItem value={false} onChange={this.handleChange}>
-                  Courses Only
-                </MenuItem>
-                <MenuItem value={true} onChange={this.handleChange}>
-                  Events Only
-                </MenuItem>
-              </Select>
-            </FormControl>
+                Upcoming Events
+              </Typography>
+            </Grid>
+            <Grid item>
+              <FormControl variant="outlined" fullWidth>
+                <InputLabel id="filter">Sort By</InputLabel>
+                <Select
+                  style={{ minWidth: 140 }}
+                  labelId="filter"
+                  id="filter"
+                  // value={filter}
+                  // onChange={this.handleChange}
+                  label="filter"
+                >
+                  <MenuItem value="">
+                    <em>Event Type or Date</em>
+                  </MenuItem>
+                  <MenuItem value={10}>By Event Type</MenuItem>
+                  <MenuItem value={20}>By Date</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
           </Grid>
-        </Grid>
+        </Box>
         <Grid container spacing={3}>
           {eventsArray}
         </Grid>
@@ -95,4 +112,4 @@ class EventsPage extends Component {
   }
 }
 
-export default connect(mapStoreToProps)(EventsPage);
+export default connect(mapStoreToProps)(withStyles(muiStyles)(EventsPage));

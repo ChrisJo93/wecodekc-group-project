@@ -31,7 +31,7 @@ class RegisterForm extends Component {
     zip_code: '',
     company: '',
     job_title: '',
-    education_level: [],
+    education_level: '',
     username: '',
     password: '',
   };
@@ -87,7 +87,7 @@ class RegisterForm extends Component {
         <Grid container justify="center">
           <Grid item>
             <form className="opacity" onSubmit={this.handleNextClick}>
-              <Typography variant="h3" component="h2" gutterBottom>
+              <Typography variant="h4" component="h2" gutterBottom>
                 Registration
               </Typography>
               {this.props.store.errors.registrationMessage && (
@@ -161,7 +161,7 @@ class RegisterForm extends Component {
                   </Box>
                   <Box mb={2}>
                     <FormControl variant="outlined" size="small" fullWidth>
-                      <InputLabel id="gender">gender</InputLabel>
+                      <InputLabel id="gender">Gender</InputLabel>
                       <Select
                         labelId="gender"
                         id="gender"
@@ -178,7 +178,7 @@ class RegisterForm extends Component {
                   </Box>
                   <Box mb={2}>
                     <FormControl variant="outlined" size="small" fullWidth>
-                      <InputLabel id="ethnicity">ethnicity</InputLabel>
+                      <InputLabel id="Ethnicity">Ethnicity</InputLabel>
                       <Select
                         labelId="ethnicity"
                         id="ethnicity"
@@ -279,28 +279,20 @@ class RegisterForm extends Component {
                     </div>
                   </Box>
                   <Box mb={2}>
-                    <FormControl variant="outlined" fullWidth>
+                    <FormControl variant="outlined" size="small" fullWidth>
                       <InputLabel id="education_level">
                         Highest Level of Education
                       </InputLabel>
                       <Select
-                        // style={{
-                        //   border: 'solid grey',
-                        // }}
                         labelId="education_level"
                         id="education_level"
-                        multiple
                         value={this.state.education_level}
                         onChange={this.handleInputChangeFor('education_level')}
-                        // input={<Input id="select-multiple-chip" />}
-                        renderValue={(selected) => (
-                          <div>
-                            {selected.map((name) => (
-                              <Chip key={name} label={name} />
-                            ))}
-                          </div>
-                        )}
+                        label="education_level"
                       >
+                        <MenuItem value="">
+                          <em>None</em>
+                        </MenuItem>
                         {level}
                       </Select>
                     </FormControl>

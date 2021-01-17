@@ -7,16 +7,14 @@ import {
   TextField,
   FormControl,
   InputLabel,
-  Input,
   Select,
   MenuItem,
   Button,
   Chip,
-  Grid,
   Box,
   LinearProgress,
 } from '@material-ui/core';
-import ImageUpload from '../ImageUpload/ImageUpload';
+import ImageUpload from '../../components/ImageUpload/ImageUpload';
 
 class UserPageEdit extends Component {
   state = {
@@ -71,12 +69,15 @@ class UserPageEdit extends Component {
       //displays the edit form if user info is loaded
 
       <div>
-        <ImageUpload />
+        <div className="placeholder">
+          <ImageUpload />
+        </div>
         <div className="profile-area">
           <form onSubmit={this.handleSubmit}>
             <Box mb={2}>
               <div>
                 <TextField
+                  style={{ backgroundColor: 'white' }}
                   fullWidth
                   size="small"
                   placeholder="first name"
@@ -93,6 +94,7 @@ class UserPageEdit extends Component {
             <Box mb={2}>
               <div>
                 <TextField
+                  style={{ backgroundColor: 'white' }}
                   fullWidth
                   size="small"
                   placeholder="last name"
@@ -108,6 +110,7 @@ class UserPageEdit extends Component {
             <Box mb={2}>
               <div>
                 <TextField
+                  style={{ backgroundColor: 'white' }}
                   fullWidth
                   size="small"
                   placeholder="zipcode"
@@ -122,6 +125,7 @@ class UserPageEdit extends Component {
             <Box mb={2}>
               <div>
                 <TextField
+                  style={{ backgroundColor: 'white' }}
                   fullWidth
                   size="small"
                   placeholder="phone number"
@@ -136,6 +140,7 @@ class UserPageEdit extends Component {
             <Box mb={2}>
               <div>
                 <TextField
+                  style={{ backgroundColor: 'white' }}
                   fullWidth
                   size="small"
                   placeholder="email"
@@ -151,12 +156,13 @@ class UserPageEdit extends Component {
             <FormControl variant="outlined" fullWidth>
               <InputLabel id="skills">Edit your skills</InputLabel>
               <Select
+                style={{ backgroundColor: 'white' }}
                 labelId="skills"
                 id="skills"
                 multiple
                 value={this.state.skills}
                 onChange={this.handleInputChangeFor('skills')}
-                input={<Input id="select-multiple-chip" />}
+                // input={<Input id="select-multiple-chip" />}
                 renderValue={(selected) => (
                   <div>
                     {selected.map((value) => (
@@ -168,7 +174,7 @@ class UserPageEdit extends Component {
                 {skills}
               </Select>
             </FormControl>
-            <Box mb={2}>
+            <Box mt={2}>
               <Button
                 variant="contained"
                 color="secondary"

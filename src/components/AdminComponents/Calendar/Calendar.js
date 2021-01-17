@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
-import Button from '@material-ui/core/Button';
+import { withRouter } from 'react-router-dom';
 
 //calendar imports
 import FullCalendar from '@fullcalendar/react';
@@ -22,11 +22,7 @@ import { DateTime } from 'luxon';
 import CreateEventDialog from './CreateEventDialog';
 import DateListDialog from './DateListDialog';
 
-// import DateListDialog from './DateListDialog';
-
 class Calendar extends Component {
-  // calendarComponentRef = React.createRef(); not certain what this is doing but keeping it for now.
-
   state = {
     open: false,
     selectedValue: 'Nothing Selected',
@@ -48,8 +44,8 @@ class Calendar extends Component {
       .get('/api/event')
       .then((response) => {
         for (let i = 0; i < response.data.length; i++) {
-          if (response.data[i].recurring) {
-          }
+          // if (response.data[i].recurring) {
+          // }
           this.setState({
             // adding new event to array
             calendarEvents: this.state.calendarEvents.concat({
@@ -57,7 +53,7 @@ class Calendar extends Component {
               title: response.data[i].event_title,
               start: response.data[i].event_start,
               end: response.data[i].event_end,
-              //We will use rrule for mock data if we can't solve issue before Sunday.
+              // We will use rrule for mock data if we can't solve issue before Sunday.
               // rrule: {
               //   count: 2,
               //   freq: 'weekly',
@@ -109,28 +105,27 @@ class Calendar extends Component {
 
   handleClickOpen = () => {
     this.setState({
+      //toggle for open close
       open: !this.state.open,
     });
   };
 
-  handleClose = (value) => (event) => {
-    this.setState(
-      {
-        open: false,
-        selectedValue:
-          value == (null, undefined, '') ? value : this.state.selectedValue,
-      },
-      () => {
-        console.log(this.state.selectedValue, value);
-      }
-    );
+  handleClose = (value) => {
+    this.setState({
+      open: false,
+      selectedValue:
+        //allows click outside of modal to close it. Prevents load bug.
+        value == (null, undefined, '') ? value : this.state.selectedValue,
+    });
+    //push only when an event id is present
+    if (value > 0) {
+      this.props.history.push(`/event/details/${value}`);
+    }
   };
 
   render() {
     return (
       <div className="calendar">
-        <div className="calendar-top"></div>
-
         <CreateEventDialog />
 
         <div>
@@ -166,4 +161,4 @@ class Calendar extends Component {
   }
 }
 
-export default connect(mapStoreToProps)(Calendar);
+export default withRouter(connect(mapStoreToProps)(Calendar));

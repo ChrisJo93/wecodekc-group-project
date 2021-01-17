@@ -9,6 +9,7 @@ import dropdownRouter from './routes/dropdown.router';
 import timeslotRouter from './routes/timeslot.router';
 import adminRouter from './routes/admin.router';
 import imageRouter from './routes/image.router';
+import demographicsRouter from './routes/demographics.router';
 
 import * as dotenv from 'dotenv';
 dotenv.config();
@@ -36,6 +37,7 @@ app.use('/api/dropdown', dropdownRouter);
 app.use('/api/timeslot', timeslotRouter);
 app.use('/api/admin', adminRouter);
 app.use('/api/image', imageRouter);
+app.use('/api/demographics', demographicsRouter);
 
 app.use(
   '/s3',
