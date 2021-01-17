@@ -64,28 +64,6 @@ class CreateEventDialog extends Component {
       payload: this.state.eventPayload,
     });
     this.handleClose();
-    console.log('in the repeat log', this.postRepeatEvent);
-  };
-
-  postRepeatEvent = (event) => {
-    for (let i = 0; i < this.props.store.repeatEventReducer.length; i++) {
-      console.log(this.props.store.repeatEventReducer[i]);
-    }
-    //   this.setState({
-    //     repeatEventPayload: {
-    //       event_title: this.state.eventPayload.event_title,
-    //       event_description: this.state.eventPayload.event_description,
-    //       event_start: this.props.store.repeatEventReducer[i],
-    //       event_end: '',
-    //       reccuring: true,
-    //       recurring_time_slot: 1,
-    //       count: 1,
-    //       frequency: 'weekly',
-    //       event_address: '',
-    //       event_type: '',
-    //     },
-    //   });
-    // }
   };
 
   //opens the dialog
@@ -247,7 +225,11 @@ class CreateEventDialog extends Component {
                 label="Repeat"
               />
               {this.state.eventPayload.recurring === true ? (
-                <RecurringForm start={this.state.eventPayload.event_start} />
+                <RecurringForm
+                  start={this.state.eventPayload.event_start}
+                  repeatPostButton={this.state.eventPayload.recurring}
+                  eventPayload={this.state.eventPayload}
+                />
               ) : (
                 ''
               )}
@@ -264,13 +246,15 @@ class CreateEventDialog extends Component {
               </Button>
             </Box>
             <Box m={2}>
-              <Button
-                onClick={this.postEvent}
-                color="secondary"
-                variant="contained"
-              >
-                Add
-              </Button>
+              {this.state.eventPayload.recurring === false ? (
+                <Button
+                  onClick={this.postEvent}
+                  color="secondary"
+                  variant="contained"
+                >
+                  Add
+                </Button>
+              ) : null}
             </Box>
           </DialogActions>
         </Dialog>

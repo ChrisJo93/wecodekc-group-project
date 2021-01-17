@@ -68,7 +68,6 @@ class Calendar extends Component {
       .catch((err) => {
         console.log('error in calendar get', err);
       });
-    console.log(this.props.store.dateReducer);
   }
   //sending dates for event population modal
   sendDate = (date) => {

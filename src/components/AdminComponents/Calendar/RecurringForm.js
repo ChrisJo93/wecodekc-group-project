@@ -11,6 +11,8 @@ import {
   Select,
   FormControl,
   FormLabel,
+  Button,
+  Box,
 } from '@material-ui/core';
 import { RRule } from 'rrule';
 
@@ -21,6 +23,25 @@ class RecurringForm extends Component {
     byweekday: [],
     dtstart: new Date(Date.UTC(2021, 1, 1, 10, 30)),
     until: new Date(Date.UTC(2021, 12, 31)),
+    eventPayload: {
+      event_title: this.props.eventPayload.event_title,
+      event_description: '',
+      event_start: this.props.start,
+      event_end: '',
+      recurring: false,
+      recurring_time_slot: 1,
+      count: 1,
+      frequency: 'weekly',
+      event_address: '',
+      event_type: 1,
+    },
+  };
+  postEvent = (event) => {
+    this.props.dispatch({
+      type: 'POST_EVENTS',
+      payload: this.state.eventPayload,
+    });
+    this.handleClose();
   };
 
   handleChangeForFreqCheck = (event) => {
@@ -36,7 +57,6 @@ class RecurringForm extends Component {
 
   handleChangeForDate = (date) => (event) => {
     this.setState({ ...this.state, [date]: new Date(event.target.value) });
-    console.log(date, event.target.value);
   };
 
   handleRepeatEvent = (event) => {
@@ -196,7 +216,15 @@ class RecurringForm extends Component {
             shrink: true,
           }}
         />
-        <button onClick={this.handleRepeatEvent}>I do something</button>
+        <Box m={2}>
+          <Button
+            onClick={this.postEvent}
+            color="secondary"
+            variant="contained"
+          >
+            Add
+          </Button>
+        </Box>
       </div>
     );
   }

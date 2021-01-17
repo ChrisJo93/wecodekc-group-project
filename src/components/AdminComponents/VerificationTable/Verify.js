@@ -50,7 +50,6 @@ function VerifyTable(props) {
   };
 
   const handleButton = (selection, id, email, first_name) => (e) => {
-    console.log();
     switch (selection) {
       case 'profile':
         props.dispatch({
