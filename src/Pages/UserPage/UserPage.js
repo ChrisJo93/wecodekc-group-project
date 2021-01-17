@@ -9,7 +9,7 @@ import UserPageEdit from './UserPageEdit';
 import UserEventItem from './UserEventItem';
 
 //custom MATERIAL-UI imports
-import { Grid, Typography, Container } from '@material-ui/core';
+import { Grid, Typography, Container, LinearProgress } from '@material-ui/core';
 
 class UserPage extends Component {
   state = {
@@ -79,7 +79,7 @@ class UserPage extends Component {
         </Container>
       </div>
     ) : (
-      <p>...loading</p>
+      <LinearProgress color="secondary" />
     );
   }
 }

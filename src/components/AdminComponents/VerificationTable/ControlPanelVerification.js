@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
-import Grid from '@material-ui/core/Grid';
+
+//material-ui imports
+import { Typography, Grid } from '@material-ui/core';
 
 // Basic class component structure for React with default state
 // value setup. When making a new component be sure to replace
@@ -15,33 +17,33 @@ class ControlPanelVerification extends Component {
       <div>
         <Grid container>
           <Grid item lg={2}>
-            <h2>User</h2>
+            <Typography>Personal Details</Typography>
           </Grid>
           <Grid item lg={2}>
-            <h2>Experience</h2>
+            <Typography>Experience</Typography>
           </Grid>
           <Grid item lg={2}>
-            <h2>Motivation</h2>
+            <Typography>Motivation</Typography>
           </Grid>
           <Grid item lg={2}>
-            <h2>Skills</h2>
+            <Typography>Skills</Typography>
           </Grid>
           <Grid item lg={2}>
-            <h2>Education</h2>
+            <Typography>Education</Typography>
           </Grid>
         </Grid>
         <Grid container>
           <Grid item lg={2}>
-            <p>Last Name: {details[0].last_name}</p>
-            <p>Company: {details[0].company}</p>
-            <p>Job_title: {details[0].job_title}</p>
-            <p>Phone: {details[0].phone_number}</p>
+            <Typography>Last Name: {details[0].last_name}</Typography>
+            <Typography>Company: {details[0].company}</Typography>
+            <Typography>Job_title: {details[0].job_title}</Typography>
+            <Typography>Phone: {details[0].phone_number}</Typography>
           </Grid>
           <Grid item lg={2}>
-            <p>Experience: {details[0].experience_bio}</p>
+            <Typography>Experience: {details[0].experience_bio}</Typography>
           </Grid>
           <Grid item lg={2}>
-            <p>Motivation: {details[0].motivation_bio}</p>
+            <Typography>Motivation: {details[0].motivation_bio}</Typography>
           </Grid>
           <Grid item lg={2}>
             <ul>
@@ -57,7 +59,7 @@ class ControlPanelVerification extends Component {
       </div>
     ) : (
       <div>
-        <h1>Select a user to get details</h1>
+        <Typography>Select a user to get details</Typography>
       </div>
     );
   }
