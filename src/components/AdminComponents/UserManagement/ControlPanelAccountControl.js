@@ -67,9 +67,7 @@ class ControlPanelUserManagement extends Component {
                       </Grid>
                       <Grid item lg={2}>
                         <ul>
-                          {details[0].education_label_array.map((element) => (
-                            <li>{element}</li>
-                          ))}
+                          <li>{details[0].education_label}</li>
                         </ul>
                       </Grid>
                       <Grid item lg={6}>
