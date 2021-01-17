@@ -3,6 +3,9 @@ import express from 'express';
 import pool from '../modules/pool';
 const router: express.Router = express.Router();
 
+//custom import third-party dependency
+import * as nodemailer from 'nodemailer';
+
 // GET ALL EVENTS
 router.get(
   '/',
@@ -230,12 +233,62 @@ router.delete(
 router.delete(
   '/user/:id',
   (req: any, res: Response, next: express.NextFunction): void => {
-    console.log(req.body);
-    const deleteEvent: string = `DELETE FROM "user_event" WHERE "id" =$1;`;
+    const queryText: string = `SELECT first_name, last_name, event_title, "user_event".id FROM "user_event"
+    JOIN "event" ON "user_event".event_id = "event".id
+    JOIN "user" ON "user_event".user_id = "user".id
+    WHERE "user".id = $1`;
+    const queryArray: number[] = [req.user.id];
     pool
-      .query(deleteEvent, [req.params.id])
-      .then((result) => {
-        res.sendStatus(200);
+      .query(queryText, queryArray)
+      .then((dbResponse) => {
+        const user_event_id: number = dbResponse.rows[0].id;
+        const user_first_name: string = dbResponse.rows[0].first_name;
+        const user_last_name: string = dbResponse.rows[0].last_name;
+        const event_title: string = dbResponse.rows[0].event_title;
+        const deleteEvent: string = `DELETE FROM "user_event" WHERE "id" =$1;`;
+        pool
+          .query(deleteEvent, [user_event_id])
+          .then((result) => {
+            // // referenced from Myron Schippers' repo on nodemailer
+            // //send a message to the volunteer/mentor following verification (nodemailer)
+            const transportConfig = {
+              service: 'gmail',
+              auth: {
+                user: process.env.MAILER_EMAIL,
+                pass: process.env.MAILER_PASSWORD,
+              },
+            };
+
+            let transporter = nodemailer.createTransport(transportConfig);
+
+            const mailOptions = {
+              from: req.user.email, // sender address
+              to: req.user.email, // list of receivers
+              subject: 'User change in event', // Subject line
+              html: `<div>
+            <h1>Notification of change in event</h1>
+            <p>${user_first_name} ${user_last_name} is no longer attending ${event_title}</p>
+          </div>`, // plain text body
+            };
+            transporter.sendMail(
+              mailOptions,
+              (err: Error | null, info: any) => {
+                if (err != null) {
+                  console.log(err, 'there is an error sending the email');
+                  res.sendStatus(500);
+                  return;
+                }
+                console.log('email sent');
+                res.sendStatus(201);
+              }
+            );
+
+            // res.sendStatus(200);
+          })
+          .catch((error) => {
+            console.log(error);
+            res.sendStatus(500);
+          });
       })
       .catch((error) => {
         console.log(error);

@@ -3,21 +3,25 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
 //custom MATERIAL-UI imports
-import { Button, Typography } from '@material-ui/core';
+import { Box, Button, Typography } from '@material-ui/core';
 
 class ProfileInfoPanel extends Component {
   render() {
     //loop through to get each skill from database
     const skills = this.props.store.verifiedUserDetailReducer[0].skills_label_array.map(
       (item, index) => {
-        return <Typography key={index}>{item}</Typography>;
+        return (
+          <Typography key={index} gutterBottom>
+            {item}
+          </Typography>
+        );
       }
     );
 
     return (
       <div>
         <div>
-          TODO - CONDITIONAL RENDER PROFILE PIC IF IMAGE EXISTS
+          {/* TODO - CONDITIONAL RENDER PROFILE PIC IF IMAGE EXISTS */}
           {JSON.stringify(
             this.props.store.verifiedUserDetailReducer.image_link_array
           )}
@@ -31,9 +35,7 @@ class ProfileInfoPanel extends Component {
             />
           ) : (
             <img
-              src={
-                this.props.store.verifiedUserDetailReducer.image_link_array[0]
-              }
+              src={this.props.store.verifiedUserDetailReducer.image_link_array}
               className="placeholder"
               alt="profile"
             />
@@ -70,13 +72,15 @@ class ProfileInfoPanel extends Component {
           )}
 
           {skills}
-          <Button
-            color="secondary"
-            variant="contained"
-            onClick={this.props.edit}
-          >
-            Edit Profile
-          </Button>
+          <Box mt={2}>
+            <Button
+              color="secondary"
+              variant="contained"
+              onClick={this.props.edit}
+            >
+              Edit Profile
+            </Button>
+          </Box>
         </div>
       </div>
     );

@@ -63,7 +63,10 @@ class LandingPage extends Component {
       <div className="grid">
         <Grid container alignItems="stretch">
           <Grid item xs={12} md={6}>
-            <Card className="card" style={{ padding: '50px' }}>
+            <Card
+              className="card"
+              style={{ padding: '50px', backgroundColor: ' #dbf0f7' }}
+            >
               <CardContent>
                 <center>
                   <Typography variant="h4" gutterBottom>
@@ -114,7 +117,10 @@ class LandingPage extends Component {
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Card className="card" style={{ padding: '50px' }}>
+            <Card
+              className="card"
+              style={{ padding: '50px', backgroundColor: ' #dbf0f7' }}
+            >
               <CardContent>
                 <center>
                   <Typography variant="h4">Volunteer</Typography>
@@ -161,7 +167,10 @@ class LandingPage extends Component {
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Card className="card" style={{ padding: '50px' }}>
+            <Card
+              className="card"
+              style={{ padding: '50px', backgroundColor: ' #dbf0f7' }}
+            >
               <CardContent>
                 <center>
                   <Typography variant="h4">Mentor</Typography>
