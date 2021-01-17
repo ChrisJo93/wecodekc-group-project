@@ -70,19 +70,11 @@ class EventListItem extends Component {
         )}
 
         <CardContent>
-          {event.event_type === 1 ? (
-            <CardMedia
-              className={this.props.classes.cardMedia}
-              image="https://wecodekc.s3.us-east-2.amazonaws.com/_W4A0876-1.jpg"
-              title="course"
-            />
-          ) : (
-            <CardMedia
-              className={this.props.classes.cardMedia}
-              image="https://wecodekc.s3.us-east-2.amazonaws.com/_W4A0816-1.jpg"
-              title="event"
-            />
-          )}
+          <CardMedia
+            className={this.props.classes.cardMedia}
+            image={event.link_url}
+            title="course"
+          />
         </CardContent>
 
         <CardActions>

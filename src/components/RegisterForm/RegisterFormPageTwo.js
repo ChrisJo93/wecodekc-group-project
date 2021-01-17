@@ -337,6 +337,7 @@ class RegisterFormPageTwo extends Component {
                   value={this.state.custom_entry_skills}
                   variant="outlined"
                   onChange={this.handleInputChangeFor('custom_entry_skills')}
+                  inputProps={{ maxLength: 100 }}
                 />
                 <FormControl variant="outlined" fullWidth>
                   <InputLabel id="time">
