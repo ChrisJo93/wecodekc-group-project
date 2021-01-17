@@ -15,6 +15,8 @@ import {
   Box,
 } from '@material-ui/core/';
 
+import FaceIcon from '@material-ui/icons/Face';
+
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
@@ -103,13 +105,22 @@ function VerifyTableRow(props) {
     <React.Fragment>
       <TableRow key={row.id}>
         <TableCell>
-          <IconButton
+          {
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleButton('profile', row.id)}
+            >
+              <FaceIcon />
+            </Button>
+          }
+          {/* <IconButton
             aria-label="expand row"
             size="small"
             onClick={handleButton('profile', row.id)}
           >
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-          </IconButton>
+          </IconButton> */}
         </TableCell>
         <TableCell>{row.first_name}</TableCell>
         <TableCell>{row.last_name}</TableCell>

@@ -21,7 +21,6 @@ import {
 // component.
 class ControlPanelUserManagement extends Component {
   render() {
-    const array = [1, 2, 3, 4, 5];
     const details = this.props.store.verifiedUserDetailReducer;
     return details.length > 0 ? (
       <div>

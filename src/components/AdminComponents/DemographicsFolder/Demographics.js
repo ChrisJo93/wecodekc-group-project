@@ -12,19 +12,19 @@ import {
   TableRow,
   Paper,
 } from '@material-ui/core';
+import { withStyles, createStyles } from '@material-ui/core/styles';
 
-const useRowStyles = makeStyles({
-  root: {
-    '& > *': {
-      borderBottom: 'unset',
+const muiStyles = (theme) =>
+  createStyles({
+    containerStuff: {
+      margin: '50px 0px 0px 0px',
     },
-  },
-});
+  });
 
 function DemographicsTable(props) {
   const rows = props.userData;
   return (
-    <Paper>
+    <Paper className={props.classes.containerStuff}>
       <Table>
         <TableHead>
           <TableRow>
@@ -56,4 +56,6 @@ function DemographicsTable(props) {
   );
 }
 
-export default connect(mapStoreToProps)(DemographicsTable);
+export default connect(mapStoreToProps)(
+  withStyles(muiStyles)(DemographicsTable)
+);
