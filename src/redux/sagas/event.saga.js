@@ -53,6 +53,7 @@ function* getUserEvents(action) {
       type: 'SET_USER_EVENTS',
       payload: response.data,
     });
+    console.log('look here get user events', response.data);
   } catch (err) {
     console.log('error getting event for specific users', err);
     yield put({ type: 'GET_USER_EVENT_FAILED' });

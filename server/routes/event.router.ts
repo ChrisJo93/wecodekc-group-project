@@ -98,6 +98,7 @@ router.get(
     pool
       .query(queryText, queryArray)
       .then((result) => {
+        console.log('event_user stuff', result.rows);
         res.send(result.rows);
       })
       .catch((error) => {
@@ -111,7 +112,7 @@ router.get(
 router.post(
   '/user',
   (req: any, res: Response, next: express.NextFunction): void => {
-    console.log(req.body);
+    console.log('is this the event selection?', req.body);
     const queryText: string = `INSERT INTO "user_event" (event_id, user_id, approved) VALUES($1, $2, $3);`;
     const event_id: number = parseInt(req.body.eventId);
     const user_id: number = parseInt(req.user.id);
@@ -119,6 +120,7 @@ router.post(
     pool
       .query(queryText, [event_id, user_id, approved])
       .then((result) => {
+        console.log('it happened, event inserted');
         res.sendStatus(200);
       })
       .catch((error) => {
