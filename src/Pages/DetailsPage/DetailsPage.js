@@ -78,6 +78,7 @@ class DetailsPage extends Component {
             <Grid item lg={3}>
               <Box mb={2}>
                 <Button
+                  size="large"
                   variant="contained"
                   color="secondary"
                   onClick={this.clickAttendButton}
