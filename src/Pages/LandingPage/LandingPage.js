@@ -29,6 +29,9 @@ const muiStyles = (theme) =>
         height: '50%',
       },
     },
+    textBackground: {
+      backgroundColor: '#dbf0f7',
+    },
   });
 
 class LandingPage extends Component {
@@ -56,42 +59,46 @@ class LandingPage extends Component {
   render() {
     const eventsArray = this.props.store.eventReducer.map((item, index) => {
       return (
-        <EventListItem key={index} event={item} index={index} {...this.props} />
+        <EventListItem
+          key={index}
+          event={item}
+          index={index}
+          store={this.props.store}
+        />
       );
     });
     return (
       <div className="grid">
-        <Grid container alignItems="stretch">
+        <Grid
+          container
+          alignItems="center"
+          className={this.props.classes.textBackground}
+        >
           <Grid item xs={12} md={6}>
-            <Card
-              className="card"
-              style={{ padding: '50px', backgroundColor: ' #dbf0f7' }}
-            >
-              <CardContent>
-                <center>
-                  <Typography variant="h4" gutterBottom>
-                    Make an Impact!
-                  </Typography>
-                </center>
-                <Typography>
-                  <p>
-                    Our mission is to give youth the opportunity to learn
-                    technology concepts, and leadership skills; creating a
-                    pipeline of future-ready professionals through project-based
-                    learning and innovative programs.<br></br>
-                    <br></br>
-                    WE CODE KC is an initiative that serves the urban core of
-                    Kansas City, exposing youth to various programming
-                    languages, technology, cyber security, and computer science
-                    concepts. Learning the basic concept of coding develops
-                    creativity, problem solving skills, builds confidence and
-                    helps to build a positive future. Every child, no matter
-                    their zip code or their family’s financial status, should
-                    have the opportunity to learn to code.
-                  </p>
+            <div className="card" style={{ padding: '0px 50px 0px 50px' }}>
+              <center>
+                <Typography variant="h4" gutterBottom>
+                  Make an Impact!
                 </Typography>
-              </CardContent>
-            </Card>
+              </center>
+              <Typography>
+                <p>
+                  Our mission is to give youth the opportunity to learn
+                  technology concepts, and leadership skills; creating a
+                  pipeline of future-ready professionals through project-based
+                  learning and innovative programs.<br></br>
+                  <br></br>
+                  WE CODE KC is an initiative that serves the urban core of
+                  Kansas City, exposing youth to various programming languages,
+                  technology, cyber security, and computer science concepts.
+                  Learning the basic concept of coding develops creativity,
+                  problem solving skills, builds confidence and helps to build a
+                  positive future. Every child, no matter their zip code or
+                  their family’s financial status, should have the opportunity
+                  to learn to code.
+                </p>
+              </Typography>
+            </div>
           </Grid>
           <Grid item xs={12} md={6}>
             <Card className="card">
@@ -117,10 +124,7 @@ class LandingPage extends Component {
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Card
-              className="card"
-              style={{ padding: '50px', backgroundColor: ' #dbf0f7' }}
-            >
+            <Card className="card" style={{ padding: '0px 50px 0px 50px' }}>
               <CardContent>
                 <center>
                   <Typography variant="h4">Volunteer</Typography>
@@ -167,10 +171,7 @@ class LandingPage extends Component {
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Card
-              className="card"
-              style={{ padding: '50px', backgroundColor: ' #dbf0f7' }}
-            >
+            <Card className="card" style={{ padding: '0px 50px 0px 50px' }}>
               <CardContent>
                 <center>
                   <Typography variant="h4">Mentor</Typography>
