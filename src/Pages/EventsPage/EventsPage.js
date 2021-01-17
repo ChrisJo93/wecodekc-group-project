@@ -29,7 +29,7 @@ const muiStyles = (theme) =>
 
 class EventsPage extends Component {
   state = {
-    typeOfEvent: '',
+    orderBy: 1,
     //course = true/ event = false
   };
   componentDidMount() {
@@ -37,15 +37,15 @@ class EventsPage extends Component {
       type: 'GET_EVENTS',
     });
   }
-  // handleChange = (e) => {
-  //   this.setState({
-  //     typeOfEvent: !this.props.store.eventReducer.event_type,
-  //   });
-  //   this.props.dispatch({
-  //     type: 'GET_EVENTS',
-  //     typeOfEvent: this.state.ascDsc,
-  //   });
-  // };
+  handleChange = (e) => {
+    this.setState({
+      orderBy: e.target.value,
+    });
+    this.props.dispatch({
+      type: 'GET_EVENTS',
+      orderBy: this.state.orderBy,
+    });
+  };
 
   // handleEdit = (e) => {
   //   e.preventDefault();
@@ -90,15 +90,13 @@ class EventsPage extends Component {
                   style={{ minWidth: 140 }}
                   labelId="filter"
                   id="filter"
-                  // value={filter}
-                  // onChange={this.handleChange}
+                  value={this.state.orderBy}
+                  onChange={this.handleChange}
                   label="filter"
                 >
-                  <MenuItem value="">
-                    <em>Event Type or Date</em>
-                  </MenuItem>
-                  <MenuItem value={10}>By Event Type</MenuItem>
-                  <MenuItem value={20}>By Date</MenuItem>
+                  <MenuItem value={1}>Both</MenuItem>
+                  <MenuItem value={2}>Events</MenuItem>
+                  <MenuItem value={3}>Courses</MenuItem>
                 </Select>
               </FormControl>
             </Grid>
