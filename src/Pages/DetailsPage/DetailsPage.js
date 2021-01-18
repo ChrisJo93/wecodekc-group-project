@@ -55,7 +55,7 @@ class DetailsPage extends Component {
 
           <Grid container spacing={3}>
             <Grid item lg={5}>
-              <img src={details.link_url} alt="event image" />
+              <img src={details.link_url} alt="event or course" />
             </Grid>
             <Grid item lg={3}>
               <Typography>Date: {humanDate}</Typography>

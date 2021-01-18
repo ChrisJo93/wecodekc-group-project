@@ -226,25 +226,27 @@ class RegisterFormPageTwo extends Component {
                 fullWidth
                 multiline
                 rows={4}
-                placeholder="What motivated you to mentor with us?"
+                placeholder="What motivated you to mentor with us?(300 Character Limit)"
                 type="text"
                 name="motivation"
                 value={this.state.motivation_bio}
                 required
                 variant="outlined"
                 onChange={this.handleInputChangeFor('motivation_bio')}
+                inputProps={{ maxLength: '300' }}
               />
               <TextField
                 fullWidth
                 multiline
                 rows={4}
-                placeholder="Do you have any previous volunteer experience with other youth serving organizations? Please give a brief description of your role and responsibilities."
+                placeholder="Do you have any previous volunteer experience with other youth serving organizations? Please give a brief description of your role and responsibilities.(300 Character Limit)"
                 type="text"
                 name="experience_bio"
                 value={this.state.experience_bio}
                 required
                 variant="outlined"
                 onChange={this.handleInputChangeFor('experience_bio')}
+                inputProps={{ maxLength: '300' }}
               />
               <Box mb={2}>
                 <FormLabel>
@@ -328,13 +330,13 @@ class RegisterFormPageTwo extends Component {
                 fullWidth
                 multiline
                 rows={2}
-                placeholder="Do you have any other skills you would like to add?"
+                placeholder="Do you have any other skills you would like to add?(100 Character Limit)"
                 type="text"
                 name="custom_entry_skills"
                 value={this.state.custom_entry_skills}
                 variant="outlined"
                 onChange={this.handleInputChangeFor('custom_entry_skills')}
-                inputProps={{ maxLength: 100 }}
+                inputProps={{ maxLength: '100' }}
               />
               <FormControl variant="outlined" fullWidth>
                 <InputLabel id="time">

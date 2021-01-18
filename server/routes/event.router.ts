@@ -61,7 +61,7 @@ router.get(
     JOIN "images" on "event_images".image_id = "images".id
     WHERE "event".id = $1;`;
     pool
-      .query(getEventID, [req.params.id])
+      .query(getEventID, [req.params.event_id])
       .then((result) => {
         res.send(result.rows);
       })
