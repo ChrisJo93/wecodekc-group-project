@@ -54,7 +54,7 @@ class DetailsPage extends Component {
           </Typography>
 
           <Grid container spacing={3}>
-            <Grid item lg={4}>
+            <Grid item lg={5}>
               {details.event_type === 1 ? (
                 <img
                   src={

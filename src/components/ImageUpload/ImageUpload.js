@@ -16,12 +16,12 @@ class ImageUpload extends Component {
   };
 
   render() {
-    const dropStyles = {
-      width: '200px',
-      height: '200px',
+    // const dropStyles = {
+    //   width: '200px',
+    //   height: '200px',
 
-      borderRadius: '100%',
-    };
+    //   borderRadius: '100%',
+    // };
 
     const innerDropElement = (
       <div className="innerDrop">
@@ -41,7 +41,7 @@ class ImageUpload extends Component {
         s3Url={s3Url}
         maxSize={1024 * 1024 * 5}
         upload={uploadOptions}
-        style={dropStyles}
+        // style={dropStyles}
         children={innerDropElement}
       />
     );

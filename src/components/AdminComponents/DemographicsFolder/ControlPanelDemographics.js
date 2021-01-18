@@ -2,11 +2,17 @@ import React, { Component } from 'react';
 import PieChart from 'react-minimal-pie-chart';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
-import Grid from '@material-ui/core/Grid';
-import Select from '@material-ui/core/Select';
-import { FormControl } from '@material-ui/core';
-import MenuItem from '@material-ui/core/MenuItem';
-import Button from '@material-ui/core/Button';
+
+//material-ui imports
+import {
+  Grid,
+  Select,
+  FormControl,
+  MenuItem,
+  Button,
+  Typography,
+  Box,
+} from '@material-ui/core';
 
 class ControlPanelDemographics extends Component {
   state = {
@@ -39,7 +45,7 @@ class ControlPanelDemographics extends Component {
         <Grid container>
           <Grid item lg={4}>
             <FormControl style={{ minWidth: 120 }}>
-              <h3>Sort By</h3>
+              <Typography>Sort By</Typography>
               <Select
                 variant="outlined"
                 labelId="roleSelection"
@@ -54,20 +60,22 @@ class ControlPanelDemographics extends Component {
                 <MenuItem value={2}>Gender</MenuItem>
                 <MenuItem value={3}>Ethnicity</MenuItem>
               </Select>
-              <Button variant="contained" color="secondary" s>
-                Download
-              </Button>
+              <Box mt={2}>
+                <Button variant="contained" color="secondary" s>
+                  Download
+                </Button>
+              </Box>
             </FormControl>
           </Grid>
           <Grid item lg={2}>
-            <h1>Demographics</h1>
+            <Typography>Demographics</Typography>
             <PieChart data={graphData} />
           </Grid>
           <Grid item lg={3}></Grid>
           <Grid item lg={3}>
-            <h4>Total Admins : </h4>
-            <h4>Total Mentors : </h4>
-            <h4>Total Volunteers : </h4>
+            <Typography>Total Admins : </Typography>
+            <Typography>Total Mentors : </Typography>
+            <Typography>Total Volunteers : </Typography>
           </Grid>
         </Grid>
       </div>

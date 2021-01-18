@@ -41,18 +41,12 @@ class EventsPage extends Component {
     this.setState({
       orderBy: e.target.value,
     });
+    console.log(this.state.orderBy);
     this.props.dispatch({
       type: 'GET_EVENTS',
       orderBy: this.state.orderBy,
     });
   };
-
-  // handleEdit = (e) => {
-  //   e.preventDefault();
-  //   this.setState({
-  //     ascDsc: !this.state.edit,
-  //   });
-  // };
 
   render() {
     const eventsArray = this.props.store.eventReducer.map((item, index) => {

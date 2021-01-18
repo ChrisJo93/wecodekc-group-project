@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
-import Grid from '@material-ui/core/Grid';
+
+//material-ui imports
+import { Typography, Grid } from '@material-ui/core';
+import PhoneIcon from '@material-ui/icons/Phone';
 
 // Basic class component structure for React with default state
 // value setup. When making a new component be sure to replace
@@ -9,55 +12,56 @@ import Grid from '@material-ui/core/Grid';
 // component.
 class ControlPanelVerification extends Component {
   render() {
-    const array = [1, 2, 3, 4, 5];
     const details = this.props.store.newUserDetailReducer;
     return details.length > 0 ? (
       <div>
         <Grid container>
-          <Grid item lg={2}>
-            <h2>User</h2>
+          <Grid item lg={3}>
+            <Typography variant="h6">Personal Details</Typography>
           </Grid>
           <Grid item lg={2}>
-            <h2>Experience</h2>
+            <Typography variant="h6">Experience</Typography>
           </Grid>
           <Grid item lg={2}>
-            <h2>Motivation</h2>
+            <Typography variant="h6">Motivation</Typography>
           </Grid>
           <Grid item lg={2}>
-            <h2>Skills</h2>
+            <Typography variant="h6">Skills</Typography>
           </Grid>
           <Grid item lg={2}>
-            <h2>Education</h2>
+            <Typography variant="h6">Education</Typography>
           </Grid>
         </Grid>
         <Grid container>
-          <Grid item lg={2}>
-            <p>Last Name: {details[0].last_name}</p>
-            <p>Company: {details[0].company}</p>
-            <p>Job_title: {details[0].job_title}</p>
-            <p>Phone: {details[0].phone_number}</p>
+          <Grid item lg={3}>
+            <Typography>
+              {details[0].first_name} {details[0].last_name}
+            </Typography>
+            <Typography>Company: {details[0].company}</Typography>
+            <Typography>Job Title: {details[0].job_title}</Typography>
+            {details[0].phone_number && (
+              <Typography>Phone: {details[0].phone_number}</Typography>
+            )}
           </Grid>
           <Grid item lg={2}>
-            <p>Experience: {details[0].experience_bio}</p>
+            <Typography>{details[0].experience_bio}</Typography>
           </Grid>
           <Grid item lg={2}>
-            <p>Motivation: {details[0].motivation_bio}</p>
+            <Typography>{details[0].motivation_bio}</Typography>
           </Grid>
           <Grid item lg={2}>
-            <ul>
-              {details[0].skills_label_array.map((element) => (
-                <li>{element}</li>
-              ))}
-            </ul>
+            {details[0].skills_label_array.map((element) => (
+              <Typography>{element}</Typography>
+            ))}
           </Grid>
           <Grid item lg={2}>
-            <ul>{details[0].education_label}</ul>
+            <Typography>{details[0].education_label}</Typography>
           </Grid>
         </Grid>
       </div>
     ) : (
       <div>
-        <h1>Select a user to get details</h1>
+        <Typography>Select a user to get details</Typography>
       </div>
     );
   }

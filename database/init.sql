@@ -107,6 +107,7 @@ CREATE TABLE "event" (
   event_end TIMESTAMP WITH TIME ZONE,
   event_description TEXT
 );
+
 CREATE TABLE time_slot_day (
   id SERIAL PRIMARY KEY,
   day_number INT,
