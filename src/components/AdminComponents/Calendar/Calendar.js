@@ -44,8 +44,6 @@ class Calendar extends Component {
       .get('/api/event')
       .then((response) => {
         for (let i = 0; i < response.data.length; i++) {
-          // if (response.data[i].recurring) {
-          // }
           this.setState({
             // adding new event to array
             calendarEvents: this.state.calendarEvents.concat({

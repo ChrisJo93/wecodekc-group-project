@@ -10,7 +10,6 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  FormControl,
   FormControlLabel,
   FormLabel,
   Grid,
@@ -19,9 +18,6 @@ import {
   Switch,
   TextField,
 } from '@material-ui/core';
-
-//Calendar imports
-import { RRule, RRuleSet, rrulestr } from 'rrule';
 
 //custom imports
 import RecurringForm from './RecurringForm';
@@ -42,18 +38,6 @@ class CreateEventDialog extends Component {
       frequency: 'weekly',
       event_address: '',
       event_type: 1,
-    },
-    repeatEventPayload: {
-      event_title: '',
-      event_description: '',
-      event_start: '',
-      event_end: '',
-      recurring: true,
-      recurring_time_slot: 1,
-      count: 1,
-      frequency: 'weekly',
-      event_address: '',
-      event_type: '',
     },
   };
 
@@ -94,12 +78,17 @@ class CreateEventDialog extends Component {
   //handle datetime picker values
   handleInputChangeForDate = (propertyName) => (event) => {
     //pulling value from date picker
-    this.setState({
-      eventPayload: {
-        ...this.state.eventPayload,
-        [propertyName]: event.target.value,
+    this.setState(
+      {
+        eventPayload: {
+          ...this.state.eventPayload,
+          [propertyName]: event.target.value,
+        },
       },
-    });
+      () => {
+        console.log(this.state.eventPayload.event_start);
+      }
+    );
   };
 
   //handle recurrence switch
