@@ -253,7 +253,7 @@ router.get(
     const queryText: string = `SELECT 
     gender_label,first_name, middle_name, last_name, birth_date,posting_date,
     zip_code,phone_number,company,job_title,motivation_bio,experience_bio, ethnicity_label,education_label,
-    custom_entry_skills, access_label, role_label, access_label, education_label,
+    custom_entry_skills, access_label, role_label, access_label, education_label,email,volunteer_role,
     ARRAY(SELECT skills_label FROM "user" 
 		JOIN "user_skills" ON "user".id = "user_skills".user_id
 		JOIN "skills" on "user_skills".skills_id = "skills".id) AS "skills_label_array",
@@ -269,7 +269,8 @@ router.get(
   JOIN "volunteer_role" ON "user".volunteer_role = "volunteer_role".id
   JOIN "education_level" ON "user".highest_education_level = "education_level".id
     JOIN "ethnicity" ON "user".ethnicity = "ethnicity".id 
-    JOIN "gender" ON "user".gender = "gender".id;
+    JOIN "gender" ON "user".gender = "gender".id
+    WHERE "volunteer_role" != 1;
 `;
 
     pool
