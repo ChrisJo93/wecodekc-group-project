@@ -83,7 +83,7 @@ class RegisterForm extends Component {
       }
     );
     return (
-      <Container style={{ padding: '100px' }}>
+      <Container>
         <Grid container justify="center">
           <Grid item>
             <form className="opacity" onSubmit={this.handleNextClick}>
@@ -99,7 +99,7 @@ class RegisterForm extends Component {
                 Personal Details
               </Typography>
               <Grid container spacing={3}>
-                <Grid item xs={12} lg={6}>
+                <Grid item xs={12} lg={6} md={6}>
                   <Box mb={2}>
                     <div>
                       <TextField
@@ -207,7 +207,7 @@ class RegisterForm extends Component {
                     />
                   </Box>
                 </Grid>
-                <Grid item xs={12} lg={6}>
+                <Grid item xs={12} lg={6} md={6}>
                   <Box mb={2}>
                     <div>
                       <TextField
