@@ -22,10 +22,9 @@ class ProfileInfoPanel extends Component {
       <div>
         <div>
           {/* TODO - CONDITIONAL RENDER PROFILE PIC IF IMAGE EXISTS */}
-          {JSON.stringify(
-            this.props.store.verifiedUserDetailReducer.image_link_array
-          )}
-          {!this.props.store.verifiedUserDetailReducer.image_link_array ? (
+
+          {!this.props.store.verifiedUserDetailReducer[0]
+            .image_link_array[0] ? (
             <img
               src={
                 'https://wecodekc.s3.us-east-2.amazonaws.com/default-profile-icon-16.jpg'
@@ -35,7 +34,10 @@ class ProfileInfoPanel extends Component {
             />
           ) : (
             <img
-              src={this.props.store.verifiedUserDetailReducer.image_link_array}
+              src={
+                this.props.store.verifiedUserDetailReducer[0]
+                  .image_link_array[0]
+              }
               className="placeholder"
               alt="profile"
             />

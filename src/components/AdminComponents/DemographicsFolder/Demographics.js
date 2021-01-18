@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
 
 //material ui imports
-import { makeStyles } from '@material-ui/core/styles';
 import {
   Table,
   TableBody,
@@ -12,19 +11,19 @@ import {
   TableRow,
   Paper,
 } from '@material-ui/core';
+import { withStyles, createStyles } from '@material-ui/core/styles';
 
-const useRowStyles = makeStyles({
-  root: {
-    '& > *': {
-      borderBottom: 'unset',
+const muiStyles = (theme) =>
+  createStyles({
+    containerStuff: {
+      margin: '50px 0px 0px 0px',
     },
-  },
-});
+  });
 
 function DemographicsTable(props) {
   const rows = props.userData;
   return (
-    <Paper>
+    <Paper className={props.classes.containerStuff}>
       <Table>
         <TableHead>
           <TableRow>
@@ -56,4 +55,6 @@ function DemographicsTable(props) {
   );
 }
 
-export default connect(mapStoreToProps)(DemographicsTable);
+export default connect(mapStoreToProps)(
+  withStyles(muiStyles)(DemographicsTable)
+);

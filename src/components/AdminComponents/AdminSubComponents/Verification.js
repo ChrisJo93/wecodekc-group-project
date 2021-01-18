@@ -4,7 +4,7 @@ import mapStoreToProps from '../../../redux/mapStoreToProps';
 
 //custom file imports
 import Verify from '../../../components/AdminComponents/VerificationTable/Verify';
-import ControlPanelVerification from '../../AdminComponents/VerificationTable/ControlPanelVerification';
+import { Typography } from '@material-ui/core';
 
 // Basic class component structure for React with default state
 // value setup. When making a new component be sure to replace
@@ -22,7 +22,9 @@ class Verification extends Component {
   render() {
     return (
       <>
-        {/* <ControlPanelVerification /> */}
+        <Typography variant="h4" gutterBottom>
+          Applicants
+        </Typography>
         <Verify userData={this.props.store.unverifiedUsers} />
       </>
     );
