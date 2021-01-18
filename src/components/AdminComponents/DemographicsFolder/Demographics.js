@@ -28,7 +28,6 @@ function DemographicsTable(props) {
         <TableHead>
           <TableRow>
             <TableCell>Volunteer Role</TableCell>
-            <TableCell>Active Courses / Events</TableCell>
             <TableCell>Ethnicity</TableCell>
             <TableCell>Gender</TableCell>
             <TableCell>Age</TableCell>
@@ -41,7 +40,6 @@ function DemographicsTable(props) {
           {rows.map((row) => (
             <TableRow key={row.id}>
               <TableCell>{row.role_label}</TableCell>
-              <TableCell>{'active courses'}</TableCell>
               <TableCell>{row.ethnicity_label}</TableCell>
               <TableCell>{row.gender_label}</TableCell>
               <TableCell>{row.age}</TableCell>

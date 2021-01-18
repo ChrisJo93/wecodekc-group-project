@@ -32,7 +32,7 @@ function UserManagementTableRow(props) {
     switch (selection) {
       case 'profile':
         props.dispatch({
-          type: 'GET_NEW_USER_DETAIL',
+          type: 'GET_VERIFIED_USER_DETAIL',
           payload: id,
         });
         openDropdown();
@@ -102,8 +102,8 @@ function UserManagementTableRow(props) {
         <TableCell>{row.first_name}</TableCell>
         <TableCell>{row.last_name}</TableCell>
         <TableCell>{row.email}</TableCell>
-        <TableCell>{row.email}</TableCell>
-        <TableCell>{row.email}</TableCell>
+        <TableCell>{row.role_label}</TableCell>
+        <TableCell>{row.access_label}</TableCell>
         <TableCell>
           <Button
             variant="contained"

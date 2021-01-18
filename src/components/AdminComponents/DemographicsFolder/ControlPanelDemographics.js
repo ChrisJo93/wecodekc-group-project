@@ -13,25 +13,17 @@ import {
   Typography,
   Box,
 } from '@material-ui/core';
+import axios from 'axios';
 
 class ControlPanelDemographics extends Component {
   state = {
-    selectData: 1,
+    defaultData: [{ title: 'One', value: 100, color: '#4d2aff' }],
+    selectionData: [],
   };
 
-  // { title: 'One', value: 20, color: '#4d2aff' },
-  //               { title: 'Two', value: 5, color: '#1eff9a' },
-  //               { title: 'Three', value: 15, color: '#bab72d' },
-  //               { title: 'four', value: 30, color: '#E38627' },
-  //               { title: 'five', value: 10, color: '#C13C37' },
-  //               { title: 'six', value: 10, color: '#6A2135' },
-  //             ]
-
   handleSelection = (e) => {
-    console.log(e.target.value);
-    this.setState({
-      selectData: e.target.value,
-    });
+    const selection = e.target.value;
+    this.props.callback(selection);
   };
 
   render() {
@@ -39,7 +31,6 @@ class ControlPanelDemographics extends Component {
     const ethnicity = this.props.store.ethnicity;
     const role = this.props.store.volunteerRole;
     let selection;
-    let graphData = [{ title: 'One', value: 20, color: '#4d2aff' }];
     return (
       <div>
         <Grid container>
@@ -68,8 +59,7 @@ class ControlPanelDemographics extends Component {
             </FormControl>
           </Grid>
           <Grid item lg={2}>
-            <Typography>Demographics</Typography>
-            <PieChart data={graphData} />
+            <PieChart data={this.state.defaultData} />
           </Grid>
           <Grid item lg={3}></Grid>
           <Grid item lg={3}>
