@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 
-//material ui imports
-import { Grid } from '@material-ui/core';
-
 class EventsBar extends Component {
   render() {
     return (

@@ -37,7 +37,6 @@ router.post(
     const gender: number = parseInt(req.body.gender);
     const zipCode: number = parseInt(req.body.zip_code);
     let newUserId: number;
-    console.log(req.body);
 
     const queryOne: string = `INSERT INTO "user" (username, password,  first_name, middle_name,
       last_name, ethnicity, company, job_title, motivation_bio, experience_bio, custom_entry_skills,
@@ -195,7 +194,6 @@ router.get(
     pool
       .query(queryText, [req.params.id])
       .then((dbResponse) => {
-        console.log(dbResponse.rows);
         res.send(dbResponse.rows);
       })
       .catch((err) => {
@@ -239,7 +237,6 @@ router.get(
     pool
       .query(queryText, [req.params.id])
       .then((dbResponse) => {
-        console.log(dbResponse.rows);
         res.send(dbResponse.rows);
       })
       .catch((err) => {

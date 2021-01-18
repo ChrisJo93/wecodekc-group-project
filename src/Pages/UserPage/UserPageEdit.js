@@ -23,7 +23,7 @@ class UserPageEdit extends Component {
     zip_code: this.props.store.user.zip_code,
     phone_number: this.props.store.user.phone_number,
     email: this.props.store.user.email,
-    skills: [this.props.store.user.skills],
+    skills: [this.props.store.verifiedUserDetailReducer.skills_label_array],
   };
 
   handleInputChangeFor = (propertyName) => (event) => {

@@ -10,18 +10,16 @@ import {
   MenuItem,
   Button,
   FormControl,
-  IconButton,
   Collapse,
   Box,
 } from '@material-ui/core/';
-
+import FaceIcon from '@material-ui/icons/Face';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 
 //custom dependencies
 import swal from 'sweetalert';
 
+//custom file imports
 import ControlPanelVerification from './ControlPanelVerification';
 
 function VerifyTableRow(props) {
@@ -36,6 +34,7 @@ function VerifyTableRow(props) {
         break;
       case 'role':
         role = e.target.value;
+        break;
       default:
         break;
     }
@@ -103,13 +102,15 @@ function VerifyTableRow(props) {
     <React.Fragment>
       <TableRow key={row.id}>
         <TableCell>
-          <IconButton
-            aria-label="expand row"
-            size="small"
-            onClick={handleButton('profile', row.id)}
-          >
-            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-          </IconButton>
+          {
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleButton('profile', row.id)}
+            >
+              <FaceIcon />
+            </Button>
+          }
         </TableCell>
         <TableCell>{row.first_name}</TableCell>
         <TableCell>{row.last_name}</TableCell>

@@ -1,9 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-//MATERIAL UI IMPORT
-import { Button } from '@material-ui/core';
-
 const LogOutButton = (props) => (
   <button
     style={{ minWidth: 120 }}

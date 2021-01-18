@@ -53,7 +53,7 @@ function* getUserEvents(action) {
       type: 'SET_USER_EVENTS',
       payload: response.data,
     });
-    console.log('look here get user events', response.data);
+    console.log('look HERE get user events', response.data);
   } catch (err) {
     console.log('error getting event for specific users', err);
     yield put({ type: 'GET_USER_EVENT_FAILED' });
@@ -89,6 +89,11 @@ function* postEvents(action) {
     console.log('in the saga', action.payload);
     yield put({
       type: 'GET_EVENTS',
+    });
+    const response = yield axios.get('/api/event');
+    yield put({
+      type: 'SET_EVENTS',
+      payload: response.data,
     });
   } catch (err) {
     console.log('ERROR SAVING EVENT', err);

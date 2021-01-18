@@ -4,7 +4,6 @@ import mapStoreToProps from '../../../redux/mapStoreToProps';
 
 //material-ui imports
 import { Typography, Grid } from '@material-ui/core';
-import PhoneIcon from '@material-ui/icons/Phone';
 
 // Basic class component structure for React with default state
 // value setup. When making a new component be sure to replace
