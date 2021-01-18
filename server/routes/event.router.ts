@@ -57,9 +57,11 @@ router.get(
     "time_slot_day".day_number,"time_slot_day".day_name  FROM "event" JOIN "day_slot" 
     ON "event".id = "day_slot".event_id JOIN "time_slot_day" ON "day_slot".time_slot_day 
     = "time_slot_day".id WHERE "event".id = $1;`;
+    console.log('IN DETAILS ROUTER', req.params.id);
     pool
       .query(getEventID, [req.params.id])
       .then((result) => {
+        console.log('IN RESULLT ROUTE', result.rows);
         res.send(result.rows);
       })
       .catch((error) => {
