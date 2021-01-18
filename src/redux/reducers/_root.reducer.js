@@ -13,7 +13,7 @@ import userEventReducer from './user.event.reducer';
 import newUserDetailReducer from '../reducers/newUserDetail.reducer';
 import verifiedUserDetailReducer from '../reducers/verifiedUserDetail.reducer';
 import allIdGet from '../reducers/allIdGet.reducer';
-import repeatEventReducer from './repeat.event.reducer';
+import repeatEventReducer from './repeatEvent.reducer';
 import verifiedUserDetailAll from '../reducers/verifiedUserDetailAll.reducer';
 import ethnicity from '../reducers/ethnicity.reducer';
 import gender from '../reducers/gender.reducer';
