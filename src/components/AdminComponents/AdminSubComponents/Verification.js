@@ -22,7 +22,7 @@ class Verification extends Component {
   render() {
     return (
       <>
-        <ControlPanelVerification />
+        {/* <ControlPanelVerification /> */}
         <Verify userData={this.props.store.unverifiedUsers} />
       </>
     );

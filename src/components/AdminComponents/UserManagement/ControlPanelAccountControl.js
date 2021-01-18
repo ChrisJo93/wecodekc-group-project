@@ -87,9 +87,7 @@ class ControlPanelUserManagement extends Component {
       </div>
     ) : (
       <div>
-        <Typography variant="h4">
-          Select a user to get details FROM CP ACCOUNT CONTROL
-        </Typography>
+        <Typography variant="h4">Select a user to get details</Typography>
       </div>
     );
   }
