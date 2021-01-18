@@ -15,7 +15,7 @@ class AccountControl extends Component {
         <Typography variant="h4" gutterBottom>
           Verified users
         </Typography>
-        <UserManagement userData={this.props.store.allUsers} />
+        <UserManagement userData={this.props.store.verifiedUserDetailAll} />
       </div>
     );
   }

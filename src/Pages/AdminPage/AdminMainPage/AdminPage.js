@@ -28,6 +28,9 @@ class AdminPage extends Component {
     this.props.dispatch({
       type: 'GET_ADMIN_DATA',
     });
+    this.props.dispatch({
+      type: 'GET_VERIFIED_USER_ALL_DETAIL',
+    });
     this.setState({
       ...this.state,
       access_level: this.props.store.user.access_level_id,
