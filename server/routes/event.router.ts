@@ -53,10 +53,13 @@ router.get(
 router.get(
   '/details/:id',
   (req: Request, res: Response, next: express.NextFunction): void => {
-    const getEventID: string = `SELECT "event".*, "time_slot_day".id AS "id for day", 
-    "time_slot_day".day_number,"time_slot_day".day_name  FROM "event" JOIN "day_slot" 
-    ON "event".id = "day_slot".event_id JOIN "time_slot_day" ON "day_slot".time_slot_day 
-    = "time_slot_day".id WHERE "event".id = $1;`;
+    const getEventID: string = `SELECT "event".*, "time_slot_day".id AS "id_for_day", 
+    "time_slot_day".day_number,"time_slot_day".day_name, link_url  FROM "event" 
+    JOIN "day_slot" ON "event".id = "day_slot".event_id 
+    JOIN "time_slot_day" ON "day_slot".time_slot_day = "time_slot_day".id
+    JOIN "event_images" ON "event".id = "event_images".event_id
+    JOIN "images" on "event_images".image_id = "images".id
+    WHERE "event".id = $1;`;
     pool
       .query(getEventID, [req.params.id])
       .then((result) => {
