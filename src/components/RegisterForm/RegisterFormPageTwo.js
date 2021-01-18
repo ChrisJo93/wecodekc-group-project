@@ -67,23 +67,18 @@ class RegisterFormPageTwo extends Component {
       case 1:
         skill = 'JavaScript';
         return skill;
-        break;
       case 2:
         skill = 'CSS';
         return skill;
-        break;
       case 3:
         skill = 'HTML';
         return skill;
-        break;
       case 4:
         skill = 'React';
         return skill;
-        break;
       case 5:
         skill = 'Angular';
         return skill;
-        break;
       case 6:
         skill = 'Python';
         return skill;
@@ -105,6 +100,8 @@ class RegisterFormPageTwo extends Component {
       case 12:
         skill = 'MongoDB';
         return skill;
+      default:
+        break;
     }
   };
 
@@ -224,7 +221,7 @@ class RegisterFormPageTwo extends Component {
               <Typography variant="h6" component="h3" gutterBottom>
                 More Details
               </Typography>
-
+              <Grid container></Grid>
               <TextField
                 fullWidth
                 multiline

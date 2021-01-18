@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
 import Demographics from '../DemographicsFolder/Demographics';
 import ControlPanelDemographics from '../DemographicsFolder/ControlPanelDemographics';
+import { Typography } from '@material-ui/core';
 
 // Basic class component structure for React with default state
 // value setup. When making a new component be sure to replace
@@ -26,6 +27,9 @@ class DemographicsControl extends Component {
     console.log(this.props.store);
     return (
       <>
+        <Typography variant="h4" gutterBottom>
+          Demographics
+        </Typography>
         <ControlPanelDemographics />
         <Demographics userData={this.props.store.verifiedUserDetailAll} />
       </>

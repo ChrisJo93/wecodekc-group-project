@@ -31,23 +31,23 @@ router.get(
   }
 );
 
-router.get(
-  '/:selection',
-  (req: Request, res: Response, next: express.NextFunction): void => {
-    const selection = req.params.selection;
-    console.log('EVENT SELECTION', selection);
-    const getEvent: string = `SELECT * FROM "event" ORDER BY event_end ASC;`;
-    pool
-      .query(getEvent)
-      .then((result) => {
-        res.send(result.rows);
-      })
-      .catch((error) => {
-        console.log('error getting events', error);
-        res.sendStatus(500);
-      });
-  }
-);
+// router.get(
+//   '/:selection',
+//   (req: Request, res: Response, next: express.NextFunction): void => {
+//     const selection = req.params.selection;
+//     console.log('EVENT SELECTION', selection);
+//     const getEvent: string = `SELECT * FROM "event" ORDER BY event_end ASC;`;
+//     pool
+//       .query(getEvent)
+//       .then((result) => {
+//         res.send(result.rows);
+//       })
+//       .catch((error) => {
+//         console.log('error getting events', error);
+//         res.sendStatus(500);
+//       });
+//   }
+// );
 
 // GET EVENT BY ID
 router.get(
@@ -60,7 +60,6 @@ router.get(
     pool
       .query(getEventID, [req.params.id])
       .then((result) => {
-        console.log(result.rows);
         res.send(result.rows);
       })
       .catch((error) => {
@@ -95,10 +94,10 @@ router.get(
   (req: any, res: Response, next: express.NextFunction): void => {
     const queryText: string = `SELECT * FROM "event" JOIN "user_event" ON "event".id = "user_event".event_id WHERE "user_event".user_id =$1;`;
     const queryArray: number[] = [req.user.id];
+
     pool
       .query(queryText, queryArray)
       .then((result) => {
-        console.log('event_user stuff', result.rows);
         res.send(result.rows);
       })
       .catch((error) => {
@@ -112,7 +111,6 @@ router.get(
 router.post(
   '/user',
   (req: any, res: Response, next: express.NextFunction): void => {
-    console.log('is this the event selection?', req.body);
     const queryText: string = `INSERT INTO "user_event" (event_id, user_id, approved) VALUES($1, $2, $3);`;
     const event_id: number = parseInt(req.body.eventId);
     const user_id: number = parseInt(req.user.id);
@@ -120,7 +118,6 @@ router.post(
     pool
       .query(queryText, [event_id, user_id, approved])
       .then((result) => {
-        console.log('it happened, event inserted');
         res.sendStatus(200);
       })
       .catch((error) => {
@@ -317,12 +314,10 @@ router.delete(
                   res.sendStatus(500);
                   return;
                 }
-                console.log('email sent');
+
                 res.sendStatus(201);
               }
             );
-
-            // res.sendStatus(200);
           })
           .catch((error) => {
             console.log(error);

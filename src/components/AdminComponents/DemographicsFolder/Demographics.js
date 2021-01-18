@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
 
 //material ui imports
-import { makeStyles } from '@material-ui/core/styles';
 import {
   Table,
   TableBody,

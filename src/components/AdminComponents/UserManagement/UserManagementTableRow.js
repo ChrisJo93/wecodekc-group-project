@@ -14,35 +14,18 @@ import {
   Box,
 } from '@material-ui/core/';
 import FaceIcon from '@material-ui/icons/Face';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import EditIcon from '@material-ui/icons/Edit';
 
 //custom dependencies
 import swal from 'sweetalert';
 
 //custom file imports
-import ControlPanelVerification from './ControlPanelVerification';
+import ControlPanelAccountControl from './ControlPanelAccountControl';
 
-function VerifyTableRow(props) {
+function UserManagementTableRow(props) {
   let permissionLevel;
   let role;
   const [open, setOpen] = React.useState(false);
-
-  const handleVerification = (selection) => (e) => {
-    switch (selection) {
-      case 'permissionLevel':
-        permissionLevel = e.target.value;
-        break;
-      case 'role':
-        role = e.target.value;
-        break;
-      default:
-        break;
-    }
-  };
-
-  const openDropdown = () => {
-    setOpen(!open);
-  };
 
   const handleButton = (selection, id, email, first_name) => (e) => {
     console.log();
@@ -97,6 +80,10 @@ function VerifyTableRow(props) {
     }
   };
 
+  const openDropdown = () => {
+    setOpen(!open);
+  };
+
   const { row } = props;
   return (
     <React.Fragment>
@@ -115,70 +102,15 @@ function VerifyTableRow(props) {
         <TableCell>{row.first_name}</TableCell>
         <TableCell>{row.last_name}</TableCell>
         <TableCell>{row.email}</TableCell>
-        <TableCell>
-          {row.background_check_permission === true
-            ? 'Permission Granted'
-            : '! Denied !'}
-        </TableCell>
-        <TableCell>
-          {
-            <FormControl style={{ minWidth: 120 }}>
-              <Select
-                style={{ minWidth: 160, maxWidth: 160 }}
-                variant="outlined"
-                labelId="roleSelection"
-                id="roleSelection"
-                value={role}
-                onChange={handleVerification('role')}
-              >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                <MenuItem value={1}>Tech Instructor</MenuItem>
-                <MenuItem value={2}>Tech Assistant</MenuItem>
-                <MenuItem value={3}>Classroom Assistant</MenuItem>
-                <MenuItem value={4}>Non Tech Volunteer</MenuItem>
-                <MenuItem value={5}>Social Media Volunteer</MenuItem>
-                <MenuItem value={6}>General Office / Admin Help</MenuItem>
-                <MenuItem value={7}>General IT / Tech Support</MenuItem>
-              </Select>
-            </FormControl>
-          }
-        </TableCell>
-        <TableCell>
-          {
-            <FormControl style={{ minWidth: 120 }}>
-              <Select
-                style={{ minWidth: 140, maxWidth: 140 }}
-                variant="outlined"
-                labelId="permissionLevel"
-                id="permissionLevel"
-                value={permissionLevel}
-                onChange={handleVerification('permissionLevel')}
-              >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                <MenuItem value={6}>Reject</MenuItem>
-                <MenuItem value={2}>Volunteer</MenuItem>
-                <MenuItem value={3}>Mentor</MenuItem>
-                <MenuItem value={4}>Admin</MenuItem>
-              </Select>
-            </FormControl>
-          }
-        </TableCell>
+        <TableCell>{row.email}</TableCell>
+        <TableCell>{row.email}</TableCell>
         <TableCell>
           <Button
             variant="contained"
             color="secondary"
-            onClick={handleButton(
-              'finalize',
-              row.id,
-              row.email,
-              row.first_name
-            )}
+            onClick={handleButton('finalize', row.id)}
           >
-            <CheckCircleIcon />
+            <EditIcon />
           </Button>
         </TableCell>
       </TableRow>
@@ -186,7 +118,7 @@ function VerifyTableRow(props) {
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box margin={1}>
-              <ControlPanelVerification />
+              <ControlPanelAccountControl />
             </Box>
           </Collapse>
         </TableCell>
@@ -195,4 +127,4 @@ function VerifyTableRow(props) {
   );
 }
 
-export default connect(mapStoreToProps)(VerifyTableRow);
+export default connect(mapStoreToProps)(UserManagementTableRow);

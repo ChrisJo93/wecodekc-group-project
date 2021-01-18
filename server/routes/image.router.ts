@@ -52,7 +52,6 @@ router.post(
           pool
             .query(queryText, queryArray)
             .then((dbResponse) => {
-              console.log('yes, it happened. image posted!');
               res.sendStatus(200);
             })
             .catch((err) => {

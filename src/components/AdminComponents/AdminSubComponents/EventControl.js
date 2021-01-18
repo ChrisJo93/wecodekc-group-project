@@ -11,14 +11,12 @@ import { Typography } from '@material-ui/core';
 // the component name TemplateClass with the name for the new
 // component.
 class EventControl extends Component {
-  state = {
-    heading: 'Event Control',
-  };
-
   render() {
     return (
       <div className="adminPageDisplay">
-        <Typography variant="h4">{this.state.heading}</Typography>
+        <Typography variant="h4" gutterBottom>
+          Calendar
+        </Typography>
         <Calendar />
       </div>
     );

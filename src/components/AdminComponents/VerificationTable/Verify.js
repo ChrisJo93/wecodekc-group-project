@@ -1,35 +1,20 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
 
 //MATERIAL UI IMPORTS
 import {
-  Select,
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableRow,
   Paper,
-  MenuItem,
-  Button,
-  FormControl,
   TableContainer,
 } from '@material-ui/core/';
-import { makeStyles } from '@material-ui/core/styles';
 
 //custom imports
-
-import ControlPanelAccountControl from '../UserManagement/ControlPanelAccountControl';
 import VerifyTableRow from './VerifyTableRow';
-
-const useRowStyles = makeStyles({
-  root: {
-    '& > *': {
-      borderBottom: 'unset',
-    },
-  },
-});
 
 function VerifyTable(props) {
   let rows = props.userData;
