@@ -2,6 +2,7 @@ import { put, take, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
 function* getEvents(action) {
+  //why is there a switch case here?
   switch (action.payload) {
     case undefined:
       try {
@@ -19,7 +20,6 @@ function* getEvents(action) {
 
     default:
       try {
-        console.log('IN DEFAULT GET EVENTS', action.payload);
         const response = yield axios.get(`/api/event/${action.payload}`);
         yield put({
           type: 'SET_EVENTS',
@@ -97,9 +97,9 @@ function* postEvents(action) {
 }
 
 function* postRepeatEvents(action) {
+  //On hold. May have a better way.
   try {
     yield axios.post('/api/event', action.payload);
-    console.log('in the saga', action.payload);
     yield put({
       type: 'GET_EVENTS',
     });

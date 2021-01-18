@@ -11,8 +11,11 @@ import {
   Select,
   FormControl,
   FormLabel,
+  Button,
+  Box,
 } from '@material-ui/core';
 import { RRule } from 'rrule';
+import { DateTime } from 'luxon';
 
 class RecurringForm extends Component {
   state = {
@@ -21,7 +24,40 @@ class RecurringForm extends Component {
     byweekday: [],
     dtstart: new Date(Date.UTC(2021, 1, 1, 10, 30)),
     until: new Date(Date.UTC(2021, 12, 31)),
-    NoStop: false,
+    eventPayload: {
+      event_title: this.props.eventPayload.event_title,
+      event_description: this.props.eventPayload.event_description,
+      event_start: '',
+      event_end: '',
+      recurring: true,
+      recurring_time_slot: 1,
+      count: 1,
+      frequency: 'weekly',
+      event_address: this.props.eventPayload.event_address,
+      event_type: 1,
+    },
+  };
+
+  postEvent = (data) => {
+    for (let i = 0; i < data.length; i++) {
+      const payload = {
+        event_title: this.props.eventPayload.event_title,
+        event_description: this.props.eventPayload.event_description,
+        event_start: new Date(data[i]).toISOString(),
+        event_end: new Date(data[i]).toISOString(),
+        recurring: true,
+        recurring_time_slot: 1,
+        count: 1,
+        frequency: 'weekly',
+        event_address: this.props.eventPayload.event_address,
+        event_type: 1,
+      };
+      console.log(payload, 'here');
+      this.props.dispatch({
+        type: 'POST_EVENTS',
+        payload,
+      });
+    }
   };
 
   handleChangeForFreqCheck = (event) => {
@@ -37,7 +73,6 @@ class RecurringForm extends Component {
 
   handleChangeForDate = (date) => (event) => {
     this.setState({ ...this.state, [date]: new Date(event.target.value) });
-    console.log(date, event.target.value);
   };
 
   handleRepeatEvent = (event) => {
@@ -48,11 +83,10 @@ class RecurringForm extends Component {
       dtstart: new Date(this.props.start),
       until: this.state.until,
     });
-    this.props.dispatch({
-      type: 'SET_REPEAT_EVENTS',
-      payload: rule.all(),
-    });
+
+    this.postEvent(rule.all());
   };
+
   //I love this code so much
   //my personal genius, this function handles the state change for the day of week array but ALSO uses the switch function to change
   //the day integer from the checkbox BACK into a viable format for RRule
@@ -128,7 +162,7 @@ class RecurringForm extends Component {
   };
 
   render() {
-    //adding RRule days to an array
+    //adding RRule days to human readable array
     const monday = RRule.MO;
     const tuesday = RRule.TU;
     const wednesday = RRule.WE;
@@ -188,15 +222,6 @@ class RecurringForm extends Component {
           onChange={this.handleChangeForInterval}
           label="Interval"
         />
-        {/* <TextField
-          id="datetime-local"
-          label="Start Date"
-          type="datetime-local"
-          onChange={this.handleChangeForDate('dtstart')}
-          InputLabelProps={{
-            shrink: true,
-          }}
-        /> */}
         <TextField
           id="datetime-local"
           label="Repeat Until"
@@ -206,7 +231,15 @@ class RecurringForm extends Component {
             shrink: true,
           }}
         />
-        <button onClick={this.handleRepeatEvent}>I do something</button>
+        <Box m={2}>
+          <Button
+            onClick={this.handleRepeatEvent}
+            color="secondary"
+            variant="contained"
+          >
+            Add
+          </Button>
+        </Box>
       </div>
     );
   }
