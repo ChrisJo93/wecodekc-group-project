@@ -44,8 +44,6 @@ class Calendar extends Component {
       .get('/api/event')
       .then((response) => {
         for (let i = 0; i < response.data.length; i++) {
-          // if (response.data[i].recurring) {
-          // }
           this.setState({
             // adding new event to array
             calendarEvents: this.state.calendarEvents.concat({
@@ -68,7 +66,6 @@ class Calendar extends Component {
       .catch((err) => {
         console.log('error in calendar get', err);
       });
-    console.log(this.props.store.dateReducer);
   }
   //sending dates for event population modal
   sendDate = (date) => {

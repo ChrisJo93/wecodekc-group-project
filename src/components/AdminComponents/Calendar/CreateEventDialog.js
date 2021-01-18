@@ -10,7 +10,6 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  FormControl,
   FormControlLabel,
   FormLabel,
   Grid,
@@ -19,9 +18,6 @@ import {
   Switch,
   TextField,
 } from '@material-ui/core';
-
-//Calendar imports
-import { RRule, RRuleSet, rrulestr } from 'rrule';
 
 //custom imports
 import RecurringForm from './RecurringForm';
@@ -43,18 +39,6 @@ class CreateEventDialog extends Component {
       event_address: '',
       event_type: 1,
     },
-    repeatEventPayload: {
-      event_title: '',
-      event_description: '',
-      event_start: '',
-      event_end: '',
-      recurring: true,
-      recurring_time_slot: 1,
-      count: 1,
-      frequency: 'weekly',
-      event_address: '',
-      event_type: '',
-    },
   };
 
   //posts event and closes dialog
@@ -64,19 +48,6 @@ class CreateEventDialog extends Component {
       payload: this.state.eventPayload,
     });
     this.handleClose();
-    console.log('in the repeat log', this.test());
-  };
-
-  test = (event) => {
-    for (let i = 0; i < this.props.store.repeatEventReducer.length; i++) {
-      console.log(this.props.store.repeatEventReducer[i]);
-    }
-    // this.setState({
-    //   repeatEventPayload: {
-    //     ...this.state.repeatEventPayload,
-    //     ...this.props.store.repeatEventReducer[i],
-    //   },
-    // });
   };
 
   //opens the dialog
@@ -107,12 +78,17 @@ class CreateEventDialog extends Component {
   //handle datetime picker values
   handleInputChangeForDate = (propertyName) => (event) => {
     //pulling value from date picker
-    this.setState({
-      eventPayload: {
-        ...this.state.eventPayload,
-        [propertyName]: event.target.value,
+    this.setState(
+      {
+        eventPayload: {
+          ...this.state.eventPayload,
+          [propertyName]: event.target.value,
+        },
       },
-    });
+      () => {
+        console.log(this.state.eventPayload.event_start);
+      }
+    );
   };
 
   //handle recurrence switch
@@ -238,11 +214,14 @@ class CreateEventDialog extends Component {
                 label="Repeat"
               />
               {this.state.eventPayload.recurring === true ? (
-                <RecurringForm start={this.state.eventPayload.event_start} />
+                <RecurringForm
+                  start={this.state.eventPayload.event_start}
+                  repeatPostButton={this.state.eventPayload.recurring}
+                  eventPayload={this.state.eventPayload}
+                />
               ) : (
                 ''
               )}
-              <FormControlLabel />
             </Grid>
           </DialogContent>
           <DialogActions>
@@ -256,13 +235,15 @@ class CreateEventDialog extends Component {
               </Button>
             </Box>
             <Box m={2}>
-              <Button
-                onClick={this.postEvent}
-                color="secondary"
-                variant="contained"
-              >
-                Add
-              </Button>
+              {this.state.eventPayload.recurring === false ? (
+                <Button
+                  onClick={this.postEvent}
+                  color="secondary"
+                  variant="contained"
+                >
+                  Add
+                </Button>
+              ) : null}
             </Box>
           </DialogActions>
         </Dialog>
