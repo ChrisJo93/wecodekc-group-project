@@ -8,7 +8,7 @@ import * as nodemailer from 'nodemailer';
 
 //random number function
 function randomNumber(): number {
-  return Math.floor(Math.random() * (1 + 5 - 1) + 1);
+  return Math.floor(Math.random() * (1 + 10 - 1) + 1);
 }
 
 // GET ALL EVENTS

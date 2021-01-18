@@ -5,6 +5,26 @@ import pool from '../modules/pool';
 const router: express.Router = express.Router();
 
 /**
+ * GET route to get profile picture after uploading
+ */
+router.get('/', (req: any, res: Response, next: express.NextFunction): void => {
+  // GET route code here
+  const queryText: string = ` SELECT * from "user_images"
+  JOIN "images" ON "user_images".image_id = "images".id
+  WHERE "user_id" = $1;`;
+  const queryArray: number[] = [req.user.id];
+  pool
+    .query(queryText, queryArray)
+    .then((dbResponse) => {
+      res.send(dbResponse.rows);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(500);
+    });
+});
+
+/**
  * POST route to upload profile picture for a logged in user
  */
 router.post(

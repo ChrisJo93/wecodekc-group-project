@@ -11,6 +11,7 @@ import EventListItem from '../../components/EventListItem/EventListItem';
 
 //Material-UI imports
 import {
+  Box,
   Grid,
   Card,
   Typography,
@@ -124,32 +125,27 @@ class LandingPage extends Component {
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Card className="card" style={{ padding: '0px 50px 0px 50px' }}>
-              <CardContent>
-                <center>
-                  <Typography variant="h4">Volunteer</Typography>
-                </center>
-                <Typography>
-                  No technical experience required! We have a variety of jobs
-                  for which we need people, such as classroom assistants and
-                  general office help.
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Grid container justify="space-evenly">
-                  <Grid item>
-                    <Button
-                      color="secondary"
-                      variant="contained"
-                      onClick={this.handleRegisterVolunteer}
-                      size="large"
-                    >
-                      register
-                    </Button>
-                  </Grid>
-                </Grid>
-              </CardActions>
-            </Card>
+            <div className="card" style={{ padding: '0px 50px 0px 50px' }}>
+              <center>
+                <Typography variant="h4">Volunteer</Typography>
+              </center>
+              <Typography>
+                No technical experience required! We have a variety of jobs for
+                which we need people, such as classroom assistants and general
+                office help.
+              </Typography>
+
+              <Box m={3}>
+                <Button
+                  color="secondary"
+                  variant="contained"
+                  onClick={this.handleRegisterVolunteer}
+                  size="large"
+                >
+                  register
+                </Button>
+              </Box>
+            </div>
           </Grid>
           <Grid item xs={12} md={6}>
             <Card className="card">

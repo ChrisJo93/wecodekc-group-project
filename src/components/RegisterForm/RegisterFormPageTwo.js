@@ -224,169 +224,165 @@ class RegisterFormPageTwo extends Component {
               <Typography variant="h6" component="h3" gutterBottom>
                 More Details
               </Typography>
-              <Grid container spacing={3}>
-                <TextField
-                  fullWidth
-                  multiline
-                  rows={4}
-                  placeholder="What motivated you to mentor with us?"
-                  type="text"
-                  name="motivation"
-                  value={this.state.motivation_bio}
-                  required
-                  variant="outlined"
-                  onChange={this.handleInputChangeFor('motivation_bio')}
-                />
-                <TextField
-                  fullWidth
-                  multiline
-                  rows={4}
-                  placeholder="Do you have any previous volunteer experience with other youth serving organizations? Please give a brief description of your role and responsibilities."
-                  type="text"
-                  name="experience_bio"
-                  value={this.state.experience_bio}
-                  required
-                  variant="outlined"
-                  onChange={this.handleInputChangeFor('experience_bio')}
-                />
-                <Box mb={2}>
-                  <FormLabel>
-                    Would you be willing to complete a personal background check
-                    if requested?
-                  </FormLabel>
-                  <RadioGroup
-                    row
-                    color="secondary"
-                    required
-                    onChange={this.handleInputChangeFor(
-                      'background_check_permission'
-                    )}
-                  >
-                    <FormControlLabel
-                      value="true"
-                      control={<Radio />}
-                      label="yes"
-                    />
-                    <FormControlLabel
-                      value="false"
-                      control={<Radio />}
-                      label="no"
-                    />
-                  </RadioGroup>
-                </Box>
-                <FormControl fullWidth variant="outlined">
-                  <Select
-                    variant="outlined"
-                    labelId="languages"
-                    id="languages"
-                    multiple
-                    value={this.state.languages}
-                    onChange={this.handleInputChangeFor('languages')}
-                    // input={<Input id="select-multiple-chip" />}
-                    renderValue={(selected) => (
-                      <div>
-                        {selected.map((value) => (
-                          <Chip
-                            key={value}
-                            label={this.handleSwitchLanguage(value)}
-                          />
-                        ))}
-                      </div>
-                    )}
-                  >
-                    {languages}
-                  </Select>
-                  <InputLabel id="languages" variant="outlined">
-                    What languages do you speak? If none, leave blank.
-                  </InputLabel>
-                </FormControl>
-                <FormControl variant="outlined" fullWidth>
-                  <InputLabel id="skills">
-                    Please select any technical skills you have and would like
-                    to use below. If none, leave blank.
-                  </InputLabel>
-                  <Select
-                    labelId="skills"
-                    id="skills"
-                    multiple
-                    value={this.state.skills}
-                    onChange={this.handleInputChangeFor('skills')}
-                    // input={<Input id="select-multiple-chip" />}
-                    renderValue={(selected) => (
-                      <div>
-                        {selected.map((value) => (
-                          <Chip
-                            key={value}
-                            label={this.handleSwitchSkills(value)}
-                          />
-                        ))}
-                      </div>
-                    )}
-                  >
-                    {skills}
-                  </Select>
-                </FormControl>
 
-                <TextField
-                  fullWidth
-                  multiline
-                  rows={2}
-                  placeholder="Do you have any other skills you would like to add?"
-                  type="text"
-                  name="custom_entry_skills"
-                  value={this.state.custom_entry_skills}
+              <TextField
+                fullWidth
+                multiline
+                rows={4}
+                placeholder="What motivated you to mentor with us?"
+                type="text"
+                name="motivation"
+                value={this.state.motivation_bio}
+                required
+                variant="outlined"
+                onChange={this.handleInputChangeFor('motivation_bio')}
+              />
+              <TextField
+                fullWidth
+                multiline
+                rows={4}
+                placeholder="Do you have any previous volunteer experience with other youth serving organizations? Please give a brief description of your role and responsibilities."
+                type="text"
+                name="experience_bio"
+                value={this.state.experience_bio}
+                required
+                variant="outlined"
+                onChange={this.handleInputChangeFor('experience_bio')}
+              />
+              <Box mb={2}>
+                <FormLabel>
+                  Would you be willing to complete a personal background check
+                  if requested?
+                </FormLabel>
+                <RadioGroup
+                  row
+                  color="secondary"
+                  required
+                  onChange={this.handleInputChangeFor(
+                    'background_check_permission'
+                  )}
+                >
+                  <FormControlLabel
+                    value="true"
+                    control={<Radio />}
+                    label="yes"
+                  />
+                  <FormControlLabel
+                    value="false"
+                    control={<Radio />}
+                    label="no"
+                  />
+                </RadioGroup>
+              </Box>
+              <FormControl fullWidth variant="outlined">
+                <Select
                   variant="outlined"
-                  onChange={this.handleInputChangeFor('custom_entry_skills')}
-                  inputProps={{ maxLength: 100 }}
-                />
-                <FormControl variant="outlined" fullWidth>
-                  <InputLabel id="time">
-                    Please select when you are available
-                  </InputLabel>
-                  <Select
-                    labelId="time"
-                    id="time"
-                    multiple
-                    value={this.state.time_slot}
-                    onChange={this.handleInputChangeFor('time_slot')}
-                    // input={<Input id="select-multiple-chip" />}
-                    renderValue={(selected) => (
-                      <div>
-                        {selected.map((value) => (
-                          <Chip
-                            key={value}
-                            label={this.handleSwitchDay(value)}
-                          />
-                        ))}
-                      </div>
-                    )}
-                  >
-                    {time}
-                  </Select>
-                </FormControl>
-                <Box m={2}>
-                  <Button
-                    color="primary"
-                    variant="contained"
-                    type="submit"
-                    onClick={this.handleBackClick}
-                    // name="submit"
-                    // value="Register"
-                  >
-                    Back
-                  </Button>
-                  &nbsp;
-                  <Button
-                    color="primary"
-                    variant="contained"
-                    type="submit"
-                    // name="submit"
-                    // value="Register"
-                  >
-                    Submit
-                  </Button>
-                </Box>
-              </Grid>
+                  labelId="languages"
+                  id="languages"
+                  multiple
+                  value={this.state.languages}
+                  onChange={this.handleInputChangeFor('languages')}
+                  // input={<Input id="select-multiple-chip" />}
+                  renderValue={(selected) => (
+                    <div>
+                      {selected.map((value) => (
+                        <Chip
+                          key={value}
+                          label={this.handleSwitchLanguage(value)}
+                        />
+                      ))}
+                    </div>
+                  )}
+                >
+                  {languages}
+                </Select>
+                <InputLabel id="languages" variant="outlined">
+                  What languages do you speak? If none, leave blank.
+                </InputLabel>
+              </FormControl>
+              <FormControl variant="outlined" fullWidth>
+                <InputLabel id="skills">
+                  Please select any technical skills you have and would like to
+                  use below. If none, leave blank.
+                </InputLabel>
+                <Select
+                  labelId="skills"
+                  id="skills"
+                  multiple
+                  value={this.state.skills}
+                  onChange={this.handleInputChangeFor('skills')}
+                  // input={<Input id="select-multiple-chip" />}
+                  renderValue={(selected) => (
+                    <div>
+                      {selected.map((value) => (
+                        <Chip
+                          key={value}
+                          label={this.handleSwitchSkills(value)}
+                        />
+                      ))}
+                    </div>
+                  )}
+                >
+                  {skills}
+                </Select>
+              </FormControl>
+
+              <TextField
+                fullWidth
+                multiline
+                rows={2}
+                placeholder="Do you have any other skills you would like to add?"
+                type="text"
+                name="custom_entry_skills"
+                value={this.state.custom_entry_skills}
+                variant="outlined"
+                onChange={this.handleInputChangeFor('custom_entry_skills')}
+                inputProps={{ maxLength: 100 }}
+              />
+              <FormControl variant="outlined" fullWidth>
+                <InputLabel id="time">
+                  Please select when you are available
+                </InputLabel>
+                <Select
+                  labelId="time"
+                  id="time"
+                  multiple
+                  value={this.state.time_slot}
+                  onChange={this.handleInputChangeFor('time_slot')}
+                  // input={<Input id="select-multiple-chip" />}
+                  renderValue={(selected) => (
+                    <div>
+                      {selected.map((value) => (
+                        <Chip key={value} label={this.handleSwitchDay(value)} />
+                      ))}
+                    </div>
+                  )}
+                >
+                  {time}
+                </Select>
+              </FormControl>
+              <Box m={2}>
+                <Button
+                  color="primary"
+                  variant="contained"
+                  type="submit"
+                  onClick={this.handleBackClick}
+                  // name="submit"
+                  // value="Register"
+                >
+                  Back
+                </Button>
+                &nbsp;
+                <Button
+                  color="primary"
+                  variant="contained"
+                  type="submit"
+                  // name="submit"
+                  // value="Register"
+                >
+                  Submit
+                </Button>
+              </Box>
             </form>
           </Grid>
         </Grid>

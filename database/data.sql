@@ -94,8 +94,13 @@ INSERT INTO "skills" (skills_label) VALUES
   (7, '10am to 2pm');
 
 INSERT INTO "images" (image_name, link_url) VALUES
-('event photo', 'https://wecodekc.s3.us-east-2.amazonaws.com/_MG_6515_edited-2.jpg'),
-('event photo', 'https://wecodekc.s3.us-east-2.amazonaws.com/_MG_6521.JPG'),
-('event photo', 'https://wecodekc.s3.us-east-2.amazonaws.com/_MG_6522.JPG'),
-('event photo', 'https://wecodekc.s3.us-east-2.amazonaws.com/_MG_6523-1.jpg'),
-('event photo', 'https://wecodekc.s3.us-east-2.amazonaws.com/_W4A0816-1.jpg');
+('event photo', 'https://wecodekc.s3.us-east-2.amazonaws.com/Event+Images/_MG_6515_edited-2.jpg'),
+('event photo', 'https://wecodekc.s3.us-east-2.amazonaws.com/Event+Images/_MG_6521.JPG'),
+('event photo', 'https://wecodekc.s3.us-east-2.amazonaws.com/Event+Images/_MG_6522.JPG'),
+('event photo', 'https://wecodekc.s3.us-east-2.amazonaws.com/Event+Images/_MG_6523-1.jpg'),
+('event photo', 'https://wecodekc.s3.us-east-2.amazonaws.com/Event+Images/_MG_6525.JPG'),
+('event photo', 'https://wecodekc.s3.us-east-2.amazonaws.com/Event+Images/_MG_6559.JPG'),
+('event photo', 'https://wecodekc.s3.us-east-2.amazonaws.com/Event+Images/_W4A0816-1.jpg'),
+('event photo', 'https://wecodekc.s3.us-east-2.amazonaws.com/Event+Images/_W4A0827-1.jpg'),
+('event photo', 'https://wecodekc.s3.us-east-2.amazonaws.com/Event+Images/_W4A0840.jpg'),
+('event photo', 'https://wecodekc.s3.us-east-2.amazonaws.com/Event+Images/_W4A0886-1.jpg');
