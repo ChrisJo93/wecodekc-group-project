@@ -46,7 +46,7 @@ class EventListItem extends Component {
       type: 'GET_EVENT_DETAILS',
       payload: this.props.id,
     });
-    this.props.history.push(`/event/details/${this.props.id}`);
+    this.props.history.push(`/event/details/${this.props.event.event_id}`);
   };
 
   // const useStyles = makeStyles({

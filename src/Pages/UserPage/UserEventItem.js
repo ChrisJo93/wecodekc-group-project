@@ -18,7 +18,7 @@ import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 
 class UserEventItem extends Component {
   handleCLickDetails = (event) => {
-    this.props.history.push(`/event/details/${this.props.event.id}`);
+    this.props.history.push(`/event/details/${this.props.event.event_id}`);
   };
 
   removeEvent = (e) => {
