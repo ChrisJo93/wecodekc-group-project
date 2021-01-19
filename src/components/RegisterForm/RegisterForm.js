@@ -165,11 +165,11 @@ class RegisterForm extends Component {
                   </Box>
                   <Box mb={2}>
                     <FormControl variant="outlined" size="small" fullWidth>
-                      <InputLabel id="gender">Gender</InputLabel>
+                      <InputLabel id="gender identity">Gender</InputLabel>
                       <Select
                         style={{ backgroundColor: 'white' }}
                         labelId="gender"
-                        id="gender"
+                        id="gender identity"
                         value={this.state.gender}
                         onChange={this.handleInputChangeFor('gender')}
                         label="gender"

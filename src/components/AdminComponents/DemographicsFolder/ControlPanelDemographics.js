@@ -58,7 +58,7 @@ class ControlPanelDemographics extends Component {
                   <em>None</em>
                 </MenuItem>
                 <MenuItem value={1}>Volunteer Role</MenuItem>
-                <MenuItem value={2}>Gender</MenuItem>
+                <MenuItem value={2}>Gender Identity</MenuItem>
                 <MenuItem value={3}>Ethnicity</MenuItem>
               </Select>
               <Box mt={2}>

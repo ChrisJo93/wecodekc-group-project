@@ -39,7 +39,7 @@
 
 .navBanner {
   position: relative;
-  width: 20%;
+  width: 60%;
   height: 50px;
   background-size: cover;
   overflow: hidden;
@@ -66,4 +66,10 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -56%);
+}
+
+@media only screen and (min-width: 960px) {
+  .navBanner {
+    width: 20%;
+  }
 }
