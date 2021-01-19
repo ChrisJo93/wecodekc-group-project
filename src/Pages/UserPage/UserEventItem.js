@@ -26,6 +26,7 @@ class UserEventItem extends Component {
       type: 'DELETE_USER_EVENT',
       payload: this.props.event.id,
     });
+    this.props.history.push(`/user`);
   };
 
   render() {
