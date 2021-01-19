@@ -141,6 +141,7 @@ class Calendar extends Component {
               center: 'title',
               right: 'dayGridMonth,timeGridWeek,timeGridDay',
             }}
+            timeZone="local"
             plugins={[
               dayGridPlugin,
               timeGridPlugin,
