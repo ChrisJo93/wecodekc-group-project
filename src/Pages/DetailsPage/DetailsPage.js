@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { DateTime } from 'luxon';
+import swal from 'sweetalert';
 
 //material-ui imports
 import { Grid, Typography, Button, Box } from '@material-ui/core';
@@ -29,6 +30,11 @@ class DetailsPage extends Component {
       this.props.dispatch({
         type: 'POST_USER_EVENT',
         payload: this.state.newUserEvent,
+      });
+      swal({
+        title: 'Event added!',
+        text: 'Return to Home Page to see all of your Events.',
+        icon: 'success',
       });
       this.props.history.push('/events');
     } else {
