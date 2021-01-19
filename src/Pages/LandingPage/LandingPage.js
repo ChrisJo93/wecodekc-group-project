@@ -30,9 +30,9 @@ const muiStyles = (theme) =>
         height: '50%',
       },
     },
-    textBackground: {
-      backgroundColor: '#dbf0f7',
-    },
+    // textBackground: {
+    //   backgroundColor: '#dbf0f7',
+    // },
   });
 
 class LandingPage extends Component {
@@ -77,28 +77,30 @@ class LandingPage extends Component {
         >
           <Grid item xs={12} md={6}>
             <div className="card" style={{ padding: '0px 50px 0px 50px' }}>
-              <center>
-                <Typography variant="h4" gutterBottom>
-                  Make an Impact!
+              <CardContent>
+                <center>
+                  <Typography variant="h4" gutterBottom>
+                    Make an Impact!
+                  </Typography>
+                </center>
+                <Typography>
+                  <p>
+                    Our mission is to give youth the opportunity to learn
+                    technology concepts, and leadership skills; creating a
+                    pipeline of future-ready professionals through project-based
+                    learning and innovative programs.<br></br>
+                    <br></br>
+                    WE CODE KC is an initiative that serves the urban core of
+                    Kansas City, exposing youth to various programming
+                    languages, technology, cyber security, and computer science
+                    concepts. Learning the basic concept of coding develops
+                    creativity, problem solving skills, builds confidence and
+                    helps to build a positive future. Every child, no matter
+                    their zip code or their family’s financial status, should
+                    have the opportunity to learn to code.
+                  </p>
                 </Typography>
-              </center>
-              <Typography>
-                <p>
-                  Our mission is to give youth the opportunity to learn
-                  technology concepts, and leadership skills; creating a
-                  pipeline of future-ready professionals through project-based
-                  learning and innovative programs.<br></br>
-                  <br></br>
-                  WE CODE KC is an initiative that serves the urban core of
-                  Kansas City, exposing youth to various programming languages,
-                  technology, cyber security, and computer science concepts.
-                  Learning the basic concept of coding develops creativity,
-                  problem solving skills, builds confidence and helps to build a
-                  positive future. Every child, no matter their zip code or
-                  their family’s financial status, should have the opportunity
-                  to learn to code.
-                </p>
-              </Typography>
+              </CardContent>
             </div>
           </Grid>
           <Grid item xs={12} md={6}>
@@ -121,7 +123,7 @@ class LandingPage extends Component {
           </Grid>
           <Grid item xs={12} md={6}>
             <Card>
-              <Carousel>{eventsArray}</Carousel>
+              <Carousel style={{ height: '60%' }}>{eventsArray}</Carousel>
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>

@@ -36,3 +36,34 @@
 .nav-right {
   float: right;
 }
+
+.navBanner {
+  position: relative;
+  width: 20%;
+  height: 50px;
+  background-size: cover;
+  overflow: hidden;
+  background-position: center center;
+  /* background-image: url('https://wecodekc.s3.us-east-2.amazonaws.com/WeCodeKC-COLORLOGO.png'); */
+  background-color: rgb(0, 0, 0, 0.2);
+  box-shadow: 5px 5px 5px rgb(0, 0, 0, 0.4);
+}
+
+.navBanner:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.nav-label {
+  box-sizing: border-box;
+  color: #efefef;
+  position: absolute;
+  width: 80%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -56%);
+}

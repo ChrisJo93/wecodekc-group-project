@@ -84,14 +84,21 @@ const Nav = (props) => {
       >
         <Toolbar>
           <Link to="/home" className={classes.title}>
-            <Typography
+            <div className="navBanner">
+              <img
+                src="https://wecodekc.s3.us-east-2.amazonaws.com/WeCodeKC-COLORLOGO.png"
+                alt="logo"
+                className="nav-label"
+              />
+            </div>
+            {/* <Typography
               edge="start"
               variant="h4"
               component="h2"
               className="nav-title"
             >
               WeCodeKC
-            </Typography>
+            </Typography> */}
           </Link>
           <div className="nav-right">
             <div className={props.classes.menuButton}>
