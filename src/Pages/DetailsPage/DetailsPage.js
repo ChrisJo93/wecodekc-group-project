@@ -19,7 +19,7 @@ class DetailsPage extends Component {
   componentDidMount() {
     this.props.dispatch({
       type: 'GET_EVENT_DETAILS',
-      payload: this.props.match.params.event_id,
+      payload: this.props.match.params.id,
     });
   }
 

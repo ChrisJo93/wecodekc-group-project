@@ -54,7 +54,7 @@ router.get(
   '/details/:id',
   (req: Request, res: Response, next: express.NextFunction): void => {
     const getEventID: string = `SELECT "event".*, "time_slot_day".id AS "id_for_day", 
-    "time_slot_day".day_number,"time_slot_day".day_name, link_url  FROM "event" 
+    "time_slot_day".day_number, "time_slot_day".day_name, link_url  FROM "event" 
     JOIN "day_slot" ON "event".id = "day_slot".event_id 
     JOIN "time_slot_day" ON "day_slot".time_slot_day = "time_slot_day".id
     JOIN "event_images" ON "event".id = "event_images".event_id
@@ -63,6 +63,7 @@ router.get(
     pool
       .query(getEventID, [req.params.id])
       .then((result) => {
+        console.log('IN RESULTS', result.rows);
         res.send(result.rows);
       })
       .catch((error) => {
