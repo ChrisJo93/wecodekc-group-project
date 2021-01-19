@@ -7,6 +7,8 @@ const router: express.Router = express.Router();
 router.get(
   '/users/:selection',
   (req: Request, res: Response, next: express.NextFunction): void => {
+    console.log('here here here');
+
     let condition;
     const selection: number = parseInt(req.params.selection);
     switch (selection) {
@@ -59,22 +61,90 @@ router.get(
 );
 
 router.get(
-  '/ethnicity',
+  '/graphEthnicity',
   (req: Request, res: Response, next: express.NextFunction): void => {
     const queryText = `SELECT
-(SELECT COUNT( ethnicity) FROM "user" WHERE ethnicity = 1) AS "White",
-(SELECT COUNT( ethnicity) FROM "user" WHERE ethnicity = 2) AS "Hispanic",
-(SELECT COUNT( ethnicity) FROM "user" WHERE ethnicity = 3) AS "Black",
-(SELECT COUNT( ethnicity) FROM "user" WHERE ethnicity = 4) AS "Native Am",
-(SELECT COUNT( ethnicity) FROM "user" WHERE ethnicity = 5) AS "Native Ha",
-(SELECT COUNT( ethnicity) FROM "user" WHERE ethnicity = 6) AS "Asian",
-(SELECT COUNT( ethnicity) FROM "user" WHERE ethnicity = 7) AS "Two or more",
-(SELECT COUNT( ethnicity) FROM "user" WHERE ethnicity = 8) AS "prefer not",
-(SELECT COUNT(id) FROM "user") AS "total";`;
+    (SELECT COUNT( ethnicity) FROM "user" WHERE ethnicity = 1) AS "White",
+    (SELECT COUNT( ethnicity) FROM "user" WHERE ethnicity = 2) AS "Hispanic",
+    (SELECT COUNT( ethnicity) FROM "user" WHERE ethnicity = 3) AS "Black",
+    (SELECT COUNT( ethnicity) FROM "user" WHERE ethnicity = 4) AS "NativeAm",
+    (SELECT COUNT( ethnicity) FROM "user" WHERE ethnicity = 5) AS "NativeHa",
+    (SELECT COUNT( ethnicity) FROM "user" WHERE ethnicity = 6) AS "Asian",
+    (SELECT COUNT( ethnicity) FROM "user" WHERE ethnicity = 7) AS "TwoOrMore",
+    (SELECT COUNT( ethnicity) FROM "user" WHERE ethnicity = 8) AS "PreferNot",
+    (SELECT COUNT(id) FROM "user") AS "total";`;
     pool
       .query(queryText)
       .then((result) => {
-        res.send(result.rows);
+        let current = -1;
+        const color = () => {
+          let colorArray = [
+            '#4d2aff',
+            '#D3212D',
+            '#555D50',
+            '#FFBF00',
+            '#58427C',
+            '#CD607E',
+            '#008B8B',
+            '#00FF00',
+          ];
+          current++;
+          console.log(colorArray[current]);
+          return colorArray[current];
+        };
+        const whiteNum = {
+          title: 'White',
+          value: parseInt(result.rows[0].White),
+          color: color(),
+        };
+        const hisNum = {
+          title: 'Hispanic',
+          value: parseInt(result.rows[0].Hispanic),
+          color: color(),
+        };
+        const blackNum = {
+          title: 'Black or African American',
+          value: parseInt(result.rows[0].Black),
+          color: color(),
+        };
+        const natAmNum = {
+          title: 'Native American',
+          value: parseInt(result.rows[0].NativeAm),
+          color: color(),
+        };
+        const natHaNum = {
+          title: 'Native hawaiian',
+          value: parseInt(result.rows[0].NativeHa),
+          color: color(),
+        };
+        const asianNum = {
+          title: 'Asian',
+          value: parseInt(result.rows[0].Asian),
+          color: color(),
+        };
+        const twoOrMore = {
+          title: 'Two or More',
+          value: parseInt(result.rows[0].TwoOrMore),
+          color: color(),
+        };
+        const preferNot = {
+          title: 'Prefer Not',
+          value: parseInt(result.rows[0].PreferNot),
+          color: color(),
+        };
+
+        const response = [
+          whiteNum,
+          hisNum,
+          blackNum,
+          natAmNum,
+          natHaNum,
+          asianNum,
+          twoOrMore,
+          preferNot,
+        ];
+
+        res.send(response);
       })
       .catch((error) => {
         console.log('error getting ethnicity', error);

@@ -1,6 +1,6 @@
 const ethnicity = (state = [], action) => {
   switch (action.type) {
-    case 'SET_ETHNICITY':
+    case 'SET_GRAPH_ETHNICITY':
       return action.payload;
     default:
       return state;

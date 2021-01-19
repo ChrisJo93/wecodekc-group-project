@@ -12,52 +12,53 @@ import axios from 'axios';
 // component.
 
 class DemographicsControl extends Component {
-  state = {
-    selection: 1,
-    demoData: [],
-  };
-  componentDidMount() {
-    let demoData;
-    switch (this.state.selection) {
+  state = {};
+
+  callback = (selection) => {
+    switch (selection) {
       case 1:
-        demoData = axios.get(`api/demographics/user/${1}`);
+        this.props.dispatch({
+          type: 'GET_SELECTION_DEMOGRAPHICS',
+          payload: 1,
+        });
+        this.props.dispatch({
+          type: 'SET_VOLUNTEER',
+          payload: 1,
+        });
         this.setState({
-          demoData: demoData,
+          selection: selection,
         });
         break;
       case 2:
-        demoData = axios.get(`api/demographics/user/${2}`);
+        this.props.dispatch({
+          type: 'GET_SELECTION_DEMOGRAPHICS',
+          payload: 2,
+        });
+        this.props.dispatch({
+          type: 'SET_GENDER',
+          payload: 1,
+        });
         this.setState({
-          demoData: demoData,
+          selection: selection,
         });
         break;
       case 3:
-        demoData = axios.get(`api/demographics/user/${3}`);
+        this.props.dispatch({
+          type: 'GET_SELECTION_DEMOGRAPHICS',
+          payload: 3,
+        });
+        this.props.dispatch({
+          type: 'GET_GRAPH_ETHNICITY',
+          payload: 1,
+        });
         this.setState({
-          demoData: demoData,
+          selection: selection,
         });
         break;
       default:
-        demoData = axios.get(`api/demographics/user/${1}`);
-        this.setState({
-          demoData: demoData,
-        });
+        console.log('error');
         break;
     }
-  }
-
-  callback(selection) {
-    this.setState({
-      ...this.state,
-      selection: selection,
-    });
-  }
-
-  state = {
-    heading: 'Verification',
-    access_level: 0,
-    volunteer_role: 0,
-    id: 0,
   };
 
   render() {
@@ -66,8 +67,11 @@ class DemographicsControl extends Component {
         <Typography variant="h4" gutterBottom>
           Demographics
         </Typography>
-        <ControlPanelDemographics />
-        <Demographics callback={this.callback} userData={this.state.demoData} />
+        <ControlPanelDemographics
+          callback={this.callback}
+          selection={this.state.selection}
+        />
+        <Demographics userData={this.props.store.demographicsSelection} />
       </>
     );
   }

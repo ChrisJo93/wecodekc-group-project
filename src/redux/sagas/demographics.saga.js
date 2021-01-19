@@ -3,9 +3,9 @@ import axios from 'axios';
 
 function* getEthnicity(action) {
   try {
-    const response = yield axios.get(`/api/demographics/ethnicity`);
+    const response = yield axios.get(`/api/demographics/graphEthnicity`);
     yield put({
-      type: 'SET_ETHNICITY',
+      type: 'SET_GRAPH_ETHNICITY',
       payload: response.data,
     });
   } catch (err) {
@@ -37,10 +37,25 @@ function* getRole(action) {
   }
 }
 
+function* getSelection(action) {
+  try {
+    const response = yield axios.get(
+      `/api/demographics/users/${action.payload}`
+    );
+    yield put({
+      type: 'SET_SELECTION_DEMOGRAPHICS',
+      payload: response.data,
+    });
+  } catch (err) {
+    yield put({ type: 'GET_VOLUNTEER_ROLE_FAILED' });
+  }
+}
+
 function* demographicsSaga() {
-  yield takeLatest('GET_ETHNICITY', getEthnicity);
+  yield takeLatest('GET_GRAPH_ETHNICITY', getEthnicity);
   yield takeLatest('GET_GENDER', getGender);
   yield takeLatest('GET_ROLE', getRole);
+  yield takeLatest('GET_SELECTION_DEMOGRAPHICS', getSelection);
 }
 
 export default demographicsSaga;
