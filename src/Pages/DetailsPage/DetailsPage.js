@@ -55,21 +55,7 @@ class DetailsPage extends Component {
 
           <Grid container spacing={3}>
             <Grid item lg={5}>
-              {details.event_type === 1 ? (
-                <img
-                  src={
-                    'https://wecodekc.s3.us-east-2.amazonaws.com/_W4A0876-1.jpg'
-                  }
-                  alt="course"
-                />
-              ) : (
-                <img
-                  src={
-                    'https://wecodekc.s3.us-east-2.amazonaws.com/_W4A0816-1.jpg'
-                  }
-                  alt="event"
-                />
-              )}
+              <img src={details.link_url} alt="event or course" />
             </Grid>
             <Grid item lg={3}>
               <Typography>Date: {humanDate}</Typography>
