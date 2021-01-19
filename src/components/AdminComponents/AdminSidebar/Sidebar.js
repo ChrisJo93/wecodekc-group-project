@@ -31,7 +31,7 @@ function SideBar(props) {
           <Tab icon={<VerifiedUserIcon />} label="New User Verification" />
           <Tab icon={<ShowChartIcon />} label="Demographics" />
           <Tab icon={<CalendarTodayIcon />} label="Event Calendar" />
-          <Tab icon={<ScheduleIcon />} label="Create Time Slot" />
+          <Tab icon={<ScheduleIcon />} label="Scheduling" />
         </Tabs>
       </Grid>
       <Grid item lg={10}>

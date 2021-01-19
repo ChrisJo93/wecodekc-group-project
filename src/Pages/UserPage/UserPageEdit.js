@@ -23,12 +23,32 @@ class UserPageEdit extends Component {
     zip_code: this.props.store.user.zip_code,
     phone_number: this.props.store.user.phone_number,
     email: this.props.store.user.email,
-    skills: [this.props.store.user.skills],
+    skills: [],
   };
 
   handleInputChangeFor = (propertyName) => (event) => {
     this.setState({
       [propertyName]: event.target.value,
+    });
+  };
+
+  handleEditActivities = () => {
+    const selected = [];
+    for (
+      let i = 0;
+      i < this.props.store.verifiedUserDetailReducer.skills_label_array.length;
+      i++
+    ) {
+      selected.push(
+        this.props.store.verifiedUserDetailReducer.skills_label_array[i]
+      );
+      console.log(selected);
+    }
+    this.setState({
+      editActivitiesSelected: selected,
+    });
+    this.setState({
+      editActivitiesBtnSelected: true,
     });
   };
 

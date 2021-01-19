@@ -11,6 +11,7 @@ import EventListItem from '../../components/EventListItem/EventListItem';
 
 //Material-UI imports
 import {
+  Box,
   Grid,
   Card,
   Typography,
@@ -103,7 +104,7 @@ class LandingPage extends Component {
           <Grid item xs={12} md={6}>
             <Card className="card">
               <CardMedia
-                image="https://wecodekc.s3.us-east-2.amazonaws.com/_W4A0840.jpg"
+                image="https://wecodekc.s3.us-east-2.amazonaws.com/Event+Images/_W4A0840.jpg"
                 title="coding"
                 className={this.props.classes.cardMedia}
               />
@@ -124,32 +125,29 @@ class LandingPage extends Component {
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Card className="card" style={{ padding: '0px 50px 0px 50px' }}>
-              <CardContent>
-                <center>
-                  <Typography variant="h4">Volunteer</Typography>
-                </center>
-                <Typography>
-                  No technical experience required! We have a variety of jobs
-                  for which we need people, such as classroom assistants and
-                  general office help.
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Grid container justify="space-evenly">
-                  <Grid item>
-                    <Button
-                      color="secondary"
-                      variant="contained"
-                      onClick={this.handleRegisterVolunteer}
-                      size="large"
-                    >
-                      register
-                    </Button>
-                  </Grid>
+            <div className="card" style={{ padding: '0px 50px 0px 50px' }}>
+              <center>
+                <Typography variant="h4">Volunteer</Typography>
+              </center>
+              <Typography>
+                No technical experience required! We have a variety of jobs for
+                which we need people, such as classroom assistants and general
+                office help.
+              </Typography>
+
+              <Grid container justify="space-evenly">
+                <Grid item style={{ margin: '20px' }}>
+                  <Button
+                    color="secondary"
+                    variant="contained"
+                    onClick={this.handleRegisterVolunteer}
+                    size="large"
+                  >
+                    register
+                  </Button>
                 </Grid>
-              </CardActions>
-            </Card>
+              </Grid>
+            </div>
           </Grid>
           <Grid item xs={12} md={6}>
             <Card className="card">
@@ -171,33 +169,30 @@ class LandingPage extends Component {
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Card className="card" style={{ padding: '0px 50px 0px 50px' }}>
-              <CardContent>
-                <center>
-                  <Typography variant="h4">Mentor</Typography>
-                </center>
-                <Typography>
-                  We rely on mentors and we appreciate your commitment to offer
-                  your time. Mentors have different sets of skills and are
-                  technically skilled individuals who guide attendees and
-                  facilitate their learning.
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Grid container justify="space-evenly">
-                  <Grid item>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      onClick={this.handleRegisterMentor}
-                      size="large"
-                    >
-                      register
-                    </Button>
-                  </Grid>
+            <div className="card" style={{ padding: '0px 50px 0px 50px' }}>
+              <center>
+                <Typography variant="h4">Mentor</Typography>
+              </center>
+              <Typography>
+                We rely on mentors and we appreciate your commitment to offer
+                your time. Mentors have different sets of skills and are
+                technically skilled individuals who guide attendees and
+                facilitate their learning.
+              </Typography>
+
+              <Grid container justify="space-evenly">
+                <Grid item style={{ margin: '20px' }}>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={this.handleRegisterMentor}
+                    size="large"
+                  >
+                    register
+                  </Button>
                 </Grid>
-              </CardActions>
-            </Card>
+              </Grid>
+            </div>
           </Grid>
         </Grid>
       </div>

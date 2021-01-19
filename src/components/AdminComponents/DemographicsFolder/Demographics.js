@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../../redux/mapStoreToProps';
 
 //material ui imports
-import { makeStyles } from '@material-ui/core/styles';
 import {
   Table,
   TableBody,
@@ -12,24 +11,23 @@ import {
   TableRow,
   Paper,
 } from '@material-ui/core';
+import { withStyles, createStyles } from '@material-ui/core/styles';
 
-const useRowStyles = makeStyles({
-  root: {
-    '& > *': {
-      borderBottom: 'unset',
+const muiStyles = (theme) =>
+  createStyles({
+    containerStuff: {
+      margin: '50px 0px 0px 0px',
     },
-  },
-});
+  });
 
 function DemographicsTable(props) {
   const rows = props.userData;
   return (
-    <Paper>
+    <Paper className={props.classes.containerStuff}>
       <Table>
         <TableHead>
           <TableRow>
             <TableCell>Volunteer Role</TableCell>
-            <TableCell>Active Courses / Events</TableCell>
             <TableCell>Ethnicity</TableCell>
             <TableCell>Gender</TableCell>
             <TableCell>Age</TableCell>
@@ -42,7 +40,6 @@ function DemographicsTable(props) {
           {rows.map((row) => (
             <TableRow key={row.id}>
               <TableCell>{row.role_label}</TableCell>
-              <TableCell>{'active courses'}</TableCell>
               <TableCell>{row.ethnicity_label}</TableCell>
               <TableCell>{row.gender_label}</TableCell>
               <TableCell>{row.age}</TableCell>
@@ -56,4 +53,6 @@ function DemographicsTable(props) {
   );
 }
 
-export default connect(mapStoreToProps)(DemographicsTable);
+export default connect(mapStoreToProps)(
+  withStyles(muiStyles)(DemographicsTable)
+);
