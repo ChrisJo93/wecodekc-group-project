@@ -10,6 +10,7 @@ function* dataGrab(action) {
     // const ethnicityGet = yield axios.get(`/api/demographics/ethnicity`);
     const genderGet = yield axios.get(`/api/demographics/gender`);
     const roleGet = yield axios.get(`/api/demographics/volunteerRole`);
+    const response = yield axios.get(`/api/user/verifiedUserDetailAll`);
     yield put({
       type: 'SET_ALL_USERS',
       payload: allUserGet.data,
@@ -21,6 +22,10 @@ function* dataGrab(action) {
     yield put({
       type: 'SET_UNVERIFIED_USERS',
       payload: unverifiedGet.data,
+    });
+    yield put({
+      type: 'SET_VERIFIED_USER_ALL_DETAIL',
+      payload: response.data,
     });
     yield put({
       type: 'SET_EVENTS',

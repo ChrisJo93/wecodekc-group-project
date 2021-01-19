@@ -32,11 +32,14 @@ class ControlPanelDemographics extends Component {
   render() {
     let selection;
 
-    let labelsForGraph = this.props.store.ethnicity.map((item, i) => (
-      <h3 key={i} style={{ color: item.color }}>
-        {item.title}
-      </h3>
-    ));
+    let labelsForGraph = this.props.store.ethnicity.map(
+      (item, i) =>
+        item.value > 0 && (
+          <h3 key={i} style={{ color: item.color }}>
+            {item.title}
+          </h3>
+        )
+    );
     return (
       <div>
         <Grid container>
@@ -74,7 +77,9 @@ class ControlPanelDemographics extends Component {
           </Grid>
 
           <Grid item lg={3}></Grid>
-          <ul>{labelsForGraph}</ul>
+          <Typography>
+            <ul>{labelsForGraph}</ul>
+          </Typography>
         </Grid>
       </div>
     );
