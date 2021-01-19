@@ -95,6 +95,7 @@ function VerifyTableRow(props) {
       default:
         break;
     }
+    props.callBack();
   };
 
   const { row } = props;
@@ -124,6 +125,7 @@ function VerifyTableRow(props) {
           {
             <FormControl style={{ minWidth: 120 }}>
               <Select
+                style={{ backgroundColor: 'white' }}
                 style={{ minWidth: 160, maxWidth: 160 }}
                 variant="outlined"
                 labelId="roleSelection"
@@ -149,6 +151,7 @@ function VerifyTableRow(props) {
           {
             <FormControl style={{ minWidth: 120 }}>
               <Select
+                style={{ backgroundColor: 'white' }}
                 style={{ minWidth: 140, maxWidth: 140 }}
                 variant="outlined"
                 labelId="permissionLevel"

@@ -53,6 +53,7 @@ class EventsPage extends Component {
       return (
         <Grid item sm={12} md={4} lg={4}>
           <EventListItem
+            id={item.event_id}
             key={index}
             event={item}
             index={index}
@@ -81,6 +82,7 @@ class EventsPage extends Component {
               <FormControl variant="outlined" fullWidth>
                 <InputLabel id="filter">Sort By</InputLabel>
                 <Select
+                  style={{ backgroundColor: 'white' }}
                   style={{ minWidth: 140 }}
                   labelId="filter"
                   id="filter"
@@ -97,6 +99,7 @@ class EventsPage extends Component {
           </Grid>
         </Box>
         <Grid container spacing={3}>
+          {console.log(this.props)}
           {eventsArray}
         </Grid>
       </div>

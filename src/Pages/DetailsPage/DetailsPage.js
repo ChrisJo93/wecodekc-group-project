@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { DateTime } from 'luxon';
+import swal from 'sweetalert';
 
 //material-ui imports
 import { Grid, Typography, Button, Box } from '@material-ui/core';
@@ -30,6 +31,11 @@ class DetailsPage extends Component {
         type: 'POST_USER_EVENT',
         payload: this.state.newUserEvent,
       });
+      swal({
+        title: 'Event added!',
+        text: 'Return to Home Page to see all of your Events.',
+        icon: 'success',
+      });
       this.props.history.push('/events');
     } else {
       this.props.history.push('/login-register');
@@ -55,21 +61,7 @@ class DetailsPage extends Component {
 
           <Grid container spacing={3}>
             <Grid item lg={5}>
-              {details.event_type === 1 ? (
-                <img
-                  src={
-                    'https://wecodekc.s3.us-east-2.amazonaws.com/_W4A0876-1.jpg'
-                  }
-                  alt="course"
-                />
-              ) : (
-                <img
-                  src={
-                    'https://wecodekc.s3.us-east-2.amazonaws.com/_W4A0816-1.jpg'
-                  }
-                  alt="event"
-                />
-              )}
+              <img src={details.link_url} alt="event or course" />
             </Grid>
             <Grid item lg={3}>
               <Typography>Date: {humanDate}</Typography>

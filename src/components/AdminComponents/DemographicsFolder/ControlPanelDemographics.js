@@ -17,31 +17,41 @@ import axios from 'axios';
 
 class ControlPanelDemographics extends Component {
   state = {
-    defaultData: [{ title: 'One', value: 100, color: '#4d2aff' }],
     selectionData: [],
   };
 
   handleSelection = (e) => {
     const selection = e.target.value;
     this.props.callback(selection);
+    this.setState({
+      ...this.state,
+      selection: this.props.selection,
+    });
   };
 
   render() {
-    const gender = this.props.store.gender;
-    const ethnicity = this.props.store.ethnicity;
-    const role = this.props.store.volunteerRole;
     let selection;
+
+    let labelsForGraph = this.props.store.ethnicity.map(
+      (item, i) =>
+        item.value > 0 && (
+          <h3 key={i} style={{ color: item.color }}>
+            {item.title}
+          </h3>
+        )
+    );
     return (
       <div>
         <Grid container>
           <Grid item lg={4}>
             <FormControl style={{ minWidth: 120 }}>
-              <Typography>Sort By</Typography>
+              <Typography>View Demographics By</Typography>
               <Select
+                style={{ backgroundColor: 'white' }}
                 variant="outlined"
                 labelId="roleSelection"
                 id="roleSelection"
-                value={this.state.selectData}
+                value={this.props.selection}
                 onChange={this.handleSelection}
               >
                 <MenuItem value="">
@@ -59,14 +69,18 @@ class ControlPanelDemographics extends Component {
             </FormControl>
           </Grid>
           <Grid item lg={2}>
-            <PieChart data={this.state.defaultData} />
+            <PieChart
+              data={this.props.store.ethnicity}
+              label={() => {
+                return this.props.store.ethnicity.title;
+              }}
+            />
           </Grid>
+
           <Grid item lg={3}></Grid>
-          <Grid item lg={3}>
-            <Typography>Total Admins : </Typography>
-            <Typography>Total Mentors : </Typography>
-            <Typography>Total Volunteers : </Typography>
-          </Grid>
+          <Typography>
+            <ul>{labelsForGraph}</ul>
+          </Typography>
         </Grid>
       </div>
     );

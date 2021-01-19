@@ -76,6 +76,52 @@ class UserPageEdit extends Component {
     this.props.dispatch({ type: 'PUT_USER', payload: this.state });
   };
 
+  handleSwitchSkills = (skill) => {
+    switch (skill) {
+      case 1:
+        skill = 'JavaScript';
+        return skill;
+        break;
+      case 2:
+        skill = 'CSS';
+        return skill;
+        break;
+      case 3:
+        skill = 'HTML';
+        return skill;
+        break;
+      case 4:
+        skill = 'React';
+        return skill;
+        break;
+      case 5:
+        skill = 'Angular';
+        return skill;
+        break;
+      case 6:
+        skill = 'Python';
+        return skill;
+      case 7:
+        skill = 'C#';
+        return skill;
+      case 8:
+        skill = 'C++';
+        return skill;
+      case 9:
+        skill = 'C';
+        return skill;
+      case 10:
+        skill = 'Java';
+        return skill;
+      case 11:
+        skill = 'PostgreSQL';
+        return skill;
+      case 12:
+        skill = 'MongoDB';
+        return skill;
+    }
+  };
+
   render() {
     //loop through to get each skill from database
     const skills = this.props.store.dropdown.skillReducer.map((item, index) => {
@@ -177,6 +223,7 @@ class UserPageEdit extends Component {
               <InputLabel id="skills">Edit your skills</InputLabel>
               <Select
                 style={{ backgroundColor: 'white' }}
+                style={{ backgroundColor: 'white' }}
                 labelId="skills"
                 id="skills"
                 multiple
@@ -186,7 +233,10 @@ class UserPageEdit extends Component {
                 renderValue={(selected) => (
                   <div>
                     {selected.map((value) => (
-                      <Chip key={value} label={value} />
+                      <Chip
+                        key={value}
+                        label={this.handleSwitchSkills(value)}
+                      />
                     ))}
                   </div>
                 )}

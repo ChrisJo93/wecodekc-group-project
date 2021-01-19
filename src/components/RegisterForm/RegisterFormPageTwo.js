@@ -224,6 +224,7 @@ class RegisterFormPageTwo extends Component {
               <Grid container spacing={3}>
                 <Grid item xs={12}>
                   <TextField
+                    style={{ backgroundColor: 'white' }}
                     fullWidth
                     multiline
                     rows={4}
@@ -238,6 +239,7 @@ class RegisterFormPageTwo extends Component {
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
+                    style={{ backgroundColor: 'white' }}
                     fullWidth
                     multiline
                     rows={4}
@@ -278,6 +280,7 @@ class RegisterFormPageTwo extends Component {
                 <Grid item xs={12}>
                   <FormControl fullWidth variant="outlined">
                     <Select
+                      style={{ backgroundColor: 'white' }}
                       variant="outlined"
                       labelId="languages"
                       id="languages"
@@ -310,6 +313,7 @@ class RegisterFormPageTwo extends Component {
                       to use below. If none, leave blank.
                     </InputLabel>
                     <Select
+                      style={{ backgroundColor: 'white' }}
                       labelId="skills"
                       id="skills"
                       multiple
@@ -333,6 +337,7 @@ class RegisterFormPageTwo extends Component {
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
+                    style={{ backgroundColor: 'white' }}
                     fullWidth
                     multiline
                     rows={2}
@@ -351,6 +356,7 @@ class RegisterFormPageTwo extends Component {
                       Please select when you are available
                     </InputLabel>
                     <Select
+                      style={{ backgroundColor: 'white' }}
                       labelId="time"
                       id="time"
                       multiple

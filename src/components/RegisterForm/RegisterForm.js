@@ -103,6 +103,7 @@ class RegisterForm extends Component {
                   <Box mb={2}>
                     <div>
                       <TextField
+                        style={{ backgroundColor: 'white' }}
                         fullWidth
                         size="small"
                         placeholder="first name"
@@ -118,6 +119,7 @@ class RegisterForm extends Component {
                   <Box mb={2}>
                     <div>
                       <TextField
+                        style={{ backgroundColor: 'white' }}
                         fullWidth
                         size="small"
                         placeholder="middle name/initial"
@@ -133,6 +135,7 @@ class RegisterForm extends Component {
                   <Box mb={2}>
                     <div>
                       <TextField
+                        style={{ backgroundColor: 'white' }}
                         fullWidth
                         size="small"
                         placeholder="last name"
@@ -147,6 +150,7 @@ class RegisterForm extends Component {
                   </Box>
                   <Box mb={2}>
                     <TextField
+                      style={{ backgroundColor: 'white' }}
                       fullWidth
                       id="birth_date"
                       label="birth date"
@@ -163,6 +167,7 @@ class RegisterForm extends Component {
                     <FormControl variant="outlined" size="small" fullWidth>
                       <InputLabel id="gender">Gender</InputLabel>
                       <Select
+                        style={{ backgroundColor: 'white' }}
                         labelId="gender"
                         id="gender"
                         value={this.state.gender}
@@ -180,6 +185,7 @@ class RegisterForm extends Component {
                     <FormControl variant="outlined" size="small" fullWidth>
                       <InputLabel id="Ethnicity">Ethnicity</InputLabel>
                       <Select
+                        style={{ backgroundColor: 'white' }}
                         labelId="ethnicity"
                         id="ethnicity"
                         value={this.state.ethnicity}
@@ -195,6 +201,7 @@ class RegisterForm extends Component {
                   </Box>
                   <Box mb={2}>
                     <TextField
+                      style={{ backgroundColor: 'white' }}
                       fullWidth
                       placeholder="create username"
                       type="text"
@@ -211,6 +218,7 @@ class RegisterForm extends Component {
                   <Box mb={2}>
                     <div>
                       <TextField
+                        style={{ backgroundColor: 'white' }}
                         fullWidth
                         size="small"
                         placeholder="email"
@@ -225,6 +233,7 @@ class RegisterForm extends Component {
                   <Box mb={2}>
                     <div>
                       <TextField
+                        style={{ backgroundColor: 'white' }}
                         fullWidth
                         size="small"
                         placeholder="phone number"
@@ -239,6 +248,7 @@ class RegisterForm extends Component {
                   <Box mb={2}>
                     <div>
                       <TextField
+                        style={{ backgroundColor: 'white' }}
                         fullWidth
                         size="small"
                         placeholder="zipcode"
@@ -253,6 +263,7 @@ class RegisterForm extends Component {
                   <Box mb={2}>
                     <div>
                       <TextField
+                        style={{ backgroundColor: 'white' }}
                         fullWidth
                         size="small"
                         placeholder="company"
@@ -267,6 +278,7 @@ class RegisterForm extends Component {
                   <Box mb={2}>
                     <div>
                       <TextField
+                        style={{ backgroundColor: 'white' }}
                         fullWidth
                         size="small"
                         placeholder="job title"
@@ -284,6 +296,7 @@ class RegisterForm extends Component {
                         Highest Level of Education
                       </InputLabel>
                       <Select
+                        style={{ backgroundColor: 'white' }}
                         labelId="education_level"
                         id="education_level"
                         value={this.state.education_level}
@@ -299,6 +312,7 @@ class RegisterForm extends Component {
                   </Box>
                   <Box mb={2}>
                     <TextField
+                      style={{ backgroundColor: 'white' }}
                       fullWidth
                       placeholder="create password"
                       type="password"

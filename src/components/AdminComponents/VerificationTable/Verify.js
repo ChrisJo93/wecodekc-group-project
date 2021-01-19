@@ -37,7 +37,11 @@ function VerifyTable(props) {
           </TableHead>
           <TableBody>
             {rows.map((row) => (
-              <VerifyTableRow key={row.id} row={row} />
+              <VerifyTableRow
+                key={row.id}
+                row={row}
+                callBack={props.callBack}
+              />
             ))}
           </TableBody>
         </Table>
