@@ -49,6 +49,7 @@ class LoginForm extends Component {
             <div>
               <Box mb={2}>
                 <TextField
+                  style={{ backgroundColor: 'white' }}
                   size="small"
                   type="text"
                   variant="outlined"
@@ -61,6 +62,7 @@ class LoginForm extends Component {
             <div>
               <Box mb={2}>
                 <TextField
+                  style={{ backgroundColor: 'white' }}
                   size="small"
                   type="password"
                   variant="outlined"

@@ -203,6 +203,7 @@ class RecurringForm extends Component {
         <FormControl>
           <InputLabel>Frequency</InputLabel>
           <Select variant="outlined" onChange={this.handleChangeForFreqCheck}>
+            style={{ backgroundColor: 'white' }}
             <MenuItem value={RRule.WEEKLY}>Weekly</MenuItem>
             <MenuItem value={RRule.MONTHLY}>Monthly</MenuItem>
             <MenuItem value={RRule.YEARLY}>Yearly</MenuItem>
@@ -212,6 +213,7 @@ class RecurringForm extends Component {
         </FormControl>
         <br />
         <TextField
+          style={{ backgroundColor: 'white' }}
           type="number"
           variant="outlined"
           value={
@@ -223,6 +225,7 @@ class RecurringForm extends Component {
           label="Interval"
         />
         <TextField
+          style={{ backgroundColor: 'white' }}
           id="datetime-local"
           label="Repeat Until"
           type="datetime-local"

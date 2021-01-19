@@ -118,6 +118,7 @@ class UpdateEventDialog extends Component {
             {/* Added Grid but will need to reformat */}
             <Grid>
               <TextField
+                style={{ backgroundColor: 'white' }}
                 type="text"
                 variant="outlined"
                 value={this.state.eventPayload.event_title}
@@ -125,6 +126,7 @@ class UpdateEventDialog extends Component {
                 label="Title"
               />
               <TextField
+                style={{ backgroundColor: 'white' }}
                 type="text"
                 variant="outlined"
                 value={this.state.eventPayload.event_description}
@@ -132,6 +134,7 @@ class UpdateEventDialog extends Component {
                 label="Description"
               />
               <TextField
+                style={{ backgroundColor: 'white' }}
                 type="text"
                 variant="outlined"
                 value={this.state.eventPayload.event_address}
@@ -139,6 +142,7 @@ class UpdateEventDialog extends Component {
                 label="Address"
               />
               <TextField
+                style={{ backgroundColor: 'white' }}
                 id="datetime-local"
                 label="Start Date"
                 type="datetime-local"
@@ -148,6 +152,7 @@ class UpdateEventDialog extends Component {
                 }}
               />
               <TextField
+                style={{ backgroundColor: 'white' }}
                 id="datetime-local"
                 label="End Date"
                 type="datetime-local"

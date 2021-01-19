@@ -129,6 +129,7 @@ class CreateEventDialog extends Component {
               <Grid item sm={12} lg={6}>
                 <Box mb={2}>
                   <TextField
+                    style={{ backgroundColor: 'white' }}
                     type="text"
                     variant="outlined"
                     value={this.state.eventPayload.event_title}
@@ -138,6 +139,7 @@ class CreateEventDialog extends Component {
                 </Box>
                 <Box mb={2}>
                   <TextField
+                    style={{ backgroundColor: 'white' }}
                     type="text"
                     variant="outlined"
                     value={this.state.eventPayload.event_description}
@@ -147,6 +149,7 @@ class CreateEventDialog extends Component {
                 </Box>
                 <Box mb={2}>
                   <TextField
+                    style={{ backgroundColor: 'white' }}
                     type="text"
                     variant="outlined"
                     value={this.state.eventPayload.event_address}
@@ -177,6 +180,7 @@ class CreateEventDialog extends Component {
               <Grid item sm={12} lg={6}>
                 <Box mb={2}>
                   <TextField
+                    style={{ backgroundColor: 'white' }}
                     variant="outlined"
                     id="datetime-local"
                     label="Start Date"
@@ -189,6 +193,7 @@ class CreateEventDialog extends Component {
                 </Box>
                 <Box mb={2}>
                   <TextField
+                    style={{ backgroundColor: 'white' }}
                     variant="outlined"
                     id="datetime-local"
                     label="End Date"

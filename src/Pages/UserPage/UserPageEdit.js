@@ -223,6 +223,7 @@ class UserPageEdit extends Component {
               <InputLabel id="skills">Edit your skills</InputLabel>
               <Select
                 style={{ backgroundColor: 'white' }}
+                style={{ backgroundColor: 'white' }}
                 labelId="skills"
                 id="skills"
                 multiple

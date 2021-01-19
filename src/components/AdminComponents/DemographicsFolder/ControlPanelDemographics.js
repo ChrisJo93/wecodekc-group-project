@@ -47,6 +47,7 @@ class ControlPanelDemographics extends Component {
             <FormControl style={{ minWidth: 120 }}>
               <Typography>View Demographics By</Typography>
               <Select
+                style={{ backgroundColor: 'white' }}
                 variant="outlined"
                 labelId="roleSelection"
                 id="roleSelection"
