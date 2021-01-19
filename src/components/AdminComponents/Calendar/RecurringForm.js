@@ -13,6 +13,7 @@ import {
   FormLabel,
   Button,
   Box,
+  Grid,
 } from '@material-ui/core';
 import { RRule } from 'rrule';
 import { DateTime } from 'luxon';
@@ -200,46 +201,61 @@ class RecurringForm extends Component {
     });
     return (
       <div>
-        <FormControl>
-          <InputLabel>Frequency</InputLabel>
-          <Select variant="outlined" onChange={this.handleChangeForFreqCheck}>
-            <MenuItem value={RRule.WEEKLY}>Weekly</MenuItem>
-            <MenuItem value={RRule.MONTHLY}>Monthly</MenuItem>
-            <MenuItem value={RRule.YEARLY}>Yearly</MenuItem>
-          </Select>
-          <FormLabel>Day of the Week</FormLabel>
-          <FormGroup row>{listofdays}</FormGroup>
-        </FormControl>
-        <br />
-        <TextField
-          type="number"
-          variant="outlined"
-          value={
-            this.state.interval <= 0 && this.state.interval === 0
-              ? ''
-              : this.state.interval
-          }
-          onChange={this.handleChangeForInterval}
-          label="Interval"
-        />
-        <TextField
-          id="datetime-local"
-          label="Repeat Until"
-          type="datetime-local"
-          onChange={this.handleChangeForDate('until')}
-          InputLabelProps={{
-            shrink: true,
-          }}
-        />
-        <Box m={2}>
-          <Button
-            onClick={this.handleRepeatEvent}
-            color="secondary"
-            variant="contained"
-          >
-            Add
-          </Button>
-        </Box>
+        <Grid container spacing={2}>
+          <Grid item>
+            <FormControl style={{ minWidth: 120 }}>
+              <InputLabel>Frequency</InputLabel>
+              <Select
+                variant="outlined"
+                onChange={this.handleChangeForFreqCheck}
+              >
+                <MenuItem value={RRule.WEEKLY}>Weekly</MenuItem>
+                <MenuItem value={RRule.MONTHLY}>Monthly</MenuItem>
+                <MenuItem value={RRule.YEARLY}>Yearly</MenuItem>
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item>
+            <FormLabel>Day of the Week</FormLabel>
+            <FormGroup row>{listofdays}</FormGroup>
+          </Grid>
+
+          <Grid item>
+            <TextField
+              type="number"
+              variant="outlined"
+              value={
+                this.state.interval <= 0 && this.state.interval === 0
+                  ? ''
+                  : this.state.interval
+              }
+              onChange={this.handleChangeForInterval}
+              label="Interval"
+            />
+          </Grid>
+          <Grid item>
+            <TextField
+              variant="outlined"
+              id="datetime-local"
+              label="Repeat Until"
+              type="datetime-local"
+              onChange={this.handleChangeForDate('until')}
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
+          </Grid>
+
+          <Grid item>
+            <Button
+              onClick={this.handleRepeatEvent}
+              color="secondary"
+              variant="contained"
+            >
+              Add
+            </Button>
+          </Grid>
+        </Grid>
       </div>
     );
   }

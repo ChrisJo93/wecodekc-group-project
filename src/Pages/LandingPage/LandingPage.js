@@ -122,8 +122,8 @@ class LandingPage extends Component {
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Card>
-              <Carousel style={{ height: '60%' }}>{eventsArray}</Carousel>
+            <Card style={{ height: '50%' }}>
+              <Carousel>{eventsArray}</Carousel>
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>
