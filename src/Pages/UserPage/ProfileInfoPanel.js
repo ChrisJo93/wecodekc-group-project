@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
 //custom MATERIAL-UI imports
-import { Box, Button, Typography } from '@material-ui/core';
+import { Box, Button, Divider, Typography } from '@material-ui/core';
 
 class ProfileInfoPanel extends Component {
   render() {
@@ -49,31 +49,21 @@ class ProfileInfoPanel extends Component {
           </Typography>
           {/* TODO ROLE FROM USER REDUCER */}
           <Typography gutterBottom>
-            Role:
             {this.props.store.verifiedUserDetailReducer.role_label}
           </Typography>
+          <Typography gutterBottom>{this.props.store.user.zip_code}</Typography>
           <Typography gutterBottom>
-            Zipcode: {this.props.store.user.zip_code}
+            {this.props.store.user.phone_number}
           </Typography>
+          <Typography gutterBottom>{this.props.store.user.email}</Typography>
           <Typography gutterBottom>
-            Phone number: {this.props.store.user.phone_number}
-          </Typography>
-          <Typography gutterBottom>
-            Email: {this.props.store.user.email}
-          </Typography>
-          <Typography gutterBottom>
-            Company:
             {this.props.store.verifiedUserDetailReducer.company}
           </Typography>
-          <Typography gutterBottom>Skills:</Typography>
-          {JSON.stringify(
-            this.props.store.verifiedUserDetailReducer.skills_label_array
-          )}
-          {this.props.store.verifiedUserDetailAll.skills_label_array && (
-            <Typography>{skills}</Typography>
-          )}
-
-          {skills}
+          <Divider />
+          <Typography variant="h6" gutterBottom>
+            Skills:
+          </Typography>
+          <span>{skills}</span>
           <Box mt={2}>
             <Button
               color="secondary"
