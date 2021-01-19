@@ -35,6 +35,7 @@ function* getEvents(action) {
 
 function* getEventDetails(action) {
   try {
+    console.log('IN DETAILS SAGA', action.payload);
     const response = yield axios.get(`/api/event/details/${action.payload}`);
     yield put({
       type: 'SET_EVENT_DETAILS',
