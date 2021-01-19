@@ -41,8 +41,12 @@ class EventListItem extends Component {
     });
   }
 
-  handleCLickDetails = (event) => {
-    this.props.history.push(`/event/details/${this.props.event.id}`);
+  handleClickDetails = (event) => {
+    this.props.dispatch({
+      type: 'GET_EVENT_DETAILS',
+      payload: this.props.id,
+    });
+    this.props.history.push(`/event/details/${this.props.id}`);
   };
 
   // const useStyles = makeStyles({
@@ -84,7 +88,7 @@ class EventListItem extends Component {
                 variant="contained"
                 size="small"
                 color="secondary"
-                onClick={this.handleCLickDetails}
+                onClick={this.handleClickDetails}
               >
                 Details
               </Button>

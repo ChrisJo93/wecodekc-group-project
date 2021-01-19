@@ -37,44 +37,7 @@ function UserManagementTableRow(props) {
         });
         openDropdown();
         break;
-      case 'finalize':
-        permissionLevel && role !== undefined
-          ? permissionLevel === 4
-            ? swal({
-                title: 'You are assigning ADMIN PRIVILEGES to this user',
-                text: 'To cancel press escape',
-                icon: 'warning',
-                dangerMode: true,
-              }).then((confirm) => {
-                if (confirm) {
-                  props.dispatch({
-                    type: 'VERIFY_USER',
-                    payload: {
-                      access_level: permissionLevel,
-                      volunteer_role: role,
-                      id: id,
-                      email: email,
-                      first_name: first_name,
-                    },
-                  });
-                  swal('Added!', 'New Admin Created!', 'success');
-                }
-              })
-            : props.dispatch({
-                type: 'VERIFY_USER',
-                payload: {
-                  access_level: permissionLevel,
-                  volunteer_role: role,
-                  id: id,
-                  email: email,
-                  first_name: first_name,
-                },
-              })
-          : swal({
-              title: 'Please select Role and Permissions for this user',
-              icon: 'warning',
-            });
-        break;
+
       default:
         break;
     }

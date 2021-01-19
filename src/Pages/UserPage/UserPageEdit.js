@@ -23,12 +23,32 @@ class UserPageEdit extends Component {
     zip_code: this.props.store.user.zip_code,
     phone_number: this.props.store.user.phone_number,
     email: this.props.store.user.email,
-    skills: [this.props.store.verifiedUserDetailReducer.skills_label_array],
+    skills: [],
   };
 
   handleInputChangeFor = (propertyName) => (event) => {
     this.setState({
       [propertyName]: event.target.value,
+    });
+  };
+
+  handleEditActivities = () => {
+    const selected = [];
+    for (
+      let i = 0;
+      i < this.props.store.verifiedUserDetailReducer.skills_label_array.length;
+      i++
+    ) {
+      selected.push(
+        this.props.store.verifiedUserDetailReducer.skills_label_array[i]
+      );
+      console.log(selected);
+    }
+    this.setState({
+      editActivitiesSelected: selected,
+    });
+    this.setState({
+      editActivitiesBtnSelected: true,
     });
   };
 
@@ -54,6 +74,52 @@ class UserPageEdit extends Component {
 
   handleSubmit = (e) => {
     this.props.dispatch({ type: 'PUT_USER', payload: this.state });
+  };
+
+  handleSwitchSkills = (skill) => {
+    switch (skill) {
+      case 1:
+        skill = 'JavaScript';
+        return skill;
+        break;
+      case 2:
+        skill = 'CSS';
+        return skill;
+        break;
+      case 3:
+        skill = 'HTML';
+        return skill;
+        break;
+      case 4:
+        skill = 'React';
+        return skill;
+        break;
+      case 5:
+        skill = 'Angular';
+        return skill;
+        break;
+      case 6:
+        skill = 'Python';
+        return skill;
+      case 7:
+        skill = 'C#';
+        return skill;
+      case 8:
+        skill = 'C++';
+        return skill;
+      case 9:
+        skill = 'C';
+        return skill;
+      case 10:
+        skill = 'Java';
+        return skill;
+      case 11:
+        skill = 'PostgreSQL';
+        return skill;
+      case 12:
+        skill = 'MongoDB';
+        return skill;
+    }
   };
 
   render() {
@@ -166,7 +232,10 @@ class UserPageEdit extends Component {
                 renderValue={(selected) => (
                   <div>
                     {selected.map((value) => (
-                      <Chip key={value} label={value} />
+                      <Chip
+                        key={value}
+                        label={this.handleSwitchSkills(value)}
+                      />
                     ))}
                   </div>
                 )}

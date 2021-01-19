@@ -6,16 +6,32 @@ import './ImageUpload.css';
 
 //material ui imports
 import { Typography } from '@material-ui/core';
-import { relative } from 'path';
 
 class ImageUpload extends Component {
+  state = {
+    image: '',
+  };
+
   handleFinishedUpload = (info) => {
     console.log('File uploaded with filename', info.filename);
     console.log('Access it on s3 at', info.fileUrl);
+    this.setState(
+      {
+        image: info.fileUrl,
+      },
+      () => {
+        console.log(this.state);
+      }
+    );
+
     this.props.dispatch({
       type: 'POST_IMAGE_URL',
       payload: { link: info.fileUrl },
     });
+  };
+
+  handleImageUpload = (property) => {
+    console.log(property);
   };
 
   render() {
@@ -30,6 +46,7 @@ class ImageUpload extends Component {
     const innerDropElement = (
       <div className="innerDrop">
         <Typography>Upload a profile picture</Typography>
+        <img src={this.state.image} />
       </div>
     );
 
@@ -47,6 +64,7 @@ class ImageUpload extends Component {
         upload={uploadOptions}
         style={dropStyles}
         children={innerDropElement}
+        imageComponent={this.handleImageUpload}
       />
     );
   }
