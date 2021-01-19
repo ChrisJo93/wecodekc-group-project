@@ -95,6 +95,7 @@ function VerifyTableRow(props) {
       default:
         break;
     }
+    props.callBack();
   };
 
   const { row } = props;

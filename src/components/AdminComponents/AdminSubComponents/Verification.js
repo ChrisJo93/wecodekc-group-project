@@ -19,13 +19,22 @@ class Verification extends Component {
     id: 0,
   };
 
+  callback = () => {
+    this.props.dispatch({
+      type: 'GET_ADMIN_DATA',
+    });
+  };
+
   render() {
     return (
       <>
         <Typography variant="h4" gutterBottom>
           Applicants
         </Typography>
-        <Verify userData={this.props.store.unverifiedUsers} />
+        <Verify
+          callBack={this.callback}
+          userData={this.props.store.unverifiedUsers}
+        />
       </>
     );
   }
