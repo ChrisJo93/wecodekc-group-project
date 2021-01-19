@@ -43,6 +43,13 @@ function* dataGrab(action) {
 function* verify(action) {
   try {
     yield axios.put(`/api/admin/verify`, action.payload);
+    const response = yield axios.get(
+      `/api/user/verifiedUserDetail/${action.payload}`
+    );
+    yield put({
+      type: 'SET_VERIFIED_USER_DETAIL',
+      payload: response.data,
+    });
   } catch (err) {
     console.log('ERROR UPDATING EVENT', err);
     yield put({ type: 'PUT_FAILED' });
@@ -65,7 +72,7 @@ function* getNewUserDetail(action) {
   }
 }
 
-function* verifiedUserDetailReducer(action) {
+function* getVerifiedUserDetail(action) {
   try {
     const response = yield axios.get(
       `/api/user/verifiedUserDetail/${action.payload}`
@@ -94,7 +101,7 @@ function* allIdGet(action) {
   }
 }
 
-function* verifiedUserDetailReducerAll(action) {
+function* getVerifiedUserDetailAll(action) {
   try {
     const response = yield axios.get(`/api/user/verifiedUserDetailAll`);
     yield put({
@@ -111,11 +118,8 @@ function* adminSaga() {
   yield takeLatest('GET_ADMIN_DATA', dataGrab);
   yield takeLatest('VERIFY_USER', verify);
   yield takeLatest('GET_NEW_USER_DETAIL', getNewUserDetail);
-  yield takeLatest('GET_VERIFIED_USER_DETAIL', verifiedUserDetailReducer);
-  yield takeLatest(
-    'GET_VERIFIED_USER_ALL_DETAIL',
-    verifiedUserDetailReducerAll
-  );
+  yield takeLatest('GET_VERIFIED_USER_DETAIL', getVerifiedUserDetail);
+  yield takeLatest('GET_VERIFIED_USER_ALL_DETAIL', getVerifiedUserDetailAll);
   yield takeLatest('GET_ALL_ID', allIdGet);
 }
 

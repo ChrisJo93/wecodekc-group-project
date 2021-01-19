@@ -93,7 +93,7 @@ router.get(
           return colorArray[current];
         };
         const whiteNum = {
-          title: 'White',
+          title: 'White Not Hispanic',
           value: parseInt(result.rows[0].White),
           color: color(),
         };
@@ -123,12 +123,12 @@ router.get(
           color: color(),
         };
         const twoOrMore = {
-          title: 'Two or More',
+          title: 'Two or More Races',
           value: parseInt(result.rows[0].TwoOrMore),
           color: color(),
         };
         const preferNot = {
-          title: 'Prefer Not',
+          title: 'Prefer Not To Answer',
           value: parseInt(result.rows[0].PreferNot),
           color: color(),
         };
