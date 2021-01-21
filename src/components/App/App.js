@@ -10,7 +10,6 @@ import { connect } from 'react-redux';
 
 //CUSTOM FILE IMPORTS
 
-<<<<<<< HEAD
 import AboutPage from '../../Pages/AboutPage/AboutPage';
 import DetailsPage from '../../Pages/DetailsPage/DetailsPage';
 import EventsPage from '../../Pages/EventsPage/EventsPage';
@@ -23,15 +22,6 @@ import RegisterPageTwo from '../../Pages/RegisterPage/RegisterPageTwo';
 import Nav from '../Nav/Nav';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import UserPage from '../../Pages/UserPage/UserPage';
-=======
-import AboutPage from '../AboutPage/AboutPage';
-import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
-import LandingPage from '../LandingPage/LandingPage';
-import LoginPage from '../LoginPage/LoginPage';
-import RegisterPage from '../RegisterPage/RegisterPage';
-
->>>>>>> main
 import './App.css';
 import AdminPage from '../../Pages/AdminPage/AdminMainPage/AdminPage';
 

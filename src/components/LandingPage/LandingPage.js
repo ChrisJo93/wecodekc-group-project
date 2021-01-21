@@ -7,7 +7,6 @@ import Carousel from 'react-material-ui-carousel';
 import './LandingPage.css';
 import EventListItem from '../../components/EventListItem/EventListItem';
 
-<<<<<<< HEAD:src/Pages/LandingPage/LandingPage.js
 //NEEDS images and video and event carousel.
 
 //Material-UI imports
@@ -35,10 +34,6 @@ const muiStyles = (theme) =>
     //   backgroundColor: '#dbf0f7',
     // },
   });
-=======
-// CUSTOM COMPONENTS
-import RegisterForm from '../RegisterForm/RegisterForm';
->>>>>>> main:src/components/LandingPage/LandingPage.js
 
 class LandingPage extends Component {
   //get all events for the carousel
