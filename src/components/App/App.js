@@ -23,7 +23,7 @@ import Nav from '../Nav/Nav';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import UserPage from '../../Pages/UserPage/UserPage';
 import './App.css';
-import AdminPage from '../../Pages/AdminPage/AdminMainPage/AdminPage';
+import AdminPage from '../../Pages/AdminPage/AdminPage';
 
 //MATERIAL-UI imports
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';

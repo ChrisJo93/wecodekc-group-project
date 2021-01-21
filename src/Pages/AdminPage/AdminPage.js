@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import mapStoreToProps from '../../../redux/mapStoreToProps';
+import mapStoreToProps from '../../redux/mapStoreToProps';
 
 //CUSTOM FILE IMPORTS
-import SideBar from '../../../components/AdminComponents/AdminSidebar/Sidebar';
+import SideBar from '../../components/AdminComponents/AdminSidebar/Sidebar';
 import './AdminPage.css';
 
 //CUSTOM MATERIAL UI IMPORTS
