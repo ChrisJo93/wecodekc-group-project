@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+<<<<<<< HEAD:src/Pages/LoginPage/LoginPage.js
 
 //custom file imports
 import LoginForm from '../../components/LoginForm/LoginForm';
@@ -11,6 +12,9 @@ import RegisterTab from '../../components/RegisterTab/RegisterTab';
 
 //Material-UI imports
 import { Tabs, Tab, Grid } from '@material-ui/core';
+=======
+import LoginForm from '../LoginForm/LoginForm';
+>>>>>>> main:src/components/LoginPage/LoginPage.js
 
 function LoginPage(props) {
   const dispatch = useDispatch();

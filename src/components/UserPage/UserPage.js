@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+<<<<<<< HEAD:src/Pages/UserPage/UserPage.js
+=======
+import LogOutButton from '../LogOutButton/LogOutButton';
+>>>>>>> main:src/components/UserPage/UserPage.js
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
 //custom file imports

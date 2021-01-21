@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import sessionMiddleware from './modules/session-middleware';
 import passport from './strategies/user.strategy';
 import userRouter from './routes/user.router';
+<<<<<<< HEAD
 import eventRouter from './routes/event.router';
 import notesRouter from './routes/notes.router';
 import dropdownRouter from './routes/dropdown.router';
@@ -10,6 +11,8 @@ import timeslotRouter from './routes/timeslot.router';
 import adminRouter from './routes/admin.router';
 import imageRouter from './routes/image.router';
 import demographicsRouter from './routes/demographics.router';
+=======
+>>>>>>> main
 
 import * as dotenv from 'dotenv';
 dotenv.config();
@@ -31,6 +34,7 @@ app.use(passport.session());
 
 /* Routes */
 app.use('/api/user', userRouter);
+<<<<<<< HEAD
 app.use('/api/event', eventRouter);
 app.use('/api/notes', notesRouter);
 app.use('/api/dropdown', dropdownRouter);
@@ -52,6 +56,8 @@ app.use(
 app.get('/test', function (req: any, res: any) {
   res.send(`${process.env.AWS_ACCESS_KEY_ID}`);
 });
+=======
+>>>>>>> main
 
 // Serve static files
 app.use(express.static('build'));
