@@ -14,6 +14,20 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   res.send(req.user);
 });
 
+// GETTING SPECIFIC USER
+router.get('/details/:id', rejectUnauthenticated, (req, res) => {
+  const getUserID = `SELECT * FROM "users" WHERE id=$1;`;
+  pool
+    .query(getUserID, [req.params.id])
+    .then((result) => {
+      res.send(result.rows);
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.log('error getting specific user', error);
+    });
+});
+
 // Handles POST request with new user data
 // The only thing different from this and every other post we've seen
 // is that the password gets encrypted before being inserted
@@ -42,6 +56,54 @@ router.post('/logout', (req, res) => {
   // Use passport's built-in method to log out the user
   req.logout();
   res.sendStatus(200);
+});
+
+router.put('/id:', (req, res) => {
+  const user = req.body;
+  const editUser = `UPDATE "user" SET 
+  is_active=$1,
+  username=$2,
+  user_password=$3,
+  access_level=$4,
+  first_name=$5,
+  middle_name=$6,
+  last_name=$7,
+  posting_date=$8,
+  gender=$9,
+  zip_code=$10,
+  company=$11,
+  job_title=$12,
+  motivation_bio=$13,
+  experience_bio=$14,
+  background_check_permission=$15,
+  custom_entry_skills=$16
+  WHERE id=$17;`;
+  pool
+    .query(editUser, [
+      user.is_active,
+      user.username,
+      user.user_password,
+      user.access_level,
+      user.first_name,
+      user.middle_name,
+      user.last_name,
+      user.posting_date,
+      user.gender,
+      user.zip_code,
+      user.company,
+      user.job_title,
+      user.motivation_bio,
+      user.experience_bio,
+      user.background_check_permission,
+      user.custom_entry_skills,
+    ])
+    .then((result) => {
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log('error editing user', error);
+      res.sendStatus(500);
+    });
 });
 
 module.exports = router;

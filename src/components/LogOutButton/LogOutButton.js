@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 
 const LogOutButton = (props) => (
   <button
+    style={{ minWidth: 120 }}
+    color="primary"
+    variant="contained"
     // This button shows up in multiple locations and is styled differently
     // because it's styled differently depending on where it is used, the className
     // is passed to it from it's parents through React props
