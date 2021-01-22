@@ -165,9 +165,7 @@ class RegisterForm extends Component {
                   </Box>
                   <Box mb={2}>
                     <FormControl variant="outlined" size="small" fullWidth>
-                      <InputLabel id="gender identity">
-                        Gender Identity
-                      </InputLabel>
+                      <InputLabel id="gender">Gender Identity</InputLabel>
                       <Select
                         style={{ backgroundColor: 'white' }}
                         labelId="gender identity"
