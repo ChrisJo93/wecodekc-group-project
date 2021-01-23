@@ -1,123 +1,86 @@
-# Prime Project
+WeVolunteerKC
+Description
+Duration: 2 Week Sprint
 
-This version uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`).
+WeCodeKC wants to find a better way to keep track of and manage volunteers and mentors who are helping to support their mission. Volunteers and mentors currently have to fill out personal information every time they want to contribute to an event. The WeCodeKC staff wants to grow their network of volunteers as well as their program and the process of managing and reaching out to these volunteers is very manual right now. They want to make it easy for volunteers and mentors to register for events and keep track of information for research purposes.
 
-We **STRONGLY** recommend following these instructions carefully. It's a lot, and will take some time to set up, but your life will be much easier this way in the long run.
+This application streamlines the registration process for mentors and volunteers to WeCodeKC while simultaneously encouraging new members to join the mentorship group by listing upcoming events before logging in. Volunteers and mentors will now be able to track their upcoming events in a simple, effective, user-friendly method.
 
-## Download (Don't Clone) This Repository
+WeCodeKC will have access to demographics provided by the volunteers/mentors for research purposes and the ability to create events so that volunteers/mentors can easily sign up for them.
 
-- Don't Fork or Clone. Instead, click the `Clone or Download` button and select `Download Zip`.
-- Unzip the project and start with the code in that folder.
-- Create a new GitHub project and push this code to the new repository.
+To see the fully functional site, please visit: DEPLOYED VERSION OF APP
 
-## Prerequisites
+Screen Shot
+Home Page: Screen Shot 2021-01-22 at 2 23 15 PM
 
-Before you get started, make sure you have the following software installed on your computer:
+Screen Shot 2021-01-22 at 2 24 41 PM
 
-- [Node.js](https://nodejs.org/en/)
-- [PostrgeSQL](https://www.postgresql.org/)
-- [Nodemon](https://nodemon.io/)
+Events Page: Screen Shot 2021-01-21 at 3 46 26 PM
 
-## Create database and table
+Profile Page Screen Shot 2021-01-21 at 3 51 57 PM
 
-Create a new database called `prime_app` and create a `user` table:
+Admin Page - Verification Screen Shot 2021-01-21 at 3 53 54 PM
 
-```SQL
-CREATE TABLE "user" (
-    "id" SERIAL PRIMARY KEY,
-    "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL
-);
-```
+Admin Page - Calendar Screen Shot 2021-01-21 at 3 55 45 PM
 
-If you would like to name your database something else, you will need to change `prime_app` to the name of your new database name in `server/modules/pool.js`
+Admin Page - Demographics Screen Shot 2021-01-21 at 3 56 56 PM
 
-## Development Setup Instructions
+Mobile Profile Pages
 
-- Run `npm install`
-- Create a `.env` file at the root of the project and paste this line into the file:
-  ```
-  SERVER_SESSION_SECRET=superDuperSecret
-  ```
-  While you're in your new `.env` file, take the time to replace `superDuperSecret` with some long random string like `25POUbVtx6RKVNWszd9ERB9Bb6` to keep your application secure. Here's a site that can help you: [https://passwordsgenerator.net/](https://passwordsgenerator.net/). If you don't do this step, create a secret with less than eight characters, or leave it as `superDuperSecret`, you will get a warning.
-- Start postgres if not running already by using `brew services start postgresql`
-- Run `npm run server`
-- Run `npm run client`
-- Navigate to `localhost:3000`
+Screen Shot 2021-01-21 at 3 52 40 PM Screen Shot 2021-01-21 at 3 52 51 PM
 
-## Debugging
+Prerequisites
+Link to software that is required to install the app (e.g. node).
 
-To debug, you will need to run the client-side separately from the server. Start the client by running the command `npm run client`. Start the debugging server by selecting the Debug button.
+Node.js
+docker
+Installation
+If your application has secret keys (for example -- Twilio), make sure you tell them how to set that up, both in getting the key and then what to call it in the .env file.
 
-![VSCode Toolbar](documentation/images/vscode-toolbar.png)
+This version of the project uses Docker to run the development environment. You will need to install docker.
 
-Then make sure `Launch Program` is selected from the dropdown, then click the green play arrow.
+Clone this repo to your local machine.
+Open the project in the editor of your choice. We use VS Code; run npm install.
+In order to access specific functions and API’s you will need to configure a .env file. Please see detailed instructions below.*
+From the project root directory: docker-compose up --build
+The development database should populate with the data stored in the init.sql and data.sql files.**
+Once the development server has started it should serve a message to indicate the server started successfully.
+In a browser, go to http://localhost:3000. You should see the application running.
+Create a user by registering as a volunteer or a mentor.
+Detailed Instructions for Configuring the .env (Secure Development)
+Database name as DATABASE_NAME.
+Server session secret: SERVER_SESSION_SECRET and this can be equal to a secure password. For help creating a password: Password Generator.
+The Docker database setup is handled in 3 configs: DOCKER_DB_PORT=5432 (defaulted config), DOCKER_DB_USER (set to your configuration for secure dev), and DOCKER_DB_PASS.
+A NODE_ENV can be set to ‘development’.
+For AWS S3, configure the .env with your account and API Access Key: AWS_ACCESS_KEY_ID and your Secret Key as AWS_SECRET_ACCESS_KEY.
+Email masking functionality is handled by Nodemailer. This sends secure emails from an account to keep users hidden until choosing to share their contact information. This can be configured in the .env file with MAILER_EMAIL and MAILER_PASSWORD.
+**The project is built on Postgres, so you will need to make sure to have that installed. We recommend using Postico to run those queries as that was used to create the queries.
 
-![VSCode Debug Bar](documentation/images/vscode-debug-bar.png)
+Usage
+Steps:
 
-## Testing Routes with Postman
+The Homepage contains a brief summary of WeCodeKC, a carousel of upcoming events, and the options to register as a volunteer or mentor. You can also access all events by clicking on the hamburger dropdown in the top right corner and going to Events.
 
-To use Postman with this repo, you will need to set up requests in Postman to register a user and login a user at a minimum.
+Register and/or login to the application. If you’re creating a new account, you’re directed to the registration page. Complete the two-part registration by providing the necessary information, and click ‘Submit.’
 
-Keep in mind that once you using the login route, Postman will manage your session cookie for you just like a browser, ensuring it is sent with each subsequent request. If you delete the `localhost` cookie in Postman, it will effectively log you out.
+After logging into your account as a volunteer or mentor, you see your Profile Page. Note, you can also reach this page by selecting ‘Home’ in the top nav bar. If you are an admin, you will have the option of accessing the admin portal by choosing the Admin button on the hamburger dropdown.
 
-1. Start the server - `npm run server`
-2. [Import the sample routes JSON file](./PostmanPrimeSoloRoutes.json) by clicking `Import` in Postman. Select the file.
-3. Click `Collections` and `Send` the following three calls in order:
-   1. `POST /api/user/register` registers a new user, see body to change username/password
-   2. `POST /api/user/login` will login a user, see body to change username/password
-   3. `GET /api/user` will get user information, by default it's not very much
+To view all events at which to volunteer, select the ‘Events’ button. Clicking on the details button will take you to a page with more information. By choosing 'Click to Attend', you will see an alert that the event has been be added to your events.
 
-After running the login route above, you can try any other route you've created that requires a logged in user!
+Back on the profile page, you can update your profile picture and personal details by clicking on 'Edit Profile.'
 
-## Production Build
+As an administrator, you can access a table of all verified users on the admin portal. You can also create and manage events on the Event Calendar tab. Administrators also can view demographics on the Demographics tab and sort through ethnicity, gender identity, and volunteer role.
 
-Before pushing to Heroku, run `npm run build` in terminal. This will create a build folder that contains the code Heroku will be pointed at. You can test this build by typing `npm start`. Keep in mind that `npm start` will let you preview the production build but will **not** auto update.
+Built With
+JavaScript TypeScript React Redux Redux-Saga Axios Node.js Express PostgreSQL Material-UI SweetAlert Luxon React-Big-Calendar RRule Nodemailer Heroku Docker
 
-- Start postgres if not running already by using `brew services start postgresql`
-- Run `npm start`
-- Navigate to `localhost:5000`
+License
+MIT
 
-## Lay of the Land
+Note, include this only if you have a license file. GitHub will generate one for you if you want!
 
-There are a few videos linked below that show a walkthrough the client and sever setup to help acclimatize to the boilerplate. Please take some time to watch the videos in order to get a better understanding of what the boilerplate is like.
+Acknowledgement
+Thanks to Prime Digital Academy who equipped and helped me to make this application a reality. Thank you Tammy Buckner, Dr Philip Hickman, and Shanice Gipson at WeCodeKC for giving us the opportunity to build this application for them!
 
-- [Initial Set](https://vimeo.com/453297271)
-- [Server Walkthrough](https://vimeo.com/453297212)
-- [Client Walkthrough](https://vimeo.com/453297124)
-
-Directory Structure:
-
-- `src/` contains the React application
-- `public/` contains static assets for the client-side
-- `build/` after you build the project, contains the transpiled code from `src/` and `public/` that will be viewed on the production site
-- `server/` contains the Express App
-
-This code is also heavily commented. We recommend reading through the comments, getting a lay of the land, and becoming comfortable with how the code works before you start making too many changes. If you're wondering where to start, consider reading through component file comments in the following order:
-
-- src/components
-  - App/App
-  - Footer/Footer
-  - Nav/Nav
-  - AboutPage/AboutPage
-  - InfoPage/InfoPage
-  - UserPage/UserPage
-  - LoginPage/LoginPage
-  - RegisterPage/RegisterPage
-  - LogOutButton/LogOutButton
-  - ProtectedRoute/ProtectedRoute
-
-## Deployment
-
-1. Create a new Heroku project
-1. Link the Heroku project to the project GitHub Repo
-1. Create an Heroku Postgres database
-1. Connect to the Heroku Postgres database from Postico
-1. Create the necessary tables
-1. Add an environment variable for `SERVER_SESSION_SECRET` with a nice random string for security
-1. In the deploy section, select manual deploy
-
-## Update Documentation
-
-Customize this ReadMe and the code comments in this project to read less like a starter repo and more like a project. Here is an example: https://gist.github.com/PurpleBooth/109311bb0361f32d87a2
-# WeCodeKC-Volunteer
+Support
+If you have suggestions or issues, please email us: Alex Campbell, Clint Hipple, Chris Johnson, or Sarah Peters.
