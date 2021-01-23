@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # WeVolunteerKC
 
 ## Description
@@ -209,4 +208,3 @@ Thanks to Prime Digital Academy who equipped and helped me to make this applicat
 
 Support
 If you have suggestions or issues, please email us: Alex Campbell, Clint Hipple, Chris Johnson, or Sarah Peters.
->>>>>>> ca220aab913a1c3df462faf0b880f97e0bb06bc7
